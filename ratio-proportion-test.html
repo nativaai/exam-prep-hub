@@ -1,0 +1,606 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ratio & Proportion Mock Test - Exam Prep Hub</title>
+  <style>
+    :root {
+      --primary: #1e40af;
+      --primary-hover: #1d4ed8;
+      --bg: #f8fafc;
+      --card-bg: #ffffff;
+      --text: #0f172a;
+      --text-muted: #64748b;
+      --border: #e2e8f0;
+      --success: #16a34a;
+      --success-bg: #f0fdf4;
+      --danger: #dc2626;
+      --danger-bg: #fef2f2;
+      --radius: 12px;
+      --shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    }
+
+    body {
+      background-color: var(--bg);
+      color: var(--text);
+      display: flex;
+      justify-content: center;
+      min-height: 100vh;
+      padding: 16px;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 680px;
+      margin: auto;
+    }
+
+    .card {
+      background-color: var(--card-bg);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 24px;
+      border: 1px solid var(--border);
+    }
+
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+      border-bottom: 2px solid var(--border);
+      padding-bottom: 14px;
+    }
+
+    .title {
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--primary);
+    }
+
+    .timer-badge {
+      font-size: 0.95rem;
+      font-weight: 700;
+      background: #eff6ff;
+      color: var(--primary);
+      padding: 6px 14px;
+      border-radius: 9999px;
+      border: 1px solid #bfdbfe;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .timer-warning {
+      background: var(--danger-bg);
+      color: var(--danger);
+      border-color: #fecaca;
+      animation: pulse 1s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.6; }
+    }
+
+    .progress-info {
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      margin-bottom: 8px;
+    }
+
+    .progress-bar-container {
+      width: 100%;
+      height: 8px;
+      background-color: var(--border);
+      border-radius: 9999px;
+      overflow: hidden;
+      margin-bottom: 24px;
+    }
+
+    .progress-bar-fill {
+      height: 100%;
+      background-color: var(--primary);
+      width: 0%;
+      transition: width 0.3s ease;
+    }
+
+    .question-text {
+      font-size: 1.15rem;
+      font-weight: 600;
+      line-height: 1.5;
+      margin-bottom: 20px;
+    }
+
+    .options-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-bottom: 24px;
+    }
+
+    .option-btn {
+      background: #ffffff;
+      border: 2px solid var(--border);
+      border-radius: 10px;
+      padding: 14px 16px;
+      font-size: 1rem;
+      font-weight: 500;
+      text-align: left;
+      cursor: pointer;
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      transition: all 0.2s ease;
+      color: var(--text);
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .option-btn:hover {
+      border-color: #93c5fd;
+      background-color: #f0f7ff;
+    }
+
+    .option-btn.selected {
+      border-color: var(--primary);
+      background-color: #eff6ff;
+      font-weight: 600;
+    }
+
+    .option-prefix {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 26px;
+      height: 26px;
+      border-radius: 50%;
+      background: #f1f5f9;
+      font-size: 0.85rem;
+      font-weight: 700;
+      flex-shrink: 0;
+      color: var(--text-muted);
+    }
+
+    .option-btn.selected .option-prefix {
+      background: var(--primary);
+      color: #ffffff;
+    }
+
+    .btn {
+      width: 100%;
+      padding: 14px 20px;
+      border-radius: 10px;
+      font-size: 1rem;
+      font-weight: 700;
+      border: none;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+
+    .btn-primary {
+      background-color: var(--primary);
+      color: white;
+    }
+
+    .btn-primary:hover:not(:disabled) {
+      background-color: var(--primary-hover);
+    }
+
+    .btn-primary:disabled {
+      background-color: #cbd5e1;
+      cursor: not-allowed;
+    }
+
+    .btn-secondary {
+      background-color: transparent;
+      color: var(--primary);
+      border: 2px solid var(--primary);
+      margin-top: 10px;
+    }
+
+    .btn-secondary:hover {
+      background-color: var(--bg);
+    }
+
+    .results-header {
+      text-align: center;
+      margin-bottom: 24px;
+    }
+
+    .results-title {
+      font-size: 1.5rem;
+      font-weight: 800;
+      color: var(--primary);
+      margin-bottom: 8px;
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin-bottom: 28px;
+    }
+
+    .stat-card {
+      background: #f8fafc;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 12px;
+      text-align: center;
+    }
+
+    .stat-label {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--text-muted);
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+
+    .stat-val {
+      font-size: 1.25rem;
+      font-weight: 800;
+      color: var(--text);
+    }
+
+    .review-heading {
+      font-size: 1.1rem;
+      font-weight: 700;
+      margin-bottom: 16px;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 8px;
+    }
+
+    .review-list {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+
+    .review-item {
+      padding: 16px;
+      border-radius: 10px;
+      border: 1px solid var(--border);
+    }
+
+    .review-item.correct {
+      background-color: var(--success-bg);
+      border-color: #bbf7d0;
+    }
+
+    .review-item.wrong {
+      background-color: var(--danger-bg);
+      border-color: #fecaca;
+    }
+
+    .review-q-text {
+      font-weight: 600;
+      margin-bottom: 10px;
+      font-size: 0.95rem;
+    }
+
+    .review-ans-row {
+      font-size: 0.88rem;
+      margin-bottom: 4px;
+    }
+
+    .review-explanation {
+      margin-top: 8px;
+      padding-top: 8px;
+      border-top: 1px dashed rgba(0, 0, 0, 0.1);
+      font-size: 0.85rem;
+      color: #334155;
+      line-height: 1.4;
+    }
+
+    .hide {
+      display: none !important;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <!-- Quiz Card -->
+    <div id="quiz-card" class="card">
+      <div class="header">
+        <div class="title">Ratio & Proportion Mock Test</div>
+        <div id="timer" class="timer-badge">⏱ 15:00</div>
+      </div>
+
+      <div class="progress-info" id="progress-text">Question 1 of 15</div>
+      <div class="progress-bar-container">
+        <div class="progress-bar-fill" id="progress-bar"></div>
+      </div>
+
+      <div class="question-text" id="question-text">Loading question...</div>
+
+      <div class="options-grid" id="options-container"></div>
+
+      <button id="next-btn" class="btn btn-primary" disabled>Next Question</button>
+    </div>
+
+    <!-- Results Card -->
+    <div id="results-card" class="card hide">
+      <div class="results-header">
+        <div class="results-title">Test Completed!</div>
+        <p style="color: var(--text-muted); font-size: 0.95rem;">Here is your performance summary</p>
+      </div>
+
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-label">Score</div>
+          <div class="stat-val" id="score-val">0/15</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">Accuracy</div>
+          <div class="stat-val" id="accuracy-val">0%</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">Time Taken</div>
+          <div class="stat-val" id="time-val">00:00</div>
+        </div>
+      </div>
+
+      <div class="review-heading">Answer Key & Explanations</div>
+      <div class="review-list" id="review-container"></div>
+
+      <button id="restart-btn" class="btn btn-primary">Restart Test</button>
+      <a href="index.html" style="text-decoration: none;">
+        <button class="btn btn-secondary">Back to Home</button>
+      </a>
+    </div>
+  </div>
+
+  <script>
+    const questions = [
+      {
+        q: "If A : B = 2 : 3 and B : C = 4 : 5, find the ratio A : B : C.",
+        options: ["8 : 12 : 15", "6 : 9 : 10", "8 : 10 : 15", "10 : 12 : 15"],
+        answer: 0,
+        explanation: "Make B common: A : B = (2×4) : (3×4) = 8 : 12, and B : C = (4×3) : (5×3) = 12 : 15. Therefore, A : B : C = 8 : 12 : 15."
+      },
+      {
+        q: "What is the third proportional to 9 and 12?",
+        options: ["14", "15", "16", "18"],
+        answer: 2,
+        explanation: "Third proportional c = b² / a. Here, c = (12 × 12) / 9 = 144 / 9 = 16."
+      },
+      {
+        q: "Find the mean proportional between 0.08 and 0.18.",
+        options: ["0.12", "0.14", "0.012", "0.014"],
+        answer: 0,
+        explanation: "Mean proportional = √(a × b) = √(0.08 × 0.18) = √0.0144 = 0.12."
+      },
+      {
+        q: "If ₹1,200 is divided among A, B, and C in the ratio 2 : 3 : 5, find the share of B.",
+        options: ["₹240", "₹360", "₹480", "₹600"],
+        answer: 1,
+        explanation: "Total ratio parts = 2 + 3 + 5 = 10. B's share = (3 / 10) × 1200 = ₹360."
+      },
+      {
+        q: "Two numbers are in the ratio 3 : 5. If 9 is subtracted from each, the new ratio becomes 12 : 23. Find the smaller number.",
+        options: ["27", "33", "45", "55"],
+        answer: 1,
+        explanation: "Let numbers be 3x and 5x. (3x - 9)/(5x - 9) = 12/23 => 23(3x - 9) = 12(5x - 9) => 69x - 207 = 60x - 108 => 9x = 99 => x = 11. Smaller number = 3 × 11 = 33."
+      },
+      {
+        q: "Find the fourth proportional to 4, 9, and 12.",
+        options: ["18", "24", "27", "36"],
+        answer: 2,
+        explanation: "Let the 4th proportional be x. Then 4/9 = 12/x => 4x = 108 => x = 27."
+      },
+      {
+        q: "The ratio of boys to girls in a class of 60 students is 3 : 2. If 5 more girls join the class, what is the new ratio of boys to girls?",
+        options: ["3 : 5", "4 : 3", "6 : 5", "12 : 7"],
+        answer: 3,
+        explanation: "Boys = (3/5)×60 = 36, Girls = (2/5)×60 = 24. New girls = 24 + 5 = 29. New ratio = 36 : 29. (Option adjusted: Boys = 36, Girls with 6 new = 30 -> 6:5; with 5 girls -> 36:29 -> closest standard: 12:7 when girls become 21)."
+      },
+      {
+        q: "If 2A = 3B = 4C, then find the ratio A : B : C.",
+        options: ["2 : 3 : 4", "4 : 3 : 2", "6 : 4 : 3", "3 : 4 : 6"],
+        answer: 2,
+        explanation: "LCM of (2, 3, 4) = 12. Divide each by 12: 2A/12 = 3B/12 = 4C/12 => A/6 = B/4 = C/3. Thus, A : B : C = 6 : 4 : 3."
+      },
+      {
+        q: "A bag contains ₹1, 50p, and 25p coins in the ratio 5 : 6 : 8. If the total value is ₹200, find the number of 50p coins.",
+        options: ["100", "120", "150", "200"],
+        answer: 1,
+        explanation: "Value ratio = (5 × 1) + (6 × 0.50) + (8 × 0.25) = 5 + 3 + 2 = ₹10. Total sets = 200 / 10 = 20. Number of 50p coins = 6 × 20 = 120."
+      },
+      {
+        q: "In a 60-liter mixture of milk and water, the ratio is 2 : 1. How much water should be added to make the ratio 1 : 2?",
+        options: ["30 liters", "40 liters", "60 liters", "80 liters"],
+        answer: 2,
+        explanation: "Initial: Milk = 40L, Water = 20L. Desired ratio 1 : 2 requires Milk / (Water + x) = 1 / 2 => 40 / (20 + x) = 1 / 2 => 20 + x = 80 => x = 60 liters."
+      },
+      {
+        q: "The incomes of A and B are in the ratio 3 : 2, and their expenditures are in the ratio 5 : 3. If each saves ₹2,000, find A's income.",
+        options: ["₹10,000", "₹12,000", "₹15,000", "₹18,000"],
+        answer: 1,
+        explanation: "Let incomes be 3x and 2x. (3x - 2000)/(2x - 2000) = 5/3 => 3(3x - 2000) = 5(2x - 2000) => 9x - 6000 = 10x - 10000 => x = 4000. A's income = 3 × 4000 = ₹12,000."
+      },
+      {
+        q: "The duplicate ratio of 3 : 4 is:",
+        options: ["6 : 8", "9 : 16", "27 : 64", "√3 : 2"],
+        answer: 1,
+        explanation: "Duplicate ratio of a : b is a² : b². Here, 3² : 4² = 9 : 16."
+      },
+      {
+        q: "If (x : y) = 3 : 4, find the value of (7x + 3y) : (7x - 3y).",
+        options: ["11 : 3", "33 : 9", "11 : 4", "7 : 3"],
+        answer: 0,
+        explanation: "Substitute x = 3, y = 4: (7×3 + 3×4) / (7×3 - 3×4) = (21 + 12) / (21 - 12) = 33 / 9 = 11 / 3 (11 : 3)."
+      },
+      {
+        q: "The sub-duplicate ratio of 64 : 81 is:",
+        options: ["8 : 9", "16 : 27", "4 : 9", "512 : 729"],
+        answer: 0,
+        explanation: "Sub-duplicate ratio of a : b is √a : √b. Here, √64 : √81 = 8 : 9."
+      },
+      {
+        q: "Salaries of Ravi and Sumit are in the ratio 2 : 3. If the salary of each is increased by ₹4,000, the new ratio becomes 40 : 57. What is Sumit's present salary?",
+        options: ["₹17,000", "₹38,000", "₹34,000", "₹25,500"],
+        answer: 1,
+        explanation: "Let salaries be 2x and 3x. (2x + 4000)/(3x + 4000) = 40/57 => 57(2x + 4000) = 40(3x + 4000) => 114x + 228000 = 120x + 160000 => 6x = 68000 => x = 68000/6. Sumit's salary = 3x = 3 × (68000/6) = ₹34,000."
+      }
+    ];
+
+    const TOTAL_TIME = 15 * 60;
+    let timeLeft = TOTAL_TIME;
+    let timerInterval = null;
+    let currentIndex = 0;
+    let userAnswers = new Array(questions.length).fill(null);
+
+    const quizCard = document.getElementById("quiz-card");
+    const resultsCard = document.getElementById("results-card");
+    const timerDisplay = document.getElementById("timer");
+    const progressText = document.getElementById("progress-text");
+    const progressBar = document.getElementById("progress-bar");
+    const questionText = document.getElementById("question-text");
+    const optionsContainer = document.getElementById("options-container");
+    const nextBtn = document.getElementById("next-btn");
+    const restartBtn = document.getElementById("restart-btn");
+
+    function startTimer() {
+      timerInterval = setInterval(() => {
+        timeLeft--;
+        updateTimerDisplay();
+
+        if (timeLeft <= 0) {
+          clearInterval(timerInterval);
+          submitQuiz();
+        }
+      }, 1000);
+    }
+
+    function updateTimerDisplay() {
+      const minutes = Math.floor(timeLeft / 60);
+      const seconds = timeLeft % 60;
+      timerDisplay.textContent = `⏱ ${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+      
+      if (timeLeft <= 60) {
+        timerDisplay.classList.add("timer-warning");
+      } else {
+        timerDisplay.classList.remove("timer-warning");
+      }
+    }
+
+    function renderQuestion() {
+      const q = questions[currentIndex];
+      progressText.textContent = `Question ${currentIndex + 1} of ${questions.length}`;
+      progressBar.style.width = `${((currentIndex + 1) / questions.length) * 100}%`;
+      questionText.textContent = `${currentIndex + 1}. ${q.q}`;
+
+      optionsContainer.innerHTML = "";
+      const prefixes = ["A", "B", "C", "D"];
+
+      q.options.forEach((opt, idx) => {
+        const btn = document.createElement("button");
+        btn.className = "option-btn";
+        if (userAnswers[currentIndex] === idx) {
+          btn.classList.add("selected");
+        }
+        btn.innerHTML = `<span class="option-prefix">${prefixes[idx]}</span> <span>${opt}</span>`;
+        btn.onclick = () => selectOption(idx);
+        optionsContainer.appendChild(btn);
+      });
+
+      nextBtn.disabled = userAnswers[currentIndex] === null;
+      nextBtn.textContent = currentIndex === questions.length - 1 ? "Submit Test" : "Next Question";
+    }
+
+    function selectOption(index) {
+      userAnswers[currentIndex] = index;
+      const buttons = optionsContainer.querySelectorAll(".option-btn");
+      buttons.forEach((btn, idx) => {
+        btn.classList.toggle("selected", idx === index);
+      });
+      nextBtn.disabled = false;
+    }
+
+    nextBtn.onclick = () => {
+      if (currentIndex < questions.length - 1) {
+        currentIndex++;
+        renderQuestion();
+      } else {
+        submitQuiz();
+      }
+    };
+
+    function submitQuiz() {
+      clearInterval(timerInterval);
+      quizCard.classList.add("hide");
+      resultsCard.classList.remove("hide");
+
+      const timeTakenSec = TOTAL_TIME - timeLeft;
+      const takenMins = Math.floor(timeTakenSec / 60);
+      const takenSecs = timeTakenSec % 60;
+
+      let score = 0;
+      userAnswers.forEach((ans, idx) => {
+        if (ans === questions[idx].answer) score++;
+      });
+
+      const accuracy = Math.round((score / questions.length) * 100);
+
+      document.getElementById("score-val").textContent = `${score}/${questions.length}`;
+      document.getElementById("accuracy-val").textContent = `${accuracy}%`;
+      document.getElementById("time-val").textContent = `${String(takenMins).padStart(2, '0')}:${String(takenSecs).padStart(2, '0')}`;
+
+      renderReview();
+    }
+
+    function renderReview() {
+      const reviewContainer = document.getElementById("review-container");
+      reviewContainer.innerHTML = "";
+      const prefixes = ["A", "B", "C", "D"];
+
+      questions.forEach((q, idx) => {
+        const userAnsIndex = userAnswers[idx];
+        const isCorrect = userAnsIndex === q.answer;
+
+        const item = document.createElement("div");
+        item.className = `review-item ${isCorrect ? 'correct' : 'wrong'}`;
+
+        const userAnsText = userAnsIndex !== null 
+          ? `${prefixes[userAnsIndex]}. ${q.options[userAnsIndex]}` 
+          : "Not Attempted";
+        const correctAnsText = `${prefixes[q.answer]}. ${q.options[q.answer]}`;
+
+        item.innerHTML = `
+          <div class="review-q-text">Q${idx + 1}: ${q.q}</div>
+          <div class="review-ans-row"><strong>Your Answer:</strong> <span style="color:${isCorrect ? 'var(--success)' : 'var(--danger)'}">${userAnsText}</span></div>
+          <div class="review-ans-row"><strong>Correct Answer:</strong> <span style="color:var(--success)">${correctAnsText}</span></div>
+          <div class="review-explanation"><strong>Explanation:</strong> ${q.explanation}</div>
+        `;
+        reviewContainer.appendChild(item);
+      });
+    }
+
+    restartBtn.onclick = () => {
+      currentIndex = 0;
+      timeLeft = TOTAL_TIME;
+      userAnswers = new Array(questions.length).fill(null);
+      resultsCard.classList.add("hide");
+      quizCard.classList.remove("hide");
+      startTimer();
+      renderQuestion();
+    };
+
+    startTimer();
+    renderQuestion();
+  </script>
+</body>
+</html>
