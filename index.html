@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Exam Prep Hub - Free Mock Tests & Study Notes</title>
+  <style>
+    :root {
+      --primary: #1e40af;
+      --primary-hover: #1d4ed8;
+      --primary-light: #eff6ff;
+      --bg: #f8fafc;
+      --card-bg: #ffffff;
+      --text: #0f172a;
+      --text-muted: #64748b;
+      --border: #e2e8f0;
+      --badge-bg: #dbeafe;
+      --badge-text: #1e40af;
+      --radius: 12px;
+      --shadow: 0 4px 6px -1px rgb(0 0 0 / 0.08), 0 2px 4px -2px rgb(0 0 0 / 0.05);
+      --shadow-hover: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.08);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    }
+
+    body {
+      background-color: var(--bg);
+      color: var(--text);
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+      line-height: 1.5;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 0 16px 32px 16px;
+      flex: 1;
+    }
+
+    /* Hero */
+    .hero {
+      background: linear-gradient(180deg, #eff6ff 0%, var(--bg) 100%);
+      padding: 36px 16px 28px 16px;
+      text-align: center;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 24px;
+    }
+
+    .hero-title {
+      font-size: 1.75rem;
+      font-weight: 800;
+      color: var(--primary);
+      letter-spacing: -0.02em;
+      margin-bottom: 8px;
+    }
+
+    .hero-tagline {
+      font-size: 0.98rem;
+      color: var(--text-muted);
+      max-width: 500px;
+      margin: 0 auto;
+      font-weight: 500;
+    }
+
+    /* Sections */
+    .section {
+      margin-bottom: 32px;
+    }
+
+    .section-title {
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 14px;
+    }
+
+    /* Category Grid */
+    .category-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+    }
+
+    @media (min-width: 540px) {
+      .category-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+
+    .category-card {
+      background-color: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 16px 14px;
+      box-shadow: var(--shadow);
+      text-align: center;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      min-height: 85px;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .category-card:hover {
+      border-color: #93c5fd;
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-hover);
+    }
+
+    .category-card:active {
+      transform: translateY(0);
+      background-color: var(--primary-light);
+    }
+
+    .category-name {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--primary);
+      margin-bottom: 4px;
+    }
+
+    .category-label {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      font-weight: 500;
+    }
+
+    /* Available Tests List */
+    .test-list {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .test-card {
+      background-color: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 18px 20px;
+      box-shadow: var(--shadow);
+      text-decoration: none;
+      color: inherit;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      transition: all 0.2s ease;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .test-card:hover {
+      border-color: #93c5fd;
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-hover);
+    }
+
+    .test-card:active {
+      background-color: var(--primary-light);
+    }
+
+    .test-info {
+      flex: 1;
+      padding-right: 12px;
+    }
+
+    .test-badge {
+      display: inline-block;
+      font-size: 0.72rem;
+      font-weight: 700;
+      background-color: var(--badge-bg);
+      color: var(--badge-text);
+      padding: 2px 8px;
+      border-radius: 9999px;
+      margin-bottom: 6px;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+    }
+
+    .test-name {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 4px;
+    }
+
+    .test-desc {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+
+    .test-btn-arrow {
+      background-color: var(--primary);
+      color: #ffffff;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.1rem;
+      font-weight: bold;
+      flex-shrink: 0;
+    }
+
+    /* Footer */
+    .footer {
+      background-color: var(--card-bg);
+      border-top: 1px solid var(--border);
+      padding: 20px 16px;
+      text-align: center;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      margin-top: auto;
+    }
+
+    .footer strong {
+      color: var(--text);
+    }
+  </style>
+</head>
+<body>
+
+  <header class="hero">
+    <h1 class="hero-title">Exam Prep Hub</h1>
+    <p class="hero-tagline">Free mock tests and study notes for competitive exam preparation</p>
+  </header>
+
+  <main class="container">
+    <section class="section">
+      <h2 class="section-title">Choose Your Exam Category</h2>
+      <div class="category-grid" id="category-grid"></div>
+    </section>
+
+    <section class="section">
+      <h2 class="section-title">Available Tests</h2>
+      <div class="test-list" id="test-list"></div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p><strong>Exam Prep Hub</strong></p>
+    <p style="margin-top: 4px;">More exams and notes coming soon</p>
+  </footer>
+
+  <script>
+    const categories = [
+      { name: "SSC", label: "Mock Tests & Notes" },
+      { name: "Railway", label: "Mock Tests & Notes" },
+      { name: "Banking", label: "Mock Tests & Notes" },
+      { name: "UPSC", label: "Mock Tests & Notes" },
+      { name: "OPSC", label: "Mock Tests & Notes" }
+    ];
+
+    const availableTests = [
+      {
+        title: "Percentage Mock Test",
+        category: "Quantitative Aptitude",
+        description: "15 questions • 15 minutes • Detailed Explanations",
+        link: "percentage-test.html"
+      }
+    ];
+
+    function renderCategories() {
+      const categoryContainer = document.getElementById("category-grid");
+      categoryContainer.innerHTML = categories.map(cat => `
+        <div class="category-card" onclick="alert('Tests & notes for ${cat.name} will be added soon!')">
+          <div class="category-name">${cat.name}</div>
+          <div class="category-label">${cat.label}</div>
+        </div>
+      `).join("");
+    }
+
+    function renderTests() {
+      const testContainer = document.getElementById("test-list");
+      testContainer.innerHTML = availableTests.map(test => `
+        <a href="${test.link}" class="test-card">
+          <div class="test-info">
+            <span class="test-badge">${test.category}</span>
+            <div class="test-name">${test.title}</div>
+            <div class="test-desc">${test.description}</div>
+          </div>
+          <div class="test-btn-arrow">›</div>
+        </a>
+      `).join("");
+    }
+
+    renderCategories();
+    renderTests();
+  </script>
+</body>
+</html>
