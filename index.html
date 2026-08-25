@@ -1,0 +1,599 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Percentage Mock Test</title>
+  <style>
+    :root {
+      --primary: #1e40af;
+      --primary-hover: #1d4ed8;
+      --bg: #f8fafc;
+      --card-bg: #ffffff;
+      --text: #0f172a;
+      --text-muted: #64748b;
+      --border: #e2e8f0;
+      --success: #16a34a;
+      --success-bg: #f0fdf4;
+      --danger: #dc2626;
+      --danger-bg: #fef2f2;
+      --radius: 12px;
+      --shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    }
+
+    body {
+      background-color: var(--bg);
+      color: var(--text);
+      display: flex;
+      justify-content: center;
+      min-height: 100vh;
+      padding: 16px;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 680px;
+      margin: auto;
+    }
+
+    .card {
+      background-color: var(--card-bg);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 24px;
+      border: 1px solid var(--border);
+    }
+
+    /* Header & Timer */
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+      border-bottom: 2px solid var(--border);
+      padding-bottom: 14px;
+    }
+
+    .title {
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--primary);
+    }
+
+    .timer-badge {
+      font-size: 0.95rem;
+      font-weight: 700;
+      background: #eff6ff;
+      color: var(--primary);
+      padding: 6px 14px;
+      border-radius: 9999px;
+      border: 1px solid #bfdbfe;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .timer-warning {
+      background: var(--danger-bg);
+      color: var(--danger);
+      border-color: #fecaca;
+      animation: pulse 1s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.6; }
+    }
+
+    /* Progress */
+    .progress-info {
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      margin-bottom: 8px;
+    }
+
+    .progress-bar-container {
+      width: 100%;
+      height: 8px;
+      background-color: var(--border);
+      border-radius: 9999px;
+      overflow: hidden;
+      margin-bottom: 24px;
+    }
+
+    .progress-bar-fill {
+      height: 100%;
+      background-color: var(--primary);
+      width: 0%;
+      transition: width 0.3s ease;
+    }
+
+    /* Question & Options */
+    .question-text {
+      font-size: 1.15rem;
+      font-weight: 600;
+      line-height: 1.5;
+      margin-bottom: 20px;
+    }
+
+    .options-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-bottom: 24px;
+    }
+
+    .option-btn {
+      background: #ffffff;
+      border: 2px solid var(--border);
+      border-radius: 10px;
+      padding: 14px 16px;
+      font-size: 1rem;
+      font-weight: 500;
+      text-align: left;
+      cursor: pointer;
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      transition: all 0.2s ease;
+      color: var(--text);
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .option-btn:hover {
+      border-color: #93c5fd;
+      background-color: #f0f7ff;
+    }
+
+    .option-btn.selected {
+      border-color: var(--primary);
+      background-color: #eff6ff;
+      font-weight: 600;
+    }
+
+    .option-prefix {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 26px;
+      height: 26px;
+      border-radius: 50%;
+      background: #f1f5f9;
+      font-size: 0.85rem;
+      font-weight: 700;
+      flex-shrink: 0;
+      color: var(--text-muted);
+    }
+
+    .option-btn.selected .option-prefix {
+      background: var(--primary);
+      color: #ffffff;
+    }
+
+    /* Actions */
+    .btn {
+      width: 100%;
+      padding: 14px 20px;
+      border-radius: 10px;
+      font-size: 1rem;
+      font-weight: 700;
+      border: none;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+
+    .btn-primary {
+      background-color: var(--primary);
+      color: white;
+    }
+
+    .btn-primary:hover:not(:disabled) {
+      background-color: var(--primary-hover);
+    }
+
+    .btn-primary:disabled {
+      background-color: #cbd5e1;
+      cursor: not-allowed;
+    }
+
+    /* Results Screen */
+    .results-header {
+      text-align: center;
+      margin-bottom: 24px;
+    }
+
+    .results-title {
+      font-size: 1.5rem;
+      font-weight: 800;
+      color: var(--primary);
+      margin-bottom: 8px;
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin-bottom: 28px;
+    }
+
+    .stat-card {
+      background: #f8fafc;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 12px;
+      text-align: center;
+    }
+
+    .stat-label {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--text-muted);
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+
+    .stat-val {
+      font-size: 1.25rem;
+      font-weight: 800;
+      color: var(--text);
+    }
+
+    .review-heading {
+      font-size: 1.1rem;
+      font-weight: 700;
+      margin-bottom: 16px;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 8px;
+    }
+
+    .review-list {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+
+    .review-item {
+      padding: 16px;
+      border-radius: 10px;
+      border: 1px solid var(--border);
+    }
+
+    .review-item.correct {
+      background-color: var(--success-bg);
+      border-color: #bbf7d0;
+    }
+
+    .review-item.wrong {
+      background-color: var(--danger-bg);
+      border-color: #fecaca;
+    }
+
+    .review-q-text {
+      font-weight: 600;
+      margin-bottom: 10px;
+      font-size: 0.95rem;
+    }
+
+    .review-ans-row {
+      font-size: 0.88rem;
+      margin-bottom: 4px;
+    }
+
+    .review-explanation {
+      margin-top: 8px;
+      padding-top: 8px;
+      border-top: 1px dashed rgba(0, 0, 0, 0.1);
+      font-size: 0.85rem;
+      color: #334155;
+      line-height: 1.4;
+    }
+
+    .hide {
+      display: none !important;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <!-- Quiz Screen -->
+    <div id="quiz-card" class="card">
+      <div class="header">
+        <div class="title">Percentage Mock Test</div>
+        <div id="timer" class="timer-badge">⏱ 15:00</div>
+      </div>
+
+      <div class="progress-info" id="progress-text">Question 1 of 15</div>
+      <div class="progress-bar-container">
+        <div class="progress-bar-fill" id="progress-bar"></div>
+      </div>
+
+      <div class="question-text" id="question-text">Loading question...</div>
+
+      <div class="options-grid" id="options-container"></div>
+
+      <button id="next-btn" class="btn btn-primary" disabled>Next Question</button>
+    </div>
+
+    <!-- Results Screen -->
+    <div id="results-card" class="card hide">
+      <div class="results-header">
+        <div class="results-title">Test Completed!</div>
+        <p style="color: var(--text-muted); font-size: 0.95rem;">Here is your performance summary</p>
+      </div>
+
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-label">Score</div>
+          <div class="stat-val" id="score-val">0/15</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">Accuracy</div>
+          <div class="stat-val" id="accuracy-val">0%</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">Time Taken</div>
+          <div class="stat-val" id="time-val">00:00</div>
+        </div>
+      </div>
+
+      <div class="review-heading">Answer Key & Explanations</div>
+      <div class="review-list" id="review-container"></div>
+
+      <button id="restart-btn" class="btn btn-primary">Restart Test</button>
+    </div>
+  </div>
+
+  <script>
+    const questions = [
+      {
+        q: "If A's income is 25% more than B's income, by what percentage is B's income less than A's income?",
+        options: ["20%", "25%", "16.66%", "33.33%"],
+        answer: 0,
+        explanation: "Let B = 100, then A = 125. Difference = 25. Percentage less = (25 / 125) × 100 = 20%."
+      },
+      {
+        q: "The price of sugar rises by 20%. By how much percent should a family reduce its consumption so as not to increase the expenditure?",
+        options: ["15%", "16.67%", "20%", "25%"],
+        answer: 1,
+        explanation: "Reduction % = [R / (100 + R)] × 100 = [20 / 120] × 100 = 16.67%."
+      },
+      {
+        q: "If the length of a rectangle is increased by 20% and its breadth is decreased by 10%, find the net percentage change in its area.",
+        options: ["8% increase", "10% increase", "8% decrease", "2% increase"],
+        answer: 0,
+        explanation: "Net change = a + b + (ab / 100) = 20 - 10 + [20 × (-10) / 100] = 10 - 2 = +8% (8% increase)."
+      },
+      {
+        q: "A student has to secure 40% marks to pass. He gets 178 marks and fails by 22 marks. What are the maximum marks?",
+        options: ["400", "500", "600", "450"],
+        answer: 1,
+        explanation: "Passing marks = 178 + 22 = 200. Since 40% = 200, 100% = (200 / 40) × 100 = 500."
+      },
+      {
+        q: "The population of a town increases by 10% annually. If its present population is 1,00,000, what will it be after 2 years?",
+        options: ["1,20,000", "1,21,000", "1,10,000", "1,25,000"],
+        answer: 1,
+        explanation: "Population after 2 years = 100000 × (1.10)² = 100000 × 1.21 = 1,21,000."
+      },
+      {
+        q: "Two successive discounts of 20% and 10% are equivalent to a single discount of:",
+        options: ["30%", "28%", "25%", "22%"],
+        answer: 1,
+        explanation: "Single discount = d1 + d2 - (d1 × d2 / 100) = 20 + 10 - (200 / 100) = 28%."
+      },
+      {
+        q: "If 60% of students in a school are boys and the number of girls is 400, find the total number of students.",
+        options: ["1,000", "800", "1,200", "1,500"],
+        answer: 0,
+        explanation: "Girls % = 100% - 60% = 40%. Since 40% = 400, total students (100%) = (400 / 40) × 100 = 1,000."
+      },
+      {
+        q: "A number is first increased by 20% and then decreased by 20%. The net change in the number is:",
+        options: ["0%", "4% increase", "4% decrease", "2% decrease"],
+        answer: 2,
+        explanation: "Net change = (x² / 100)% decrease = (20² / 100)% = 4% decrease."
+      },
+      {
+        q: "In an examination, 35% of candidates fail in English and 40% in Mathematics. If 20% fail in both, what percentage passed in both?",
+        options: ["45%", "55%", "65%", "50%"],
+        answer: 0,
+        explanation: "Total failed in at least one = 35 + 40 - 20 = 55%. Passed in both = 100 - 55 = 45%."
+      },
+      {
+        q: "If 30% of (A + B) = 50% of (A - B), then what percentage of A is B?",
+        options: ["20%", "25%", "30%", "40%"],
+        answer: 1,
+        explanation: "3(A + B) = 5(A - B) => 3A + 3B = 5A - 5B => 2A = 8B => A = 4B. Percentage of A that is B = (B / 4B) × 100 = 25%."
+      },
+      {
+        q: "A person spends 75% of his income. If his income increases by 20% and his expenditure increases by 10%, find the percentage increase in his savings.",
+        options: ["40%", "50%", "30%", "60%"],
+        answer: 1,
+        explanation: "Let Income = 100, Exp = 75, Savings = 25. New Income = 120, New Exp = 82.5, New Savings = 37.5. Increase = (12.5 / 25) × 100 = 50%."
+      },
+      {
+        q: "Due to a 20% reduction in price, a man can buy 2 kg more sugar for ₹100. Find the original price per kg.",
+        options: ["₹10", "₹12.50", "₹15", "₹8"],
+        answer: 1,
+        explanation: "Money saved = 20% of 100 = ₹20 for 2 kg. Reduced price = ₹10/kg. Original price = 10 / (1 - 0.20) = ₹12.50."
+      },
+      {
+        q: "If the radius of a circle is decreased by 50%, find the percentage decrease in its area.",
+        options: ["50%", "75%", "25%", "60%"],
+        answer: 1,
+        explanation: "Area depends on r². Change = -50 - 50 + [(-50) × (-50) / 100] = -100 + 25 = -75% (75% decrease)."
+      },
+      {
+        q: "If x is 80% of y, what percent of x is y?",
+        options: ["120%", "125%", "80%", "150%"],
+        answer: 1,
+        explanation: "x = 0.8y => y / x = 1 / 0.8 = 5/4. Percentage = (5/4) × 100 = 125%."
+      },
+      {
+        q: "Fresh fruit contains 68% water and dry fruit contains 20% water. How much dry fruit can be obtained from 100 kg of fresh fruits?",
+        options: ["32 kg", "40 kg", "52 kg", "60 kg"],
+        answer: 1,
+        explanation: "Pulp in 100 kg fresh fruit = (100 - 68)% = 32 kg. In dry fruit, pulp is 80%. 80% of dry fruit = 32 kg => Dry fruit = (32 / 80) × 100 = 40 kg."
+      }
+    ];
+
+    const TOTAL_TIME = 15 * 60; // 15 minutes in seconds
+    let timeLeft = TOTAL_TIME;
+    let timerInterval = null;
+    let currentIndex = 0;
+    let userAnswers = new Array(questions.length).fill(null);
+
+    // Elements
+    const quizCard = document.getElementById("quiz-card");
+    const resultsCard = document.getElementById("results-card");
+    const timerDisplay = document.getElementById("timer");
+    const progressText = document.getElementById("progress-text");
+    const progressBar = document.getElementById("progress-bar");
+    const questionText = document.getElementById("question-text");
+    const optionsContainer = document.getElementById("options-container");
+    const nextBtn = document.getElementById("next-btn");
+    const restartBtn = document.getElementById("restart-btn");
+
+    function startTimer() {
+      timerInterval = setInterval(() => {
+        timeLeft--;
+        updateTimerDisplay();
+
+        if (timeLeft <= 0) {
+          clearInterval(timerInterval);
+          submitQuiz();
+        }
+      }, 1000);
+    }
+
+    function updateTimerDisplay() {
+      const minutes = Math.floor(timeLeft / 60);
+      const seconds = timeLeft % 60;
+      timerDisplay.textContent = `⏱ ${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+      
+      if (timeLeft <= 60) {
+        timerDisplay.classList.add("timer-warning");
+      } else {
+        timerDisplay.classList.remove("timer-warning");
+      }
+    }
+
+    function renderQuestion() {
+      const q = questions[currentIndex];
+      progressText.textContent = `Question ${currentIndex + 1} of ${questions.length}`;
+      progressBar.style.width = `${((currentIndex + 1) / questions.length) * 100}%`;
+      questionText.textContent = `${currentIndex + 1}. ${q.q}`;
+
+      optionsContainer.innerHTML = "";
+      const prefixes = ["A", "B", "C", "D"];
+
+      q.options.forEach((opt, idx) => {
+        const btn = document.createElement("button");
+        btn.className = "option-btn";
+        if (userAnswers[currentIndex] === idx) {
+          btn.classList.add("selected");
+        }
+        btn.innerHTML = `<span class="option-prefix">${prefixes[idx]}</span> <span>${opt}</span>`;
+        btn.onclick = () => selectOption(idx);
+        optionsContainer.appendChild(btn);
+      });
+
+      nextBtn.disabled = userAnswers[currentIndex] === null;
+      nextBtn.textContent = currentIndex === questions.length - 1 ? "Submit Test" : "Next Question";
+    }
+
+    function selectOption(index) {
+      userAnswers[currentIndex] = index;
+      const buttons = optionsContainer.querySelectorAll(".option-btn");
+      buttons.forEach((btn, idx) => {
+        btn.classList.toggle("selected", idx === index);
+      });
+      nextBtn.disabled = false;
+    }
+
+    nextBtn.onclick = () => {
+      if (currentIndex < questions.length - 1) {
+        currentIndex++;
+        renderQuestion();
+      } else {
+        submitQuiz();
+      }
+    };
+
+    function submitQuiz() {
+      clearInterval(timerInterval);
+      quizCard.classList.add("hide");
+      resultsCard.classList.remove("hide");
+
+      const timeTakenSec = TOTAL_TIME - timeLeft;
+      const takenMins = Math.floor(timeTakenSec / 60);
+      const takenSecs = timeTakenSec % 60;
+
+      let score = 0;
+      userAnswers.forEach((ans, idx) => {
+        if (ans === questions[idx].answer) score++;
+      });
+
+      const accuracy = Math.round((score / questions.length) * 100);
+
+      document.getElementById("score-val").textContent = `${score}/${questions.length}`;
+      document.getElementById("accuracy-val").textContent = `${accuracy}%`;
+      document.getElementById("time-val").textContent = `${String(takenMins).padStart(2, '0')}:${String(takenSecs).padStart(2, '0')}`;
+
+      renderReview();
+    }
+
+    function renderReview() {
+      const reviewContainer = document.getElementById("review-container");
+      reviewContainer.innerHTML = "";
+      const prefixes = ["A", "B", "C", "D"];
+
+      questions.forEach((q, idx) => {
+        const userAnsIndex = userAnswers[idx];
+        const isCorrect = userAnsIndex === q.answer;
+
+        const item = document.createElement("div");
+        item.className = `review-item ${isCorrect ? 'correct' : 'wrong'}`;
+
+        const userAnsText = userAnsIndex !== null 
+          ? `${prefixes[userAnsIndex]}. ${q.options[userAnsIndex]}` 
+          : "Not Attempted";
+        const correctAnsText = `${prefixes[q.answer]}. ${q.options[q.answer]}`;
+
+        item.innerHTML = `
+          <div class="review-q-text">Q${idx + 1}: ${q.q}</div>
+          <div class="review-ans-row"><strong>Your Answer:</strong> <span style="color:${isCorrect ? 'var(--success)' : 'var(--danger)'}">${userAnsText}</span></div>
+          <div class="review-ans-row"><strong>Correct Answer:</strong> <span style="color:var(--success)">${correctAnsText}</span></div>
+          <div class="review-explanation"><strong>Explanation:</strong> ${q.explanation}</div>
+        `;
+        reviewContainer.appendChild(item);
+      });
+    }
+
+    restartBtn.onclick = () => {
+      currentIndex = 0;
+      timeLeft = TOTAL_TIME;
+      userAnswers = new Array(questions.length).fill(null);
+      resultsCard.classList.add("hide");
+      quizCard.classList.remove("hide");
+      startTimer();
+      renderQuestion();
+    };
+
+    // Initialize
+    startTimer();
+    renderQuestion();
+  </script>
+</body>
+  </html>
