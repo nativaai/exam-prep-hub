@@ -1,0 +1,605 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Indian Geography Mock Test - Exam Prep Hub</title>
+  <style>
+    :root {
+      --primary: #1e40af;
+      --primary-hover: #1d4ed8;
+      --bg: #f8fafc;
+      --card-bg: #ffffff;
+      --text: #0f172a;
+      --text-muted: #64748b;
+      --border: #e2e8f0;
+      --success: #16a34a;
+      --success-bg: #f0fdf4;
+      --danger: #dc2626;
+      --danger-bg: #fef2f2;
+      --radius: 12px;
+      --shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    }
+
+    body {
+      background-color: var(--bg);
+      color: var(--text);
+      display: flex;
+      justify-content: center;
+      min-height: 100vh;
+      padding: 16px;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 680px;
+      margin: auto;
+    }
+
+    .card {
+      background-color: var(--card-bg);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 24px;
+      border: 1px solid var(--border);
+    }
+
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+      border-bottom: 2px solid var(--border);
+      padding-bottom: 14px;
+    }
+
+    .title {
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--primary);
+    }
+
+    .timer-badge {
+      font-size: 0.95rem;
+      font-weight: 700;
+      background: #eff6ff;
+      color: var(--primary);
+      padding: 6px 14px;
+      border-radius: 9999px;
+      border: 1px solid #bfdbfe;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .timer-warning {
+      background: var(--danger-bg);
+      color: var(--danger);
+      border-color: #fecaca;
+      animation: pulse 1s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.6; }
+    }
+
+    .progress-info {
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      margin-bottom: 8px;
+    }
+
+    .progress-bar-container {
+      width: 100%;
+      height: 8px;
+      background-color: var(--border);
+      border-radius: 9999px;
+      overflow: hidden;
+      margin-bottom: 24px;
+    }
+
+    .progress-bar-fill {
+      height: 100%;
+      background-color: var(--primary);
+      width: 0%;
+      transition: width 0.3s ease;
+    }
+
+    .question-text {
+      font-size: 1.05rem;
+      font-weight: 600;
+      line-height: 1.55;
+      margin-bottom: 20px;
+      white-space: pre-line;
+    }
+
+    .options-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-bottom: 24px;
+    }
+
+    .option-btn {
+      background: #ffffff;
+      border: 2px solid var(--border);
+      border-radius: 10px;
+      padding: 14px 16px;
+      font-size: 1rem;
+      font-weight: 500;
+      text-align: left;
+      cursor: pointer;
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      transition: all 0.2s ease;
+      color: var(--text);
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .option-btn:hover {
+      border-color: #93c5fd;
+      background-color: #f0f7ff;
+    }
+
+    .option-btn.selected {
+      border-color: var(--primary);
+      background-color: #eff6ff;
+      font-weight: 600;
+    }
+
+    .option-prefix {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 26px;
+      height: 26px;
+      border-radius: 50%;
+      background: #f1f5f9;
+      font-size: 0.85rem;
+      font-weight: 700;
+      flex-shrink: 0;
+      color: var(--text-muted);
+    }
+
+    .option-btn.selected .option-prefix {
+      background: var(--primary);
+      color: #ffffff;
+    }
+
+    .btn {
+      width: 100%;
+      padding: 14px 20px;
+      border-radius: 10px;
+      font-size: 1rem;
+      font-weight: 700;
+      border: none;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+
+    .btn-primary {
+      background-color: var(--primary);
+      color: white;
+    }
+
+    .btn-primary:hover:not(:disabled) {
+      background-color: var(--primary-hover);
+    }
+
+    .btn-primary:disabled {
+      background-color: #cbd5e1;
+      cursor: not-allowed;
+    }
+
+    .btn-secondary {
+      background-color: transparent;
+      color: var(--primary);
+      border: 2px solid var(--primary);
+      margin-top: 10px;
+    }
+
+    .btn-secondary:hover {
+      background-color: var(--bg);
+    }
+
+    .results-header {
+      text-align: center;
+      margin-bottom: 24px;
+    }
+
+    .results-title {
+      font-size: 1.5rem;
+      font-weight: 800;
+      color: var(--primary);
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin-bottom: 28px;
+    }
+
+    .stat-card {
+      background: #f8fafc;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 12px;
+      text-align: center;
+    }
+
+    .stat-label {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--text-muted);
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+
+    .stat-val {
+      font-size: 1.25rem;
+      font-weight: 800;
+      color: var(--text);
+    }
+
+    .review-heading {
+      font-size: 1.1rem;
+      font-weight: 700;
+      margin-bottom: 16px;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 8px;
+    }
+
+    .review-list {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+
+    .review-item {
+      padding: 16px;
+      border-radius: 10px;
+      border: 1px solid var(--border);
+    }
+
+    .review-item.correct {
+      background-color: var(--success-bg);
+      border-color: #bbf7d0;
+    }
+
+    .review-item.wrong {
+      background-color: var(--danger-bg);
+      border-color: #fecaca;
+    }
+
+    .review-q-text {
+      font-weight: 600;
+      margin-bottom: 10px;
+      font-size: 0.95rem;
+      white-space: pre-line;
+    }
+
+    .review-ans-row {
+      font-size: 0.88rem;
+      margin-bottom: 4px;
+    }
+
+    .review-explanation {
+      margin-top: 8px;
+      padding-top: 8px;
+      border-top: 1px dashed rgba(0, 0, 0, 0.1);
+      font-size: 0.85rem;
+      color: #334155;
+      line-height: 1.4;
+    }
+
+    .hide {
+      display: none !important;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <div id="quiz-card" class="card">
+      <div class="header">
+        <div class="title">Indian Geography Mock Test</div>
+        <div id="timer" class="timer-badge">⏱ 15:00</div>
+      </div>
+
+      <div class="progress-info" id="progress-text">Question 1 of 15</div>
+      <div class="progress-bar-container">
+        <div class="progress-bar-fill" id="progress-bar"></div>
+      </div>
+
+      <div class="question-text" id="question-text">Loading question...</div>
+
+      <div class="options-grid" id="options-container"></div>
+
+      <button id="next-btn" class="btn btn-primary" disabled>Next Question</button>
+    </div>
+
+    <div id="results-card" class="card hide">
+      <div class="results-header">
+        <div class="results-title">Test Completed!</div>
+        <p style="color: var(--text-muted); font-size: 0.95rem;">Here is your performance summary</p>
+      </div>
+
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-label">Score</div>
+          <div class="stat-val" id="score-val">0/15</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">Accuracy</div>
+          <div class="stat-val" id="accuracy-val">0%</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">Time Taken</div>
+          <div class="stat-val" id="time-val">00:00</div>
+        </div>
+      </div>
+
+      <div class="review-heading">Answer Key & Explanations</div>
+      <div class="review-list" id="review-container"></div>
+
+      <button id="restart-btn" class="btn btn-primary">Restart Test</button>
+      <a href="index.html" style="text-decoration: none;">
+        <button class="btn btn-secondary">Back to Home</button>
+      </a>
+    </div>
+  </div>
+
+  <script>
+    const questions = [
+      {
+        q: "Which is the highest mountain peak situated entirely within India?",
+        options: ["K2 (Godwin-Austen)", "Kangchenjunga", "Nanda Devi", "Kamet"],
+        answer: 1,
+        explanation: "Kangchenjunga (8,586 m) in Sikkim is the highest peak in India. (K2 lies in Pakistan-administered Kashmir, and Nanda Devi is the highest peak located entirely within undisputed Indian territory)."
+      },
+      {
+        q: "The standard meridian of India (82°30' E) passes through which of the following cities?",
+        options: ["Mirzapur (Prayagraj)", "Jaipur", "Ahmedabad", "Patna"],
+        answer: 0,
+        explanation: "The Indian Standard Time (IST) meridian (82°30' E) passes near Mirzapur (near Prayagraj, Uttar Pradesh)."
+      },
+      {
+        q: "Which river is famously known as the 'Dakshin Ganga' (Ganga of the South)?",
+        options: ["Krishna", "Godavari", "Cauvery", "Mahanadi"],
+        answer: 1,
+        explanation: "The Godavari is the largest peninsular river system in India and is called 'Dakshin Ganga' or 'Vridha Ganga'."
+      },
+      {
+        q: "The Tropic of Cancer passes through how many Indian states?",
+        options: ["6", "7", "8", "9"],
+        answer: 2,
+        explanation: "The Tropic of Cancer (23°30' N) passes through 8 states: Gujarat, Rajasthan, Madhya Pradesh, Chhattisgarh, Jharkhand, West Bengal, Tripura, and Mizoram."
+      },
+      {
+        q: "Which water body separates the Andaman Islands from the Nicobar Islands?",
+        options: ["Palk Strait", "9 Degree Channel", "10 Degree Channel", "Duncan Passage"],
+        answer: 2,
+        explanation: "The 10 Degree Channel lies in the Bay of Bengal and separates the Andaman Islands from the Nicobar Islands."
+      },
+      {
+        q: "Which state in India has the longest coastline?",
+        options: ["Maharashtra", "Tamil Nadu", "Andhra Pradesh", "Gujarat"],
+        answer: 3,
+        explanation: "Gujarat has the longest coastline in mainland India, measuring approximately 1,600 km."
+      },
+      {
+        q: "Majuli, the world's largest inhabited river island, is located on which river?",
+        options: ["Ganga", "Brahmaputra", "Indus", "Godavari"],
+        answer: 1,
+        explanation: "Majuli is situated in the Brahmaputra river in Assam."
+      },
+      {
+        q: "Which Indian soil type is famously known as 'Regur Soil' and is ideal for cotton cultivation?",
+        options: ["Alluvial Soil", "Red Soil", "Black Soil", "Laterite Soil"],
+        answer: 2,
+        explanation: "Black soil (Regur) is derived from basaltic lava in the Deccan Plateau and is ideal for growing cotton."
+      },
+      {
+        q: "The Indira Point, the southernmost point of Indian territory, is located in:",
+        options: ["Little Andaman", "Great Nicobar", "Car Nicobar", "Kanyakumari"],
+        answer: 1,
+        explanation: "Indira Point is located on Great Nicobar Island (Kanyakumari is the southernmost point of the mainland)."
+      },
+      {
+        q: "The Hirakud Dam, one of the longest earthen dams in the world, is built on which river?",
+        options: ["Mahanadi", "Damodar", "Narmada", "Tapi"],
+        answer: 0,
+        explanation: "Hirakud Dam is built across the Mahanadi River near Sambalpur in Odisha."
+      },
+      {
+        q: "The Western Ghats and the Eastern Ghats converge at which hills?",
+        options: ["Cardamom Hills", "Anamudi", "Nilgiri Hills", "Shevaroy Hills"],
+        answer: 2,
+        explanation: "The Nilgiri Hills serve as the junction where the Western Ghats and Eastern Ghats meet."
+      },
+      {
+        q: "Which is the highest waterfall in India (by plunge height)?",
+        options: ["Jog Falls", "Kunchikal Falls", "Nohkalikai Falls", "Dudhsagar Falls"],
+        answer: 2,
+        explanation: "Nohkalikai Falls (near Cherrapunji, Meghalaya) is the highest plunge waterfall in India with a drop of 340 m (Kunchikal is a tiered waterfall)."
+      },
+      {
+        q: "Which Indian state is bordered by three foreign nations (Nepal, Bhutan, and China)?",
+        options: ["Arunachal Pradesh", "Sikkim", "West Bengal", "Assam"],
+        answer: 1,
+        explanation: "Sikkim shares international boundaries with Nepal to the west, Bhutan to the east, and China (Tibet) to the north."
+      },
+      {
+        q: "Which river flows through a rift valley between the Vindhya and Satpura ranges?",
+        options: ["Narmada", "Godavari", "Chambal", "Betwa"],
+        answer: 0,
+        explanation: "The Narmada River flows westwards through a rift valley between the Vindhyas to the north and the Satpuras to the south."
+      },
+      {
+        q: "Lake Loktak, famous for its floating phumdis and Keibul Lamjao National Park, is in:",
+        options: ["Mizoram", "Manipur", "Meghalaya", "Nagaland"],
+        answer: 1,
+        explanation: "Loktak Lake is the largest freshwater lake in Northeast India, located in Manipur."
+      }
+    ];
+
+    const TOTAL_TIME = 15 * 60;
+    let timeLeft = TOTAL_TIME;
+    let timerInterval = null;
+    let currentIndex = 0;
+    let userAnswers = new Array(questions.length).fill(null);
+
+    const quizCard = document.getElementById("quiz-card");
+    const resultsCard = document.getElementById("results-card");
+    const timerDisplay = document.getElementById("timer");
+    const progressText = document.getElementById("progress-text");
+    const progressBar = document.getElementById("progress-bar");
+    const questionText = document.getElementById("question-text");
+    const optionsContainer = document.getElementById("options-container");
+    const nextBtn = document.getElementById("next-btn");
+    const restartBtn = document.getElementById("restart-btn");
+
+    function startTimer() {
+      timerInterval = setInterval(() => {
+        timeLeft--;
+        updateTimerDisplay();
+
+        if (timeLeft <= 0) {
+          clearInterval(timerInterval);
+          submitQuiz();
+        }
+      }, 1000);
+    }
+
+    function updateTimerDisplay() {
+      const minutes = Math.floor(timeLeft / 60);
+      const seconds = timeLeft % 60;
+      timerDisplay.textContent = `⏱ ${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+      
+      if (timeLeft <= 60) {
+        timerDisplay.classList.add("timer-warning");
+      } else {
+        timerDisplay.classList.remove("timer-warning");
+      }
+    }
+
+    function renderQuestion() {
+      const q = questions[currentIndex];
+      progressText.textContent = `Question ${currentIndex + 1} of ${questions.length}`;
+      progressBar.style.width = `${((currentIndex + 1) / questions.length) * 100}%`;
+      questionText.textContent = `${currentIndex + 1}. ${q.q}`;
+
+      optionsContainer.innerHTML = "";
+      const prefixes = ["A", "B", "C", "D"];
+
+      q.options.forEach((opt, idx) => {
+        const btn = document.createElement("button");
+        btn.className = "option-btn";
+        if (userAnswers[currentIndex] === idx) {
+          btn.classList.add("selected");
+        }
+        btn.innerHTML = `<span class="option-prefix">${prefixes[idx]}</span> <span>${opt}</span>`;
+        btn.onclick = () => selectOption(idx);
+        optionsContainer.appendChild(btn);
+      });
+
+      nextBtn.disabled = userAnswers[currentIndex] === null;
+      nextBtn.textContent = currentIndex === questions.length - 1 ? "Submit Test" : "Next Question";
+    }
+
+    function selectOption(index) {
+      userAnswers[currentIndex] = index;
+      const buttons = optionsContainer.querySelectorAll(".option-btn");
+      buttons.forEach((btn, idx) => {
+        btn.classList.toggle("selected", idx === index);
+      });
+      nextBtn.disabled = false;
+    }
+
+    nextBtn.onclick = () => {
+      if (currentIndex < questions.length - 1) {
+        currentIndex++;
+        renderQuestion();
+      } else {
+        submitQuiz();
+      }
+    };
+
+    function submitQuiz() {
+      clearInterval(timerInterval);
+      quizCard.classList.add("hide");
+      resultsCard.classList.remove("hide");
+
+      const timeTakenSec = TOTAL_TIME - timeLeft;
+      const takenMins = Math.floor(timeTakenSec / 60);
+      const takenSecs = timeTakenSec % 60;
+
+      let score = 0;
+      userAnswers.forEach((ans, idx) => {
+        if (ans === questions[idx].answer) score++;
+      });
+
+      const accuracy = Math.round((score / questions.length) * 100);
+
+      document.getElementById("score-val").textContent = `${score}/${questions.length}`;
+      document.getElementById("accuracy-val").textContent = `${accuracy}%`;
+      document.getElementById("time-val").textContent = `${String(takenMins).padStart(2, '0')}:${String(takenSecs).padStart(2, '0')}`;
+
+      renderReview();
+    }
+
+    function renderReview() {
+      const reviewContainer = document.getElementById("review-container");
+      reviewContainer.innerHTML = "";
+      const prefixes = ["A", "B", "C", "D"];
+
+      questions.forEach((q, idx) => {
+        const userAnsIndex = userAnswers[idx];
+        const isCorrect = userAnsIndex === q.answer;
+
+        const item = document.createElement("div");
+        item.className = `review-item ${isCorrect ? 'correct' : 'wrong'}`;
+
+        const userAnsText = userAnsIndex !== null 
+          ? `${prefixes[userAnsIndex]}. ${q.options[userAnsIndex]}` 
+          : "Not Attempted";
+        const correctAnsText = `${prefixes[q.answer]}. ${q.options[q.answer]}`;
+
+        item.innerHTML = `
+          <div class="review-q-text">Q${idx + 1}: ${q.q}</div>
+          <div class="review-ans-row"><strong>Your Answer:</strong> <span style="color:${isCorrect ? 'var(--success)' : 'var(--danger)'}">${userAnsText}</span></div>
+          <div class="review-ans-row"><strong>Correct Answer:</strong> <span style="color:var(--success)">${correctAnsText}</span></div>
+          <div class="review-explanation"><strong>Explanation:</strong> ${q.explanation}</div>
+        `;
+        reviewContainer.appendChild(item);
+      });
+    }
+
+    restartBtn.onclick = () => {
+      currentIndex = 0;
+      timeLeft = TOTAL_TIME;
+      userAnswers = new Array(questions.length).fill(null);
+      resultsCard.classList.add("hide");
+      quizCard.classList.remove("hide");
+      startTimer();
+      renderQuestion();
+    };
+
+    startTimer();
+    renderQuestion();
+  </script>
+</body>
+</html>
