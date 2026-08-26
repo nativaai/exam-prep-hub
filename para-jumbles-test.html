@@ -1,0 +1,605 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Para Jumbles Mock Test - Exam Prep Hub</title>
+  <style>
+    :root {
+      --primary: #1e40af;
+      --primary-hover: #1d4ed8;
+      --bg: #f8fafc;
+      --card-bg: #ffffff;
+      --text: #0f172a;
+      --text-muted: #64748b;
+      --border: #e2e8f0;
+      --success: #16a34a;
+      --success-bg: #f0fdf4;
+      --danger: #dc2626;
+      --danger-bg: #fef2f2;
+      --radius: 12px;
+      --shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    }
+
+    body {
+      background-color: var(--bg);
+      color: var(--text);
+      display: flex;
+      justify-content: center;
+      min-height: 100vh;
+      padding: 16px;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 680px;
+      margin: auto;
+    }
+
+    .card {
+      background-color: var(--card-bg);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 24px;
+      border: 1px solid var(--border);
+    }
+
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+      border-bottom: 2px solid var(--border);
+      padding-bottom: 14px;
+    }
+
+    .title {
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--primary);
+    }
+
+    .timer-badge {
+      font-size: 0.95rem;
+      font-weight: 700;
+      background: #eff6ff;
+      color: var(--primary);
+      padding: 6px 14px;
+      border-radius: 9999px;
+      border: 1px solid #bfdbfe;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .timer-warning {
+      background: var(--danger-bg);
+      color: var(--danger);
+      border-color: #fecaca;
+      animation: pulse 1s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.6; }
+    }
+
+    .progress-info {
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      margin-bottom: 8px;
+    }
+
+    .progress-bar-container {
+      width: 100%;
+      height: 8px;
+      background-color: var(--border);
+      border-radius: 9999px;
+      overflow: hidden;
+      margin-bottom: 24px;
+    }
+
+    .progress-bar-fill {
+      height: 100%;
+      background-color: var(--primary);
+      width: 0%;
+      transition: width 0.3s ease;
+    }
+
+    .question-text {
+      font-size: 1.05rem;
+      font-weight: 600;
+      line-height: 1.6;
+      margin-bottom: 20px;
+      white-space: pre-line;
+    }
+
+    .options-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-bottom: 24px;
+    }
+
+    .option-btn {
+      background: #ffffff;
+      border: 2px solid var(--border);
+      border-radius: 10px;
+      padding: 14px 16px;
+      font-size: 1rem;
+      font-weight: 500;
+      text-align: left;
+      cursor: pointer;
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      transition: all 0.2s ease;
+      color: var(--text);
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .option-btn:hover {
+      border-color: #93c5fd;
+      background-color: #f0f7ff;
+    }
+
+    .option-btn.selected {
+      border-color: var(--primary);
+      background-color: #eff6ff;
+      font-weight: 600;
+    }
+
+    .option-prefix {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 26px;
+      height: 26px;
+      border-radius: 50%;
+      background: #f1f5f9;
+      font-size: 0.85rem;
+      font-weight: 700;
+      flex-shrink: 0;
+      color: var(--text-muted);
+    }
+
+    .option-btn.selected .option-prefix {
+      background: var(--primary);
+      color: #ffffff;
+    }
+
+    .btn {
+      width: 100%;
+      padding: 14px 20px;
+      border-radius: 10px;
+      font-size: 1rem;
+      font-weight: 700;
+      border: none;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+
+    .btn-primary {
+      background-color: var(--primary);
+      color: white;
+    }
+
+    .btn-primary:hover:not(:disabled) {
+      background-color: var(--primary-hover);
+    }
+
+    .btn-primary:disabled {
+      background-color: #cbd5e1;
+      cursor: not-allowed;
+    }
+
+    .btn-secondary {
+      background-color: transparent;
+      color: var(--primary);
+      border: 2px solid var(--primary);
+      margin-top: 10px;
+    }
+
+    .btn-secondary:hover {
+      background-color: var(--bg);
+    }
+
+    .results-header {
+      text-align: center;
+      margin-bottom: 24px;
+    }
+
+    .results-title {
+      font-size: 1.5rem;
+      font-weight: 800;
+      color: var(--primary);
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin-bottom: 28px;
+    }
+
+    .stat-card {
+      background: #f8fafc;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 12px;
+      text-align: center;
+    }
+
+    .stat-label {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--text-muted);
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+
+    .stat-val {
+      font-size: 1.25rem;
+      font-weight: 800;
+      color: var(--text);
+    }
+
+    .review-heading {
+      font-size: 1.1rem;
+      font-weight: 700;
+      margin-bottom: 16px;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 8px;
+    }
+
+    .review-list {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+
+    .review-item {
+      padding: 16px;
+      border-radius: 10px;
+      border: 1px solid var(--border);
+    }
+
+    .review-item.correct {
+      background-color: var(--success-bg);
+      border-color: #bbf7d0;
+    }
+
+    .review-item.wrong {
+      background-color: var(--danger-bg);
+      border-color: #fecaca;
+    }
+
+    .review-q-text {
+      font-weight: 600;
+      margin-bottom: 10px;
+      font-size: 0.95rem;
+      white-space: pre-line;
+    }
+
+    .review-ans-row {
+      font-size: 0.88rem;
+      margin-bottom: 4px;
+    }
+
+    .review-explanation {
+      margin-top: 8px;
+      padding-top: 8px;
+      border-top: 1px dashed rgba(0, 0, 0, 0.1);
+      font-size: 0.85rem;
+      color: #334155;
+      line-height: 1.4;
+    }
+
+    .hide {
+      display: none !important;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <div id="quiz-card" class="card">
+      <div class="header">
+        <div class="title">Para Jumbles Mock Test</div>
+        <div id="timer" class="timer-badge">⏱ 15:00</div>
+      </div>
+
+      <div class="progress-info" id="progress-text">Question 1 of 15</div>
+      <div class="progress-bar-container">
+        <div class="progress-bar-fill" id="progress-bar"></div>
+      </div>
+
+      <div class="question-text" id="question-text">Loading question...</div>
+
+      <div class="options-grid" id="options-container"></div>
+
+      <button id="next-btn" class="btn btn-primary" disabled>Next Question</button>
+    </div>
+
+    <div id="results-card" class="card hide">
+      <div class="results-header">
+        <div class="results-title">Test Completed!</div>
+        <p style="color: var(--text-muted); font-size: 0.95rem;">Here is your performance summary</p>
+      </div>
+
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-label">Score</div>
+          <div class="stat-val" id="score-val">0/15</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">Accuracy</div>
+          <div class="stat-val" id="accuracy-val">0%</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">Time Taken</div>
+          <div class="stat-val" id="time-val">00:00</div>
+        </div>
+      </div>
+
+      <div class="review-heading">Answer Key & Explanations</div>
+      <div class="review-list" id="review-container"></div>
+
+      <button id="restart-btn" class="btn btn-primary">Restart Test</button>
+      <a href="index.html" style="text-decoration: none;">
+        <button class="btn btn-secondary">Back to Home</button>
+      </a>
+    </div>
+  </div>
+
+  <script>
+    const questions = [
+      {
+        q: "Rearrange the sentences into a meaningful paragraph:\nP. These changes have profoundly influenced consumer behavior and market structures.\nQ. Over the past decade, technological innovation has accelerated across the globe.\nR. As a result, traditional business models have been forced to adapt or face obsolescence.\nS. It has transformed the ways in which people communicate, work, and conduct business.",
+        options: ["QSPR", "QPSR", "SQPR", "RQSP"],
+        answer: 0,
+        explanation: "Q introduces the primary topic (technological innovation). S elaborates on how 'It' transformed communication/work. P connects the effect on consumer behavior, and R delivers the conclusion ('As a result...'). Proper order: QSPR."
+      },
+      {
+        q: "Rearrange the sentences into a meaningful paragraph:\nP. This renewable source produces zero greenhouse gas emissions during operation.\nQ. Solar energy is rapidly emerging as a cornerstone of the global clean energy transition.\nR. Consequently, governments worldwide are heavily investing in photovoltaic infrastructure.\nS. It harnesses the boundless radiant light and heat from the Sun.",
+        options: ["QSPR", "QPSR", "SQPR", "PSQR"],
+        answer: 0,
+        explanation: "Q introduces solar energy. S explains what it harnesses. P details its environmental advantage ('This renewable source'). R gives the concluding policy outcome ('Consequently...'). Proper order: QSPR."
+      },
+      {
+        q: "Rearrange the sentences into a meaningful paragraph:\nP. However, unregulated industrial expansion often comes at a severe ecological cost.\nQ. Sustainable development seeks to balance these two competing imperatives.\nR. Economic growth is essential for eradicating poverty and raising living standards.\nS. Balancing environmental preservation with industrial development is crucial for future generations.",
+        options: ["RPQS", "RQPS", "PRSQ", "SQPR"],
+        answer: 0,
+        explanation: "R introduces the necessity of economic growth. P introduces the contrasting ecological cost ('However...'). Q presents sustainable development as the balancing solution, and S summarizes the forward-looking priority. Proper order: RPQS."
+      },
+      {
+        q: "Rearrange the sentences into a meaningful paragraph:\nP. They also foster empathy by allowing us to experience lives vastly different from our own.\nQ. Reading books provides numerous cognitive and emotional benefits.\nR. Furthermore, regular reading expands vocabulary and improves analytical thinking skills.\nS. It stimulates the brain, improving memory retention and concentration.",
+        options: ["QSRP", "QSPR", "SQRP", "RSQP"],
+        answer: 0,
+        explanation: "Q introduces the topic (reading books). S describes immediate brain stimulation. R adds cognitive benefits ('Furthermore...'). P extends to emotional benefits ('They also foster...'). Proper order: QSRP."
+      },
+      {
+        q: "Rearrange the sentences into a meaningful paragraph:\nP. This rapid urbanization places unprecedented strain on civic infrastructure.\nQ. Cities around the world are growing at an extraordinary pace.\nR. Millions migrate from rural areas each year in search of better economic opportunities.\nS. To avert collapse, urban planners must prioritize sustainable transit and affordable housing.",
+        options: ["QRPS", "QPRS", "RQPS", "PQRS"],
+        answer: 0,
+        explanation: "Q states the opening premise (cities growing rapidly). R explains the cause (rural-to-urban migration). P describes the consequence (strain on infrastructure). S provides the policy prescription ('To avert collapse...'). Proper order: QRPS."
+      },
+      {
+        q: "Rearrange the sentences into a meaningful paragraph:\nP. He noticed that the apple fell straight down rather than sideways or upward.\nQ. Sir Isaac Newton was sitting beneath an apple tree in his garden.\nR. This simple observation led to the formulation of the Universal Law of Gravitation.\nS. An apple detached from a branch and fell toward the earth.",
+        options: ["QSPR", "QPSR", "SQPR", "PSQR"],
+        answer: 0,
+        explanation: "Q establishes the setting (Newton under the tree). S introduces the incident (apple falling). P details his observation of the trajectory. R concludes with the scientific outcome. Proper order: QSPR."
+      },
+      {
+        q: "Rearrange the sentences into a meaningful paragraph:\nP. Therefore, individuals must cultivate strong password hygiene and verify sender authenticity.\nQ. Cybersecurity threats have evolved from simple viruses to sophisticated phishing attacks.\nR. These malicious schemes aim to compromise confidential corporate and personal data.\nS. Without adequate vigilance, users risk financial loss and identity theft.",
+        options: ["QRSP", "QPRS", "RQSP", "PQRS"],
+        answer: 0,
+        explanation: "Q introduces the evolution of cyber threats. R specifies what these schemes aim to do ('These malicious schemes'). S states the risk ('Without adequate vigilance'). P concludes with preventive action ('Therefore...'). Proper order: QRSP."
+      },
+      {
+        q: "Rearrange the sentences into a meaningful paragraph:\nP. These wetlands act as natural sponges, absorbing floodwaters during storms.\nQ. Mangrove ecosystems provide indispensable ecological services to coastal regions.\nR. Preserving them is vital for both climate resilience and marine biodiversity.\nS. Additionally, their intricate root networks serve as nurseries for diverse marine life.",
+        options: ["QPSR", "QSPR", "PQSR", "RQSP"],
+        answer: 0,
+        explanation: "Q introduces mangroves. P explains the first service (flood protection). S adds the second service (marine nursery via 'Additionally...'). R summarizes the conservation necessity. Proper order: QPSR."
+      },
+      {
+        q: "Rearrange the sentences into a meaningful paragraph:\nP. Such physical activity improves cardiovascular health and boosts mental well-being.\nQ. Regular exercise is fundamental to maintaining a healthy lifestyle.\nR. Making movement a daily habit leads to significant long-term longevity.\nS. Even moderate exercises, like brisk walking for thirty minutes, yield substantial benefits.",
+        options: ["QSPR", "QPSR", "SQPR", "PSQR"],
+        answer: 0,
+        explanation: "Q states the central thesis (importance of exercise). S gives a concrete example (brisk walking). P explains why ('Such physical activity improves...'). R concludes on long-term longevity. Proper order: QSPR."
+      },
+      {
+        q: "Rearrange the sentences into a meaningful paragraph:\nP. In addition, it reduces operational overhead and expands consumer choice.\nQ. E-commerce platforms have fundamentally reshaped modern retail.\nR. Consequently, brick-and-mortar stores are investing heavily in omnichannel strategies.\nS. They allow consumers to purchase goods and services seamlessly from home.",
+        options: ["QSPR", "QPSR", "SQPR", "PQSR"],
+        answer: 0,
+        explanation: "Q introduces e-commerce. S explains the primary consumer benefit ('They allow...'). P adds seller/market advantages ('In addition...'). R concludes with the retail response ('Consequently...'). Proper order: QSPR."
+      },
+      {
+        q: "Rearrange the sentences into a meaningful paragraph:\nP. It fosters creativity, resilience, and critical thinking from an early age.\nQ. Holistic education goes beyond standard academic curricula.\nR. When schools embrace arts, sports, and ethics, students emerge as well-rounded citizens.\nS. Instead, it encompasses emotional, social, and physical development.",
+        options: ["QSPR", "QPSR", "SQPR", "RQSP"],
+        answer: 0,
+        explanation: "Q defines holistic education by what it exceeds. S clarifies what it covers instead ('Instead, it encompasses...'). P explains the virtues nurtured ('It fosters...'). R concludes with the end outcome ('When schools embrace...'). Proper order: QSPR."
+      },
+      {
+        q: "Rearrange the sentences into a meaningful paragraph:\nP. Such habits reduce stress levels and enhance cognitive focus.\nQ. Mindfulness practice has gained widespread recognition in contemporary mental health.\nR. By paying deliberate attention to the present moment, individuals cultivate emotional stability.\nS. Incorporating daily mindfulness can transform one's overall quality of life.",
+        options: ["QRPS", "QPRS", "RQPS", "PQRS"],
+        answer: 0,
+        explanation: "Q introduces mindfulness. R explains the core mechanism (present moment awareness). P highlights the health benefits ('Such habits reduce...'). S concludes on the transformative impact. Proper order: QRPS."
+      },
+      {
+        q: "Rearrange the sentences into a meaningful paragraph:\nP. This transition requires significant investment in charging networks and battery technology.\nQ. Electric vehicles (EVs) are pioneering a cleaner era for global transportation.\nR. Ultimately, widespread EV adoption will significantly curb urban vehicular emissions.\nS. They produce zero direct tailpipe emissions compared to combustion engines.",
+        options: ["QSPR", "QPSR", "SQPR", "PSQR"],
+        answer: 0,
+        explanation: "Q introduces EVs. S details their core zero-emission advantage. P highlights the infrastructural prerequisite ('This transition requires...'). R concludes with the environmental payoff ('Ultimately...'). Proper order: QSPR."
+      },
+      {
+        q: "Rearrange the sentences into a meaningful paragraph:\nP. Water scarcity affects billions of people across drought-prone continents.\nQ. Addressing this crisis necessitates efficient agricultural irrigation and desalination.\nR. Freshwater is among the planet's most finite and precious natural resources.\nS. Growing industrial demand and climate change continue to deplete available reservoirs.",
+        options: ["RPSQ", "RQPS", "PRSQ", "SQPR"],
+        answer: 0,
+        explanation: "R states the fundamental premise (freshwater is finite). P highlights the global human impact ('Water scarcity affects...'). S describes the compounding causes (climate change/industry). Q provides solutions ('Addressing this crisis...'). Proper order: RPSQ."
+      },
+      {
+        q: "Rearrange the sentences into a meaningful paragraph:\nP. This collaborative synergy drives breakthrough discoveries across interdisciplinary fields.\nQ. Scientific progress relies heavily on collective global cooperation.\nR. When researchers share data and methodologies openly, innovation accelerates.\nS. Global challenges like pandemics and climate change demand such cooperative efforts.",
+        options: ["QRPS", "QPRS", "RQPS", "SQPR"],
+        answer: 0,
+        explanation: "Q introduces global scientific cooperation. R explains what happens when data is shared. P defines the outcome ('This collaborative synergy...'). S applies the concept to urgent challenges ('Global challenges... demand...'). Proper order: QRPS."
+      }
+    ];
+
+    const TOTAL_TIME = 15 * 60;
+    let timeLeft = TOTAL_TIME;
+    let timerInterval = null;
+    let currentIndex = 0;
+    let userAnswers = new Array(questions.length).fill(null);
+
+    const quizCard = document.getElementById("quiz-card");
+    const resultsCard = document.getElementById("results-card");
+    const timerDisplay = document.getElementById("timer");
+    const progressText = document.getElementById("progress-text");
+    const progressBar = document.getElementById("progress-bar");
+    const questionText = document.getElementById("question-text");
+        const optionsContainer = document.getElementById("options-container");
+    const nextBtn = document.getElementById("next-btn");
+    const restartBtn = document.getElementById("restart-btn");
+
+    function startTimer() {
+      timerInterval = setInterval(() => {
+        timeLeft--;
+        updateTimerDisplay();
+
+        if (timeLeft <= 0) {
+          clearInterval(timerInterval);
+          submitQuiz();
+        }
+      }, 1000);
+    }
+
+    function updateTimerDisplay() {
+      const minutes = Math.floor(timeLeft / 60);
+      const seconds = timeLeft % 60;
+      timerDisplay.textContent = `⏱ ${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+      
+      if (timeLeft <= 60) {
+        timerDisplay.classList.add("timer-warning");
+      } else {
+        timerDisplay.classList.remove("timer-warning");
+      }
+    }
+
+    function renderQuestion() {
+      const q = questions[currentIndex];
+      progressText.textContent = `Question ${currentIndex + 1} of ${questions.length}`;
+      progressBar.style.width = `${((currentIndex + 1) / questions.length) * 100}%`;
+      questionText.textContent = `${currentIndex + 1}. ${q.q}`;
+
+      optionsContainer.innerHTML = "";
+      const prefixes = ["A", "B", "C", "D"];
+
+      q.options.forEach((opt, idx) => {
+        const btn = document.createElement("button");
+        btn.className = "option-btn";
+        if (userAnswers[currentIndex] === idx) {
+          btn.classList.add("selected");
+        }
+        btn.innerHTML = `<span class="option-prefix">${prefixes[idx]}</span> <span>${opt}</span>`;
+        btn.onclick = () => selectOption(idx);
+        optionsContainer.appendChild(btn);
+      });
+
+      nextBtn.disabled = userAnswers[currentIndex] === null;
+      nextBtn.textContent = currentIndex === questions.length - 1 ? "Submit Test" : "Next Question";
+    }
+
+    function selectOption(index) {
+      userAnswers[currentIndex] = index;
+      const buttons = optionsContainer.querySelectorAll(".option-btn");
+      buttons.forEach((btn, idx) => {
+        btn.classList.toggle("selected", idx === index);
+      });
+      nextBtn.disabled = false;
+    }
+
+    nextBtn.onclick = () => {
+      if (currentIndex < questions.length - 1) {
+        currentIndex++;
+        renderQuestion();
+      } else {
+        submitQuiz();
+      }
+    };
+
+    function submitQuiz() {
+      clearInterval(timerInterval);
+      quizCard.classList.add("hide");
+      resultsCard.classList.remove("hide");
+
+      const timeTakenSec = TOTAL_TIME - timeLeft;
+      const takenMins = Math.floor(timeTakenSec / 60);
+      const takenSecs = timeTakenSec % 60;
+
+      let score = 0;
+      userAnswers.forEach((ans, idx) => {
+        if (ans === questions[idx].answer) score++;
+      });
+
+      const accuracy = Math.round((score / questions.length) * 100);
+
+      document.getElementById("score-val").textContent = `${score}/${questions.length}`;
+      document.getElementById("accuracy-val").textContent = `${accuracy}%`;
+      document.getElementById("time-val").textContent = `${String(takenMins).padStart(2, '0')}:${String(takenSecs).padStart(2, '0')}`;
+
+      renderReview();
+    }
+
+    function renderReview() {
+      const reviewContainer = document.getElementById("review-container");
+      reviewContainer.innerHTML = "";
+      const prefixes = ["A", "B", "C", "D"];
+
+      questions.forEach((q, idx) => {
+        const userAnsIndex = userAnswers[idx];
+        const isCorrect = userAnsIndex === q.answer;
+
+        const item = document.createElement("div");
+        item.className = `review-item ${isCorrect ? 'correct' : 'wrong'}`;
+
+        const userAnsText = userAnsIndex !== null 
+          ? `${prefixes[userAnsIndex]}. ${q.options[userAnsIndex]}` 
+          : "Not Attempted";
+        const correctAnsText = `${prefixes[q.answer]}. ${q.options[q.answer]}`;
+
+        item.innerHTML = `
+          <div class="review-q-text">Q${idx + 1}: ${q.q}</div>
+          <div class="review-ans-row"><strong>Your Answer:</strong> <span style="color:${isCorrect ? 'var(--success)' : 'var(--danger)'}">${userAnsText}</span></div>
+          <div class="review-ans-row"><strong>Correct Answer:</strong> <span style="color:var(--success)">${correctAnsText}</span></div>
+          <div class="review-explanation"><strong>Explanation:</strong> ${q.explanation}</div>
+        `;
+        reviewContainer.appendChild(item);
+      });
+    }
+
+    restartBtn.onclick = () => {
+      currentIndex = 0;
+      timeLeft = TOTAL_TIME;
+      userAnswers = new Array(questions.length).fill(null);
+      resultsCard.classList.add("hide");
+      quizCard.classList.remove("hide");
+      startTimer();
+      renderQuestion();
+    };
+
+    startTimer();
+    renderQuestion();
+  </script>
+</body>
+</html>
