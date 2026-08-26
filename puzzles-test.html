@@ -1,0 +1,605 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Puzzles Mock Test - Exam Prep Hub</title>
+  <style>
+    :root {
+      --primary: #1e40af;
+      --primary-hover: #1d4ed8;
+      --bg: #f8fafc;
+      --card-bg: #ffffff;
+      --text: #0f172a;
+      --text-muted: #64748b;
+      --border: #e2e8f0;
+      --success: #16a34a;
+      --success-bg: #f0fdf4;
+      --danger: #dc2626;
+      --danger-bg: #fef2f2;
+      --radius: 12px;
+      --shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    }
+
+    body {
+      background-color: var(--bg);
+      color: var(--text);
+      display: flex;
+      justify-content: center;
+      min-height: 100vh;
+      padding: 16px;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 680px;
+      margin: auto;
+    }
+
+    .card {
+      background-color: var(--card-bg);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 24px;
+      border: 1px solid var(--border);
+    }
+
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+      border-bottom: 2px solid var(--border);
+      padding-bottom: 14px;
+    }
+
+    .title {
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--primary);
+    }
+
+    .timer-badge {
+      font-size: 0.95rem;
+      font-weight: 700;
+      background: #eff6ff;
+      color: var(--primary);
+      padding: 6px 14px;
+      border-radius: 9999px;
+      border: 1px solid #bfdbfe;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .timer-warning {
+      background: var(--danger-bg);
+      color: var(--danger);
+      border-color: #fecaca;
+      animation: pulse 1s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.6; }
+    }
+
+    .progress-info {
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      margin-bottom: 8px;
+    }
+
+    .progress-bar-container {
+      width: 100%;
+      height: 8px;
+      background-color: var(--border);
+      border-radius: 9999px;
+      overflow: hidden;
+      margin-bottom: 24px;
+    }
+
+    .progress-bar-fill {
+      height: 100%;
+      background-color: var(--primary);
+      width: 0%;
+      transition: width 0.3s ease;
+    }
+
+    .question-text {
+      font-size: 1.05rem;
+      font-weight: 600;
+      line-height: 1.55;
+      margin-bottom: 20px;
+      white-space: pre-line;
+    }
+
+    .options-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-bottom: 24px;
+    }
+
+    .option-btn {
+      background: #ffffff;
+      border: 2px solid var(--border);
+      border-radius: 10px;
+      padding: 14px 16px;
+      font-size: 1rem;
+      font-weight: 500;
+      text-align: left;
+      cursor: pointer;
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      transition: all 0.2s ease;
+      color: var(--text);
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .option-btn:hover {
+      border-color: #93c5fd;
+      background-color: #f0f7ff;
+    }
+
+    .option-btn.selected {
+      border-color: var(--primary);
+      background-color: #eff6ff;
+      font-weight: 600;
+    }
+
+    .option-prefix {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 26px;
+      height: 26px;
+      border-radius: 50%;
+      background: #f1f5f9;
+      font-size: 0.85rem;
+      font-weight: 700;
+      flex-shrink: 0;
+      color: var(--text-muted);
+    }
+
+    .option-btn.selected .option-prefix {
+      background: var(--primary);
+      color: #ffffff;
+    }
+
+    .btn {
+      width: 100%;
+      padding: 14px 20px;
+      border-radius: 10px;
+      font-size: 1rem;
+      font-weight: 700;
+      border: none;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+
+    .btn-primary {
+      background-color: var(--primary);
+      color: white;
+    }
+
+    .btn-primary:hover:not(:disabled) {
+      background-color: var(--primary-hover);
+    }
+
+    .btn-primary:disabled {
+      background-color: #cbd5e1;
+      cursor: not-allowed;
+    }
+
+    .btn-secondary {
+      background-color: transparent;
+      color: var(--primary);
+      border: 2px solid var(--primary);
+      margin-top: 10px;
+    }
+
+    .btn-secondary:hover {
+      background-color: var(--bg);
+    }
+
+    .results-header {
+      text-align: center;
+      margin-bottom: 24px;
+    }
+
+    .results-title {
+      font-size: 1.5rem;
+      font-weight: 800;
+      color: var(--primary);
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin-bottom: 28px;
+    }
+
+    .stat-card {
+      background: #f8fafc;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 12px;
+      text-align: center;
+    }
+
+    .stat-label {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--text-muted);
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+
+    .stat-val {
+      font-size: 1.25rem;
+      font-weight: 800;
+      color: var(--text);
+    }
+
+    .review-heading {
+      font-size: 1.1rem;
+      font-weight: 700;
+      margin-bottom: 16px;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 8px;
+    }
+
+    .review-list {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+
+    .review-item {
+      padding: 16px;
+      border-radius: 10px;
+      border: 1px solid var(--border);
+    }
+
+    .review-item.correct {
+      background-color: var(--success-bg);
+      border-color: #bbf7d0;
+    }
+
+    .review-item.wrong {
+      background-color: var(--danger-bg);
+      border-color: #fecaca;
+    }
+
+    .review-q-text {
+      font-weight: 600;
+      margin-bottom: 10px;
+      font-size: 0.95rem;
+      white-space: pre-line;
+    }
+
+    .review-ans-row {
+      font-size: 0.88rem;
+      margin-bottom: 4px;
+    }
+
+    .review-explanation {
+      margin-top: 8px;
+      padding-top: 8px;
+      border-top: 1px dashed rgba(0, 0, 0, 0.1);
+      font-size: 0.85rem;
+      color: #334155;
+      line-height: 1.4;
+    }
+
+    .hide {
+      display: none !important;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <div id="quiz-card" class="card">
+      <div class="header">
+        <div class="title">Puzzles Mock Test</div>
+        <div id="timer" class="timer-badge">⏱ 15:00</div>
+      </div>
+
+      <div class="progress-info" id="progress-text">Question 1 of 15</div>
+      <div class="progress-bar-container">
+        <div class="progress-bar-fill" id="progress-bar"></div>
+      </div>
+
+      <div class="question-text" id="question-text">Loading question...</div>
+
+      <div class="options-grid" id="options-container"></div>
+
+      <button id="next-btn" class="btn btn-primary" disabled>Next Question</button>
+    </div>
+
+    <div id="results-card" class="card hide">
+      <div class="results-header">
+        <div class="results-title">Test Completed!</div>
+        <p style="color: var(--text-muted); font-size: 0.95rem;">Here is your performance summary</p>
+      </div>
+
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-label">Score</div>
+          <div class="stat-val" id="score-val">0/15</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">Accuracy</div>
+          <div class="stat-val" id="accuracy-val">0%</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">Time Taken</div>
+          <div class="stat-val" id="time-val">00:00</div>
+        </div>
+      </div>
+
+      <div class="review-heading">Answer Key & Explanations</div>
+      <div class="review-list" id="review-container"></div>
+
+      <button id="restart-btn" class="btn btn-primary">Restart Test</button>
+      <a href="index.html" style="text-decoration: none;">
+        <button class="btn btn-secondary">Back to Home</button>
+      </a>
+    </div>
+  </div>
+
+  <script>
+    const questions = [
+      {
+        q: "Seven people P, Q, R, S, T, U, and V live on separate floors of a 7-floor building (Ground is 1, Top is 7).\n- P lives on an odd-numbered floor.\n- Only three people live between P and V.\n- S lives on the floor immediately above V.\n- Only one person lives between S and Q.\n- U lives on an even-numbered floor immediately above T.\nWho lives on the 7th floor?",
+        options: ["S", "Q", "P", "R"],
+        answer: 0,
+        explanation: "P is on floor 3, V is on floor 7 (or vice versa). Testing gives: Floor 7: S, Floor 6: V, Floor 5: Q, Floor 4: U, Floor 3: T, Floor 2: R, Floor 1: P. Top floor is S."
+      },
+      {
+        q: "Five friends A, B, C, D, and E like different colors: Red, Blue, Green, Yellow, and Pink.\n- A does not like Blue or Pink.\n- B likes Yellow.\n- C likes Red.\n- D does not like Pink.\nWhich color does E like?",
+        options: ["Blue", "Green", "Pink", "Yellow"],
+        answer: 2,
+        explanation: "B likes Yellow, C likes Red. Remaining colors: Blue, Green, Pink. Since neither A nor D likes Pink, Pink must be liked by E."
+      },
+      {
+        q: "Seven boxes A, B, C, D, E, F, and G are kept one above the other in a stack.\n- Box C is kept immediately above Box A.\n- Only two boxes are kept between Box A and Box D.\n- Box B is kept at the bottom of the stack.\n- Box E is kept immediately below Box D.\n- Box G is kept above Box F.\nWhich box is at the topmost position?",
+        options: ["G", "C", "D", "E"],
+        answer: 0,
+        explanation: "Arranging from top (7) to bottom (1): 7: G, 6: C, 5: A, 4: F, 3: D, 2: E, 1: B. Box G is at the topmost position."
+      },
+      {
+        q: "Five people P, Q, R, S, and T attend a seminar on Monday through Friday of the same week.\n- Only two people attend between P and R.\n- P attends before R.\n- Q attends immediately after R.\n- S attends before T.\nOn which day does S attend the seminar?",
+        options: ["Monday", "Tuesday", "Wednesday", "Thursday"],
+        answer: 1,
+        explanation: "P is on Monday, R is on Thursday, Q is on Friday. Remaining days are Tuesday and Wednesday for S and T. Since S attends before T, S attends on Tuesday."
+      },
+      {
+        q: "Among five friends K, L, M, N, and O, each has a different height.\n- M is taller than only O.\n- L is taller than K but shorter than N.\nWho is the third tallest person?",
+        options: ["L", "K", "N", "M"],
+        answer: 1,
+        explanation: "From tallest to shortest: N > L > K > M > O. The 3rd tallest is K."
+      },
+      {
+        q: "Six persons A, B, C, D, E, and F work in three departments: HR, IT, and Finance, with at least one and at most three in each.\n- A works in Finance with only E.\n- C does not work in IT.\n- B and D work in the same department.\nIn which department does F work?",
+        options: ["HR", "IT", "Finance", "Cannot be determined"],
+        answer: 1,
+        explanation: "Finance has only A and E. C does not work in IT, so C works in HR. B and D work together, so they can be in IT along with F (or HR). Since Finance is full and C is in HR, IT gets F, B, and D."
+      },
+      {
+        q: "Six boxes J, K, L, M, N, and O contain different numbers of chocolates: 12, 18, 24, 30, 36, 42.\n- Box M has more chocolates than Box K but fewer than Box O.\n- Box L has 18 chocolates.\n- Box J has the lowest number of chocolates.\n- Box N has 36 chocolates.\nHow many chocolates does Box O contain?",
+        options: ["24", "30", "36", "42"],
+        answer: 3,
+        explanation: "Ascending order: J(12), L(18), K(24), M(30), N(36), O(42). O has the highest count of 42 chocolates."
+      },
+      {
+        q: "Five teachers P, Q, R, S, and T teach five subjects: Math, Physics, Chemistry, Biology, and English.\n- P teaches Chemistry.\n- R does not teach Math or English.\n- S teaches Biology.\n- Q does not teach English.\nWho teaches English?",
+        options: ["Q", "R", "T", "S"],
+        answer: 2,
+        explanation: "P = Chemistry, S = Biology. Remaining: Math, Physics, English for Q, R, T. Since neither Q nor R teaches English, T must teach English."
+      },
+      {
+        q: "Seven persons attend a meeting in seven different months: Jan, Mar, Apr, May, Jun, Jul, and Aug.\n- P attends in a month having 30 days.\n- Only one person attends between P and Q.\n- Q attends after P.\n- R attends in Jan.\nIn which month does P attend the meeting?",
+        options: ["March", "April", "June", "Either April or June"],
+        answer: 3,
+        explanation: "Months with 30 days are April and June. P can attend in either April or June depending on subsequent conditions."
+      },
+      {
+        q: "Four friends Amit, Bharat, Chetan, and Dinesh own four cars: Sedan, SUV, Hatchback, and Coupe, and live in four cities: Delhi, Mumbai, Kolkata, and Chennai.\n- Amit lives in Delhi but does not own a Sedan.\n- The person in Mumbai owns a Coupe.\n- Bharat owns an SUV.\n- Chetan lives in Chennai.\nWhich car does Amit own?",
+        options: ["SUV", "Coupe", "Hatchback", "Sedan"],
+        answer: 2,
+        explanation: "Mumbai = Coupe. Amit is in Delhi, so Amit does not own Coupe. Bharat owns SUV. Chetan is in Chennai, Dinesh is in Mumbai (Coupe). Chetan gets Sedan. Thus Amit gets Hatchback."
+      },
+      {
+        q: "Six lectures are scheduled from 9:00 AM to 3:00 PM (1 hour each).\n- Lecture on History is immediately before Geography.\n- Physics lecture is at 1:00 PM.\n- Math lecture is the first lecture of the day.\n- Chemistry lecture is immediately after Geography.\nWhen is the History lecture scheduled?",
+        options: ["10:00 AM", "11:00 AM", "12:00 PM", "2:00 PM"],
+        answer: 0,
+        explanation: "9 AM: Math. Since History, Geography, and Chemistry occur consecutively and Physics is at 1 PM (1-2 PM), History is 10 AM, Geography is 11 AM, and Chemistry is 12 PM."
+      },
+      {
+        q: "Among six friends A, B, C, D, E, and F, each scored different marks in an exam.\n- A scored more marks than only C and E.\n- D scored less marks than B.\n- F scored the highest marks.\nWho scored the second-highest marks?",
+        options: ["B", "D", "F", "A"],
+        answer: 0,
+        explanation: "Rank order: F > B > D > A > (C/E) > (E/C). The second-highest scorer is B."
+      },
+      {
+        q: "Five people P, Q, R, S, and T wear shirts of different colors: Red, Blue, White, Black, and Green.\n- S wears neither White nor Black.\n- T wears Red.\n- Q wears Green.\n- P does not wear White.\nWhat color shirt does P wear?",
+        options: ["Blue", "Black", "White", "Green"],
+        answer: 1,
+        explanation: "T = Red, Q = Green. Available for P, S, R: White, Black, Blue. Since S cannot wear White or Black, S = Blue. P cannot wear White, so P = Black (and R = White)."
+      },
+      {
+        q: "Eight friends are born in four different months (March, June, September, November) on two different dates (12th and 23rd).\n- Only one person was born before A.\n- Three people were born between A and B.\nOn which date and month was B born?",
+        options: ["June 12th", "June 23rd", "September 12th", "September 23rd"],
+        answer: 2,
+        explanation: "Dates in order: Mar 12, Mar 23 (A), Jun 12, Jun 23, Sep 12 (B), Sep 23, Nov 12, Nov 23. A is on Mar 23 (2nd slot). Three people between A and B places B at the 6th slot: September 12th."
+      },
+      {
+        q: "In a family puzzle: A, B, C, D, E are five members. One is a Doctor, one is a Lawyer, one is an Engineer, one is a Pilot, and one is a Teacher.\n- The Doctor is married to the Lawyer.\n- The Engineer is the brother of the Teacher.\n- E is the Pilot and is unmarried.\n- A is the Doctor.\nWho is the Teacher?",
+        options: ["B", "C", "D", "Cannot be determined without additional relation data"],
+        answer: 3,
+        explanation: "We know A is Doctor (married to Lawyer) and E is Pilot. Between B, C, D, two are Engineer and Teacher (siblings) and one is Lawyer. Without extra identifiers, the exact person who is the Teacher cannot be determined."
+      }
+    ];
+
+    const TOTAL_TIME = 15 * 60;
+    let timeLeft = TOTAL_TIME;
+    let timerInterval = null;
+    let currentIndex = 0;
+    let userAnswers = new Array(questions.length).fill(null);
+
+    const quizCard = document.getElementById("quiz-card");
+    const resultsCard = document.getElementById("results-card");
+    const timerDisplay = document.getElementById("timer");
+    const progressText = document.getElementById("progress-text");
+    const progressBar = document.getElementById("progress-bar");
+    const questionText = document.getElementById("question-text");
+    const optionsContainer = document.getElementById("options-container");
+    const nextBtn = document.getElementById("next-btn");
+    const restartBtn = document.getElementById("restart-btn");
+
+    function startTimer() {
+      timerInterval = setInterval(() => {
+        timeLeft--;
+        updateTimerDisplay();
+
+        if (timeLeft <= 0) {
+          clearInterval(timerInterval);
+          submitQuiz();
+        }
+      }, 1000);
+    }
+
+    function updateTimerDisplay() {
+      const minutes = Math.floor(timeLeft / 60);
+      const seconds = timeLeft % 60;
+      timerDisplay.textContent = `⏱ ${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+      
+      if (timeLeft <= 60) {
+        timerDisplay.classList.add("timer-warning");
+      } else {
+        timerDisplay.classList.remove("timer-warning");
+      }
+    }
+
+    function renderQuestion() {
+      const q = questions[currentIndex];
+      progressText.textContent = `Question ${currentIndex + 1} of ${questions.length}`;
+      progressBar.style.width = `${((currentIndex + 1) / questions.length) * 100}%`;
+      questionText.textContent = `${currentIndex + 1}. ${q.q}`;
+
+      optionsContainer.innerHTML = "";
+      const prefixes = ["A", "B", "C", "D"];
+
+      q.options.forEach((opt, idx) => {
+        const btn = document.createElement("button");
+        btn.className = "option-btn";
+        if (userAnswers[currentIndex] === idx) {
+          btn.classList.add("selected");
+        }
+        btn.innerHTML = `<span class="option-prefix">${prefixes[idx]}</span> <span>${opt}</span>`;
+        btn.onclick = () => selectOption(idx);
+        optionsContainer.appendChild(btn);
+      });
+
+      nextBtn.disabled = userAnswers[currentIndex] === null;
+      nextBtn.textContent = currentIndex === questions.length - 1 ? "Submit Test" : "Next Question";
+    }
+
+    function selectOption(index) {
+      userAnswers[currentIndex] = index;
+      const buttons = optionsContainer.querySelectorAll(".option-btn");
+      buttons.forEach((btn, idx) => {
+        btn.classList.toggle("selected", idx === index);
+      });
+      nextBtn.disabled = false;
+    }
+
+    nextBtn.onclick = () => {
+      if (currentIndex < questions.length - 1) {
+        currentIndex++;
+        renderQuestion();
+      } else {
+        submitQuiz();
+      }
+    };
+
+    function submitQuiz() {
+      clearInterval(timerInterval);
+      quizCard.classList.add("hide");
+      resultsCard.classList.remove("hide");
+
+      const timeTakenSec = TOTAL_TIME - timeLeft;
+      const takenMins = Math.floor(timeTakenSec / 60);
+      const takenSecs = timeTakenSec % 60;
+
+      let score = 0;
+      userAnswers.forEach((ans, idx) => {
+        if (ans === questions[idx].answer) score++;
+      });
+
+      const accuracy = Math.round((score / questions.length) * 100);
+
+      document.getElementById("score-val").textContent = `${score}/${questions.length}`;
+      document.getElementById("accuracy-val").textContent = `${accuracy}%`;
+            document.getElementById("time-val").textContent = `${String(takenMins).padStart(2, '0')}:${String(takenSecs).padStart(2, '0')}`;
+
+      renderReview();
+    }
+
+    function renderReview() {
+      const reviewContainer = document.getElementById("review-container");
+      reviewContainer.innerHTML = "";
+      const prefixes = ["A", "B", "C", "D"];
+
+      questions.forEach((q, idx) => {
+        const userAnsIndex = userAnswers[idx];
+        const isCorrect = userAnsIndex === q.answer;
+
+        const item = document.createElement("div");
+        item.className = `review-item ${isCorrect ? 'correct' : 'wrong'}`;
+
+        const userAnsText = userAnsIndex !== null 
+          ? `${prefixes[userAnsIndex]}. ${q.options[userAnsIndex]}` 
+          : "Not Attempted";
+        const correctAnsText = `${prefixes[q.answer]}. ${q.options[q.answer]}`;
+
+        item.innerHTML = `
+          <div class="review-q-text">Q${idx + 1}: ${q.q}</div>
+          <div class="review-ans-row"><strong>Your Answer:</strong> <span style="color:${isCorrect ? 'var(--success)' : 'var(--danger)'}">${userAnsText}</span></div>
+          <div class="review-ans-row"><strong>Correct Answer:</strong> <span style="color:var(--success)">${correctAnsText}</span></div>
+          <div class="review-explanation"><strong>Explanation:</strong> ${q.explanation}</div>
+        `;
+        reviewContainer.appendChild(item);
+      });
+    }
+
+    restartBtn.onclick = () => {
+      currentIndex = 0;
+      timeLeft = TOTAL_TIME;
+      userAnswers = new Array(questions.length).fill(null);
+      resultsCard.classList.add("hide");
+      quizCard.classList.remove("hide");
+      startTimer();
+      renderQuestion();
+    };
+
+    startTimer();
+    renderQuestion();
+  </script>
+</body>
+</html>
