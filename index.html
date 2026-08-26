@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Exam Prep Hub - Free Mock Tests & Study Notes</title>
+  <title>Exam Prep Hub - Mock Tests & Subject Practice</title>
   <style>
     :root {
       --primary: #1e40af;
@@ -14,11 +14,10 @@
       --text: #0f172a;
       --text-muted: #64748b;
       --border: #e2e8f0;
-      --badge-bg: #dbeafe;
-      --badge-text: #1e40af;
+      --success: #16a34a;
       --radius: 12px;
-      --shadow: 0 4px 6px -1px rgb(0 0 0 / 0.08), 0 2px 4px -2px rgb(0 0 0 / 0.05);
-      --shadow-hover: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.08);
+      --shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+      --shadow-hover: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
     }
 
     * {
@@ -28,305 +27,988 @@
       font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
     }
 
-    html {
-      scroll-behavior: smooth;
-    }
-
     body {
       background-color: var(--bg);
       color: var(--text);
-      display: flex;
-      flex-direction: column;
-      min-height: 100vh;
       line-height: 1.5;
     }
 
-    .container {
-      width: 100%;
-      max-width: 760px;
-      margin: 0 auto;
-      padding: 0 16px 32px 16px;
-      flex: 1;
-    }
-
-    /* Hero */
-    .hero {
-      background: linear-gradient(180deg, #eff6ff 0%, var(--bg) 100%);
-      padding: 36px 16px 28px 16px;
-      text-align: center;
+    header {
+      background-color: var(--card-bg);
       border-bottom: 1px solid var(--border);
-      margin-bottom: 24px;
+      position: sticky;
+      top: 0;
+      z-index: 50;
     }
 
-    .hero-title {
-      font-size: 1.75rem;
-      font-weight: 800;
-      color: var(--primary);
-      letter-spacing: -0.02em;
-      margin-bottom: 8px;
-    }
-
-    .hero-tagline {
-      font-size: 0.98rem;
-      color: var(--text-muted);
-      max-width: 500px;
+    .header-container {
+      max-width: 1100px;
       margin: 0 auto;
-      font-weight: 500;
-    }
-
-    /* Sections */
-    .section {
-      margin-bottom: 32px;
-    }
-
-    .section-title {
-      font-size: 1.15rem;
-      font-weight: 700;
-      color: var(--text);
-      margin-bottom: 14px;
-    }
-
-    /* Category Grid */
-    .category-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 12px;
-    }
-
-    @media (min-width: 540px) {
-      .category-grid {
-        grid-template-columns: repeat(3, 1fr);
-      }
-    }
-
-    .category-card {
-      background-color: var(--card-bg);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: 16px 14px;
-      box-shadow: var(--shadow);
-      text-align: center;
-      cursor: pointer;
-      transition: all 0.2s ease;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      min-height: 85px;
-      -webkit-tap-highlight-color: transparent;
-      text-decoration: none;
-      color: inherit;
-    }
-
-    .category-card:hover {
-      border-color: #93c5fd;
-      transform: translateY(-2px);
-      box-shadow: var(--shadow-hover);
-    }
-
-    .category-card:active {
-      transform: translateY(0);
-      background-color: var(--primary-light);
-    }
-
-    .category-name {
-      font-size: 1.05rem;
-      font-weight: 700;
-      color: var(--primary);
-      margin-bottom: 4px;
-    }
-
-    .category-label {
-      font-size: 0.75rem;
-      color: var(--text-muted);
-      font-weight: 500;
-    }
-
-    /* Available Tests List */
-    .test-list {
-      display: flex;
-      flex-direction: column;
-      gap: 14px;
-    }
-
-    .test-card {
-      background-color: var(--card-bg);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: 18px 20px;
-      box-shadow: var(--shadow);
-      text-decoration: none;
-      color: inherit;
+      padding: 16px 20px;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      transition: all 0.2s ease;
-      -webkit-tap-highlight-color: transparent;
     }
 
-    .test-card:hover {
-      border-color: #93c5fd;
-      transform: translateY(-2px);
+    .logo {
+      font-size: 1.3rem;
+      font-weight: 800;
+      color: var(--primary);
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .nav-badge {
+      background-color: var(--primary-light);
+      color: var(--primary);
+      font-size: 0.8rem;
+      font-weight: 700;
+      padding: 4px 10px;
+      border-radius: 9999px;
+      border: 1px solid #bfdbfe;
+    }
+
+    .hero {
+      background: linear-gradient(135deg, #1e3a8a 0%, #1e40af 50%, #3b82f6 100%);
+      color: #ffffff;
+      padding: 48px 20px 40px;
+      text-align: center;
+    }
+
+    .hero-container {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .hero h1 {
+      font-size: 2.1rem;
+      font-weight: 800;
+      margin-bottom: 12px;
+      line-height: 1.25;
+    }
+
+    .hero p {
+      font-size: 1.05rem;
+      opacity: 0.9;
+      margin-bottom: 24px;
+    }
+
+    .hero-stats {
+      display: flex;
+      justify-content: center;
+      gap: 24px;
+      flex-wrap: wrap;
+    }
+
+    .hero-stat-box {
+      background: rgba(255, 255, 255, 0.12);
+      backdrop-filter: blur(4px);
+      padding: 10px 18px;
+      border-radius: 10px;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .hero-stat-num {
+      font-size: 1.25rem;
+      font-weight: 800;
+    }
+
+    .hero-stat-desc {
+      font-size: 0.8rem;
+      opacity: 0.85;
+    }
+
+    main {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 36px 20px 60px;
+    }
+
+    .section-title {
+      font-size: 1.4rem;
+      font-weight: 800;
+      color: var(--text);
+      margin-bottom: 6px;
+    }
+
+    .section-subtitle {
+      font-size: 0.95rem;
+      color: var(--text-muted);
+      margin-bottom: 24px;
+    }
+
+    /* Exam Category Cards */
+    .category-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+      gap: 16px;
+      margin-bottom: 48px;
+    }
+
+    .cat-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 20px 16px;
+      text-align: center;
+      cursor: pointer;
+      transition: all 0.25s ease;
+      box-shadow: var(--shadow);
+      text-decoration: none;
+      color: var(--text);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .cat-card:hover {
+      transform: translateY(-3px);
       box-shadow: var(--shadow-hover);
-    }
-
-    .test-card:active {
+      border-color: var(--primary);
       background-color: var(--primary-light);
     }
 
-    .test-info {
-      flex: 1;
-      padding-right: 12px;
+    .cat-icon {
+      font-size: 1.8rem;
+      margin-bottom: 8px;
     }
 
-    .test-badge {
-      display: inline-block;
+    .cat-title {
+      font-weight: 700;
+      font-size: 1.05rem;
+    }
+
+    .cat-desc {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      margin-top: 4px;
+    }
+
+    /* Browse by Subject Accordion */
+    .subject-accordion-container {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .subject-block {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+      transition: border-color 0.25s ease;
+    }
+
+    .subject-block.active {
+      border-color: var(--primary);
+      box-shadow: var(--shadow-hover);
+    }
+
+    .subject-card-btn {
+      width: 100%;
+      background: var(--card-bg);
+      border: none;
+      padding: 20px 24px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      text-align: left;
+      transition: background 0.2s ease;
+    }
+
+    .subject-card-btn:hover {
+      background-color: #f8fafc;
+    }
+
+    .subject-block.active .subject-card-btn {
+      background-color: var(--primary-light);
+    }
+
+    .subject-btn-left {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .subject-icon-box {
+      width: 48px;
+      height: 48px;
+      border-radius: 10px;
+      background: #eff6ff;
+      color: var(--primary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.4rem;
+      border: 1px solid #bfdbfe;
+    }
+
+    .subject-block.active .subject-icon-box {
+      background: var(--primary);
+      color: #ffffff;
+      border-color: var(--primary);
+    }
+
+    .subject-meta-title {
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--text);
+    }
+
+    .subject-meta-count {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      margin-top: 2px;
+    }
+
+    .accordion-indicator {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: #f1f5f9;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1rem;
+      color: var(--text-muted);
+      transition: transform 0.3s ease, background 0.2s ease, color 0.2s ease;
+    }
+
+    .subject-block.active .accordion-indicator {
+      transform: rotate(180deg);
+      background: var(--primary);
+      color: #ffffff;
+    }
+
+    /* Expandable Tests Panel */
+    .tests-panel {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.4s cubic-bezier(0, 1, 0, 1);
+      background: #fcfdfe;
+      border-top: 1px solid transparent;
+    }
+
+    .subject-block.active .tests-panel {
+      max-height: 2000px;
+      transition: max-height 0.5s ease-in-out;
+      border-top: 1px solid var(--border);
+    }
+
+    .tests-grid {
+      padding: 20px;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 16px;
+    }
+
+    .test-card {
+      background: #ffffff;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 18px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      text-decoration: none;
+      color: var(--text);
+      transition: all 0.2s ease;
+      box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.05);
+    }
+
+    .test-card:hover {
+      border-color: var(--primary);
+      transform: translateY(-2px);
+      box-shadow: var(--shadow);
+    }
+
+    .test-tag {
       font-size: 0.72rem;
       font-weight: 700;
-      background-color: var(--badge-bg);
-      color: var(--badge-text);
-      padding: 2px 8px;
-      border-radius: 9999px;
-      margin-bottom: 6px;
       text-transform: uppercase;
-      letter-spacing: 0.03em;
+      letter-spacing: 0.05em;
+      color: var(--primary);
+      background: var(--primary-light);
+      padding: 4px 8px;
+      border-radius: 6px;
+      display: inline-block;
+      margin-bottom: 8px;
+      align-self: flex-start;
     }
 
     .test-name {
       font-size: 1.05rem;
       font-weight: 700;
+      margin-bottom: 6px;
       color: var(--text);
-      margin-bottom: 4px;
     }
 
     .test-desc {
-      font-size: 0.85rem;
+      font-size: 0.82rem;
       color: var(--text-muted);
+      margin-bottom: 14px;
     }
 
-    .test-btn-arrow {
-      background-color: var(--primary);
-      color: #ffffff;
-      width: 36px;
-      height: 36px;
-      border-radius: 50%;
+    .test-footer {
       display: flex;
+      justify-content: space-between;
       align-items: center;
-      justify-content: center;
-      font-size: 1.1rem;
-      font-weight: bold;
-      flex-shrink: 0;
-    }
-
-    /* Footer */
-    .footer {
-      background-color: var(--card-bg);
-      border-top: 1px solid var(--border);
-      padding: 20px 16px;
-      text-align: center;
-      font-size: 0.85rem;
-      color: var(--text-muted);
+      border-top: 1px solid #f1f5f9;
+      padding-top: 12px;
       margin-top: auto;
     }
 
-    .footer strong {
-      color: var(--text);
+    .test-badge {
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--success);
+    }
+
+    .test-arrow-btn {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: var(--primary-light);
+      color: var(--primary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      transition: background 0.2s ease, transform 0.2s ease;
+    }
+
+    .test-card:hover .test-arrow-btn {
+      background: var(--primary);
+      color: #ffffff;
+      transform: translateX(3px);
+    }
+
+    footer {
+      background: var(--card-bg);
+      border-top: 1px solid var(--border);
+      text-align: center;
+      padding: 24px 20px;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+
+    @media (max-width: 640px) {
+      .hero h1 {
+        font-size: 1.7rem;
+      }
+      .subject-card-btn {
+        padding: 16px;
+      }
+      .subject-icon-box {
+        width: 40px;
+        height: 40px;
+        font-size: 1.2rem;
+      }
+      .subject-meta-title {
+        font-size: 1.05rem;
+      }
+      .tests-grid {
+        grid-template-columns: 1fr;
+        padding: 16px;
+      }
     }
   </style>
 </head>
 <body>
 
-  <header class="hero">
-    <h1 class="hero-title">Exam Prep Hub</h1>
-    <p class="hero-tagline">Free mock tests and study notes for competitive exam preparation</p>
+  <header>
+    <div class="header-container">
+      <a href="index.html" class="logo">
+        <span>⚡</span> Exam Prep Hub
+      </a>
+      <span class="nav-badge">33 Practice Modules</span>
+    </div>
   </header>
 
-  <main class="container">
-    <section class="section">
-      <h2 class="section-title">Choose Your Exam Category</h2>
-      <div class="category-grid" id="category-grid"></div>
+  <section class="hero">
+    <div class="hero-container">
+      <h1>Master Competitive Exams with Targeted Mock Tests</h1>
+      <p>Instant evaluation, standard timed interfaces, and comprehensive step-by-step explanations across all essential examination subjects.</p>
+      <div class="hero-stats">
+        <div class="hero-stat-box">
+          <div class="hero-stat-num">5</div>
+          <div class="hero-stat-desc">Subjects Covered</div>
+        </div>
+        <div class="hero-stat-box">
+          <div class="hero-stat-num">33</div>
+          <div class="hero-stat-desc">Topic Mock Tests</div>
+        </div>
+        <div class="hero-stat-box">
+          <div class="hero-stat-num">495+</div>
+          <div class="hero-stat-desc">Practice Questions</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <main>
+    <!-- Exam Categories Section -->
+    <section>
+      <h2 class="section-title">Target Exam Tracks</h2>
+      <p class="section-subtitle">Select your target exam domain to jump straight to subject practice.</p>
+
+      <div class="category-grid">
+        <div class="cat-card" onclick="scrollToSubjects('quant-block')">
+          <div class="cat-icon">🏛️</div>
+          <div class="cat-title">SSC</div>
+          <div class="cat-desc">CGL, CHSL, MTS, CPO</div>
+        </div>
+        <div class="cat-card" onclick="scrollToSubjects('reasoning-block')">
+          <div class="cat-icon">🚆</div>
+          <div class="cat-title">Railway</div>
+          <div class="cat-desc">NTPC, Group D, ALP</div>
+        </div>
+        <div class="cat-card" onclick="scrollToSubjects('quant-block')">
+          <div class="cat-icon">🏦</div>
+          <div class="cat-title">Banking</div>
+          <div class="cat-desc">IBPS, SBI PO & Clerk, RBI</div>
+        </div>
+        <div class="cat-card" onclick="scrollToSubjects('gk-block')">
+          <div class="cat-icon">🇮🇳</div>
+          <div class="cat-title">UPSC</div>
+          <div class="cat-desc">CSE Prelims, CDS, CAPF</div>
+        </div>
+        <div class="cat-card" onclick="scrollToSubjects('gk-block')">
+          <div class="cat-icon">📜</div>
+          <div class="cat-title">OPSC</div>
+          <div class="cat-desc">OAS, OCS, ASO, Police SI</div>
+        </div>
+      </div>
     </section>
 
-    <section class="section" id="available-tests">
-      <h2 class="section-title">Available Tests</h2>
-      <div class="test-list" id="test-list"></div>
+    <!-- Browse by Subject Section -->
+    <section id="browse-subjects">
+      <h2 class="section-title">Browse by Subject</h2>
+      <p class="section-subtitle">Choose a subject to reveal and access all individual chapter tests.</p>
+
+      <div class="subject-accordion-container">
+        
+        <!-- 1. Quantitative Aptitude -->
+        <div class="subject-block" id="quant-block">
+          <button class="subject-card-btn" onclick="toggleSubject('quant-block')">
+            <div class="subject-btn-left">
+              <div class="subject-icon-box">📐</div>
+              <div>
+                <div class="subject-meta-title">Quantitative Aptitude</div>
+                <div class="subject-meta-count">10 Mock Tests • Arithmetic, Algebra & Mensuration</div>
+              </div>
+            </div>
+            <div class="accordion-indicator">▼</div>
+          </button>
+          <div class="tests-panel">
+            <div class="tests-grid">
+              <a href="percentage-test.html" class="test-card">
+                <div>
+                  <span class="test-tag">Quantitative Aptitude</span>
+                  <div class="test-name">Percentage</div>
+                  <div class="test-desc">15 questions • 15 minutes • Detailed Explanations</div>
+                </div>
+                <div class="test-footer">
+                  <span class="test-badge">Start Test</span>
+                  <div class="test-arrow-btn">→</div>
+                </div>
+              </a>
+
+              <a href="ratio-proportion-test.html" class="test-card">
+                <div>
+                  <span class="test-tag">Quantitative Aptitude</span>
+                  <div class="test-name">Ratio & Proportion</div>
+                  <div class="test-desc">15 questions • 15 minutes • Detailed Explanations</div>
+                </div>
+                <div class="test-footer">
+                  <span class="test-badge">Start Test</span>
+                  <div class="test-arrow-btn">→</div>
+                </div>
+              </a>
+
+              <a href="profit-loss-test.html" class="test-card">
+                <div>
+                  <span class="test-tag">Quantitative Aptitude</span>
+                  <div class="test-name">Profit & Loss</div>
+                  <div class="test-desc">15 questions • 15 minutes • Detailed Explanations</div>
+                </div>
+                <div class="test-footer">
+                  <span class="test-badge">Start Test</span>
+                  <div class="test-arrow-btn">→</div>
+                </div>
+              </a>
+
+              <a href="time-work-test.html" class="test-card">
+                <div>
+                  <span class="test-tag">Quantitative Aptitude</span>
+                  <div class="test-name">Time & Work</div>
+                  <div class="test-desc">15 questions • 15 minutes • Detailed Explanations</div>
+                </div>
+                <div class="test-footer">
+                  <span class="test-badge">Start Test</span>
+                  <div class="test-arrow-btn">→</div>
+                </div>
+              </a>
+
+              <a href="number-system-test.html" class="test-card">
+                <div>
+                  <span class="test-tag">Quantitative Aptitude</span>
+                  <div class="test-name">Number System</div>
+                  <div class="test-desc">15 questions • 15 minutes • Detailed Explanations</div>
+                </div>
+                <div class="test-footer">
+                  <span class="test-badge">Start Test</span>
+                  <div class="test-arrow-btn">→</div>
+                </div>
+              </a>
+
+              <a href="simplification-test.html" class="test-card">
+                <div>
+                  <span class="test-tag">Quantitative Aptitude</span>
+                  <div class="test-name">Simplification</div>
+                  <div class="test-desc">15 questions • 15 minutes • Detailed Explanations</div>
+                </div>
+                <div class="test-footer">
+                  <span class="test-badge">Start Test</span>
+                  <div class="test-arrow-btn">→</div>
+                </div>
+              </a>
+
+              <a href="average-test.html" class="test-card">
+                <div>
+                  <span class="test-tag">Quantitative Aptitude</span>
+                  <div class="test-name">Average</div>
+                  <div class="test-desc">15 questions • 15 minutes • Detailed Explanations</div>
+                </div>
+                <div class="test-footer">
+                  <span class="test-badge">Start Test</span>
+                  <div class="test-arrow-btn">→</div>
+                </div>
+              </a>
+
+              <a href="si-ci-test.html" class="test-card">
+                <div>
+                  <span class="test-tag">Quantitative Aptitude</span>
+                  <div class="test-name">Simple & Compound Interest</div>
+                  <div class="test-desc">15 questions • 15 minutes • Detailed Explanations</div>
+                </div>
+                <div class="test-footer">
+                  <span class="test-badge">Start Test</span>
+                  <div class="test-arrow-btn">→</div>
+                </div>
+              </a>
+
+              <a href="mensuration-test.html" class="test-card">
+                <div>
+                  <span class="test-tag">Quantitative Aptitude</span>
+                  <div class="test-name">Mensuration</div>
+                  <div class="test-desc">15 questions • 15 minutes • Detailed Explanations</div>
+                </div>
+                <div class="test-footer">
+                  <span class="test-badge">Start Test</span>
+                  <div class="test-arrow-btn">→</div>
+                </div>
+              </a>
+
+              <a href="algebra-test.html" class="test-card">
+                <div>
+                  <span class="test-tag">Quantitative Aptitude</span>
+                  <div class="test-name">Algebra</div>
+                  <div class="test-desc">15 questions • 15 minutes • Detailed Explanations</div>
+                </div>
+                <div class="test-footer">
+                  <span class="test-badge">Start Test</span>
+                  <div class="test-arrow-btn">→</div>
+                </div>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- 2. Logical Reasoning -->
+        <div class="subject-block" id="reasoning-block">
+          <button class="subject-card-btn" onclick="toggleSubject('reasoning-block')">
+            <div class="subject-btn-left">
+              <div class="subject-icon-box">🧩</div>
+              <div>
+                <div class="subject-meta-title">Logical Reasoning</div>
+                <div class="subject-meta-count">7 Mock Tests • Analytical & Verbal Reasoning</div>
+              </div>
+            </div>
+            <div class="accordion-indicator">▼</div>
+          </button>
+          <div class="tests-panel">
+            <div class="tests-grid">
+              <a href="blood-relations-test.html" class="test-card">
+                <div>
+                  <span class="test-tag">Logical Reasoning</span>
+                  <div class="test-name">Blood Relations</div>
+                  <div class="test-desc">15 questions • 15 minutes • Detailed Explanations</div>
+                </div>
+                <div class="test-footer">
+                  <span class="test-badge">Start Test</span>
+                  <div class="test-arrow-btn">→</div>
+                </div>
+              </a>
+
+              <a href="coding-decoding-test.html" class="test-card">
+                <div>
+                  <span class="test-tag">Logical Reasoning</span>
+                  <div class="test-name">Coding-Decoding</div>
+                  <div class="test-desc">15 questions • 15 minutes • Detailed Explanations</div>
+                </div>
+                <div class="test-footer">
+                  <span class="test-badge">Start Test</span>
+                  <div class="test-arrow-btn">→</div>
+                </div>
+              </a>
+
+                            <a href="series-test.html" class="test-card">
+                <div>
+                  <span class="test-tag">Logical Reasoning</span>
+                  <div class="test-name">Series Completion</div>
+                  <div class="test-desc">15 questions • 15 minutes • Detailed Explanations</div>
+                </div>
+                <div class="test-footer">
+                  <span class="test-badge">Start Test</span>
+                  <div class="test-arrow-btn">→</div>
+                </div>
+              </a>
+
+              <a href="syllogism-test.html" class="test-card">
+                <div>
+                  <span class="test-tag">Logical Reasoning</span>
+                  <div class="test-name">Syllogism</div>
+                  <div class="test-desc">15 questions • 15 minutes • Detailed Explanations</div>
+                </div>
+                <div class="test-footer">
+                  <span class="test-badge">Start Test</span>
+                  <div class="test-arrow-btn">→</div>
+                </div>
+              </a>
+
+              <a href="seating-arrangement-test.html" class="test-card">
+                <div>
+                  <span class="test-tag">Logical Reasoning</span>
+                  <div class="test-name">Seating Arrangement</div>
+                  <div class="test-desc">15 questions • 15 minutes • Detailed Explanations</div>
+                </div>
+                <div class="test-footer">
+                  <span class="test-badge">Start Test</span>
+                  <div class="test-arrow-btn">→</div>
+                </div>
+              </a>
+
+              <a href="direction-sense-test.html" class="test-card">
+                <div>
+                  <span class="test-tag">Logical Reasoning</span>
+                  <div class="test-name">Direction Sense</div>
+                  <div class="test-desc">15 questions • 15 minutes • Detailed Explanations</div>
+                </div>
+                <div class="test-footer">
+                  <span class="test-badge">Start Test</span>
+                  <div class="test-arrow-btn">→</div>
+                </div>
+              </a>
+
+              <a href="puzzles-test.html" class="test-card">
+                <div>
+                  <span class="test-tag">Logical Reasoning</span>
+                  <div class="test-name">Puzzles</div>
+                  <div class="test-desc">15 questions • 15 minutes • Detailed Explanations</div>
+                </div>
+                <div class="test-footer">
+                  <span class="test-badge">Start Test</span>
+                  <div class="test-arrow-btn">→</div>
+                </div>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- 3. English Language -->
+        <div class="subject-block" id="english-block">
+          <button class="subject-card-btn" onclick="toggleSubject('english-block')">
+            <div class="subject-btn-left">
+              <div class="subject-icon-box">📖</div>
+              <div>
+                <div class="subject-meta-title">English Language</div>
+                <div class="subject-meta-count">6 Mock Tests • Grammar, Vocabulary & Comprehension</div>
+              </div>
+            </div>
+            <div class="accordion-indicator">▼</div>
+          </button>
+          <div class="tests-panel">
+            <div class="tests-grid">
+              <a href="grammar-error-spotting-test.html" class="test-card">
+                <div>
+                  <span class="test-tag">English Language</span>
+                  <div class="test-name">Grammar & Error Spotting</div>
+                  <div class="test-desc">15 questions • 15 minutes • Detailed Explanations</div>
+                </div>
+                <div class="test-footer">
+                  <span class="test-badge">Start Test</span>
+                  <div class="test-arrow-btn">→</div>
+                </div>
+              </a>
+
+              <a href="vocabulary-test.html" class="test-card">
+                <div>
+                  <span class="test-tag">English Language</span>
+                  <div class="test-name">Vocabulary (Synonyms & Antonyms)</div>
+                  <div class="test-desc">15 questions • 15 minutes • Detailed Explanations</div>
+                </div>
+                <div class="test-footer">
+                  <span class="test-badge">Start Test</span>
+                  <div class="test-arrow-btn">→</div>
+                </div>
+              </a>
+
+              <a href="reading-comprehension-test.html" class="test-card">
+                <div>
+                  <span class="test-tag">English Language</span>
+                  <div class="test-name">Reading Comprehension</div>
+                  <div class="test-desc">15 questions • 15 minutes • Detailed Explanations</div>
+                </div>
+                <div class="test-footer">
+                  <span class="test-badge">Start Test</span>
+                  <div class="test-arrow-btn">→</div>
+                </div>
+              </a>
+
+              <a href="sentence-correction-test.html" class="test-card">
+                <div>
+                  <span class="test-tag">English Language</span>
+                  <div class="test-name">Sentence Correction</div>
+                  <div class="test-desc">15 questions • 15 minutes • Detailed Explanations</div>
+                </div>
+                <div class="test-footer">
+                  <span class="test-badge">Start Test</span>
+                  <div class="test-arrow-btn">→</div>
+                </div>
+              </a>
+
+              <a href="para-jumbles-test.html" class="test-card">
+                <div>
+                  <span class="test-tag">English Language</span>
+                  <div class="test-name">Para Jumbles</div>
+                  <div class="test-desc">15 questions • 15 minutes • Detailed Explanations</div>
+                </div>
+                <div class="test-footer">
+                  <span class="test-badge">Start Test</span>
+                  <div class="test-arrow-btn">→</div>
+                </div>
+              </a>
+
+              <a href="one-word-substitution-test.html" class="test-card">
+                <div>
+                  <span class="test-tag">English Language</span>
+                  <div class="test-name">One Word Substitution</div>
+                  <div class="test-desc">15 questions • 15 minutes • Detailed Explanations</div>
+                </div>
+                <div class="test-footer">
+                  <span class="test-badge">Start Test</span>
+                  <div class="test-arrow-btn">→</div>
+                </div>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- 4. General Knowledge -->
+        <div class="subject-block" id="gk-block">
+          <button class="subject-card-btn" onclick="toggleSubject('gk-block')">
+            <div class="subject-btn-left">
+              <div class="subject-icon-box">🌍</div>
+              <div>
+                <div class="subject-meta-title">General Knowledge</div>
+                <div class="subject-meta-count">6 Mock Tests • History, Polity, Geography, Science & Current Affairs</div>
+              </div>
+            </div>
+            <div class="accordion-indicator">▼</div>
+          </button>
+          <div class="tests-panel">
+            <div class="tests-grid">
+              <a href="indian-history-test.html" class="test-card">
+                <div>
+                  <span class="test-tag">General Knowledge</span>
+                  <div class="test-name">Indian History</div>
+                  <div class="test-desc">15 questions • 15 minutes • Detailed Explanations</div>
+                </div>
+                <div class="test-footer">
+                  <span class="test-badge">Start Test</span>
+                  <div class="test-arrow-btn">→</div>
+                </div>
+              </a>
+
+              <a href="indian-geography-test.html" class="test-card">
+                <div>
+                  <span class="test-tag">General Knowledge</span>
+                  <div class="test-name">Indian Geography</div>
+                  <div class="test-desc">15 questions • 15 minutes • Detailed Explanations</div>
+                </div>
+                <div class="test-footer">
+                  <span class="test-badge">Start Test</span>
+                  <div class="test-arrow-btn">→</div>
+                </div>
+              </a>
+
+              <a href="indian-polity-test.html" class="test-card">
+                <div>
+                  <span class="test-tag">General Knowledge</span>
+                  <div class="test-name">Indian Polity</div>
+                  <div class="test-desc">15 questions • 15 minutes • Detailed Explanations</div>
+                </div>
+                <div class="test-footer">
+                  <span class="test-badge">Start Test</span>
+                  <div class="test-arrow-btn">→</div>
+                </div>
+              </a>
+
+              <a href="general-science-test.html" class="test-card">
+                <div>
+                  <span class="test-tag">General Knowledge</span>
+                  <div class="test-name">General Science</div>
+                  <div class="test-desc">15 questions • 15 minutes • Detailed Explanations</div>
+                </div>
+                <div class="test-footer">
+                  <span class="test-badge">Start Test</span>
+                  <div class="test-arrow-btn">→</div>
+                </div>
+              </a>
+
+              <a href="current-affairs-test.html" class="test-card">
+                <div>
+                  <span class="test-tag">General Knowledge</span>
+                  <div class="test-name">Current Affairs</div>
+                  <div class="test-desc">15 questions • 15 minutes • Detailed Explanations</div>
+                </div>
+                <div class="test-footer">
+                  <span class="test-badge">Start Test</span>
+                  <div class="test-arrow-btn">→</div>
+                </div>
+              </a>
+
+              <a href="static-gk-test.html" class="test-card">
+                <div>
+                  <span class="test-tag">General Knowledge</span>
+                  <div class="test-name">Static GK</div>
+                  <div class="test-desc">15 questions • 15 minutes • Detailed Explanations</div>
+                </div>
+                <div class="test-footer">
+                  <span class="test-badge">Start Test</span>
+                  <div class="test-arrow-btn">→</div>
+                </div>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- 5. Computer Knowledge -->
+        <div class="subject-block" id="computer-block">
+          <button class="subject-card-btn" onclick="toggleSubject('computer-block')">
+            <div class="subject-btn-left">
+              <div class="subject-icon-box">💻</div>
+              <div>
+                <div class="subject-meta-title">Computer Knowledge</div>
+                <div class="subject-meta-count">4 Mock Tests • Fundamentals, MS Office & Networking</div>
+              </div>
+            </div>
+            <div class="accordion-indicator">▼</div>
+          </button>
+          <div class="tests-panel">
+            <div class="tests-grid">
+              <a href="computer-fundamentals-test.html" class="test-card">
+                <div>
+                  <span class="test-tag">Computer Knowledge</span>
+                  <div class="test-name">Computer Fundamentals</div>
+                  <div class="test-desc">15 questions • 15 minutes • Detailed Explanations</div>
+                </div>
+                <div class="test-footer">
+                  <span class="test-badge">Start Test</span>
+                  <div class="test-arrow-btn">→</div>
+                </div>
+              </a>
+
+              <a href="ms-office-test.html" class="test-card">
+                <div>
+                  <span class="test-tag">Computer Knowledge</span>
+                  <div class="test-name">MS Office (Word, Excel, PPT)</div>
+                  <div class="test-desc">15 questions • 15 minutes • Detailed Explanations</div>
+                </div>
+                <div class="test-footer">
+                  <span class="test-badge">Start Test</span>
+                  <div class="test-arrow-btn">→</div>
+                </div>
+              </a>
+
+              <a href="internet-networking-test.html" class="test-card">
+                <div>
+                  <span class="test-tag">Computer Knowledge</span>
+                  <div class="test-name">Internet & Networking</div>
+                  <div class="test-desc">15 questions • 15 minutes • Detailed Explanations</div>
+                </div>
+                <div class="test-footer">
+                  <span class="test-badge">Start Test</span>
+                  <div class="test-arrow-btn">→</div>
+                </div>
+              </a>
+
+              <a href="cybersecurity-basics-test.html" class="test-card">
+                <div>
+                  <span class="test-tag">Computer Knowledge</span>
+                  <div class="test-name">Cybersecurity Basics</div>
+                  <div class="test-desc">15 questions • 15 minutes • Detailed Explanations</div>
+                </div>
+                <div class="test-footer">
+                  <span class="test-badge">Start Test</span>
+                  <div class="test-arrow-btn">→</div>
+                </div>
+              </a>
+            </div>
+          </div>
+        </div>
+
+      </div>
     </section>
   </main>
 
-  <footer class="footer">
-    <p><strong>Exam Prep Hub</strong></p>
-    <p style="margin-top: 4px;">More exams and notes coming soon</p>
+  <footer>
+    <p>© Exam Prep Hub. Free online mock tests and topic-wise practice modules for government exam aspirants.</p>
   </footer>
 
   <script>
-    const categories = [
-      { name: "SSC", label: "Mock Tests & Notes" },
-      { name: "Railway", label: "Mock Tests & Notes" },
-      { name: "Banking", label: "Mock Tests & Notes" },
-      { name: "UPSC", label: "Mock Tests & Notes" },
-      { name: "OPSC", label: "Mock Tests & Notes" }
-    ];
+    function toggleSubject(blockId) {
+      const allBlocks = document.querySelectorAll('.subject-block');
+      const targetBlock = document.getElementById(blockId);
+      const isAlreadyActive = targetBlock.classList.contains('active');
 
-    const availableTests = [
-      {
-        title: "Percentage Mock Test",
-        category: "Quantitative Aptitude",
-        description: "15 questions • 15 minutes • Detailed Explanations",
-        link: "percentage-test.html"
-      },
-      {
-        title: "Ratio & Proportion Mock Test",
-        category: "Quantitative Aptitude",
-        description: "15 questions • 15 minutes • Detailed Explanations",
-        link: "ratio-proportion-test.html"
-      },
-      {
-        title: "Profit & Loss Mock Test",
-        category: "Quantitative Aptitude",
-        description: "15 questions • 15 minutes • Detailed Explanations",
-        link: "profit-loss-test.html"
-      },
-      {
-        title: "Time & Work Mock Test",
-        category: "Quantitative Aptitude",
-        description: "15 questions • 15 minutes • Detailed Explanations",
-        link: "time-work-test.html"
-      }
-    ];
+      allBlocks.forEach(b => b.classList.remove('active'));
 
-    function scrollToTests() {
-      const target = document.getElementById("available-tests");
-      if (target) {
-        target.scrollIntoView({ behavior: "smooth" });
+      if (!isAlreadyActive) {
+        targetBlock.classList.add('active');
       }
     }
 
-    function renderCategories() {
-      const categoryContainer = document.getElementById("category-grid");
-      categoryContainer.innerHTML = categories.map(cat => `
-        <div class="category-card" onclick="scrollToTests()">
-          <div class="category-name">${cat.name}</div>
-          <div class="category-label">${cat.label}</div>
-        </div>
-      `).join("");
-    }
+    function scrollToSubjects(blockId) {
+      const browseSection = document.getElementById('browse-subjects');
+      browseSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
 
-    function renderTests() {
-      const testContainer = document.getElementById("test-list");
-      testContainer.innerHTML = availableTests.map(test => `
-        <a href="${test.link}" class="test-card">
-          <div class="test-info">
-            <span class="test-badge">${test.category}</span>
-            <div class="test-name">${test.title}</div>
-            <div class="test-desc">${test.description}</div>
-          </div>
-          <div class="test-btn-arrow">›</div>
-        </a>
-      `).join("");
-    }
+      setTimeout(() => {
+        const allBlocks = document.querySelectorAll('.subject-block');
+        allBlocks.forEach(b => b.classList.remove('active'));
 
-    renderCategories();
-    renderTests();
+        const targetBlock = document.getElementById(blockId);
+        if (targetBlock) {
+          targetBlock.classList.add('active');
+        }
+      }, 400);
+    }
   </script>
 </body>
 </html>
