@@ -1,0 +1,751 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Average - Study Notes | Exam Prep Hub</title>
+  <style>
+    :root {
+      --primary: #1e40af;
+      --primary-hover: #1d4ed8;
+      --primary-light: #eff6ff;
+      --bg: #f8fafc;
+      --card-bg: #ffffff;
+      --text: #0f172a;
+      --text-muted: #64748b;
+      --border: #e2e8f0;
+      
+      --blue-card-bg: #eff6ff;
+      --blue-card-border: #bfdbfe;
+      --blue-text: #1d4ed8;
+
+      --green-card-bg: #f0fdf4;
+      --green-card-border: #bbf7d0;
+      --green-text: #15803d;
+
+      --purple-card-bg: #faf5ff;
+      --purple-card-border: #e9d5ff;
+      --purple-text: #7e22ce;
+
+      --orange-card-bg: #fff7ed;
+      --orange-card-border: #fed7aa;
+      --orange-text: #c2410c;
+
+      --rose-card-bg: #fff1f2;
+      --rose-card-border: #fecdd3;
+      --rose-text: #be123c;
+
+      --radius: 14px;
+      --shadow: 0 4px 6px -1px rgb(0 0 0 / 0.08), 0 2px 4px -2px rgb(0 0 0 / 0.06);
+      --shadow-hover: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.08);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    }
+
+    body {
+      background-color: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      padding-bottom: 60px;
+    }
+
+    header {
+      background-color: var(--card-bg);
+      border-bottom: 1px solid var(--border);
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.05);
+    }
+
+    .header-container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 14px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .back-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      color: var(--primary);
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 0.95rem;
+      transition: transform 0.2s ease, color 0.2s ease;
+    }
+
+    .back-btn:hover {
+      transform: translateX(-3px);
+      color: var(--primary-hover);
+    }
+
+    .badge-tag {
+      background: var(--primary-light);
+      color: var(--primary);
+      font-size: 0.8rem;
+      font-weight: 700;
+      padding: 4px 12px;
+      border-radius: 9999px;
+      border: 1px solid #bfdbfe;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 800px;
+      margin: 28px auto 0;
+      padding: 0 16px;
+    }
+
+    .hero-card {
+      background: linear-gradient(135deg, #1e3a8a 0%, #1e40af 60%, #3b82f6 100%);
+      color: #ffffff;
+      border-radius: var(--radius);
+      padding: 28px 24px;
+      box-shadow: var(--shadow);
+      margin-bottom: 28px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .hero-title {
+      font-size: 1.75rem;
+      font-weight: 800;
+      margin-bottom: 6px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .hero-subtitle {
+      font-size: 0.95rem;
+      opacity: 0.9;
+    }
+
+    .hero-icon {
+      font-size: 2.8rem;
+      flex-shrink: 0;
+      background: rgba(255, 255, 255, 0.15);
+      border-radius: 16px;
+      width: 72px;
+      height: 72px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid rgba(255, 255, 255, 0.25);
+    }
+
+    .section-card {
+      background: var(--card-bg);
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
+      padding: 24px;
+      box-shadow: var(--shadow);
+      margin-bottom: 24px;
+    }
+
+    .section-header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 18px;
+      border-bottom: 2px solid #f1f5f9;
+      padding-bottom: 12px;
+    }
+
+    .section-icon {
+      font-size: 1.35rem;
+    }
+
+    .section-title {
+      font-size: 1.25rem;
+      font-weight: 800;
+      color: var(--text);
+    }
+
+    .concept-grid {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 20px;
+      align-items: center;
+    }
+
+    .concept-text {
+      font-size: 0.96rem;
+      color: #334155;
+    }
+
+    .concept-visual {
+      background: #f8fafc;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .fraction-badge {
+      display: inline-block;
+      background: #eff6ff;
+      color: var(--primary);
+      font-weight: 700;
+      padding: 2px 8px;
+      border-radius: 6px;
+      border: 1px solid #bfdbfe;
+    }
+
+    .formulas-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 16px;
+    }
+
+    .formula-card {
+      border-radius: 12px;
+      padding: 18px;
+      border-width: 1.5px;
+      border-style: solid;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .formula-card:hover {
+      transform: translateY(-3px);
+      box-shadow: var(--shadow);
+    }
+
+    .formula-card.blue {
+      background-color: var(--blue-card-bg);
+      border-color: var(--blue-card-border);
+    }
+    .formula-card.green {
+      background-color: var(--green-card-bg);
+      border-color: var(--green-card-border);
+    }
+    .formula-card.purple {
+      background-color: var(--purple-card-bg);
+      border-color: var(--purple-card-border);
+    }
+    .formula-card.orange {
+      background-color: var(--orange-card-bg);
+      border-color: var(--orange-card-border);
+    }
+
+    .formula-head {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.85rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      margin-bottom: 10px;
+    }
+
+    .formula-card.blue .formula-head { color: var(--blue-text); }
+    .formula-card.green .formula-head { color: var(--green-text); }
+    .formula-card.purple .formula-head { color: var(--purple-text); }
+    .formula-card.orange .formula-head { color: var(--orange-text); }
+
+    .formula-math {
+      font-size: 1.05rem;
+      font-weight: 800;
+      color: #1e293b;
+      margin-bottom: 8px;
+      background: rgba(255, 255, 255, 0.85);
+      padding: 8px 12px;
+      border-radius: 8px;
+      border: 1px dashed rgba(0, 0, 0, 0.15);
+      text-align: center;
+    }
+
+    .formula-note {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+    }
+
+    .examples-list {
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+
+    .example-card {
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      background: #ffffff;
+      padding: 18px;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+    }
+
+    .example-title {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .step-row {
+      margin-bottom: 8px;
+      font-size: 0.92rem;
+      display: flex;
+      align-items: baseline;
+      gap: 8px;
+    }
+
+    .step-tag {
+      font-size: 0.75rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      padding: 2px 8px;
+      border-radius: 6px;
+      flex-shrink: 0;
+    }
+
+    .step-given { background: #eff6ff; color: var(--blue-text); }
+    .step-formula { background: #faf5ff; color: var(--purple-text); }
+    .step-sol { background: #f0fdf4; color: var(--green-text); }
+
+    .answer-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: #dcfce7;
+      color: #15803d;
+      font-weight: 800;
+      font-size: 0.95rem;
+      padding: 6px 14px;
+      border-radius: 8px;
+      border: 1px solid #86efac;
+      margin-top: 6px;
+    }
+
+    .deviation-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-around;
+      background: #f1f5f9;
+      border-radius: 8px;
+      padding: 10px 14px;
+      margin: 10px 0 6px;
+      font-size: 0.85rem;
+      font-weight: 700;
+    }
+
+    .deviation-step {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .deviation-step span:first-child {
+      font-size: 0.72rem;
+      color: var(--text-muted);
+      text-transform: uppercase;
+    }
+
+    .tips-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 14px;
+    }
+
+    .tip-card {
+      border-radius: 12px;
+      padding: 16px;
+      border: 1px solid var(--border);
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+    }
+
+    .tip-card.t1 { background-color: #fffbeb; border-color: #fde68a; }
+    .tip-card.t2 { background-color: #f0fdf4; border-color: #bbf7d0; }
+    .tip-card.t3 { background-color: #eff6ff; border-color: #bfdbfe; }
+    .tip-card.t4 { background-color: #faf5ff; border-color: #e9d5ff; }
+
+    .tip-icon {
+      font-size: 1.3rem;
+      flex-shrink: 0;
+    }
+
+    .tip-text {
+      font-size: 0.88rem;
+      color: #334155;
+    }
+
+    .tip-text strong {
+      color: #0f172a;
+    }
+
+    .mistakes-list {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .mistake-box {
+      background-color: var(--rose-card-bg);
+      border: 1.5px solid var(--rose-card-border);
+      border-radius: 12px;
+      padding: 14px 16px;
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+    }
+
+    .mistake-icon {
+      font-size: 1.3rem;
+      color: var(--rose-text);
+      flex-shrink: 0;
+    }
+
+    .mistake-title {
+      font-weight: 700;
+      color: var(--rose-text);
+      font-size: 0.92rem;
+      margin-bottom: 2px;
+    }
+
+    .mistake-desc {
+      font-size: 0.86rem;
+      color: #475569;
+    }
+
+    .cta-container {
+      text-align: center;
+      margin-top: 32px;
+    }
+
+    .btn-quiz-cta {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      background: linear-gradient(135deg, #1e40af 0%, #2563eb 100%);
+      color: #ffffff;
+      padding: 16px 36px;
+      border-radius: 12px;
+      font-size: 1.1rem;
+      font-weight: 800;
+      text-decoration: none;
+      box-shadow: 0 4px 12px rgba(37, 99, 235, 0.35);
+      transition: all 0.25s ease;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .btn-quiz-cta:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 18px rgba(37, 99, 235, 0.45);
+      background: linear-gradient(135deg, #1d4ed8 0%, #1d4ed8 100%);
+    }
+
+    @media (max-width: 640px) {
+      .hero-card {
+        flex-direction: column-reverse;
+        text-align: center;
+        padding: 20px;
+      }
+      .concept-grid {
+        grid-template-columns: 1fr;
+      }
+      .hero-title {
+        font-size: 1.45rem;
+        justify-content: center;
+      }
+      .btn-quiz-cta {
+        width: 100%;
+        padding: 14px 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="header-container">
+      <a href="index.html" class="back-btn">← Back to Home</a>
+      <span class="badge-tag">Quantitative Aptitude</span>
+    </div>
+  </header>
+
+  <div class="container">
+
+    <div class="hero-card">
+      <div>
+        <h1 class="hero-title">📈 Average - Study Notes</h1>
+        <p class="hero-subtitle">Master arithmetic mean, net deviation method, weighted averages, average speed, and age replacement problems.</p>
+      </div>
+      <div class="hero-icon">x̄</div>
+    </div>
+
+    <!-- 1. Concept & Definition -->
+    <div class="section-card">
+      <div class="section-header">
+        <span class="section-icon">💡</span>
+        <h2 class="section-title">Concept & Definition</h2>
+      </div>
+      
+      <div class="concept-grid">
+        <div class="concept-text">
+          <p style="margin-bottom: 10px;">
+            The <strong>Average (Arithmetic Mean)</strong> represents the central value that equally balances a set of numbers.
+          </p>
+          <div style="background: #f1f5f9; padding: 10px 14px; border-radius: 8px; border-left: 4px solid var(--primary); font-size: 0.9rem;">
+            <strong>Fundamental Relationship:</strong><br>
+            • <span class="fraction-badge">Average = (Sum of Observations) / (Number of Observations)</span><br>
+            • <span class="fraction-badge">Sum = Average × Number of Observations</span><br>
+            • <strong>Net Deviation Property:</strong> The algebraic sum of deviations of all elements from their average is always <strong>0</strong>.
+          </div>
+        </div>
+
+        <div class="concept-visual">
+          <svg width="150" height="150" viewBox="0 0 100 100">
+            <!-- Balance fulcrum visual for average -->
+            <polygon points="50,65 40,85 60,85" fill="#1e40af" />
+            <line x1="15" y1="65" x2="85" y2="65" stroke="#334155" stroke-width="4" stroke-linecap="round" />
+            <!-- Weights on balance -->
+            <rect x="20" y="47" width="16" height="18" rx="3" fill="#3b82f6" />
+            <text x="28" y="59" text-anchor="middle" font-size="7" font-weight="bold" fill="#fff">10</text>
+            <rect x="64" y="37" width="16" height="28" rx="3" fill="#10b981" />
+            <text x="72" y="54" text-anchor="middle" font-size="7" font-weight="bold" fill="#fff">30</text>
+            <circle cx="50" cy="40" r="10" fill="#faf5ff" stroke="#7e22ce" stroke-width="2" />
+            <text x="50" y="43" text-anchor="middle" font-size="7" font-weight="bold" fill="#7e22ce">20</text>
+            <text x="50" y="96" text-anchor="middle" font-size="8" font-weight="bold" fill="#475569">Average (x̄ = 20)</text>
+          </svg>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2. Key Formulas -->
+    <div class="section-card">
+      <div class="section-header">
+        <span class="section-icon">📐</span>
+        <h2 class="section-title">Core Average Formulas</h2>
+      </div>
+
+      <div class="formulas-grid">
+        <div class="formula-card blue">
+          <div>
+            <div class="formula-head"><span>⚖️</span> Weighted Average</div>
+            <div class="formula-math">x̄_w = (n₁A₁ + n₂A₂) / (n₁ + n₂)</div>
+          </div>
+          <div class="formula-note">When combining two groups with sizes n₁, n₂ and averages A₁, A₂.</div>
+        </div>
+
+        <div class="formula-card green">
+          <div>
+            <div class="formula-head"><span>🚗</span> Average Speed (Equal Distances)</div>
+            <div class="formula-math">Avg Speed = (2xy) / (x + y)</div>
+          </div>
+          <div class="formula-note">For equal distance traveled at speed x and returned at speed y.</div>
+        </div>
+
+        <div class="formula-card purple">
+          <div>
+            <div class="formula-head"><span>🔢</span> Average of AP Series</div>
+            <div class="formula-math">Avg = (First Term + Last Term) / 2</div>
+          </div>
+          <div class="formula-note">For any consecutive numbers or arithmetic progression.</div>
+        </div>
+
+        <div class="formula-card orange">
+          <div>
+            <div class="formula-head"><span>🔄</span> Inclusion / Replacement Formula</div>
+            <div class="formula-math">New = Old Avg + (Total Persons × Diff)</div>
+          </div>
+          <div class="formula-note">Replaced Value = Excluded Value ± (N × Increase/Decrease).</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 3. Solved Examples -->
+    <div class="section-card">
+      <div class="section-header">
+        <span class="section-icon">📝</span>
+        <h2 class="section-title">Step-by-Step Solved Examples</h2>
+      </div>
+
+      <div class="examples-list">
+        <!-- Example 1 -->
+        <div class="example-card">
+          <div class="example-title">
+            <span style="background: #eff6ff; color: #1e40af; padding: 2px 8px; border-radius: 6px; font-size: 0.85rem;">Ex 1</span>
+            The average weight of 24 students is 40 kg. If the teacher's weight is included, the average increases by 1 kg. Find the teacher's weight.
+          </div>
+          <div class="step-row">
+            <span class="step-tag step-given">Given</span>
+            <span>Initial Students = 24, Initial Avg = 40 kg, New Count = 25, Change = +1 kg</span>
+          </div>
+          <div class="step-row">
+            <span class="step-tag step-formula">Deviation Method</span>
+            <span>Weight of New Member = New Average + (Initial Count × Increase in Avg)</span>
+          </div>
+          <div class="step-row">
+            <span class="step-tag step-sol">Solution</span>
+            <span>Weight = 41 + (24 × 1) = 41 + 24 = <strong>65 kg</strong></span>
+          </div>
+
+          <div class="deviation-bar">
+            <div class="deviation-step">
+              <span>Old Avg Base</span>
+              <span>40 kg</span>
+            </div>
+            <span>+</span>
+            <div class="deviation-step">
+              <span>Added for 25 Persons</span>
+              <span>25 × 1 = 25 kg</span>
+            </div>
+            <span>=</span>
+            <div class="deviation-step">
+              <span>Teacher's Weight</span>
+              <span style="color: #16a34a;">65 kg</span>
+            </div>
+          </div>
+
+          <div>
+            <span class="answer-badge">✓ Final Answer: 65 kg</span>
+          </div>
+        </div>
+
+        <!-- Example 2 -->
+        <div class="example-card">
+          <div class="example-title">
+            <span style="background: #eff6ff; color: #1e40af; padding: 2px 8px; border-radius: 6px; font-size: 0.85rem;">Ex 2</span>
+            A person travels from City A to City B at 60 km/h and returns at 40 km/h. What is his average speed for the whole journey?
+          </div>
+          <div class="step-row">
+            <span class="step-tag step-given">Given</span>
+            <span>x = 60 km/h, y = 40 km/h (Distances are identical)</span>
+          </div>
+          <div class="step-row">
+            <span class="step-tag step-formula">Formula</span>
+            <span>Average Speed = (2xy) / (x + y) = (Total Distance) / (Total Time)</span>
+          </div>
+          <div class="step-row">
+            <span class="step-tag step-sol">Solution</span>
+            <span>(2 × 60 × 40) / (60 + 40) = 4800 / 100 = <strong>48 km/h</strong></span>
+          </div>
+          <div>
+            <span class="answer-badge">✓ Final Answer: 48 km/h</span>
+          </div>
+        </div>
+
+        <!-- Example 3 -->
+        <div class="example-card">
+          <div class="example-title">
+            <span style="background: #eff6ff; color: #1e40af; padding: 2px 8px; border-radius: 6px; font-size: 0.85rem;">Ex 3</span>
+            The average score of 50 innings of a batsman is 45. Find the sum of all runs scored. If in the next inning he scores 106, find his new average.
+          </div>
+          <div class="step-row">
+            <span class="step-tag step-given">Given</span>
+            <span>Innings (N₁) = 50, Old Avg = 45 &rarr; Total Runs = 50 × 45 = 2,250</span>
+          </div>
+          <div class="step-row">
+            <span class="step-tag step-formula">Calculation</span>
+            <span>New Total = 2250 + 106 = 2356 &rarr; New Innings = 51</span>
+          </div>
+          <div class="step-row">
+            <span class="step-tag step-sol">Solution</span>
+            <span>New Average = 2356 / 51 = <strong>46.2 runs</strong></span>
+          </div>
+          <div>
+            <span class="answer-badge">✓ Final Answer: 46.2 runs</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 4. Quick Tips & Tricks -->
+    <div class="section-card">
+      <div class="section-header">
+        <span class="section-icon">⭐</span>
+        <h2 class="section-title">Speed-Solving Tips & Shortcuts</h2>
+      </div>
+
+      <div class="tips-grid">
+        <div class="tip-card t1">
+                    <div class="tip-icon">⚡</div>
+          <div class="tip-text"><strong>Arithmetic Operations on Series:</strong> If every term in a set is increased, decreased, multiplied, or divided by <em>k</em>, the average also changes by the same operation <em>k</em>.</div>
+        </div>
+
+        <div class="tip-card t2">
+          <div class="tip-icon">🎯</div>
+          <div class="tip-text"><strong>First n Natural Numbers:</strong> Average of first <em>n</em> natural numbers is <code>(n + 1) / 2</code>. Average of first <em>n</em> even numbers is <code>n + 1</code>. Average of first <em>n</em> odd numbers is <code>n</code>.</div>
+        </div>
+
+        <div class="tip-card t3">
+          <div class="tip-icon">🔄</div>
+          <div class="tip-text"><strong>Correcting Wrong Data:</strong> <code>Correct Avg = Old Avg + [(Correct Entry − Wrong Entry) / Total Items]</code>.</div>
+        </div>
+
+        <div class="tip-card t4">
+          <div class="tip-icon">🏎️</div>
+          <div class="tip-text"><strong>3 Equal Distance Speeds:</strong> <code>Avg Speed = (3xyz) / (xy + yz + zx)</code> for speeds x, y, and z covering equal segments.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 5. Common Mistakes -->
+    <div class="section-card">
+      <div class="section-header">
+        <span class="section-icon">⚠️</span>
+        <h2 class="section-title">Common Mistakes to Avoid</h2>
+      </div>
+
+      <div class="mistakes-list">
+        <div class="mistake-box">
+          <div class="mistake-icon">🚫</div>
+          <div>
+            <div class="mistake-title">Mistake 1: Taking Direct Arithmetic Mean of Speeds</div>
+            <div class="mistake-desc">Never average speeds directly as <code>(x + y) / 2</code> for equal distances. Time spent at the lower speed is longer, requiring the harmonic mean <code>2xy / (x + y)</code>.</div>
+          </div>
+        </div>
+
+        <div class="mistake-box">
+          <div class="mistake-icon">🚫</div>
+          <div>
+            <div class="mistake-title">Mistake 2: Forgetting to Update Total Count (N)</div>
+            <div class="mistake-desc">When a new person joins a group of 20, the new divisor is <strong>21</strong>; when calculating replacements, the total count remains <strong>20</strong>.</div>
+          </div>
+        </div>
+
+        <div class="mistake-box">
+          <div class="mistake-icon">🚫</div>
+          <div>
+            <div class="mistake-title">Mistake 3: Equal Weighting in Combined Groups</div>
+            <div class="mistake-desc">If Class A (30 students) averages 80 marks and Class B (20 students) averages 60 marks, the overall average is <strong>not 70</strong>; it is <code>(30×80 + 20×60) / 50 = 72</code>.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CTA Button -->
+    <div class="cta-container">
+      <a href="average-test.html" class="btn-quiz-cta">
+        <span>🚀 Take Average Mock Test</span>
+        <span>→</span>
+      </a>
+    </div>
+
+  </div>
+
+</body>
+</html>
