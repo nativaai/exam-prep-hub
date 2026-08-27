@@ -1,0 +1,701 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Indian Polity - Study Notes | Exam Prep Hub</title>
+  <style>
+    :root {
+      --primary: #1e40af;
+      --primary-hover: #1d4ed8;
+      --primary-light: #eff6ff;
+      --bg: #f8fafc;
+      --card-bg: #ffffff;
+      --text: #0f172a;
+      --text-muted: #64748b;
+      --border: #e2e8f0;
+      
+      --blue-card-bg: #eff6ff;
+      --blue-card-border: #bfdbfe;
+      --blue-text: #1d4ed8;
+
+      --green-card-bg: #f0fdf4;
+      --green-card-border: #bbf7d0;
+      --green-text: #15803d;
+
+      --purple-card-bg: #faf5ff;
+      --purple-card-border: #e9d5ff;
+      --purple-text: #7e22ce;
+
+      --orange-card-bg: #fff7ed;
+      --orange-card-border: #fed7aa;
+      --orange-text: #c2410c;
+
+      --rose-card-bg: #fff1f2;
+      --rose-card-border: #fecdd3;
+      --rose-text: #be123c;
+
+      --radius: 14px;
+      --shadow: 0 4px 6px -1px rgb(0 0 0 / 0.08), 0 2px 4px -2px rgb(0 0 0 / 0.06);
+      --shadow-hover: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.08);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    }
+
+    body {
+      background-color: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      padding-bottom: 60px;
+    }
+
+    header {
+      background-color: var(--card-bg);
+      border-bottom: 1px solid var(--border);
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.05);
+    }
+
+    .header-container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 14px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .back-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      color: var(--primary);
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 0.95rem;
+      transition: transform 0.2s ease, color 0.2s ease;
+    }
+
+    .back-btn:hover {
+      transform: translateX(-3px);
+      color: var(--primary-hover);
+    }
+
+    .badge-tag {
+      background: var(--primary-light);
+      color: var(--primary);
+      font-size: 0.8rem;
+      font-weight: 700;
+      padding: 4px 12px;
+      border-radius: 9999px;
+      border: 1px solid #bfdbfe;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 800px;
+      margin: 28px auto 0;
+      padding: 0 16px;
+    }
+
+    .hero-card {
+      background: linear-gradient(135deg, #1e3a8a 0%, #1e40af 60%, #3b82f6 100%);
+      color: #ffffff;
+      border-radius: var(--radius);
+      padding: 28px 24px;
+      box-shadow: var(--shadow);
+      margin-bottom: 28px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .hero-title {
+      font-size: 1.75rem;
+      font-weight: 800;
+      margin-bottom: 6px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .hero-subtitle {
+      font-size: 0.95rem;
+      opacity: 0.9;
+    }
+
+    .hero-icon {
+      font-size: 2.8rem;
+      flex-shrink: 0;
+      background: rgba(255, 255, 255, 0.15);
+      border-radius: 16px;
+      width: 72px;
+      height: 72px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid rgba(255, 255, 255, 0.25);
+    }
+
+    .section-card {
+      background: var(--card-bg);
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
+      padding: 24px;
+      box-shadow: var(--shadow);
+      margin-bottom: 24px;
+    }
+
+    .section-header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 18px;
+      border-bottom: 2px solid #f1f5f9;
+      padding-bottom: 12px;
+    }
+
+    .section-icon {
+      font-size: 1.35rem;
+    }
+
+    .section-title {
+      font-size: 1.25rem;
+      font-weight: 800;
+      color: var(--text);
+    }
+
+    .concept-grid {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 20px;
+      align-items: center;
+    }
+
+    .concept-text {
+      font-size: 0.96rem;
+      color: #334155;
+    }
+
+    .concept-visual {
+      background: #f8fafc;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .fraction-badge {
+      display: inline-block;
+      background: #eff6ff;
+      color: var(--primary);
+      font-weight: 700;
+      padding: 2px 8px;
+      border-radius: 6px;
+      border: 1px solid #bfdbfe;
+    }
+
+    .formulas-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 16px;
+    }
+
+    .formula-card {
+      border-radius: 12px;
+      padding: 18px;
+      border-width: 1.5px;
+      border-style: solid;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .formula-card:hover {
+      transform: translateY(-3px);
+      box-shadow: var(--shadow);
+    }
+
+    .formula-card.blue {
+      background-color: var(--blue-card-bg);
+      border-color: var(--blue-card-border);
+    }
+    .formula-card.green {
+      background-color: var(--green-card-bg);
+      border-color: var(--green-card-border);
+    }
+    .formula-card.purple {
+      background-color: var(--purple-card-bg);
+      border-color: var(--purple-card-border);
+    }
+    .formula-card.orange {
+      background-color: var(--orange-card-bg);
+      border-color: var(--orange-card-border);
+    }
+
+    .formula-head {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.85rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      margin-bottom: 10px;
+    }
+
+    .formula-card.blue .formula-head { color: var(--blue-text); }
+    .formula-card.green .formula-head { color: var(--green-text); }
+    .formula-card.purple .formula-head { color: var(--purple-text); }
+    .formula-card.orange .formula-head { color: var(--orange-text); }
+
+    .formula-math {
+      font-size: 1.05rem;
+      font-weight: 800;
+      color: #1e293b;
+      margin-bottom: 8px;
+      background: rgba(255, 255, 255, 0.85);
+      padding: 8px 12px;
+      border-radius: 8px;
+      border: 1px dashed rgba(0, 0, 0, 0.15);
+      text-align: center;
+    }
+
+    .formula-note {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+    }
+
+    .examples-list {
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+
+    .example-card {
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      background: #ffffff;
+      padding: 18px;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+    }
+
+    .example-title {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .step-row {
+      margin-bottom: 8px;
+      font-size: 0.92rem;
+      display: flex;
+      align-items: baseline;
+      gap: 8px;
+    }
+
+    .step-tag {
+      font-size: 0.75rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      padding: 2px 8px;
+      border-radius: 6px;
+      flex-shrink: 0;
+    }
+
+    .step-given { background: #eff6ff; color: var(--blue-text); }
+    .step-formula { background: #faf5ff; color: var(--purple-text); }
+    .step-sol { background: #f0fdf4; color: var(--green-text); }
+
+    .answer-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: #dcfce7;
+      color: #15803d;
+      font-weight: 800;
+      font-size: 0.95rem;
+      padding: 6px 14px;
+      border-radius: 8px;
+      border: 1px solid #86efac;
+      margin-top: 6px;
+    }
+
+    .tips-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 14px;
+    }
+
+    .tip-card {
+      border-radius: 12px;
+      padding: 16px;
+      border: 1px solid var(--border);
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+    }
+
+    .tip-card.t1 { background-color: #fffbeb; border-color: #fde68a; }
+    .tip-card.t2 { background-color: #f0fdf4; border-color: #bbf7d0; }
+    .tip-card.t3 { background-color: #eff6ff; border-color: #bfdbfe; }
+    .tip-card.t4 { background-color: #faf5ff; border-color: #e9d5ff; }
+
+    .tip-icon {
+      font-size: 1.3rem;
+      flex-shrink: 0;
+    }
+
+    .tip-text {
+      font-size: 0.88rem;
+      color: #334155;
+    }
+
+    .tip-text strong {
+      color: #0f172a;
+    }
+
+    .mistakes-list {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .mistake-box {
+      background-color: var(--rose-card-bg);
+      border: 1.5px solid var(--rose-card-border);
+      border-radius: 12px;
+      padding: 14px 16px;
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+    }
+
+    .mistake-icon {
+      font-size: 1.3rem;
+      color: var(--rose-text);
+      flex-shrink: 0;
+    }
+
+    .mistake-title {
+      font-weight: 700;
+      color: var(--rose-text);
+      font-size: 0.92rem;
+      margin-bottom: 2px;
+    }
+
+    .mistake-desc {
+      font-size: 0.86rem;
+      color: #475569;
+    }
+
+    .cta-container {
+      text-align: center;
+      margin-top: 32px;
+    }
+
+    .btn-quiz-cta {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      background: linear-gradient(135deg, #1e40af 0%, #2563eb 100%);
+      color: #ffffff;
+      padding: 16px 36px;
+      border-radius: 12px;
+      font-size: 1.1rem;
+      font-weight: 800;
+      text-decoration: none;
+      box-shadow: 0 4px 12px rgba(37, 99, 235, 0.35);
+      transition: all 0.25s ease;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .btn-quiz-cta:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 18px rgba(37, 99, 235, 0.45);
+      background: linear-gradient(135deg, #1d4ed8 0%, #1d4ed8 100%);
+    }
+
+    @media (max-width: 640px) {
+      .hero-card {
+        flex-direction: column-reverse;
+        text-align: center;
+        padding: 20px;
+      }
+      .concept-grid {
+        grid-template-columns: 1fr;
+      }
+      .hero-title {
+        font-size: 1.45rem;
+        justify-content: center;
+      }
+      .btn-quiz-cta {
+        width: 100%;
+        padding: 14px 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="header-container">
+      <a href="index.html" class="back-btn">← Back to Home</a>
+      <span class="badge-tag">General Knowledge</span>
+    </div>
+  </header>
+
+  <div class="container">
+
+    <div class="hero-card">
+      <div>
+        <h1 class="hero-title">🏛️ Indian Polity - Study Notes</h1>
+        <p class="hero-subtitle">Master the Preamble, Fundamental Rights & Duties, DPSP, Parliament, Judiciary, Constitutional Bodies, and Major Amendments.</p>
+      </div>
+      <div class="hero-icon">⚖️</div>
+    </div>
+
+    <!-- 1. Framing & Features of the Constitution -->
+    <div class="section-card">
+      <div class="section-header">
+        <span class="section-icon">💡</span>
+        <h2 class="section-title">Framing & Structure of the Constitution</h2>
+      </div>
+      
+      <div class="concept-grid">
+        <div class="concept-text">
+          <p style="margin-bottom: 10px;">
+            The <strong>Constitution of India</strong> is the supreme law of the country, drafted by the Constituent Assembly under the chairmanship of <strong>Dr. B. R. Ambedkar</strong> (Drafting Committee).
+          </p>
+          <div style="background: #f1f5f9; padding: 10px 14px; border-radius: 8px; border-left: 4px solid var(--primary); font-size: 0.9rem;">
+            <strong>Key Milestones & Numbers:</strong><br>
+            • <strong>Constituent Assembly Setup:</strong> Cabinet Mission Plan (1946)<br>
+            • <strong>Adopted:</strong> 26th November 1949 (Constitution Day)<br>
+            • <strong>Commenced:</strong> 26th January 1950 (Republic Day)<br>
+            • <strong>Original:</strong> 395 Articles, 22 Parts, 8 Schedules<br>
+            • <strong>Present:</strong> ~470 Articles, 25 Parts, 12 Schedules
+          </div>
+        </div>
+
+        <div class="concept-visual">
+          <svg width="150" height="150" viewBox="0 0 100 100">
+            <!-- Pillar / Balance Scale Visual -->
+            <rect x="25" y="20" width="50" height="12" rx="3" fill="#dbeafe" stroke="#1e40af" stroke-width="1.5" />
+            <text x="50" y="28" text-anchor="middle" font-size="6" font-weight="bold" fill="#1e40af">PREAMBLE</text>
+            
+            <line x1="50" y1="32" x2="50" y2="75" stroke="#1e40af" stroke-width="2" />
+            
+            <rect x="15" y="45" width="28" height="14" rx="3" fill="#faf5ff" stroke="#7e22ce" stroke-width="1.5" />
+            <text x="29" y="54" text-anchor="middle" font-size="5" font-weight="bold" fill="#7e22ce">Part III: FR</text>
+
+            <rect x="57" y="45" width="28" height="14" rx="3" fill="#f0fdf4" stroke="#15803d" stroke-width="1.5" />
+            <text x="71" y="54" text-anchor="middle" font-size="5" font-weight="bold" fill="#15803d">Part IV: DPSP</text>
+
+            <rect x="15" y="75" width="70" height="12" rx="3" fill="#e2e8f0" stroke="#475569" stroke-width="1.5" />
+            <text x="50" y="83" text-anchor="middle" font-size="6" font-weight="bold" fill="#0f172a">DEMOCRATIC REPUBLIC</text>
+            <text x="50" y="96" text-anchor="middle" font-size="7" font-weight="bold" fill="#475569">Constitutional Pillars</text>
+          </svg>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2. Core Polity Systems Grid -->
+    <div class="section-card">
+      <div class="section-header">
+        <span class="section-icon">📐</span>
+        <h2 class="section-title">Major Constitutional Domains</h2>
+      </div>
+
+      <div class="formulas-grid">
+        <div class="formula-card blue">
+          <div>
+            <div class="formula-head"><span>📜</span> Fundamental Rights (Part III)</div>
+            <div class="formula-math">Articles 12 to 35</div>
+          </div>
+          <div class="formula-note">Justiciable in court. Article 32 (Right to Constitutional Remedies) = "Heart and Soul" of Constitution (Ambedkar). 5 Writs.</div>
+        </div>
+
+        <div class="formula-card green">
+          <div>
+            <div class="formula-head"><span>🌱</span> DPSP & Fundamental Duties</div>
+            <div class="formula-math">Part IV (36-51) | Part IV-A (51A)</div>
+          </div>
+          <div class="formula-note">DPSP (Non-justiciable, welfare state). Fundamental Duties (42nd Amendment 1976, Swaran Singh Committee, 11 Duties).</div>
+        </div>
+
+        <div class="formula-card purple">
+          <div>
+            <div class="formula-head"><span>🏛️</span> Parliament & Executive</div>
+            <div class="formula-math">Articles 52 - 151 (Part V)</div>
+          </div>
+          <div class="formula-note">President (Art 52, Head of State), PM & Cabinet (Real Executive). Lok Sabha (543) & Rajya Sabha (245, 12 Nominated).</div>
+        </div>
+
+        <div class="formula-card orange">
+          <div>
+            <div class="formula-head"><span>🏛️</span> Independent & Statutory Bodies</div>
+            <div class="formula-math">ECI | CAG | UPSC | Finance Comm</div>
+          </div>
+          <div class="formula-note">Election Commission (Art 324), CAG (Art 148), UPSC (Art 315), Finance Commission (Art 280).</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 3. Solved Examples -->
+    <div class="section-card">
+      <div class="section-header">
+        <span class="section-icon">📝</span>
+        <h2 class="section-title">Step-by-Step Solved Examples</h2>
+      </div>
+
+      <div class="examples-list">
+        <!-- Example 1 -->
+        <div class="example-card">
+          <div class="example-title">
+            <span style="background: #eff6ff; color: #1e40af; padding: 2px 8px; border-radius: 6px; font-size: 0.85rem;">Ex 1</span>
+            Which Constitutional Amendment added the words <strong>"Socialist, Secular, and Integrity"</strong> to the Preamble?<br>
+            Options: (A) 44th Amendment 1978 &nbsp;|&nbsp; (B) 42nd Amendment 1976 &nbsp;|&nbsp; (C) 86th Amendment 2002 &nbsp;|&nbsp; (D) 73rd Amendment 1992
+          </div>
+          <div class="step-row">
+            <span class="step-tag step-given">Fact Check</span>
+            <span>The Preamble has been amended <strong>only once</strong> in Indian history.</span>
+          </div>
+          <div class="step-row">
+            <span class="step-tag step-formula">Amendment Rule</span>
+            <span>The <strong>42nd Constitutional Amendment Act, 1976</strong> (also called the <em>Mini-Constitution</em>) added "Socialist", "Secular", and "Integrity".</span>
+          </div>
+          <div class="step-row">
+            <span class="step-tag step-sol">Solution</span>
+            <span>Correct option is <strong>42nd Amendment 1976 (Option B)</strong>.</span>
+          </div>
+          <div>
+            <span class="answer-badge">✓ Final Answer: 42nd Amendment 1976</span>
+          </div>
+        </div>
+
+        <!-- Example 2 -->
+        <div class="example-card">
+          <div class="example-title">
+            <span style="background: #eff6ff; color: #1e40af; padding: 2px 8px; border-radius: 6px; font-size: 0.85rem;">Ex 2</span>
+            Match the Constitutional Writ with its literal meaning:<br>
+            1. Habeas Corpus &nbsp;|&nbsp; 2. Mandamus &nbsp;|&nbsp; 3. Quo-Warranto &nbsp;|&nbsp; 4. Certiorari
+          </div>
+          <div class="step-row">
+            <span class="step-tag step-given">Writ Definitions (Art 32 / Art 226)</span>
+            <span>• <strong>Habeas Corpus:</strong> "To have the body of" (Protection against illegal detention).<br>• <strong>Mandamus:</strong> "We Command" (Order to a public official to perform duty).<br>• <strong>Quo-Warranto:</strong> "By what authority?" (Check illegal usurpation of public office).<br>• <strong>Certiorari:</strong> "To be certified / informed" (Transfer case from lower to higher court).</span>
+          </div>
+          <div>
+            <span class="answer-badge">✓ All 5 Constitutional Writs Memorized</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 4. Quick Tips & Tricks -->
+    <div class="section-card">
+      <div class="section-header">
+        <span class="section-icon">⭐</span>
+        <h2 class="section-title">Speed-Solving Mnemonics & Shortcuts</h2>
+      </div>
+
+      <div class="tips-grid">
+        <div class="tip-card t1">
+          <div class="tip-icon">📜</div>
+          <div class="tip-text"><strong>12 Schedules Mnemonic (TEARS OF OLD PM):</strong><br>
+          <strong>T</strong>erritories &nbsp;|&nbsp; <strong>E</strong>moluments &nbsp;|&nbsp; <strong>A</strong>ffirmations &nbsp;|&nbsp; <strong>R</strong>ajya Sabha &nbsp;|&nbsp; <strong>S</strong>cheduled Areas &nbsp;|&nbsp; <strong>O</strong>ther Scheduled Areas &nbsp;|&nbsp; <strong>F</strong>ederal List &nbsp;|&nbsp; <strong>O</strong>fficial Languages &nbsp;|&nbsp; <strong>L</strong>and Reforms &nbsp;|&nbsp; <strong>D</strong>efection &nbsp;|&nbsp; <strong>P</strong>anchayats &nbsp;|&nbsp; <strong>M</strong>unicipalities.</div>
+        </div>
+
+        <div class="tip-card t2">
+          <div class="tip-icon">🌍</div>
+          <div class="tip-text"><strong>Borrowed Features Shortcuts:</strong><br>
+          • <strong>UK:</strong> Parliamentary System, Single Citizenship, Rule of Law.<br>
+          • <strong>USA:</strong> Fundamental Rights, Judicial Review, Preamble, Impeachment of President.<br>
+          • <strong>Ireland:</strong> DPSP, Nomination of Rajya Sabha members.<br>
+          • <strong>USSR (Russia):</strong> Fundamental Duties, Preamble Ideals (Justice).</div>
+        </div>
+        <div class="tip-card t3">
+          <div class="tip-icon">⚖️</div>
+          <div class="tip-text"><strong>Fundamental Rights Groupings (14-32):</strong><br>
+          • Right to Equality (14-18)<br>
+          • Right to Freedom (19-22)<br>
+          • Right Against Exploitation (23-24)<br>
+          • Right to Freedom of Religion (25-28)<br>
+          • Cultural & Educational Rights (29-30)<br>
+          • Constitutional Remedies (32)</div>
+        </div>
+
+        <div class="tip-card t4">
+          <div class="tip-icon">✨</div>
+          <div class="tip-text"><strong>Key Ages to Remember:</strong><br>
+          • Voting Age: 18 yrs (61st Amendment 1988)<br>
+          • Panchayat Election: 21 yrs<br>
+          • Lok Sabha / Vidhan Sabha MP: 25 yrs<br>
+          • Rajya Sabha MP: 30 yrs<br>
+          • President / VP / Governor: 35 yrs</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 5. Common Mistakes -->
+    <div class="section-card">
+      <div class="section-header">
+        <span class="section-icon">⚠️</span>
+        <h2 class="section-title">Common Mistakes to Avoid</h2>
+      </div>
+
+      <div class="mistakes-list">
+        <div class="mistake-box">
+          <div class="mistake-icon">🚫</div>
+          <div>
+            <div class="mistake-title">Mistake 1: Confusing Money Bill (Art 110) Rules</div>
+            <div class="mistake-desc">A Money Bill can <strong>ONLY be introduced in Lok Sabha</strong> with prior recommendation of the President. Rajya Sabha can only delay it for a maximum of 14 days; it cannot reject or amend it. Speaker of Lok Sabha decides if a bill is a Money Bill.</div>
+          </div>
+        </div>
+
+        <div class="mistake-box">
+          <div class="mistake-icon">🚫</div>
+          <div>
+            <div class="mistake-title">Mistake 2: Assuming Fundamental Rights Are Absolute</div>
+            <div class="mistake-desc">Fundamental Rights are NOT absolute; they are subject to reasonable restrictions. Articles 20 and 21 cannot be suspended even during a National Emergency (Art 352).</div>
+          </div>
+        </div>
+
+        <div class="mistake-box">
+          <div class="mistake-icon">🚫</div>
+          <div>
+            <div class="mistake-title">Mistake 3: Confusing Justiciable vs Non-Justiciable Provisions</div>
+            <div class="mistake-desc"><strong>Fundamental Rights (Part III)</strong> are justiciable (enforceable by courts). <strong>DPSP (Part IV)</strong> and <strong>Fundamental Duties (Part IV-A)</strong> are non-justiciable.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CTA Button -->
+    <div class="cta-container">
+      <a href="indian-polity-test.html" class="btn-quiz-cta">
+        <span>🚀 Take Indian Polity Mock Test</span>
+        <span>→</span>
+      </a>
+    </div>
+
+  </div>
+
+</body>
+</html>
