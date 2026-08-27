@@ -1,0 +1,691 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Static GK - Study Notes | Exam Prep Hub</title>
+  <style>
+    :root {
+      --primary: #1e40af;
+      --primary-hover: #1d4ed8;
+      --primary-light: #eff6ff;
+      --bg: #f8fafc;
+      --card-bg: #ffffff;
+      --text: #0f172a;
+      --text-muted: #64748b;
+      --border: #e2e8f0;
+      
+      --blue-card-bg: #eff6ff;
+      --blue-card-border: #bfdbfe;
+      --blue-text: #1d4ed8;
+
+      --green-card-bg: #f0fdf4;
+      --green-card-border: #bbf7d0;
+      --green-text: #15803d;
+
+      --purple-card-bg: #faf5ff;
+      --purple-card-border: #e9d5ff;
+      --purple-text: #7e22ce;
+
+      --orange-card-bg: #fff7ed;
+      --orange-card-border: #fed7aa;
+      --orange-text: #c2410c;
+
+      --rose-card-bg: #fff1f2;
+      --rose-card-border: #fecdd3;
+      --rose-text: #be123c;
+
+      --radius: 14px;
+      --shadow: 0 4px 6px -1px rgb(0 0 0 / 0.08), 0 2px 4px -2px rgb(0 0 0 / 0.06);
+      --shadow-hover: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.08);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    }
+
+    body {
+      background-color: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      padding-bottom: 60px;
+    }
+
+    header {
+      background-color: var(--card-bg);
+      border-bottom: 1px solid var(--border);
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.05);
+    }
+
+    .header-container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 14px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .back-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      color: var(--primary);
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 0.95rem;
+      transition: transform 0.2s ease, color 0.2s ease;
+    }
+
+    .back-btn:hover {
+      transform: translateX(-3px);
+      color: var(--primary-hover);
+    }
+
+    .badge-tag {
+      background: var(--primary-light);
+      color: var(--primary);
+      font-size: 0.8rem;
+      font-weight: 700;
+      padding: 4px 12px;
+      border-radius: 9999px;
+      border: 1px solid #bfdbfe;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 800px;
+      margin: 28px auto 0;
+      padding: 0 16px;
+    }
+
+    .hero-card {
+      background: linear-gradient(135deg, #1e3a8a 0%, #1e40af 60%, #3b82f6 100%);
+      color: #ffffff;
+      border-radius: var(--radius);
+      padding: 28px 24px;
+      box-shadow: var(--shadow);
+      margin-bottom: 28px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .hero-title {
+      font-size: 1.75rem;
+      font-weight: 800;
+      margin-bottom: 6px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .hero-subtitle {
+      font-size: 0.95rem;
+      opacity: 0.9;
+    }
+
+    .hero-icon {
+      font-size: 2.8rem;
+      flex-shrink: 0;
+      background: rgba(255, 255, 255, 0.15);
+      border-radius: 16px;
+      width: 72px;
+      height: 72px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid rgba(255, 255, 255, 0.25);
+    }
+
+    .section-card {
+      background: var(--card-bg);
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
+      padding: 24px;
+      box-shadow: var(--shadow);
+      margin-bottom: 24px;
+    }
+
+    .section-header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 18px;
+      border-bottom: 2px solid #f1f5f9;
+      padding-bottom: 12px;
+    }
+
+    .section-icon {
+      font-size: 1.35rem;
+    }
+
+    .section-title {
+      font-size: 1.25rem;
+      font-weight: 800;
+      color: var(--text);
+    }
+
+    .concept-grid {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 20px;
+      align-items: center;
+    }
+
+    .concept-text {
+      font-size: 0.96rem;
+      color: #334155;
+    }
+
+    .concept-visual {
+      background: #f8fafc;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .fraction-badge {
+      display: inline-block;
+      background: #eff6ff;
+      color: var(--primary);
+      font-weight: 700;
+      padding: 2px 8px;
+      border-radius: 6px;
+      border: 1px solid #bfdbfe;
+    }
+
+    .formulas-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 16px;
+    }
+
+    .formula-card {
+      border-radius: 12px;
+      padding: 18px;
+      border-width: 1.5px;
+      border-style: solid;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .formula-card:hover {
+      transform: translateY(-3px);
+      box-shadow: var(--shadow);
+    }
+
+    .formula-card.blue {
+      background-color: var(--blue-card-bg);
+      border-color: var(--blue-card-border);
+    }
+    .formula-card.green {
+      background-color: var(--green-card-bg);
+      border-color: var(--green-card-border);
+    }
+    .formula-card.purple {
+      background-color: var(--purple-card-bg);
+      border-color: var(--purple-card-border);
+    }
+    .formula-card.orange {
+      background-color: var(--orange-card-bg);
+      border-color: var(--orange-card-border);
+    }
+
+    .formula-head {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.85rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      margin-bottom: 10px;
+    }
+
+    .formula-card.blue .formula-head { color: var(--blue-text); }
+    .formula-card.green .formula-head { color: var(--green-text); }
+    .formula-card.purple .formula-head { color: var(--purple-text); }
+    .formula-card.orange .formula-head { color: var(--orange-text); }
+
+    .formula-math {
+      font-size: 1.05rem;
+      font-weight: 800;
+      color: #1e293b;
+      margin-bottom: 8px;
+      background: rgba(255, 255, 255, 0.85);
+      padding: 8px 12px;
+      border-radius: 8px;
+      border: 1px dashed rgba(0, 0, 0, 0.15);
+      text-align: center;
+    }
+
+    .formula-note {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+    }
+
+    .examples-list {
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+
+    .example-card {
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      background: #ffffff;
+      padding: 18px;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+    }
+
+    .example-title {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .step-row {
+      margin-bottom: 8px;
+      font-size: 0.92rem;
+      display: flex;
+      align-items: baseline;
+      gap: 8px;
+    }
+
+    .step-tag {
+      font-size: 0.75rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      padding: 2px 8px;
+      border-radius: 6px;
+      flex-shrink: 0;
+    }
+
+    .step-given { background: #eff6ff; color: var(--blue-text); }
+    .step-formula { background: #faf5ff; color: var(--purple-text); }
+    .step-sol { background: #f0fdf4; color: var(--green-text); }
+
+    .answer-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: #dcfce7;
+      color: #15803d;
+      font-weight: 800;
+      font-size: 0.95rem;
+      padding: 6px 14px;
+      border-radius: 8px;
+      border: 1px solid #86efac;
+      margin-top: 6px;
+    }
+
+    .tips-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 14px;
+    }
+
+    .tip-card {
+      border-radius: 12px;
+      padding: 16px;
+      border: 1px solid var(--border);
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+    }
+
+    .tip-card.t1 { background-color: #fffbeb; border-color: #fde68a; }
+    .tip-card.t2 { background-color: #f0fdf4; border-color: #bbf7d0; }
+    .tip-card.t3 { background-color: #eff6ff; border-color: #bfdbfe; }
+    .tip-card.t4 { background-color: #faf5ff; border-color: #e9d5ff; }
+
+    .tip-icon {
+      font-size: 1.3rem;
+      flex-shrink: 0;
+    }
+
+    .tip-text {
+      font-size: 0.88rem;
+      color: #334155;
+    }
+
+    .tip-text strong {
+      color: #0f172a;
+    }
+
+    .mistakes-list {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .mistake-box {
+      background-color: var(--rose-card-bg);
+      border: 1.5px solid var(--rose-card-border);
+      border-radius: 12px;
+      padding: 14px 16px;
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+    }
+
+    .mistake-icon {
+      font-size: 1.3rem;
+      color: var(--rose-text);
+      flex-shrink: 0;
+    }
+
+    .mistake-title {
+      font-weight: 700;
+      color: var(--rose-text);
+      font-size: 0.92rem;
+      margin-bottom: 2px;
+    }
+
+    .mistake-desc {
+      font-size: 0.86rem;
+      color: #475569;
+    }
+
+    .cta-container {
+      text-align: center;
+      margin-top: 32px;
+    }
+
+    .btn-quiz-cta {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      background: linear-gradient(135deg, #1e40af 0%, #2563eb 100%);
+      color: #ffffff;
+      padding: 16px 36px;
+      border-radius: 12px;
+      font-size: 1.1rem;
+      font-weight: 800;
+      text-decoration: none;
+      box-shadow: 0 4px 12px rgba(37, 99, 235, 0.35);
+      transition: all 0.25s ease;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .btn-quiz-cta:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 18px rgba(37, 99, 235, 0.45);
+      background: linear-gradient(135deg, #1d4ed8 0%, #1d4ed8 100%);
+    }
+
+    @media (max-width: 640px) {
+      .hero-card {
+        flex-direction: column-reverse;
+        text-align: center;
+        padding: 20px;
+      }
+      .concept-grid {
+        grid-template-columns: 1fr;
+      }
+      .hero-title {
+        font-size: 1.45rem;
+        justify-content: center;
+      }
+      .btn-quiz-cta {
+        width: 100%;
+        padding: 14px 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="header-container">
+      <a href="index.html" class="back-btn">← Back to Home</a>
+      <span class="badge-tag">General Knowledge</span>
+    </div>
+  </header>
+
+  <div class="container">
+
+    <div class="hero-card">
+      <div>
+        <h1 class="hero-title">🏛️ Static GK - Study Notes</h1>
+        <p class="hero-subtitle">Master National Parks, Classical Dances, UNESCO World Heritage Sites, Major Dams, Ramsar Wetlands, and Important Days.</p>
+      </div>
+      <div class="hero-icon">🌍</div>
+    </div>
+
+    <!-- 1. Static Knowledge Framework -->
+    <div class="section-card">
+      <div class="section-header">
+        <span class="section-icon">💡</span>
+        <h2 class="section-title">Core Static GK Framework</h2>
+      </div>
+      
+      <div class="concept-grid">
+        <div class="concept-text">
+          <p style="margin-bottom: 10px;">
+            <strong>Static General Knowledge</strong> consists of unvarying factual domains spanning cultural heritage, geographical landmarks, environmental reserves, and national symbols.
+          </p>
+          <div style="background: #f1f5f9; padding: 10px 14px; border-radius: 8px; border-left: 4px solid var(--primary); font-size: 0.9rem;">
+            <strong>High-Yield Core Categories:</strong><br>
+            • <strong>Art & Culture:</strong> 8 Sangeet Natak Akademi Classical Dances & state origins.<br>
+            • <strong>Conservation:</strong> 106 National Parks, Tiger Reserves, Ramsar Wetlands.<br>
+            • <strong>Infrastructure:</strong> Highest, longest, and oldest River Dams & Bridges.<br>
+            • <strong>Heritage:</strong> UNESCO Cultural, Natural & Mixed World Heritage Sites.
+          </div>
+        </div>
+
+        <div class="concept-visual">
+          <svg width="150" height="150" viewBox="0 0 100 100">
+            <!-- Static Pillar Icon -->
+            <rect x="20" y="20" width="60" height="12" rx="3" fill="#eff6ff" stroke="#1e40af" stroke-width="1.5" />
+            <text x="50" y="28" text-anchor="middle" font-size="6" font-weight="bold" fill="#1e40af">FACTUAL PILLARS</text>
+            
+            <rect x="25" y="36" width="10" height="42" fill="#dbeafe" stroke="#1e40af" />
+            <rect x="45" y="36" width="10" height="42" fill="#dbeafe" stroke="#1e40af" />
+            <rect x="65" y="36" width="10" height="42" fill="#dbeafe" stroke="#1e40af" />
+
+            <rect x="15" y="80" width="70" height="10" rx="3" fill="#1e40af" />
+            <text x="50" y="87" text-anchor="middle" font-size="5.5" font-weight="bold" fill="#ffffff">STATIC REPOSITORY</text>
+          </svg>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2. Core Static Pillars Grid -->
+    <div class="section-card">
+      <div class="section-header">
+        <span class="section-icon">📐</span>
+        <h2 class="section-title">Major Static Domains</h2>
+      </div>
+
+      <div class="formulas-grid">
+        <div class="formula-card blue">
+          <div>
+            <div class="formula-head"><span>🎭</span> 8 Classical Dances of India</div>
+            <div class="formula-math">TN | KL | AP | OD | AS | MN | UP</div>
+          </div>
+          <div class="formula-note">Bharatanatyam (TN), Kathakali & Mohiniyattam (KL), Kuchipudi (AP), Odissi (OD), Sattriya (AS), Manipuri (MN), Kathak (UP).</div>
+        </div>
+
+        <div class="formula-card green">
+          <div>
+            <div class="formula-head"><span>🏞️</span> Landmark National Parks</div>
+            <div class="formula-math">Jim Corbett | Kaziranga | Keibul Lamjao</div>
+          </div>
+          <div class="formula-note">Jim Corbett (Oldest, Uttarakhand), Kaziranga (One-horned Rhino, Assam), Keibul Lamjao (Only floating park, Loktak Lake, Manipur).</div>
+        </div>
+
+        <div class="formula-card purple">
+          <div>
+            <div class="formula-head"><span>🌊</span> Superlative Dams in India</div>
+            <div class="formula-math">Tehri | Hirakud | Bhakra Nangal</div>
+          </div>
+          <div class="formula-note">Highest Dam: Tehri (Bhagirathi, UK). Longest Dam: Hirakud (Mahanadi, Odisha). Highest Gravity Dam: Bhakra (Sutlej, HP).</div>
+        </div>
+
+        <div class="formula-card orange">
+          <div>
+            <div class="formula-head"><span>🏛️</span> UNESCO World Heritage Sites</div>
+            <div class="formula-math">42+ Sites (Ajanta, Ellora, Hampi)</div>
+          </div>
+          <div class="formula-note">Mixed Heritage Site: Khangchendzonga (Sikkim). First sites inscribed (1983): Ajanta, Ellora, Agra Fort, Taj Mahal.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 3. Solved Examples -->
+    <div class="section-card">
+      <div class="section-header">
+        <span class="section-icon">📝</span>
+        <h2 class="section-title">Step-by-Step Solved Examples</h2>
+      </div>
+
+      <div class="examples-list">
+        <!-- Example 1 -->
+        <div class="example-card">
+          <div class="example-title">
+            <span style="background: #eff6ff; color: #1e40af; padding: 2px 8px; border-radius: 6px; font-size: 0.85rem;">Ex 1</span>
+            Which is the only floating national park in the world and in which Indian state is it situated?<br>
+            Options: (A) Sundarbans, West Bengal &nbsp;|&nbsp; (B) Keibul Lamjao, Manipur &nbsp;|&nbsp; (C) Simlipal, Odisha &nbsp;|&nbsp; (D) Silent Valley, Kerala
+          </div>
+          <div class="step-row">
+            <span class="step-tag step-given">Factual Breakdown</span>
+            <span>The park is characterized by floating decomposed plant matter known locally as <em>phumdis</em> on <strong>Loktak Lake</strong>.</span>
+          </div>
+          <div class="step-row">
+            <span class="step-tag step-formula">Species Clue</span>
+            <span>It is the exclusive natural home of the endangered <strong>Sangai (brow-antlered deer)</strong>.</span>
+          </div>
+          <div class="step-row">
+            <span class="step-tag step-sol">Solution</span>
+            <span>Correct park is <strong>Keibul Lamjao National Park, Manipur (Option B)</strong>.</span>
+          </div>
+          <div>
+            <span class="answer-badge">✓ Final Answer: Keibul Lamjao, Manipur</span>
+          </div>
+        </div>
+
+        <!-- Example 2 -->
+        <div class="example-card">
+          <div class="example-title">
+            <span style="background: #eff6ff; color: #1e40af; padding: 2px 8px; border-radius: 6px; font-size: 0.85rem;">Ex 2</span>
+            Match the Indian river dam with its corresponding river and state:<br>
+            1. Tehri Dam &nbsp;|&nbsp; 2. Hirakud Dam &nbsp;|&nbsp; 3. Sardar Sarovar Dam &nbsp;|&nbsp; 4. Nagarjuna Sagar Dam
+          </div>
+          <div class="step-row">
+            <span class="step-tag step-given">Dam Mappings</span>
+            <span>• <strong>Tehri Dam:</strong> Bhagirathi River (Uttarakhand)<br>• <strong>Hirakud Dam:</strong> Mahanadi River (Odisha)<br>• <strong>Sardar Sarovar Dam:</strong> Narmada River (Gujarat)<br>• <strong>Nagarjuna Sagar Dam:</strong> Krishna River (Andhra Pradesh / Telangana)</span>
+          </div>
+          <div>
+            <span class="answer-badge">✓ Landmark Dams & Rivers Memorized</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 4. Quick Tips & Tricks -->
+    <div class="section-card">
+      <div class="section-header">
+        <span class="section-icon">⭐</span>
+        <h2 class="section-title">Speed-Solving Mnemonics & Shortcuts</h2>
+      </div>
+
+      <div class="tips-grid">
+        <div class="tip-card t1">
+          <div class="tip-icon">💃</div>
+          <div class="tip-text"><strong>Kerala Dual Classical Dances:</strong> Kerala is the only state with <strong>two</strong> classical dances: <strong>Kathakali</strong> (dramatic storytelling) and <strong>Mohiniyattam</strong> (dance of the enchantress).</div>
+        </div>
+
+        <div class="tip-card t2">
+          <div class="tip-icon">🐅</div>
+          <div class="tip-text"><strong>First Conservation Projects:</strong><br>
+          • Project Tiger launched in <strong>1973</strong> (Jim Corbett).<br>
+          • Project Elephant launched in <strong>1992</strong>.<br>
+          • Wildlife Protection Act enacted in <strong>1972</strong>.</div>
+        </div>
+
+        <div class="tip-card t3">
+          <div class="tip-icon">🗓️</div>
+          <div class="tip-text"><strong>Important Environmental Days:</strong><br>
+          • World Wetlands Day: <strong>2 Feb</strong><br>
+          • World Water Day: <strong>22 Mar</strong><br>
+          • Earth Day: <strong>22 Apr</strong><br>
+          • World Biodiversity Day: <strong>22 May</strong><br>
+          • World Environment Day: <strong>5 Jun</strong></div>
+        </div>
+
+        <div class="tip-card t4">
+          <div class="tip-icon">🏆</div>
+          <div class="tip-text"><strong>Firsts in India Superlatives:</strong><br>
+          • First President: Dr. Rajendra Prasad<br>
+          • First Bharat Ratna (1954): C. Rajagopalachari, S. Radhakrishnan, C. V. Raman<br>
+          • First Nobel Laureate: Rabindranath Tagore (1913, Literature)</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 5. Common Mistakes -->
+    <div class="section-card">
+      <div class="section-header">
+        <span class="section-icon">⚠️</span>
+        <h2 class="section-title">Common Mistakes to Avoid</h2>
+      </div>
+
+            <div class="mistakes-list">
+        <div class="mistake-box">
+          <div class="mistake-icon">🚫</div>
+          <div>
+            <div class="mistake-title">Mistake 1: Confusing Kathak (UP) with Kathakali (Kerala)</div>
+            <div class="mistake-desc"><strong>Kathak</strong> is the classical dance of North India / Uttar Pradesh (associated with Pandit Birju Maharaj). <strong>Kathakali</strong> is the classical dance-drama of Kerala featuring elaborate face masks and makeup.</div>
+          </div>
+        </div>
+
+        <div class="mistake-box">
+          <div class="mistake-icon">🚫</div>
+          <div>
+            <div class="mistake-title">Mistake 2: Reversing Highest vs Longest River Dams</div>
+            <div class="mistake-desc"><strong>Tehri Dam</strong> (260.5 m) is India's <em>Highest</em> dam. <strong>Hirakud Dam</strong> (total length 25.79 km) is India's <em>Longest</em> earthen dam.</div>
+          </div>
+        </div>
+
+        <div class="mistake-box">
+          <div class="mistake-icon">🚫</div>
+          <div>
+            <div class="mistake-title">Mistake 3: Confusing Ramsar Site Origins</div>
+            <div class="mistake-desc">The Ramsar Convention on Wetlands was signed in <strong>Ramsar, Iran</strong> in 1971 (effective 1975). Chilika Lake (Odisha) and Keoladeo National Park (Rajasthan) were the first Indian sites designated in 1981.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CTA Button -->
+    <div class="cta-container">
+      <a href="static-gk-test.html" class="btn-quiz-cta">
+        <span>🚀 Take Static GK Mock Test</span>
+        <span>→</span>
+      </a>
+    </div>
+
+  </div>
+
+</body>
+</html>
