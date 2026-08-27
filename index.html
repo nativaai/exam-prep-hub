@@ -361,12 +361,41 @@
       border-top: 1px solid #f1f5f9;
       padding-top: 12px;
       margin-top: auto;
+      gap: 8px;
+    }
+
+    .test-footer-actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .btn-notes-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: var(--primary);
+      background: var(--primary-light);
+      border: 1px solid #bfdbfe;
+      padding: 4px 10px;
+      border-radius: 6px;
+      text-decoration: none;
+      transition: all 0.2s ease;
+    }
+
+    .btn-notes-link:hover {
+      background: var(--primary);
+      color: #ffffff;
+      border-color: var(--primary);
     }
 
     .test-badge {
       font-size: 0.8rem;
       font-weight: 600;
       color: var(--success);
+      text-decoration: none;
     }
 
     .test-arrow-btn {
@@ -380,6 +409,7 @@
       justify-content: center;
       font-weight: 700;
       transition: background 0.2s ease, transform 0.2s ease;
+      text-decoration: none;
     }
 
     .test-card:hover .test-arrow-btn {
@@ -507,17 +537,22 @@
           </button>
           <div class="tests-panel">
             <div class="tests-grid">
-              <a href="percentage-test.html" class="test-card">
+              
+              <!-- Percentage Card with Notes Button -->
+              <div class="test-card">
                 <div>
                   <span class="test-tag">Quantitative Aptitude</span>
                   <div class="test-name">Percentage</div>
                   <div class="test-desc">15 questions • 15 minutes • Detailed Explanations</div>
                 </div>
                 <div class="test-footer">
-                  <span class="test-badge">Start Test</span>
-                  <div class="test-arrow-btn">→</div>
+                  <a href="percentage-notes.html" class="btn-notes-link">📖 Notes</a>
+                  <div class="test-footer-actions">
+                    <a href="percentage-test.html" class="test-badge">Start Test</a>
+                    <a href="percentage-test.html" class="test-arrow-btn">→</a>
+                  </div>
                 </div>
-              </a>
+              </div>
 
               <a href="ratio-proportion-test.html" class="test-card">
                 <div>
@@ -668,7 +703,7 @@
                 </div>
               </a>
 
-                            <a href="series-test.html" class="test-card">
+              <a href="series-test.html" class="test-card">
                 <div>
                   <span class="test-tag">Logical Reasoning</span>
                   <div class="test-name">Series Completion</div>
