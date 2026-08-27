@@ -1,0 +1,681 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Indian Geography - Study Notes | Exam Prep Hub</title>
+  <style>
+    :root {
+      --primary: #1e40af;
+      --primary-hover: #1d4ed8;
+      --primary-light: #eff6ff;
+      --bg: #f8fafc;
+      --card-bg: #ffffff;
+      --text: #0f172a;
+      --text-muted: #64748b;
+      --border: #e2e8f0;
+      
+      --blue-card-bg: #eff6ff;
+      --blue-card-border: #bfdbfe;
+      --blue-text: #1d4ed8;
+
+      --green-card-bg: #f0fdf4;
+      --green-card-border: #bbf7d0;
+      --green-text: #15803d;
+
+      --purple-card-bg: #faf5ff;
+      --purple-card-border: #e9d5ff;
+      --purple-text: #7e22ce;
+
+      --orange-card-bg: #fff7ed;
+      --orange-card-border: #fed7aa;
+      --orange-text: #c2410c;
+
+      --rose-card-bg: #fff1f2;
+      --rose-card-border: #fecdd3;
+      --rose-text: #be123c;
+
+      --radius: 14px;
+      --shadow: 0 4px 6px -1px rgb(0 0 0 / 0.08), 0 2px 4px -2px rgb(0 0 0 / 0.06);
+      --shadow-hover: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.08);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    }
+
+    body {
+      background-color: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      padding-bottom: 60px;
+    }
+
+    header {
+      background-color: var(--card-bg);
+      border-bottom: 1px solid var(--border);
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.05);
+    }
+
+    .header-container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 14px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .back-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      color: var(--primary);
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 0.95rem;
+      transition: transform 0.2s ease, color 0.2s ease;
+    }
+
+    .back-btn:hover {
+      transform: translateX(-3px);
+      color: var(--primary-hover);
+    }
+
+    .badge-tag {
+      background: var(--primary-light);
+      color: var(--primary);
+      font-size: 0.8rem;
+      font-weight: 700;
+      padding: 4px 12px;
+      border-radius: 9999px;
+      border: 1px solid #bfdbfe;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 800px;
+      margin: 28px auto 0;
+      padding: 0 16px;
+    }
+
+    .hero-card {
+      background: linear-gradient(135deg, #1e3a8a 0%, #1e40af 60%, #3b82f6 100%);
+      color: #ffffff;
+      border-radius: var(--radius);
+      padding: 28px 24px;
+      box-shadow: var(--shadow);
+      margin-bottom: 28px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .hero-title {
+      font-size: 1.75rem;
+      font-weight: 800;
+      margin-bottom: 6px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .hero-subtitle {
+      font-size: 0.95rem;
+      opacity: 0.9;
+    }
+
+    .hero-icon {
+      font-size: 2.8rem;
+      flex-shrink: 0;
+      background: rgba(255, 255, 255, 0.15);
+      border-radius: 16px;
+      width: 72px;
+      height: 72px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid rgba(255, 255, 255, 0.25);
+    }
+
+    .section-card {
+      background: var(--card-bg);
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
+      padding: 24px;
+      box-shadow: var(--shadow);
+      margin-bottom: 24px;
+    }
+
+    .section-header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 18px;
+      border-bottom: 2px solid #f1f5f9;
+      padding-bottom: 12px;
+    }
+
+    .section-icon {
+      font-size: 1.35rem;
+    }
+
+    .section-title {
+      font-size: 1.25rem;
+      font-weight: 800;
+      color: var(--text);
+    }
+
+    .concept-grid {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 20px;
+      align-items: center;
+    }
+
+    .concept-text {
+      font-size: 0.96rem;
+      color: #334155;
+    }
+
+    .concept-visual {
+      background: #f8fafc;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .fraction-badge {
+      display: inline-block;
+      background: #eff6ff;
+      color: var(--primary);
+      font-weight: 700;
+      padding: 2px 8px;
+      border-radius: 6px;
+      border: 1px solid #bfdbfe;
+    }
+
+    .formulas-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 16px;
+    }
+
+    .formula-card {
+      border-radius: 12px;
+      padding: 18px;
+      border-width: 1.5px;
+      border-style: solid;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .formula-card:hover {
+      transform: translateY(-3px);
+      box-shadow: var(--shadow);
+    }
+
+    .formula-card.blue {
+      background-color: var(--blue-card-bg);
+      border-color: var(--blue-card-border);
+    }
+    .formula-card.green {
+      background-color: var(--green-card-bg);
+      border-color: var(--green-card-border);
+    }
+    .formula-card.purple {
+      background-color: var(--purple-card-bg);
+      border-color: var(--purple-card-border);
+    }
+    .formula-card.orange {
+      background-color: var(--orange-card-bg);
+      border-color: var(--orange-card-border);
+    }
+
+    .formula-head {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.85rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      margin-bottom: 10px;
+    }
+
+    .formula-card.blue .formula-head { color: var(--blue-text); }
+    .formula-card.green .formula-head { color: var(--green-text); }
+    .formula-card.purple .formula-head { color: var(--purple-text); }
+    .formula-card.orange .formula-head { color: var(--orange-text); }
+
+    .formula-math {
+      font-size: 1.05rem;
+      font-weight: 800;
+      color: #1e293b;
+      margin-bottom: 8px;
+      background: rgba(255, 255, 255, 0.85);
+      padding: 8px 12px;
+      border-radius: 8px;
+      border: 1px dashed rgba(0, 0, 0, 0.15);
+      text-align: center;
+    }
+
+    .formula-note {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+    }
+
+    .examples-list {
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+
+    .example-card {
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      background: #ffffff;
+      padding: 18px;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+    }
+
+    .example-title {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .step-row {
+      margin-bottom: 8px;
+      font-size: 0.92rem;
+      display: flex;
+      align-items: baseline;
+      gap: 8px;
+    }
+
+    .step-tag {
+      font-size: 0.75rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      padding: 2px 8px;
+      border-radius: 6px;
+      flex-shrink: 0;
+    }
+
+    .step-given { background: #eff6ff; color: var(--blue-text); }
+    .step-formula { background: #faf5ff; color: var(--purple-text); }
+    .step-sol { background: #f0fdf4; color: var(--green-text); }
+
+    .answer-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: #dcfce7;
+      color: #15803d;
+      font-weight: 800;
+      font-size: 0.95rem;
+      padding: 6px 14px;
+      border-radius: 8px;
+      border: 1px solid #86efac;
+      margin-top: 6px;
+    }
+
+    .tips-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 14px;
+    }
+
+    .tip-card {
+      border-radius: 12px;
+      padding: 16px;
+      border: 1px solid var(--border);
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+    }
+
+    .tip-card.t1 { background-color: #fffbeb; border-color: #fde68a; }
+    .tip-card.t2 { background-color: #f0fdf4; border-color: #bbf7d0; }
+    .tip-card.t3 { background-color: #eff6ff; border-color: #bfdbfe; }
+    .tip-card.t4 { background-color: #faf5ff; border-color: #e9d5ff; }
+
+    .tip-icon {
+      font-size: 1.3rem;
+      flex-shrink: 0;
+    }
+
+    .tip-text {
+      font-size: 0.88rem;
+      color: #334155;
+    }
+
+    .tip-text strong {
+      color: #0f172a;
+    }
+
+    .mistakes-list {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .mistake-box {
+      background-color: var(--rose-card-bg);
+      border: 1.5px solid var(--rose-card-border);
+      border-radius: 12px;
+      padding: 14px 16px;
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+    }
+
+    .mistake-icon {
+      font-size: 1.3rem;
+      color: var(--rose-text);
+      flex-shrink: 0;
+    }
+
+    .mistake-title {
+      font-weight: 700;
+      color: var(--rose-text);
+      font-size: 0.92rem;
+      margin-bottom: 2px;
+    }
+
+    .mistake-desc {
+      font-size: 0.86rem;
+      color: #475569;
+    }
+
+    .cta-container {
+      text-align: center;
+      margin-top: 32px;
+    }
+
+    .btn-quiz-cta {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      background: linear-gradient(135deg, #1e40af 0%, #2563eb 100%);
+      color: #ffffff;
+      padding: 16px 36px;
+      border-radius: 12px;
+      font-size: 1.1rem;
+      font-weight: 800;
+      text-decoration: none;
+      box-shadow: 0 4px 12px rgba(37, 99, 235, 0.35);
+      transition: all 0.25s ease;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .btn-quiz-cta:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 18px rgba(37, 99, 235, 0.45);
+      background: linear-gradient(135deg, #1d4ed8 0%, #1d4ed8 100%);
+    }
+
+    @media (max-width: 640px) {
+      .hero-card {
+        flex-direction: column-reverse;
+        text-align: center;
+        padding: 20px;
+      }
+      .concept-grid {
+        grid-template-columns: 1fr;
+      }
+      .hero-title {
+        font-size: 1.45rem;
+        justify-content: center;
+      }
+      .btn-quiz-cta {
+        width: 100%;
+        padding: 14px 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="header-container">
+      <a href="index.html" class="back-btn">← Back to Home</a>
+      <span class="badge-tag">General Knowledge</span>
+    </div>
+  </header>
+
+  <div class="container">
+
+    <div class="hero-card">
+      <div>
+        <h1 class="hero-title">🗺️ Indian Geography - Study Notes</h1>
+        <p class="hero-subtitle">Master Physiography, Drainage Systems, Climate & Monsoons, Soil Classification, Natural Vegetation, and Mineral Distribution.</p>
+      </div>
+      <div class="hero-icon">🏞️</div>
+    </div>
+
+    <!-- 1. Location & Physical Boundaries -->
+    <div class="section-card">
+      <div class="section-header">
+        <span class="section-icon">💡</span>
+        <h2 class="section-title">Geographical Location & Boundaries</h2>
+      </div>
+      
+      <div class="concept-grid">
+        <div class="concept-text">
+          <p style="margin-bottom: 10px;">
+            India is situated entirely in the <strong>Northern and Eastern Hemispheres</strong>, covering an area of <strong>3.28 million sq. km</strong> (7th largest country in the world, 2.4% of world land area).
+          </p>
+          <div style="background: #f1f5f9; padding: 10px 14px; border-radius: 8px; border-left: 4px solid var(--primary); font-size: 0.9rem;">
+            <strong>Spatial Coordinates & Extent:</strong><br>
+            • <strong>Latitudinal Extent:</strong> $8^\circ 4'\text{ N}$ to $37^\circ 6'\text{ N}$ (Mainland)<br>
+            • <strong>Longitudinal Extent:</strong> $68^\circ 7'\text{ E}$ to $97^\circ 25'\text{ E}$<br>
+            • <strong>Standard Meridian:</strong> $82^\circ 30'\text{ E}$ (Passes near Mirzapur/Prayagraj, UTC+5:30)<br>
+            • <strong>Total Coastline:</strong> 7,516.6 km (Mainland: 6,100 km)
+          </div>
+        </div>
+
+        <div class="concept-visual">
+          <svg width="150" height="150" viewBox="0 0 100 100">
+            <!-- Compass & Boundary Box Visual -->
+            <rect x="15" y="15" width="70" height="70" rx="6" fill="#eff6ff" stroke="#1e40af" stroke-width="1.5" />
+            <line x1="50" y1="15" x2="50" y2="85" stroke="#3b82f6" stroke-dasharray="2,2" stroke-width="1.5" />
+            <line x1="15" y1="50" x2="85" y2="50" stroke="#3b82f6" stroke-dasharray="2,2" stroke-width="1.5" />
+            
+            <text x="50" y="24" text-anchor="middle" font-size="6.5" font-weight="bold" fill="#1e40af">Indira Col (North)</text>
+            <text x="50" y="81" text-anchor="middle" font-size="6.5" font-weight="bold" fill="#1e40af">Kanyakumari (South)</text>
+            <text x="24" y="52" text-anchor="middle" font-size="5.5" font-weight="bold" fill="#1e40af">Ghuar Mota (W)</text>
+            <text x="76" y="52" text-anchor="middle" font-size="5.5" font-weight="bold" fill="#1e40af">Kibithu (E)</text>
+
+            <text x="50" y="96" text-anchor="middle" font-size="7" font-weight="bold" fill="#475569">Cardinals of India</text>
+          </svg>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2. Core Geographical Categories -->
+    <div class="section-card">
+      <div class="section-header">
+        <span class="section-icon">📐</span>
+        <h2 class="section-title">Major Geographical Systems</h2>
+      </div>
+
+      <div class="formulas-grid">
+        <div class="formula-card blue">
+          <div>
+            <div class="formula-head"><span>⛰️</span> Mountain Ranges & Peaks</div>
+            <div class="formula-math">Himalayas | Western Ghats</div>
+          </div>
+          <div class="formula-note">Highest Peak in India: Kangchenjunga (8,586m). Highest in S. India: Anamudi (2,695m). Oldest fold mountains: Aravalli.</div>
+        </div>
+
+        <div class="formula-card green">
+          <div>
+            <div class="formula-head"><span>🌊</span> River Drainage Systems</div>
+            <div class="formula-math">Himalayan vs Peninsular</div>
+          </div>
+          <div class="formula-note">Himalayan (Perennial): Ganga, Indus, Brahmaputra. Peninsular: Godavari (Dakshin Ganga), Narmada & Tapti (Estuaries/West-flowing).</div>
+        </div>
+
+        <div class="formula-card purple">
+          <div>
+            <div class="formula-head"><span>🌦️</span> Climate & Monsoon Flow</div>
+            <div class="formula-math">SW Monsoon | NE Monsoon</div>
+          </div>
+          <div class="formula-note">SW Monsoon (June-Sept) brings 80% rain. NE Retreating Monsoon brings winter rain to Coromandel Coast (Tamil Nadu).</div>
+        </div>
+
+        <div class="formula-card orange">
+          <div>
+            <div class="formula-head"><span>🌱</span> Soil Types & Distribution</div>
+            <div class="formula-math">Alluvial | Black (Regur)</div>
+          </div>
+          <div class="formula-note">Alluvial (40%, Northern plains). Black Soil (Deccan trap, best for Cotton). Laterite (High leaching, Tea/Coffee/Cashew).</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 3. Solved Examples -->
+    <div class="section-card">
+      <div class="section-header">
+        <span class="section-icon">📝</span>
+        <h2 class="section-title">Step-by-Step Solved Examples</h2>
+      </div>
+
+      <div class="examples-list">
+        <!-- Example 1 -->
+        <div class="example-card">
+          <div class="example-title">
+            <span style="background: #eff6ff; color: #1e40af; padding: 2px 8px; border-radius: 6px; font-size: 0.85rem;">Ex 1</span>
+            Which of the following Indian states does NOT lie along the Tropic of Cancer ($23^\circ 30'\text{ N}$)?<br>
+            Options: (A) Gujarat &nbsp;|&nbsp; (B) Odisha &nbsp;|&nbsp; (C) Chhattisgarh &nbsp;|&nbsp; (D) Mizoram
+          </div>
+          <div class="step-row">
+            <span class="step-tag step-given">Geographical Rule</span>
+            <span>The Tropic of Cancer passes through <strong>8 Indian states</strong> from West to East.</span>
+          </div>
+          <div class="step-row">
+            <span class="step-tag step-formula">State Sequence</span>
+            <span>1. Gujarat &nbsp;|&nbsp; 2. Rajasthan &nbsp;|&nbsp; 3. Madhya Pradesh &nbsp;|&nbsp; 4. Chhattisgarh &nbsp;|&nbsp; 5. Jharkhand &nbsp;|&nbsp; 6. West Bengal &nbsp;|&nbsp; 7. Tripura &nbsp;|&nbsp; 8. Mizoram.</span>
+          </div>
+          <div class="step-row">
+            <span class="step-tag step-sol">Solution</span>
+            <span><strong>Odisha (Option B)</strong> lies south of the Tropic of Cancer and is not crossed by it.</span>
+          </div>
+          <div>
+            <span class="answer-badge">✓ Final Answer: Odisha</span>
+          </div>
+        </div>
+
+        <!-- Example 2 -->
+        <div class="example-card">
+          <div class="example-title">
+            <span style="background: #eff6ff; color: #1e40af; padding: 2px 8px; border-radius: 6px; font-size: 0.85rem;">Ex 2</span>
+            Match the Peninsular River with its distinctive feature:<br>
+            A. Narmada &nbsp;|&nbsp; B. Godavari &nbsp;|&nbsp; C. Kaveri (Cauvery)
+          </div>
+          <div class="step-row">
+            <span class="step-tag step-given">River Characteristics</span>
+            <span>• <strong>Narmada:</strong> Flows west through a rift valley between Vindhya and Satpura ranges; forms Marble Rocks at Jabalpur & Estuary at Gulf of Khambhat.<br>• <strong>Godavari:</strong> Longest peninsular river (1,465 km), known as <em>Dakshin Ganga</em> or <em>Vridha Ganga</em>.<br>• <strong>Kaveri:</strong> Receives rainfall from both SW Monsoon (summer) and NE Retreating Monsoon (winter), making it a near-perennial peninsular river.</span>
+          </div>
+          <div>
+            <span class="answer-badge">✓ Peninsular River Features Verified</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 4. Quick Tips & Tricks -->
+    <div class="section-card">
+      <div class="section-header">
+        <span class="section-icon">⭐</span>
+        <h2 class="section-title">Speed-Solving Mnemonics & Shortcuts</h2>
+      </div>
+
+      <div class="tips-grid">
+        <div class="tip-card t1">
+          <div class="tip-icon">🗺️</div>
+          <div class="tip-text"><strong>Tropic of Cancer States (G-R-M-C-J-W-T-M):</strong> <strong>G</strong>ujarat, <strong>R</strong>ajasthan, <strong>M</strong>adhya Pradesh, <strong>C</strong>hhattisgarh, <strong>J</strong>harkhand, <strong>W</strong>est Bengal, <strong>T</strong>ripura, <strong>M</strong>izoram.</div>
+        </div>
+
+        <div class="tip-card t2">
+          <div class="tip-icon">🌊</div>
+          <div class="tip-text"><strong>West-Flowing Rivers (L-N-T-M-S):</strong> <strong>L</strong>uni, <strong>N</strong>armada, <strong>T</strong>api, <strong>M</strong>ahi, <strong>S</strong>abarmati. Remember: Mahi crosses the Tropic of Cancer twice!</div>
+        </div>
+
+        <div class="tip-card t3">
+          <div class="tip-icon">🧭</div>
+          <div class="tip-text"><strong>Standard Meridian (82.5° E) States (U-M-C-O-A):</strong> <strong>U</strong>ttar Pradesh, <strong>M</strong>adhya Pradesh, <strong>C</strong>hhattisgarh, <strong>O</strong>disha, <strong>A</strong>ndhra Pradesh.</div>
+        </div>
+
+        <div class="tip-card t4">
+          <div class="tip-icon">🏝️</div>
+                    <div class="tip-text"><strong>Channels & Straits:</strong> <strong>8° Channel:</strong> Minicoy & Maldives | <strong>9° Channel:</strong> Minicoy & Lakshadweep | <strong>10° Channel:</strong> Little Andaman & Car Nicobar | <strong>Palk Strait:</strong> India & Sri Lanka.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 5. Common Mistakes -->
+    <div class="section-card">
+      <div class="section-header">
+        <span class="section-icon">⚠️</span>
+        <h2 class="section-title">Common Mistakes to Avoid</h2>
+      </div>
+
+      <div class="mistakes-list">
+        <div class="mistake-box">
+          <div class="mistake-icon">🚫</div>
+          <div>
+            <div class="mistake-title">Mistake 1: Confusing "Dakshin Ganga" with "Ganga of the South"</div>
+            <div class="mistake-desc"><strong>Godavari</strong> is officially referred to as <em>Dakshin Ganga</em> (due to length and age), whereas <strong>Kaveri (Cauvery)</strong> is often called <em>Ganga of the South</em> (due to religious sacredness and perennial nature).</div>
+          </div>
+        </div>
+
+        <div class="mistake-box">
+          <div class="mistake-icon">🚫</div>
+          <div>
+            <div class="mistake-title">Mistake 2: Assuming West-Flowing Rivers Form Deltas</div>
+            <div class="mistake-desc">West-flowing rivers like Narmada and Tapti flow rapidly through hard rock rift valleys and drop directly into the Arabian Sea, forming <strong>Estuaries</strong> instead of Deltas.</div>
+          </div>
+        </div>
+
+        <div class="mistake-box">
+          <div class="mistake-icon">🚫</div>
+          <div>
+            <div class="mistake-title">Mistake 3: Misidentifying the Highest Peak in India</div>
+            <div class="mistake-desc"><strong>K2 (Godwin-Austen)</strong> is the highest peak located in Indian territory (PoK). <strong>Kangchenjunga</strong> (Sikkim) is the highest peak in undisputed Indian territory. <strong>Anamudi</strong> is the highest in South India (Western Ghats).</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CTA Button -->
+    <div class="cta-container">
+      <a href="indian-geography-test.html" class="btn-quiz-cta">
+        <span>🚀 Take Indian Geography Mock Test</span>
+        <span>→</span>
+      </a>
+    </div>
+
+  </div>
+
+</body>
+</html>
