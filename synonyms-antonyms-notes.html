@@ -1,0 +1,692 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Synonyms & Antonyms - Study Notes | Exam Prep Hub</title>
+  <style>
+    :root {
+      --primary: #1e40af;
+      --primary-hover: #1d4ed8;
+      --primary-light: #eff6ff;
+      --bg: #f8fafc;
+      --card-bg: #ffffff;
+      --text: #0f172a;
+      --text-muted: #64748b;
+      --border: #e2e8f0;
+      
+      --blue-card-bg: #eff6ff;
+      --blue-card-border: #bfdbfe;
+      --blue-text: #1d4ed8;
+
+      --green-card-bg: #f0fdf4;
+      --green-card-border: #bbf7d0;
+      --green-text: #15803d;
+
+      --purple-card-bg: #faf5ff;
+      --purple-card-border: #e9d5ff;
+      --purple-text: #7e22ce;
+
+      --orange-card-bg: #fff7ed;
+      --orange-card-border: #fed7aa;
+      --orange-text: #c2410c;
+
+      --rose-card-bg: #fff1f2;
+      --rose-card-border: #fecdd3;
+      --rose-text: #be123c;
+
+      --radius: 14px;
+      --shadow: 0 4px 6px -1px rgb(0 0 0 / 0.08), 0 2px 4px -2px rgb(0 0 0 / 0.06);
+      --shadow-hover: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.08);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    }
+
+    body {
+      background-color: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      padding-bottom: 60px;
+    }
+
+    header {
+      background-color: var(--card-bg);
+      border-bottom: 1px solid var(--border);
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.05);
+    }
+
+    .header-container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 14px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .back-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      color: var(--primary);
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 0.95rem;
+      transition: transform 0.2s ease, color 0.2s ease;
+    }
+
+    .back-btn:hover {
+      transform: translateX(-3px);
+      color: var(--primary-hover);
+    }
+
+    .badge-tag {
+      background: var(--primary-light);
+      color: var(--primary);
+      font-size: 0.8rem;
+      font-weight: 700;
+      padding: 4px 12px;
+      border-radius: 9999px;
+      border: 1px solid #bfdbfe;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 800px;
+      margin: 28px auto 0;
+      padding: 0 16px;
+    }
+
+    .hero-card {
+      background: linear-gradient(135deg, #1e3a8a 0%, #1e40af 60%, #3b82f6 100%);
+      color: #ffffff;
+      border-radius: var(--radius);
+      padding: 28px 24px;
+      box-shadow: var(--shadow);
+      margin-bottom: 28px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .hero-title {
+      font-size: 1.75rem;
+      font-weight: 800;
+      margin-bottom: 6px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .hero-subtitle {
+      font-size: 0.95rem;
+      opacity: 0.9;
+    }
+
+    .hero-icon {
+      font-size: 2.8rem;
+      flex-shrink: 0;
+      background: rgba(255, 255, 255, 0.15);
+      border-radius: 16px;
+      width: 72px;
+      height: 72px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid rgba(255, 255, 255, 0.25);
+    }
+
+    .section-card {
+      background: var(--card-bg);
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
+      padding: 24px;
+      box-shadow: var(--shadow);
+      margin-bottom: 24px;
+    }
+
+    .section-header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 18px;
+      border-bottom: 2px solid #f1f5f9;
+      padding-bottom: 12px;
+    }
+
+    .section-icon {
+      font-size: 1.35rem;
+    }
+
+    .section-title {
+      font-size: 1.25rem;
+      font-weight: 800;
+      color: var(--text);
+    }
+
+    .concept-grid {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 20px;
+      align-items: center;
+    }
+
+    .concept-text {
+      font-size: 0.96rem;
+      color: #334155;
+    }
+
+    .concept-visual {
+      background: #f8fafc;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .fraction-badge {
+      display: inline-block;
+      background: #eff6ff;
+      color: var(--primary);
+      font-weight: 700;
+      padding: 2px 8px;
+      border-radius: 6px;
+      border: 1px solid #bfdbfe;
+    }
+
+    .formulas-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 16px;
+    }
+
+    .formula-card {
+      border-radius: 12px;
+      padding: 18px;
+      border-width: 1.5px;
+      border-style: solid;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .formula-card:hover {
+      transform: translateY(-3px);
+      box-shadow: var(--shadow);
+    }
+
+    .formula-card.blue {
+      background-color: var(--blue-card-bg);
+      border-color: var(--blue-card-border);
+    }
+    .formula-card.green {
+      background-color: var(--green-card-bg);
+      border-color: var(--green-card-border);
+    }
+    .formula-card.purple {
+      background-color: var(--purple-card-bg);
+      border-color: var(--purple-card-border);
+    }
+    .formula-card.orange {
+      background-color: var(--orange-card-bg);
+      border-color: var(--orange-card-border);
+    }
+
+    .formula-head {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.85rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      margin-bottom: 10px;
+    }
+
+    .formula-card.blue .formula-head { color: var(--blue-text); }
+    .formula-card.green .formula-head { color: var(--green-text); }
+    .formula-card.purple .formula-head { color: var(--purple-text); }
+    .formula-card.orange .formula-head { color: var(--orange-text); }
+
+    .formula-math {
+      font-size: 1.05rem;
+      font-weight: 800;
+      color: #1e293b;
+      margin-bottom: 8px;
+      background: rgba(255, 255, 255, 0.85);
+      padding: 8px 12px;
+      border-radius: 8px;
+      border: 1px dashed rgba(0, 0, 0, 0.15);
+      text-align: center;
+    }
+
+    .formula-note {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+    }
+
+    .examples-list {
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+
+    .example-card {
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      background: #ffffff;
+      padding: 18px;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+    }
+
+    .example-title {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .step-row {
+      margin-bottom: 8px;
+      font-size: 0.92rem;
+      display: flex;
+      align-items: baseline;
+      gap: 8px;
+    }
+
+    .step-tag {
+      font-size: 0.75rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      padding: 2px 8px;
+      border-radius: 6px;
+      flex-shrink: 0;
+    }
+
+    .step-given { background: #eff6ff; color: var(--blue-text); }
+    .step-formula { background: #faf5ff; color: var(--purple-text); }
+    .step-sol { background: #f0fdf4; color: var(--green-text); }
+
+    .answer-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: #dcfce7;
+      color: #15803d;
+      font-weight: 800;
+      font-size: 0.95rem;
+      padding: 6px 14px;
+      border-radius: 8px;
+      border: 1px solid #86efac;
+      margin-top: 6px;
+    }
+
+    .tips-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 14px;
+    }
+
+    .tip-card {
+      border-radius: 12px;
+      padding: 16px;
+      border: 1px solid var(--border);
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+    }
+
+    .tip-card.t1 { background-color: #fffbeb; border-color: #fde68a; }
+    .tip-card.t2 { background-color: #f0fdf4; border-color: #bbf7d0; }
+    .tip-card.t3 { background-color: #eff6ff; border-color: #bfdbfe; }
+    .tip-card.t4 { background-color: #faf5ff; border-color: #e9d5ff; }
+
+    .tip-icon {
+      font-size: 1.3rem;
+      flex-shrink: 0;
+    }
+
+    .tip-text {
+      font-size: 0.88rem;
+      color: #334155;
+    }
+
+    .tip-text strong {
+      color: #0f172a;
+    }
+
+    .mistakes-list {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .mistake-box {
+      background-color: var(--rose-card-bg);
+      border: 1.5px solid var(--rose-card-border);
+      border-radius: 12px;
+      padding: 14px 16px;
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+    }
+
+    .mistake-icon {
+      font-size: 1.3rem;
+      color: var(--rose-text);
+      flex-shrink: 0;
+    }
+
+    .mistake-title {
+      font-weight: 700;
+      color: var(--rose-text);
+      font-size: 0.92rem;
+      margin-bottom: 2px;
+    }
+
+    .mistake-desc {
+      font-size: 0.86rem;
+      color: #475569;
+    }
+
+    .cta-container {
+      text-align: center;
+      margin-top: 32px;
+    }
+
+    .btn-quiz-cta {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      background: linear-gradient(135deg, #1e40af 0%, #2563eb 100%);
+      color: #ffffff;
+      padding: 16px 36px;
+      border-radius: 12px;
+      font-size: 1.1rem;
+      font-weight: 800;
+      text-decoration: none;
+      box-shadow: 0 4px 12px rgba(37, 99, 235, 0.35);
+      transition: all 0.25s ease;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .btn-quiz-cta:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 18px rgba(37, 99, 235, 0.45);
+      background: linear-gradient(135deg, #1d4ed8 0%, #1d4ed8 100%);
+    }
+
+    @media (max-width: 640px) {
+      .hero-card {
+        flex-direction: column-reverse;
+        text-align: center;
+        padding: 20px;
+      }
+      .concept-grid {
+        grid-template-columns: 1fr;
+      }
+      .hero-title {
+        font-size: 1.45rem;
+        justify-content: center;
+      }
+      .btn-quiz-cta {
+        width: 100%;
+        padding: 14px 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="header-container">
+      <a href="index.html" class="back-btn">← Back to Home</a>
+      <span class="badge-tag">General English</span>
+    </div>
+  </header>
+
+  <div class="container">
+
+    <div class="hero-card">
+      <div>
+        <h1 class="hero-title">📖 Synonyms & Antonyms - Study Notes</h1>
+        <p class="hero-subtitle">Master root words (Etymology), prefixes and suffixes, word tone polarity (+ve vs −ve), and context-driven vocabulary deduction.</p>
+      </div>
+      <div class="hero-icon">🔤</div>
+    </div>
+
+    <!-- 1. Concept & Etymology -->
+    <div class="section-card">
+      <div class="section-header">
+        <span class="section-icon">💡</span>
+        <h2 class="section-title">Root Word (Etymology) Framework</h2>
+      </div>
+      
+      <div class="concept-grid">
+        <div class="concept-text">
+          <p style="margin-bottom: 10px;">
+            Rather than memorizing isolated vocabulary lists, understanding <strong>Greek & Latin Root Words</strong> unlocks the meanings of dozens of related words instantaneously.
+          </p>
+          <div style="background: #f1f5f9; padding: 10px 14px; border-radius: 8px; border-left: 4px solid var(--primary); font-size: 0.9rem;">
+            <strong>Root Power Examples:</strong><br>
+            • <strong>Bene (Good/Well):</strong> <span class="fraction-badge">Beneficial</span>, Benevolent, Benediction<br>
+            • <strong>Mal (Bad/Evil):</strong> <span class="fraction-badge">Malicious</span>, Malevolent, Malign<br>
+            • <strong>Loqu / Loc (Speak):</strong> Loquacious, Eloquent, Colloquial<br>
+            • <strong>Plac (Pleasurable/Calm):</strong> Placid, Placate, Complacent
+          </div>
+        </div>
+
+        <div class="concept-visual">
+          <svg width="150" height="150" viewBox="0 0 100 100">
+            <!-- Root tree diagram -->
+            <circle cx="50" cy="50" r="18" fill="#dbeafe" stroke="#1e40af" stroke-width="2" />
+            <text x="50" y="53" text-anchor="middle" font-size="8" font-weight="bold" fill="#1e40af">ROOT</text>
+            <!-- Branches -->
+            <line x1="36" y1="40" x2="16" y2="24" stroke="#1e40af" stroke-width="1.5" />
+            <circle cx="16" cy="24" r="8" fill="#eff6ff" stroke="#2563eb" />
+            <text x="16" y="27" text-anchor="middle" font-size="6" font-weight="bold" fill="#1e40af">Prefix</text>
+
+            <line x1="64" y1="40" x2="84" y2="24" stroke="#1e40af" stroke-width="1.5" />
+            <circle cx="84" cy="24" r="8" fill="#eff6ff" stroke="#2563eb" />
+            <text x="84" y="27" text-anchor="middle" font-size="6" font-weight="bold" fill="#1e40af">Suffix</text>
+
+            <line x1="50" y1="68" x2="50" y2="86" stroke="#1e40af" stroke-width="1.5" />
+            <text x="50" y="96" text-anchor="middle" font-size="7" font-weight="bold" fill="#475569">Word Formation</text>
+          </svg>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2. Core Prefixes & Polarities -->
+    <div class="section-card">
+      <div class="section-header">
+        <span class="section-icon">📐</span>
+        <h2 class="section-title">Prefix & Suffix Tone Decoders</h2>
+      </div>
+
+      <div class="formulas-grid">
+        <div class="formula-card blue">
+          <div>
+            <div class="formula-head"><span>➕</span> Positive Prefixes (+ve)</div>
+            <div class="formula-math">Eu- | Bene- | Pro- | Amphi-</div>
+          </div>
+          <div class="formula-note">Euphony (pleasant sound), Benefactor (helper), Propitious (favorable).</div>
+        </div>
+
+        <div class="formula-card green">
+          <div>
+            <div class="formula-head"><span>➖</span> Negative Prefixes (−ve)</div>
+            <div class="formula-math">Dys- | Mal- | Mis- | In- / Im-</div>
+          </div>
+          <div class="formula-note">Dysfunctional (impaired), Maladroit (clumsy), Inauspicious (unfavorable).</div>
+        </div>
+
+        <div class="formula-card purple">
+          <div>
+            <div class="formula-head"><span>🔄</span> Antonym Negators</div>
+            <div class="formula-math">Un- | Non- | Dis- | De-</div>
+          </div>
+          <div class="formula-note">Add to generate direct opposites: Demystify, Dispassionate, Unabated.</div>
+        </div>
+
+        <div class="formula-card orange">
+          <div>
+            <div class="formula-head"><span>🎭</span> Part of Speech Suffixes</div>
+            <div class="formula-math">-ous/-ful (Adj) | -tion/-ment (Noun)</div>
+          </div>
+          <div class="formula-note">Options matching the word's grammatical class are prime candidates.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 3. Solved Examples -->
+    <div class="section-card">
+      <div class="section-header">
+        <span class="section-icon">📝</span>
+        <h2 class="section-title">Step-by-Step Solved Examples</h2>
+      </div>
+
+      <div class="examples-list">
+        <!-- Example 1 -->
+        <div class="example-card">
+          <div class="example-title">
+            <span style="background: #eff6ff; color: #1e40af; padding: 2px 8px; border-radius: 6px; font-size: 0.85rem;">Ex 1</span>
+            Find the SYNONYM of: <strong>EPHEMERAL</strong><br>
+            Options: (A) Eternal &nbsp;|&nbsp; (B) Transient &nbsp;|&nbsp; (C) Permanent &nbsp;|&nbsp; (D) Resilient
+          </div>
+          <div class="step-row">
+            <span class="step-tag step-given">Root / Meaning</span>
+            <span><em>Ephemeral</em> comes from Greek <em>ephemeros</em> (lasting only a day/short-lived).</span>
+          </div>
+          <div class="step-row">
+            <span class="step-tag step-formula">Option Check</span>
+            <span>"Eternal" and "Permanent" mean lasting forever (Antonyms). "Transient" means lasting only a brief time.</span>
+          </div>
+          <div class="step-row">
+            <span class="step-tag step-sol">Solution</span>
+            <span>Synonym of Ephemeral is <strong>Transient (Option B)</strong>.</span>
+          </div>
+          <div>
+            <span class="answer-badge">✓ Final Answer: Transient</span>
+          </div>
+        </div>
+
+        <!-- Example 2 -->
+        <div class="example-card">
+          <div class="example-title">
+            <span style="background: #eff6ff; color: #1e40af; padding: 2px 8px; border-radius: 6px; font-size: 0.85rem;">Ex 2</span>
+            Find the ANTONYM of: <strong>METICULOUS</strong><br>
+            Options: (A) Scrupulous &nbsp;|&nbsp; (B) Careless &nbsp;|&nbsp; (C) Diligent &nbsp;|&nbsp; (D) Fastidious
+          </div>
+          <div class="step-row">
+            <span class="step-tag step-given">Meaning</span>
+            <span><em>Meticulous</em> = showing extreme care and precision over minute details (+ve).</span>
+          </div>
+          <div class="step-row">
+            <span class="step-tag step-formula">Odd-One-Out</span>
+            <span>Scrupulous, Diligent, Fastidious are all synonyms denoting precision and thoroughness.</span>
+          </div>
+          <div class="step-row">
+            <span class="step-tag step-sol">Solution</span>
+            <span>The direct opposite (Antonym) is <strong>Careless (Option B)</strong>.</span>
+          </div>
+          <div>
+            <span class="answer-badge">✓ Final Answer: Careless</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 4. Quick Tips & Tricks -->
+    <div class="section-card">
+      <div class="section-header">
+        <span class="section-icon">⭐</span>
+        <h2 class="section-title">Speed-Solving Tips & Shortcuts</h2>
+      </div>
+
+      <div class="tips-grid">
+        <div class="tip-card t1">
+          <div class="tip-icon">⚡</div>
+          <div class="tip-text"><strong>Odd-One-Out Elimination:</strong> If 3 of the 4 options share the exact same polarity (e.g. all 3 mean "happy/joyful"), the 4th option is almost always the required antonym.</div>
+        </div>
+
+        <div class="tip-card t2">
+          <div class="tip-icon">🎯</div>
+          <div class="tip-text"><strong>Part-of-Speech Matching:</strong> The synonym of a Verb must be a Verb; the antonym of an Adjective must be an Adjective.</div>
+        </div>
+
+        <div class="tip-card t3">
+          <div class="tip-icon">🧠</div>
+          <div class="tip-text"><strong>Root Isolation:</strong> When faced with an unfamiliar word (e.g. <em>Somnambulist</em>), split the roots: <em>somn</em> (sleep) + <em>ambul</em> (walk) = sleepwalker.</div>
+        </div>
+
+        <div class="tip-card t4">
+          <div class="tip-icon">✨</div>
+          <div class="tip-text"><strong>Tone Polarity:</strong> If the question asks for a synonym of a negative word (e.g. <em>pernicious</em>), eliminate all positive options immediately.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 5. Common Mistakes -->
+    <div class="section-card">
+      <div class="section-header">
+        <span class="section-icon">⚠️</span>
+        <h2 class="section-title">Common Mistakes to Avoid</h2>
+      </div>
+
+      <div class="mistakes-list">
+        <div class="mistake-box">
+          <div class="mistake-icon">🚫</div>
+                    <div>
+            <div class="mistake-title">Mistake 1: Marking a Synonym When Asked for an Antonym</div>
+            <div class="mistake-desc">Examiners frequently place the exact synonym as Option A in an Antonym question to exploit reading haste. Always double-check the instruction tag.</div>
+          </div>
+        </div>
+
+        <div class="mistake-box">
+          <div class="mistake-icon">🚫</div>
+          <div>
+            <div class="mistake-title">Mistake 2: Ignoring Secondary Contextual Definitions</div>
+            <div class="mistake-desc">Words like <em>"champion"</em> (as a verb = to advocate/support) have meanings distinct from their common noun definition (winner).</div>
+          </div>
+        </div>
+
+        <div class="mistake-box">
+          <div class="mistake-icon">🚫</div>
+          <div>
+            <div class="mistake-title">Mistake 3: Relying Solely on Sound Associations</div>
+            <div class="mistake-desc">Words like <em>noisome</em> (foul-smelling/harmful) have nothing to do with "noise", and <em>restive</em> (impatient/restless) is not "restful".</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CTA Button -->
+    <div class="cta-container">
+      <a href="synonyms-antonyms-test.html" class="btn-quiz-cta">
+        <span>🚀 Take Synonyms & Antonyms Mock Test</span>
+        <span>→</span>
+      </a>
+    </div>
+
+  </div>
+
+</body>
+</html>
