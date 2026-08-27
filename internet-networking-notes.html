@@ -1,0 +1,697 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Internet & Networking - Study Notes | Exam Prep Hub</title>
+  <style>
+    :root {
+      --primary: #1e40af;
+      --primary-hover: #1d4ed8;
+      --primary-light: #eff6ff;
+      --bg: #f8fafc;
+      --card-bg: #ffffff;
+      --text: #0f172a;
+      --text-muted: #64748b;
+      --border: #e2e8f0;
+      
+      --blue-card-bg: #eff6ff;
+      --blue-card-border: #bfdbfe;
+      --blue-text: #1d4ed8;
+
+      --green-card-bg: #f0fdf4;
+      --green-card-border: #bbf7d0;
+      --green-text: #15803d;
+
+      --purple-card-bg: #faf5ff;
+      --purple-card-border: #e9d5ff;
+      --purple-text: #7e22ce;
+
+      --orange-card-bg: #fff7ed;
+      --orange-card-border: #fed7aa;
+      --orange-text: #c2410c;
+
+      --rose-card-bg: #fff1f2;
+      --rose-card-border: #fecdd3;
+      --rose-text: #be123c;
+
+      --radius: 14px;
+      --shadow: 0 4px 6px -1px rgb(0 0 0 / 0.08), 0 2px 4px -2px rgb(0 0 0 / 0.06);
+      --shadow-hover: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.08);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    }
+
+    body {
+      background-color: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      padding-bottom: 60px;
+    }
+
+    header {
+      background-color: var(--card-bg);
+      border-bottom: 1px solid var(--border);
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.05);
+    }
+
+    .header-container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 14px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .back-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      color: var(--primary);
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 0.95rem;
+      transition: transform 0.2s ease, color 0.2s ease;
+    }
+
+    .back-btn:hover {
+      transform: translateX(-3px);
+      color: var(--primary-hover);
+    }
+
+    .badge-tag {
+      background: var(--primary-light);
+      color: var(--primary);
+      font-size: 0.8rem;
+      font-weight: 700;
+      padding: 4px 12px;
+      border-radius: 9999px;
+      border: 1px solid #bfdbfe;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 800px;
+      margin: 28px auto 0;
+      padding: 0 16px;
+    }
+
+    .hero-card {
+      background: linear-gradient(135deg, #1e3a8a 0%, #1e40af 60%, #3b82f6 100%);
+      color: #ffffff;
+      border-radius: var(--radius);
+      padding: 28px 24px;
+      box-shadow: var(--shadow);
+      margin-bottom: 28px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .hero-title {
+      font-size: 1.75rem;
+      font-weight: 800;
+      margin-bottom: 6px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .hero-subtitle {
+      font-size: 0.95rem;
+      opacity: 0.9;
+    }
+
+    .hero-icon {
+      font-size: 2.8rem;
+      flex-shrink: 0;
+      background: rgba(255, 255, 255, 0.15);
+      border-radius: 16px;
+      width: 72px;
+      height: 72px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid rgba(255, 255, 255, 0.25);
+    }
+
+    .section-card {
+      background: var(--card-bg);
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
+      padding: 24px;
+      box-shadow: var(--shadow);
+      margin-bottom: 24px;
+    }
+
+    .section-header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 18px;
+      border-bottom: 2px solid #f1f5f9;
+      padding-bottom: 12px;
+    }
+
+    .section-icon {
+      font-size: 1.35rem;
+    }
+
+    .section-title {
+      font-size: 1.25rem;
+      font-weight: 800;
+      color: var(--text);
+    }
+
+    .concept-grid {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 20px;
+      align-items: center;
+    }
+
+    .concept-text {
+      font-size: 0.96rem;
+      color: #334155;
+    }
+
+    .concept-visual {
+      background: #f8fafc;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .formulas-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 16px;
+    }
+
+    .formula-card {
+      border-radius: 12px;
+      padding: 18px;
+      border-width: 1.5px;
+      border-style: solid;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .formula-card:hover {
+      transform: translateY(-3px);
+      box-shadow: var(--shadow);
+    }
+
+    .formula-card.blue {
+      background-color: var(--blue-card-bg);
+      border-color: var(--blue-card-border);
+    }
+    .formula-card.green {
+      background-color: var(--green-card-bg);
+      border-color: var(--green-card-border);
+    }
+    .formula-card.purple {
+      background-color: var(--purple-card-bg);
+      border-color: var(--purple-card-border);
+    }
+    .formula-card.orange {
+      background-color: var(--orange-card-bg);
+      border-color: var(--orange-card-border);
+    }
+
+    .formula-head {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.85rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      margin-bottom: 10px;
+    }
+
+    .formula-card.blue .formula-head { color: var(--blue-text); }
+    .formula-card.green .formula-head { color: var(--green-text); }
+    .formula-card.purple .formula-head { color: var(--purple-text); }
+    .formula-card.orange .formula-head { color: var(--orange-text); }
+
+    .formula-math {
+      font-size: 1.05rem;
+      font-weight: 800;
+      color: #1e293b;
+      margin-bottom: 8px;
+      background: rgba(255, 255, 255, 0.85);
+      padding: 8px 12px;
+      border-radius: 8px;
+      border: 1px dashed rgba(0, 0, 0, 0.15);
+      text-align: center;
+    }
+
+    .formula-note {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+    }
+
+    .examples-list {
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+
+    .example-card {
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      background: #ffffff;
+      padding: 18px;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+    }
+
+    .example-title {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .step-row {
+      margin-bottom: 8px;
+      font-size: 0.92rem;
+      display: flex;
+      align-items: baseline;
+      gap: 8px;
+    }
+
+    .step-tag {
+      font-size: 0.75rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      padding: 2px 8px;
+      border-radius: 6px;
+      flex-shrink: 0;
+    }
+
+    .step-given { background: #eff6ff; color: var(--blue-text); }
+    .step-formula { background: #faf5ff; color: var(--purple-text); }
+    .step-sol { background: #f0fdf4; color: var(--green-text); }
+
+    .answer-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: #dcfce7;
+      color: #15803d;
+      font-weight: 800;
+      font-size: 0.95rem;
+      padding: 6px 14px;
+      border-radius: 8px;
+      border: 1px solid #86efac;
+      margin-top: 6px;
+    }
+
+    .tips-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 14px;
+    }
+
+    .tip-card {
+      border-radius: 12px;
+      padding: 16px;
+      border: 1px solid var(--border);
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+    }
+
+    .tip-card.t1 { background-color: #fffbeb; border-color: #fde68a; }
+    .tip-card.t2 { background-color: #f0fdf4; border-color: #bbf7d0; }
+    .tip-card.t3 { background-color: #eff6ff; border-color: #bfdbfe; }
+    .tip-card.t4 { background-color: #faf5ff; border-color: #e9d5ff; }
+
+    .tip-icon {
+      font-size: 1.3rem;
+      flex-shrink: 0;
+    }
+
+    .tip-text {
+      font-size: 0.88rem;
+      color: #334155;
+    }
+
+    .tip-text strong {
+      color: #0f172a;
+    }
+
+    .mistakes-list {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .mistake-box {
+      background-color: var(--rose-card-bg);
+      border: 1.5px solid var(--rose-card-border);
+      border-radius: 12px;
+      padding: 14px 16px;
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+    }
+
+    .mistake-icon {
+      font-size: 1.3rem;
+      color: var(--rose-text);
+      flex-shrink: 0;
+    }
+
+    .mistake-title {
+      font-weight: 700;
+      color: var(--rose-text);
+      font-size: 0.92rem;
+      margin-bottom: 2px;
+    }
+
+    .mistake-desc {
+      font-size: 0.86rem;
+      color: #475569;
+    }
+
+    .cta-container {
+      text-align: center;
+      margin-top: 32px;
+    }
+
+    .btn-quiz-cta {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      background: linear-gradient(135deg, #1e40af 0%, #2563eb 100%);
+      color: #ffffff;
+      padding: 16px 36px;
+      border-radius: 12px;
+      font-size: 1.1rem;
+      font-weight: 800;
+      text-decoration: none;
+      box-shadow: 0 4px 12px rgba(37, 99, 235, 0.35);
+      transition: all 0.25s ease;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .btn-quiz-cta:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 18px rgba(37, 99, 235, 0.45);
+      background: linear-gradient(135deg, #1d4ed8 0%, #1d4ed8 100%);
+    }
+
+    @media (max-width: 640px) {
+      .hero-card {
+        flex-direction: column-reverse;
+        text-align: center;
+        padding: 20px;
+      }
+      .concept-grid {
+        grid-template-columns: 1fr;
+      }
+      .hero-title {
+        font-size: 1.45rem;
+        justify-content: center;
+      }
+      .btn-quiz-cta {
+        width: 100%;
+        padding: 14px 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="header-container">
+      <a href="index.html" class="back-btn">← Back to Home</a>
+      <span class="badge-tag">Computer Knowledge</span>
+    </div>
+  </header>
+
+  <div class="container">
+
+    <div class="hero-card">
+      <div>
+        <h1 class="hero-title">🌐 Internet & Networking - Study Notes</h1>
+        <p class="hero-subtitle">Master the OSI 7-Layer Model, TCP/IP Protocol Suite, Network Topologies, Hardware Devices (Switches & Routers), IP Addressing, and Web Protocols.</p>
+      </div>
+      <div class="hero-icon">📡</div>
+    </div>
+
+    <!-- 1. Network Architecture & Models -->
+    <div class="section-card">
+      <div class="section-header">
+        <span class="section-icon">💡</span>
+        <h2 class="section-title">Network Architecture & Reference Models</h2>
+      </div>
+      
+      <div class="concept-grid">
+        <div class="concept-text">
+          <p style="margin-bottom: 10px;">
+            A <strong>Computer Network</strong> connects autonomous computing nodes to share hardware, files, and services over physical or wireless transmission media.
+          </p>
+          <div style="background: #f1f5f9; padding: 10px 14px; border-radius: 8px; border-left: 4px solid var(--primary); font-size: 0.9rem;">
+            <strong>Geographical Network Types:</strong><br>
+            • <strong>PAN:</strong> Personal Area Network (Bluetooth, range ~10m).<br>
+            • <strong>LAN:</strong> Local Area Network (Office / Home, Ethernet / Wi-Fi).<br>
+            • <strong>MAN:</strong> Metropolitan Area Network (City-wide cable network).<br>
+            • <strong>WAN:</strong> Wide Area Network (Global coverage, e.g. The Internet).
+          </div>
+        </div>
+
+        <div class="concept-visual">
+          <svg width="150" height="150" viewBox="0 0 100 100">
+            <!-- OSI vs TCP/IP Layers Stack -->
+            <rect x="15" y="10" width="32" height="14" fill="#eff6ff" stroke="#1d4ed8" stroke-width="1" />
+            <text x="31" y="19" text-anchor="middle" font-size="4.5" font-weight="bold" fill="#1d4ed8">Application (7-5)</text>
+            
+            <rect x="15" y="26" width="32" height="14" fill="#faf5ff" stroke="#7e22ce" stroke-width="1" />
+            <text x="31" y="35" text-anchor="middle" font-size="4.5" font-weight="bold" fill="#7e22ce">Transport (4)</text>
+
+            <rect x="15" y="42" width="32" height="14" fill="#f0fdf4" stroke="#15803d" stroke-width="1" />
+            <text x="31" y="51" text-anchor="middle" font-size="4.5" font-weight="bold" fill="#15803d">Network (3)</text>
+
+            <rect x="15" y="58" width="32" height="14" fill="#fff7ed" stroke="#c2410c" stroke-width="1" />
+            <text x="31" y="67" text-anchor="middle" font-size="4.5" font-weight="bold" fill="#c2410c">Data Link (2)</text>
+
+            <rect x="15" y="74" width="32" height="14" fill="#e2e8f0" stroke="#475569" stroke-width="1" />
+            <text x="31" y="83" text-anchor="middle" font-size="4.5" font-weight="bold" fill="#0f172a">Physical (1)</text>
+
+            <line x1="52" y1="48" x2="58" y2="48" stroke="#1e40af" stroke-width="1.5" />
+
+            <!-- TCP/IP -->
+            <rect x="60" y="10" width="28" height="22" fill="#eff6ff" stroke="#1d4ed8" stroke-width="1" />
+            <text x="74" y="23" text-anchor="middle" font-size="4.5" font-weight="bold" fill="#1d4ed8">Application</text>
+
+            <rect x="60" y="34" width="28" height="14" fill="#faf5ff" stroke="#7e22ce" stroke-width="1" />
+            <text x="74" y="43" text-anchor="middle" font-size="4.5" font-weight="bold" fill="#7e22ce">Transport</text>
+
+            <rect x="60" y="50" width="28" height="14" fill="#f0fdf4" stroke="#15803d" stroke-width="1" />
+            <text x="74" y="59" text-anchor="middle" font-size="4.5" font-weight="bold" fill="#15803d">Internet</text>
+
+            <rect x="60" y="66" width="28" height="22" fill="#e2e8f0" stroke="#475569" stroke-width="1" />
+            <text x="74" y="79" text-anchor="middle" font-size="4.5" font-weight="bold" fill="#0f172a">Network Access</text>
+
+            <text x="31" y="96" text-anchor="middle" font-size="5.5" font-weight="bold" fill="#475569">OSI Model</text>
+            <text x="74" y="96" text-anchor="middle" font-size="5.5" font-weight="bold" fill="#475569">TCP/IP</text>
+          </svg>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2. Core Protocol & Network Domains Grid -->
+    <div class="section-card">
+      <div class="section-header">
+        <span class="section-icon">📐</span>
+        <h2 class="section-title">Core Networking Domains</h2>
+      </div>
+
+      <div class="formulas-grid">
+        <div class="formula-card blue">
+          <div>
+            <div class="formula-head"><span>🌐</span> OSI 7-Layer Architecture</div>
+            <div class="formula-math">App &gt; Pres &gt; Sess &gt; Trans &gt; Net &gt; DL &gt; Phys</div>
+          </div>
+          <div class="formula-note">Layer 7: Application | L6: Presentation (Encryption/Compression) | L5: Session | L4: Transport (TCP/UDP) | L3: Network (IP/Router) | L2: Data Link (MAC/Switch) | L1: Physical (Bits/Hub).</div>
+        </div>
+
+        <div class="formula-card green">
+          <div>
+            <div class="formula-head"><span>🔢</span> IP Addressing (IPv4 vs IPv6)</div>
+            <div class="formula-math">IPv4: 32-bit | IPv6: 128-bit</div>
+          </div>
+          <div class="formula-note">IPv4 has 4 octets separated by dots (e.g. <code>192.168.1.1</code>). IPv6 uses 8 hexadecimal blocks separated by colons (e.g. <code>2001:db8::1</code>).</div>
+        </div>
+
+        <div class="formula-card purple">
+          <div>
+            <div class="formula-head"><span>🔧</span> Network Devices & Operating Layer</div>
+            <div class="formula-math">Hub (L1) | Switch (L2) | Router (L3)</div>
+          </div>
+          <div class="formula-note">Hub broadcasts to all ports. Switch filters by 48-bit MAC Address. Router routes packets across networks using IP addresses. Gateway converts protocols.</div>
+        </div>
+
+        <div class="formula-card orange">
+          <div>
+            <div class="formula-head"><span>🔌</span> Key Application Protocols & Ports</div>
+            <div class="formula-math">HTTP (80) | HTTPS (443) | DNS (53)</div>
+          </div>
+          <div class="formula-note">FTP (20/21, Files), SSH (22, Secure Shell), SMTP (25, Sending Email), POP3 (110, Fetching Email), DHCP (67/68, Auto IP assignment).</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 3. Solved Examples -->
+    <div class="section-card">
+      <div class="section-header">
+        <span class="section-icon">📝</span>
+        <h2 class="section-title">Step-by-Step Solved Examples</h2>
+      </div>
+
+      <div class="examples-list">
+        <!-- Example 1 -->
+        <div class="example-card">
+          <div class="example-title">
+            <span style="background: #eff6ff; color: #1e40af; padding: 2px 8px; border-radius: 6px; font-size: 0.85rem;">Ex 1</span>
+            Which layer of the OSI reference model is responsible for end-to-end process transmission, segmenting data, flow control, and error correction?<br>
+            Options: (A) Network Layer &nbsp;|&nbsp; (B) Transport Layer &nbsp;|&nbsp; (C) Data Link Layer &nbsp;|&nbsp; (D) Presentation Layer
+          </div>
+          <div class="step-row">
+            <span class="step-tag step-given">Layer Responsibilities</span>
+            <span>• <strong>Network Layer (L3):</strong> Routing packets using IP addresses.<br>• <strong>Data Link Layer (L2):</strong> Framing data into frames using MAC addresses.<br>• <strong>Transport Layer (L4):</strong> End-to-end process communication, segmentation, port addressing, flow control (TCP/UDP).</span>
+          </div>
+          <div class="step-row">
+            <span class="step-tag step-sol">Solution</span>
+            <span>Correct layer is the <strong>Transport Layer (Option B)</strong>.</span>
+          </div>
+          <div>
+            <span class="answer-badge">✓ Final Answer: Transport Layer</span>
+          </div>
+        </div>
+
+        <!-- Example 2 -->
+        <div class="example-card">
+          <div class="example-title">
+            <span style="background: #eff6ff; color: #1e40af; padding: 2px 8px; border-radius: 6px; font-size: 0.85rem;">Ex 2</span>
+            Match the Network Topology with its defining structural characteristic:<br>
+            1. Star Topology &nbsp;|&nbsp; 2. Bus Topology &nbsp;|&nbsp; 3. Mesh Topology &nbsp;|&nbsp; 4. Ring Topology
+          </div>
+          <div class="step-row">
+            <span class="step-tag step-given">Topology Definitions</span>
+            <span>• <strong>Star:</strong> All devices connect to a central hub/switch; single point of failure at hub.<br>• <strong>Bus:</strong> Single central coaxial cable (backbone) with terminators at both ends.<br>• <strong>Mesh:</strong> Every node has a dedicated point-to-point link to every other node ($N(N-1)/2$ links) &rarr; Maximum fault tolerance.<br>• <strong>Ring:</strong> Data circulates unidirectionally in a closed loop via token passing.</span>
+          </div>
+          <div>
+            <span class="answer-badge">✓ Network Topologies Verified</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 4. Quick Tips & Tricks -->
+    <div class="section-card">
+      <div class="section-header">
+        <span class="section-icon">⭐</span>
+        <h2 class="section-title">Speed-Solving Mnemonics & Shortcuts</h2>
+      </div>
+
+      <div class="tips-grid">
+        <div class="tip-card t1">
+                    <div class="tip-icon">🧠</div>
+          <div class="tip-text"><strong>OSI Layers Mnemonic (Top to Bottom):</strong><br>
+          <strong>A</strong>ll <strong>P</strong>eople <strong>S</strong>eem <strong>T</strong>o <strong>N</strong>eed <strong>D</strong>ata <strong>P</strong>rocessing<br>
+          (<strong>A</strong>pplication &rarr; <strong>P</strong>resentation &rarr; <strong>S</strong>ession &rarr; <strong>T</strong>ransport &rarr; <strong>N</strong>etwork &rarr; <strong>D</strong>ata Link &rarr; <strong>P</strong>hysical).</div>
+        </div>
+
+        <div class="tip-card t2">
+          <div class="tip-icon">⚡</div>
+          <div class="tip-text"><strong>TCP vs UDP Protocol Rule:</strong><br>
+          • <strong>TCP:</strong> Connection-oriented, 3-way handshake (SYN, SYN-ACK, ACK), reliable, error-checking (Web, Email).<br>
+          • <strong>UDP:</strong> Connectionless, unreliable, fast, low overhead (Video streaming, Gaming, DNS).</div>
+        </div>
+
+        <div class="tip-card t3">
+          <div class="tip-icon">🏷️</div>
+          <div class="tip-text"><strong>MAC Address Format:</strong> 48-bit (6 Bytes) physical/hardware address burned into the NIC by manufacturer, formatted in hexadecimal (e.g. <code>00:1A:2B:3C:4D:5E</code>).</div>
+        </div>
+
+        <div class="tip-card t4">
+          <div class="tip-icon">🔍</div>
+          <div class="tip-text"><strong>URL Breakdown:</strong><br>
+          In <code>https://www.example.com/index.html</code>:<br>
+          • <code>https://</code> = Protocol<br>
+          • <code>www.example.com</code> = Domain Name (Host)<br>
+          • <code>/index.html</code> = Resource Path</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 5. Common Mistakes -->
+    <div class="section-card">
+      <div class="section-header">
+        <span class="section-icon">⚠️</span>
+        <h2 class="section-title">Common Mistakes to Avoid</h2>
+      </div>
+
+      <div class="mistakes-list">
+        <div class="mistake-box">
+          <div class="mistake-icon">🚫</div>
+          <div>
+            <div class="mistake-title">Mistake 1: Confusing Hubs, Switches, and Routers</div>
+            <div class="mistake-desc">A <strong>Hub</strong> is a Layer 1 device that blindly broadcasts incoming signals to all ports. A <strong>Switch</strong> is a Layer 2 intelligent device that sends data only to the target MAC address. A <strong>Router</strong> is a Layer 3 device that routes data between different IP networks.</div>
+          </div>
+        </div>
+
+        <div class="mistake-box">
+          <div class="mistake-icon">🚫</div>
+          <div>
+            <div class="mistake-title">Mistake 2: Mixing Up IPv4 and IPv6 Bit Lengths</div>
+            <div class="mistake-desc"><strong>IPv4</strong> uses 32 bits (4 octets, decimal, e.g. <code>192.168.0.1</code>), allowing ~$4.3$ billion unique addresses. <strong>IPv6</strong> uses 128 bits (8 hex groups, e.g. <code>fe80::1</code>), providing $2^{128}$ addresses.</div>
+          </div>
+        </div>
+
+        <div class="mistake-box">
+          <div class="mistake-icon">🚫</div>
+          <div>
+            <div class="mistake-title">Mistake 3: Confusing HTTP and HTTPS Ports</div>
+            <div class="mistake-desc">Standard unencrypted <strong>HTTP</strong> operates on Port 80. Encrypted <strong>HTTPS</strong> (which uses SSL/TLS) operates on Port 443.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CTA Button -->
+    <div class="cta-container">
+      <a href="internet-networking-test.html" class="btn-quiz-cta">
+        <span>🚀 Take Internet & Networking Mock Test</span>
+        <span>→</span>
+      </a>
+    </div>
+
+  </div>
+
+</body>
+</html>
