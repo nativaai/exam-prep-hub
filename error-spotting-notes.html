@@ -1,0 +1,707 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Error Spotting - Study Notes | Exam Prep Hub</title>
+  <style>
+    :root {
+      --primary: #1e40af;
+      --primary-hover: #1d4ed8;
+      --primary-light: #eff6ff;
+      --bg: #f8fafc;
+      --card-bg: #ffffff;
+      --text: #0f172a;
+      --text-muted: #64748b;
+      --border: #e2e8f0;
+      
+      --blue-card-bg: #eff6ff;
+      --blue-card-border: #bfdbfe;
+      --blue-text: #1d4ed8;
+
+      --green-card-bg: #f0fdf4;
+      --green-card-border: #bbf7d0;
+      --green-text: #15803d;
+
+      --purple-card-bg: #faf5ff;
+      --purple-card-border: #e9d5ff;
+      --purple-text: #7e22ce;
+
+      --orange-card-bg: #fff7ed;
+      --orange-card-border: #fed7aa;
+      --orange-text: #c2410c;
+
+      --rose-card-bg: #fff1f2;
+      --rose-card-border: #fecdd3;
+      --rose-text: #be123c;
+
+      --radius: 14px;
+      --shadow: 0 4px 6px -1px rgb(0 0 0 / 0.08), 0 2px 4px -2px rgb(0 0 0 / 0.06);
+      --shadow-hover: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.08);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    }
+
+    body {
+      background-color: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      padding-bottom: 60px;
+    }
+
+    header {
+      background-color: var(--card-bg);
+      border-bottom: 1px solid var(--border);
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.05);
+    }
+
+    .header-container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 14px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .back-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      color: var(--primary);
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 0.95rem;
+      transition: transform 0.2s ease, color 0.2s ease;
+    }
+
+    .back-btn:hover {
+      transform: translateX(-3px);
+      color: var(--primary-hover);
+    }
+
+    .badge-tag {
+      background: var(--primary-light);
+      color: var(--primary);
+      font-size: 0.8rem;
+      font-weight: 700;
+      padding: 4px 12px;
+      border-radius: 9999px;
+      border: 1px solid #bfdbfe;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 800px;
+      margin: 28px auto 0;
+      padding: 0 16px;
+    }
+
+    .hero-card {
+      background: linear-gradient(135deg, #1e3a8a 0%, #1e40af 60%, #3b82f6 100%);
+      color: #ffffff;
+      border-radius: var(--radius);
+      padding: 28px 24px;
+      box-shadow: var(--shadow);
+      margin-bottom: 28px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .hero-title {
+      font-size: 1.75rem;
+      font-weight: 800;
+      margin-bottom: 6px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .hero-subtitle {
+      font-size: 0.95rem;
+      opacity: 0.9;
+    }
+
+    .hero-icon {
+      font-size: 2.8rem;
+      flex-shrink: 0;
+      background: rgba(255, 255, 255, 0.15);
+      border-radius: 16px;
+      width: 72px;
+      height: 72px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid rgba(255, 255, 255, 0.25);
+    }
+
+    .section-card {
+      background: var(--card-bg);
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
+      padding: 24px;
+      box-shadow: var(--shadow);
+      margin-bottom: 24px;
+    }
+
+    .section-header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 18px;
+      border-bottom: 2px solid #f1f5f9;
+      padding-bottom: 12px;
+    }
+
+    .section-icon {
+      font-size: 1.35rem;
+    }
+
+    .section-title {
+      font-size: 1.25rem;
+      font-weight: 800;
+      color: var(--text);
+    }
+
+    .concept-grid {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 20px;
+      align-items: center;
+    }
+
+    .concept-text {
+      font-size: 0.96rem;
+      color: #334155;
+    }
+
+    .concept-visual {
+      background: #f8fafc;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .fraction-badge {
+      display: inline-block;
+      background: #eff6ff;
+      color: var(--primary);
+      font-weight: 700;
+      padding: 2px 8px;
+      border-radius: 6px;
+      border: 1px solid #bfdbfe;
+    }
+
+    .formulas-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 16px;
+    }
+
+    .formula-card {
+      border-radius: 12px;
+      padding: 18px;
+      border-width: 1.5px;
+      border-style: solid;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .formula-card:hover {
+      transform: translateY(-3px);
+      box-shadow: var(--shadow);
+    }
+
+    .formula-card.blue {
+      background-color: var(--blue-card-bg);
+      border-color: var(--blue-card-border);
+    }
+    .formula-card.green {
+      background-color: var(--green-card-bg);
+      border-color: var(--green-card-border);
+    }
+    .formula-card.purple {
+      background-color: var(--purple-card-bg);
+      border-color: var(--purple-card-border);
+    }
+    .formula-card.orange {
+      background-color: var(--orange-card-bg);
+      border-color: var(--orange-card-border);
+    }
+
+    .formula-head {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.85rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      margin-bottom: 10px;
+    }
+
+    .formula-card.blue .formula-head { color: var(--blue-text); }
+    .formula-card.green .formula-head { color: var(--green-text); }
+    .formula-card.purple .formula-head { color: var(--purple-text); }
+    .formula-card.orange .formula-head { color: var(--orange-text); }
+
+    .formula-math {
+      font-size: 1.05rem;
+      font-weight: 800;
+      color: #1e293b;
+      margin-bottom: 8px;
+      background: rgba(255, 255, 255, 0.85);
+      padding: 8px 12px;
+      border-radius: 8px;
+      border: 1px dashed rgba(0, 0, 0, 0.15);
+      text-align: center;
+    }
+
+    .formula-note {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+    }
+
+    .examples-list {
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+
+    .example-card {
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      background: #ffffff;
+      padding: 18px;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+    }
+
+    .example-title {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .step-row {
+      margin-bottom: 8px;
+      font-size: 0.92rem;
+      display: flex;
+      align-items: baseline;
+      gap: 8px;
+    }
+
+    .step-tag {
+      font-size: 0.75rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      padding: 2px 8px;
+      border-radius: 6px;
+      flex-shrink: 0;
+    }
+
+    .step-given { background: #eff6ff; color: var(--blue-text); }
+    .step-formula { background: #faf5ff; color: var(--purple-text); }
+    .step-sol { background: #f0fdf4; color: var(--green-text); }
+
+    .answer-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: #dcfce7;
+      color: #15803d;
+      font-weight: 800;
+      font-size: 0.95rem;
+      padding: 6px 14px;
+      border-radius: 8px;
+      border: 1px solid #86efac;
+      margin-top: 6px;
+    }
+
+    .tips-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 14px;
+    }
+
+    .tip-card {
+      border-radius: 12px;
+      padding: 16px;
+      border: 1px solid var(--border);
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+    }
+
+    .tip-card.t1 { background-color: #fffbeb; border-color: #fde68a; }
+    .tip-card.t2 { background-color: #f0fdf4; border-color: #bbf7d0; }
+    .tip-card.t3 { background-color: #eff6ff; border-color: #bfdbfe; }
+    .tip-card.t4 { background-color: #faf5ff; border-color: #e9d5ff; }
+
+    .tip-icon {
+      font-size: 1.3rem;
+      flex-shrink: 0;
+    }
+
+    .tip-text {
+      font-size: 0.88rem;
+      color: #334155;
+    }
+
+    .tip-text strong {
+      color: #0f172a;
+    }
+
+    .mistakes-list {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .mistake-box {
+      background-color: var(--rose-card-bg);
+      border: 1.5px solid var(--rose-card-border);
+      border-radius: 12px;
+      padding: 14px 16px;
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+    }
+
+    .mistake-icon {
+      font-size: 1.3rem;
+      color: var(--rose-text);
+      flex-shrink: 0;
+    }
+
+    .mistake-title {
+      font-weight: 700;
+      color: var(--rose-text);
+      font-size: 0.92rem;
+      margin-bottom: 2px;
+    }
+
+    .mistake-desc {
+      font-size: 0.86rem;
+      color: #475569;
+    }
+
+    .cta-container {
+      text-align: center;
+      margin-top: 32px;
+    }
+
+    .btn-quiz-cta {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      background: linear-gradient(135deg, #1e40af 0%, #2563eb 100%);
+      color: #ffffff;
+      padding: 16px 36px;
+      border-radius: 12px;
+      font-size: 1.1rem;
+      font-weight: 800;
+      text-decoration: none;
+      box-shadow: 0 4px 12px rgba(37, 99, 235, 0.35);
+      transition: all 0.25s ease;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .btn-quiz-cta:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 18px rgba(37, 99, 235, 0.45);
+      background: linear-gradient(135deg, #1d4ed8 0%, #1d4ed8 100%);
+    }
+
+    @media (max-width: 640px) {
+      .hero-card {
+        flex-direction: column-reverse;
+        text-align: center;
+        padding: 20px;
+      }
+      .concept-grid {
+        grid-template-columns: 1fr;
+      }
+      .hero-title {
+        font-size: 1.45rem;
+        justify-content: center;
+      }
+      .btn-quiz-cta {
+        width: 100%;
+        padding: 14px 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="header-container">
+      <a href="index.html" class="back-btn">← Back to Home</a>
+      <span class="badge-tag">General English</span>
+    </div>
+  </header>
+
+  <div class="container">
+
+    <div class="hero-card">
+      <div>
+        <h1 class="hero-title">🔍 Error Spotting - Study Notes</h1>
+        <p class="hero-subtitle">Master Subject-Verb Agreement, Correlative Conjunctions, Tense parallelism, Preposition collocations, and Conditional clauses.</p>
+      </div>
+      <div class="hero-icon">✍️</div>
+    </div>
+
+    <!-- 1. Concept & Approach -->
+    <div class="section-card">
+      <div class="section-header">
+        <span class="section-icon">💡</span>
+        <h2 class="section-title">Grammar Scanning Framework</h2>
+      </div>
+      
+      <div class="concept-grid">
+        <div class="concept-text">
+          <p style="margin-bottom: 10px;">
+            <strong>Error Spotting</strong> requires checking each grammatical component of a sentence systematically rather than relying purely on auditory intuition.
+          </p>
+          <div style="background: #f1f5f9; padding: 10px 14px; border-radius: 8px; border-left: 4px solid var(--primary); font-size: 0.9rem;">
+            <strong>Order of Grammar Checks:</strong><br>
+            • <strong>1. Subject & Verb:</strong> Do numbers (Singular/Plural) match?<br>
+            • <strong>2. Conjunctions:</strong> Are correlative pairs balanced?<br>
+            • <strong>3. Tense Consistency:</strong> Are time indicators matched to correct aspects?<br>
+            • <strong>4. Modifiers & Prepositions:</strong> Are fixed idioms and cases intact?
+          </div>
+        </div>
+
+        <div class="concept-visual">
+          <svg width="150" height="150" viewBox="0 0 100 100">
+            <!-- Inspection checklist icon -->
+            <rect x="22" y="15" width="56" height="70" rx="6" fill="#eff6ff" stroke="#1e40af" stroke-width="2" />
+            <line x1="32" y1="32" x2="68" y2="32" stroke="#1e40af" stroke-width="2" />
+            <line x1="32" y1="46" x2="68" y2="46" stroke="#1e40af" stroke-width="2" />
+            <line x1="32" y1="60" x2="68" y2="60" stroke="#1e40af" stroke-width="2" />
+            <circle cx="70" cy="70" r="16" fill="#15803d" />
+            <path d="M 64 70 L 68 74 L 76 66" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" />
+            <text x="50" y="96" text-anchor="middle" font-size="7" font-weight="bold" fill="#475569">Rule Verification</text>
+          </svg>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2. Core Grammar Rules -->
+    <div class="section-card">
+      <div class="section-header">
+        <span class="section-icon">📐</span>
+        <h2 class="section-title">High-Yield Grammar Rules</h2>
+      </div>
+
+      <div class="formulas-grid">
+        <div class="formula-card blue">
+          <div>
+            <div class="formula-head"><span>🔹</span> Proximity vs First Subject Rule</div>
+            <div class="formula-math">Neither...Nor &rarr; Nearest Subject</div>
+          </div>
+          <div class="formula-note">As well as / Along with &rarr; Verb agrees with <strong>1st Subject</strong>.</div>
+        </div>
+
+        <div class="formula-card green">
+          <div>
+            <div class="formula-head"><span>🔗</span> Correlative Conjunction Pairs</div>
+            <div class="formula-math">Hardly...When | No Sooner...Than</div>
+          </div>
+          <div class="formula-note">Not only...But also | Scarcely...When | Both...And.</div>
+        </div>
+
+        <div class="formula-card purple">
+          <div>
+            <div class="formula-head"><span>⏳</span> Conditional Clauses</div>
+            <div class="formula-math">If + Past Perfect &rarr; Would Have + V3</div>
+          </div>
+          <div class="formula-note">If + Simple Present &rarr; Will + V1 | If + Simple Past &rarr; Would + V1.</div>
+        </div>
+
+        <div class="formula-card orange">
+          <div>
+            <div class="formula-head"><span>🔢</span> "One of the" Rule</div>
+            <div class="formula-math">One of the + Plural Noun + Singular Verb</div>
+          </div>
+          <div class="formula-note">If relative pronoun follows (who/that), verb becomes <strong>Plural</strong>.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 3. Solved Examples -->
+    <div class="section-card">
+      <div class="section-header">
+        <span class="section-icon">📝</span>
+        <h2 class="section-title">Step-by-Step Solved Examples</h2>
+      </div>
+
+      <div class="examples-list">
+        <!-- Example 1 -->
+        <div class="example-card">
+          <div class="example-title">
+            <span style="background: #eff6ff; color: #1e40af; padding: 2px 8px; border-radius: 6px; font-size: 0.85rem;">Ex 1</span>
+            Identify the error: "The captain along with his crew members (A) / were present at the harbor (B) / when the storm hit (C) / No error (D)"
+          </div>
+          <div class="step-row">
+            <span class="step-tag step-given">Analysis</span>
+            <span>Subject 1 = "The captain" (Singular), Connector = "along with", Subject 2 = "his crew members" (Plural).</span>
+          </div>
+          <div class="step-row">
+            <span class="step-tag step-formula">Grammar Rule</span>
+            <span>When subjects are joined by 'along with', 'as well as', 'with', or 'together with', the verb agrees strictly with the <strong>1st Subject</strong>.</span>
+          </div>
+          <div class="step-row">
+            <span class="step-tag step-sol">Correction</span>
+            <span>"were present" in Part (B) must be replaced by <strong>"was present"</strong>.</span>
+          </div>
+          <div>
+            <span class="answer-badge">✓ Error in Part (B): Replace 'were' with 'was'</span>
+          </div>
+        </div>
+
+        <!-- Example 2 -->
+        <div class="example-card">
+          <div class="example-title">
+            <span style="background: #eff6ff; color: #1e40af; padding: 2px 8px; border-radius: 6px; font-size: 0.85rem;">Ex 2</span>
+            Identify the error: "No sooner had the train arrived (A) / when the passengers rushed (B) / to occupy empty seats (C) / No error (D)"
+          </div>
+          <div class="step-row">
+            <span class="step-tag step-given">Analysis</span>
+            <span>Starting phrase = "No sooner had..."</span>
+          </div>
+          <div class="step-row">
+            <span class="step-tag step-formula">Conjunction Rule</span>
+            <span>"No sooner" is always paired with <strong>"than"</strong>, not "when". ("Hardly/Scarcely" takes "when").</span>
+          </div>
+          <div class="step-row">
+            <span class="step-tag step-sol">Correction</span>
+            <span>In Part (B), replace "when" with <strong>"than"</strong>.</span>
+          </div>
+          <div>
+            <span class="answer-badge">✓ Error in Part (B): Replace 'when' with 'than'</span>
+          </div>
+        </div>
+
+        <!-- Example 3 -->
+        <div class="example-card">
+          <div class="example-title">
+            <span style="background: #eff6ff; color: #1e40af; padding: 2px 8px; border-radius: 6px; font-size: 0.85rem;">Ex 3</span>
+            Identify the error: "If he would have worked hard (A) / he would have passed (B) / the examination with honors (C) / No error (D)"
+          </div>
+          <div class="step-row">
+            <span class="step-tag step-given">Analysis</span>
+            <span>Third conditional construction with conditional "if" clause.</span>
+          </div>
+          <div class="step-row">
+            <span class="step-tag step-formula">Condition Rule</span>
+            <span>Never use "would have" in the "If" conditional clause. Form: <code>If + Subject + had + V3 ..., Subject + would have + V3 ...</code></span>
+          </div>
+          <div class="step-row">
+            <span class="step-tag step-sol">Correction</span>
+            <span>In Part (A), replace "If he would have worked hard" with <strong>"If he had worked hard"</strong>.</span>
+          </div>
+          <div>
+            <span class="answer-badge">✓ Error in Part (A): Replace 'would have' with 'had'</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 4. Quick Tips & Tricks -->
+    <div class="section-card">
+      <div class="section-header">
+        <span class="section-icon">⭐</span>
+        <h2 class="section-title">Speed-Solving Tips & Shortcuts</h2>
+      </div>
+
+      <div class="tips-grid">
+        <div class="tip-card t1">
+          <div class="tip-icon">🔀</div>
+          <div class="tip-text"><strong>Inversion After Negative Adverbs:</strong> Sentences beginning with <em>Hardly, Scarcely, Seldom, Never, No sooner</em> take inverted verb order: <code>Hardly had + Sub + V3</code>.</div>
+        </div>
+
+        <div class="tip-card t2">
+          <div class="tip-icon">✨</div>
+          <div class="tip-text"><strong>Uncountable Nouns Always Singular:</strong> <em>Furniture, Advice, Luggage, Information, Scenery, Equipment</em> never take plural 's' or indefinite article 'a/an'.</div>
+        </div>
+
+        <div class="tip-card t3">
+          <div class="tip-icon">⚖️</div>
+                    <div class="tip-text"><strong>Comparative Adjectives Ending in -ior:</strong> <em>Senior, Junior, Superior, Inferior, Preferable</em> take the preposition <strong>to</strong>, NEVER "than".</div>
+        </div>
+
+        <div class="tip-card t4">
+          <div class="tip-icon">🎯</div>
+          <div class="tip-text"><strong>Lest + Should Rule:</strong> The conjunction <em>lest</em> is strictly paired with <strong>should</strong> (or bare subjunctive) and never takes a negative word like "not".</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 5. Common Mistakes -->
+    <div class="section-card">
+      <div class="section-header">
+        <span class="section-icon">⚠️</span>
+        <h2 class="section-title">Common Mistakes to Avoid</h2>
+      </div>
+
+      <div class="mistakes-list">
+        <div class="mistake-box">
+          <div class="mistake-icon">🚫</div>
+          <div>
+            <div class="mistake-title">Mistake 1: Confusing "Between" and "Among"</div>
+            <div class="mistake-desc">Use <strong>Between</strong> for exactly 2 entities (or mutual treaties); use <strong>Among</strong> for more than 2 entities.</div>
+          </div>
+        </div>
+
+        <div class="mistake-box">
+          <div class="mistake-icon">🚫</div>
+          <div>
+            <div class="mistake-title">Mistake 2: Redundant Words in Phrases</div>
+            <div class="mistake-desc">Avoid repeating meanings: "Return back" (use <em>return</em>), "Cousin brother" (use <em>cousin</em>), "Revert back" (use <em>revert</em>).</div>
+          </div>
+        </div>
+
+        <div class="mistake-box">
+          <div class="mistake-icon">🚫</div>
+          <div>
+            <div class="mistake-title">Mistake 3: Misplacing "Not only... But also"</div>
+            <div class="mistake-desc">Both elements in "Not only... but also" must qualify the same part of speech (parallel structure: Verb + Verb or Noun + Noun).</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CTA Button -->
+    <div class="cta-container">
+      <a href="error-spotting-test.html" class="btn-quiz-cta">
+        <span>🚀 Take Error Spotting Mock Test</span>
+        <span>→</span>
+      </a>
+    </div>
+
+  </div>
+
+</body>
+</html>
