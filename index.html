@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Exam Prep Hub - Practice Tests & Study Notes</title>
+  <title>Exam Prep Hub - SSC, Banking, Railways & State Exams</title>
   <style>
     :root {
       --primary: #1e40af;
@@ -66,7 +66,7 @@
     .header-container {
       max-width: 1000px;
       margin: 0 auto;
-      padding: 16px 20px;
+      padding: 14px 20px;
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -83,15 +83,16 @@
     }
 
     .logo-icon {
-      background: var(--primary);
+      background: linear-gradient(135deg, #1e40af, #3b82f6);
       color: white;
-      width: 36px;
-      height: 36px;
+      width: 38px;
+      height: 38px;
       border-radius: 10px;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 1.1rem;
+      font-size: 1.2rem;
+      box-shadow: 0 2px 6px rgba(30, 64, 175, 0.3);
     }
 
     .badge-tag {
@@ -107,32 +108,46 @@
     .container {
       width: 100%;
       max-width: 1000px;
-      margin: 28px auto 0;
+      margin: 24px auto 0;
       padding: 0 16px;
     }
 
     /* Hero Banner */
     .hero-card {
-      background: linear-gradient(135deg, #1e3a8a 0%, #1e40af 60%, #3b82f6 100%);
+      background: linear-gradient(135deg, #0f172a 0%, #1e3a8a 50%, #2563eb 100%);
       color: #ffffff;
       border-radius: var(--radius);
       padding: 36px 30px;
       box-shadow: var(--shadow);
-      margin-bottom: 32px;
+      margin-bottom: 24px;
       display: flex;
       justify-content: space-between;
       align-items: center;
       gap: 20px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-card::after {
+      content: '';
+      position: absolute;
+      right: -50px;
+      top: -50px;
+      width: 200px;
+      height: 200px;
+      background: radial-gradient(circle, rgba(255,255,255,0.12) 0%, rgba(255,255,255,0) 70%);
+      border-radius: 50%;
     }
 
     .hero-title {
       font-size: 2rem;
       font-weight: 800;
       margin-bottom: 8px;
+      line-height: 1.25;
     }
 
     .hero-subtitle {
-      font-size: 1rem;
+      font-size: 0.98rem;
       opacity: 0.9;
       max-width: 600px;
     }
@@ -140,7 +155,8 @@
     .hero-icon {
       font-size: 3.5rem;
       flex-shrink: 0;
-      background: rgba(255, 255, 255, 0.15);
+      background: rgba(255, 255, 255, 0.12);
+      backdrop-filter: blur(8px);
       border-radius: 20px;
       width: 88px;
       height: 88px;
@@ -148,6 +164,112 @@
       align-items: center;
       justify-content: center;
       border: 1px solid rgba(255, 255, 255, 0.25);
+    }
+
+    /* Exam Category Badges Bar */
+    .exam-strip {
+      background: #ffffff;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 16px 20px;
+      margin-bottom: 24px;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+    }
+
+    .exam-strip-title {
+      font-size: 0.8rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--text-muted);
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .exam-badge-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .exam-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 14px;
+      border-radius: 10px;
+      font-size: 0.88rem;
+      font-weight: 700;
+      border: 1.5px solid var(--border);
+      background: #f8fafc;
+      color: var(--text);
+      transition: all 0.2s ease;
+      cursor: default;
+    }
+
+    .exam-pill:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow);
+    }
+
+    .exam-pill.ssc { background: #eff6ff; border-color: #bfdbfe; color: #1e40af; }
+    .exam-pill.bank { background: #f0fdf4; border-color: #bbf7d0; color: #15803d; }
+    .exam-pill.railway { background: #fff7ed; border-color: #fed7aa; color: #c2410c; }
+    .exam-pill.defence { background: #faf5ff; border-color: #e9d5ff; color: #7e22ce; }
+    .exam-pill.state { background: #fff1f2; border-color: #fecdd3; color: #be123c; }
+
+    .exam-pill-icon {
+      font-size: 1.1rem;
+    }
+
+    /* Key Metrics Highlights */
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 14px;
+      margin-bottom: 28px;
+    }
+
+    .stat-card {
+      background: #ffffff;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 16px 18px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      box-shadow: 0 1px 2px rgba(0,0,0,0.03);
+    }
+
+    .stat-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.4rem;
+      flex-shrink: 0;
+    }
+
+    .stat-icon.s1 { background: #eff6ff; color: #1e40af; }
+    .stat-icon.s2 { background: #f0fdf4; color: #15803d; }
+    .stat-icon.s3 { background: #faf5ff; color: #7e22ce; }
+    .stat-icon.s4 { background: #fff7ed; color: #c2410c; }
+
+    .stat-number {
+      font-size: 1.25rem;
+      font-weight: 800;
+      color: var(--text);
+      line-height: 1.2;
+    }
+
+    .stat-label {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      font-weight: 600;
     }
 
     /* Section Styling */
@@ -402,7 +524,7 @@
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+      box-shadow: 0 1px 3px rgba(0,0,0,0.04);
       transition: all 0.2s ease;
     }
 
@@ -462,12 +584,24 @@
     /* Footer */
     footer {
       text-align: center;
-      padding: 24px;
+      padding: 28px 20px;
       color: var(--text-muted);
       font-size: 0.88rem;
       border-top: 1px solid var(--border);
       margin-top: 40px;
       background: var(--card-bg);
+    }
+
+    .footer-links {
+      display: flex;
+      justify-content: center;
+      gap: 16px;
+      margin-top: 8px;
+      font-size: 0.82rem;
+    }
+
+    .footer-links span {
+      color: #94a3b8;
     }
 
     @media (max-width: 640px) {
@@ -485,6 +619,9 @@
       .subject-panel {
         padding: 16px;
       }
+      .stats-grid {
+        grid-template-columns: 1fr 1fr;
+      }
     }
   </style>
 </head>
@@ -493,10 +630,10 @@
   <header>
     <div class="header-container">
       <a href="index.html" class="logo">
-        <div class="logo-icon">🎓</div>
+        <div class="logo-icon">🎯</div>
         <span>Exam Prep Hub</span>
       </a>
-      <span class="badge-tag">Comprehensive Portal</span>
+      <span class="badge-tag">Free 2026 Edition</span>
     </div>
   </header>
 
@@ -505,10 +642,74 @@
     <!-- Hero Section -->
     <div class="hero-card">
       <div>
-        <h1 class="hero-title">Master Competitive Exams</h1>
-        <p class="hero-subtitle">Comprehensive study notes, conceptual frameworks, shortcuts, and full-length practice tests across Quantitative Aptitude, Logical Reasoning, English, General Knowledge, and Computer Knowledge.</p>
+        <h1 class="hero-title">Crack SSC, Banking & Government Exams</h1>
+        <p class="hero-subtitle">Comprehensive topic-wise study notes, conceptual mnemonics, speed-solving shortcuts, and timed mock tests designed for high rankers.</p>
       </div>
-      <div class="hero-icon">🚀</div>
+      <div class="hero-icon">🏆</div>
+    </div>
+
+    <!-- Targeted Exam Badges Strip -->
+    <div class="exam-strip">
+      <div class="exam-strip-title">
+        <span>⚡ TARGET EXAMS COVERED</span>
+      </div>
+      <div class="exam-badge-grid">
+        <div class="exam-pill ssc">
+          <span class="exam-pill-icon">🏛️</span>
+          <span>SSC (CGL, CHSL, MTS, CPO, GD)</span>
+        </div>
+        <div class="exam-pill bank">
+          <span class="exam-pill-icon">🏦</span>
+          <span>Banking (SBI PO, IBPS Clerk, RRB, RBI)</span>
+        </div>
+        <div class="exam-pill railway">
+          <span class="exam-pill-icon">🚆</span>
+          <span>Railways (RRB NTPC, Group D, ALP)</span>
+        </div>
+        <div class="exam-pill defence">
+          <span class="exam-pill-icon">🛡️</span>
+          <span>Defence (CDS, NDA, AFCAT, CAPF)</span>
+        </div>
+        <div class="exam-pill state">
+          <span class="exam-pill-icon">📍</span>
+          <span>State PSCs & Police SI</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Highlights / Key Metrics Counter -->
+    <div class="stats-grid">
+      <div class="stat-card">
+        <div class="stat-icon s1">📖</div>
+        <div>
+          <div class="stat-number">35+</div>
+          <div class="stat-label">Structured Study Notes</div>
+        </div>
+      </div>
+
+      <div class="stat-card">
+        <div class="stat-icon s2">📝</div>
+        <div>
+          <div class="stat-number">33+</div>
+          <div class="stat-label">Full Practice Tests</div>
+        </div>
+      </div>
+
+      <div class="stat-card">
+        <div class="stat-icon s3">💡</div>
+        <div>
+          <div class="stat-number">100+</div>
+          <div class="stat-label">Speed Mnemonics</div>
+        </div>
+      </div>
+
+      <div class="stat-card">
+        <div class="stat-icon s4">🆓</div>
+        <div>
+          <div class="stat-number">100%</div>
+          <div class="stat-label">Free Open Access</div>
+        </div>
+      </div>
     </div>
 
     <!-- Browse by Subject Section -->
@@ -1067,7 +1268,18 @@
   </div>
 
   <footer>
-    <p>© Exam Prep Hub. All study notes and practice materials curated for competitive exam preparation.</p>
+    <p>© Exam Prep Hub. Free learning portal designed for competitive examinations.</p>
+    <div class="footer-links">
+      <small>SSC CGL/CHSL</small>
+      <span>•</span>
+      <small>IBPS PO/Clerk</small>
+      <span>•</span>
+      <small>SBI PO</small>
+      <span>•</span>
+      <small>RRB NTPC</small>
+      <span>•</span>
+      <small>State PSCs</small>
+    </div>
   </footer>
 
   <script>
