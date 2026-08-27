@@ -1,0 +1,680 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Indian History - Study Notes | Exam Prep Hub</title>
+  <style>
+    :root {
+      --primary: #1e40af;
+      --primary-hover: #1d4ed8;
+      --primary-light: #eff6ff;
+      --bg: #f8fafc;
+      --card-bg: #ffffff;
+      --text: #0f172a;
+      --text-muted: #64748b;
+      --border: #e2e8f0;
+      
+      --blue-card-bg: #eff6ff;
+      --blue-card-border: #bfdbfe;
+      --blue-text: #1d4ed8;
+
+      --green-card-bg: #f0fdf4;
+      --green-card-border: #bbf7d0;
+      --green-text: #15803d;
+
+      --purple-card-bg: #faf5ff;
+      --purple-card-border: #e9d5ff;
+      --purple-text: #7e22ce;
+
+      --orange-card-bg: #fff7ed;
+      --orange-card-border: #fed7aa;
+      --orange-text: #c2410c;
+
+      --rose-card-bg: #fff1f2;
+      --rose-card-border: #fecdd3;
+      --rose-text: #be123c;
+
+      --radius: 14px;
+      --shadow: 0 4px 6px -1px rgb(0 0 0 / 0.08), 0 2px 4px -2px rgb(0 0 0 / 0.06);
+      --shadow-hover: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.08);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    }
+
+    body {
+      background-color: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      padding-bottom: 60px;
+    }
+
+    header {
+      background-color: var(--card-bg);
+      border-bottom: 1px solid var(--border);
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.05);
+    }
+
+    .header-container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 14px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .back-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      color: var(--primary);
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 0.95rem;
+      transition: transform 0.2s ease, color 0.2s ease;
+    }
+
+    .back-btn:hover {
+      transform: translateX(-3px);
+      color: var(--primary-hover);
+    }
+
+    .badge-tag {
+      background: var(--primary-light);
+      color: var(--primary);
+      font-size: 0.8rem;
+      font-weight: 700;
+      padding: 4px 12px;
+      border-radius: 9999px;
+      border: 1px solid #bfdbfe;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 800px;
+      margin: 28px auto 0;
+      padding: 0 16px;
+    }
+
+    .hero-card {
+      background: linear-gradient(135deg, #1e3a8a 0%, #1e40af 60%, #3b82f6 100%);
+      color: #ffffff;
+      border-radius: var(--radius);
+      padding: 28px 24px;
+      box-shadow: var(--shadow);
+      margin-bottom: 28px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .hero-title {
+      font-size: 1.75rem;
+      font-weight: 800;
+      margin-bottom: 6px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .hero-subtitle {
+      font-size: 0.95rem;
+      opacity: 0.9;
+    }
+
+    .hero-icon {
+      font-size: 2.8rem;
+      flex-shrink: 0;
+      background: rgba(255, 255, 255, 0.15);
+      border-radius: 16px;
+      width: 72px;
+      height: 72px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid rgba(255, 255, 255, 0.25);
+    }
+
+    .section-card {
+      background: var(--card-bg);
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
+      padding: 24px;
+      box-shadow: var(--shadow);
+      margin-bottom: 24px;
+    }
+
+    .section-header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 18px;
+      border-bottom: 2px solid #f1f5f9;
+      padding-bottom: 12px;
+    }
+
+    .section-icon {
+      font-size: 1.35rem;
+    }
+
+    .section-title {
+      font-size: 1.25rem;
+      font-weight: 800;
+      color: var(--text);
+    }
+
+    .concept-grid {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 20px;
+      align-items: center;
+    }
+
+    .concept-text {
+      font-size: 0.96rem;
+      color: #334155;
+    }
+
+    .concept-visual {
+      background: #f8fafc;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .fraction-badge {
+      display: inline-block;
+      background: #eff6ff;
+      color: var(--primary);
+      font-weight: 700;
+      padding: 2px 8px;
+      border-radius: 6px;
+      border: 1px solid #bfdbfe;
+    }
+
+    .formulas-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 16px;
+    }
+
+    .formula-card {
+      border-radius: 12px;
+      padding: 18px;
+      border-width: 1.5px;
+      border-style: solid;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .formula-card:hover {
+      transform: translateY(-3px);
+      box-shadow: var(--shadow);
+    }
+
+    .formula-card.blue {
+      background-color: var(--blue-card-bg);
+      border-color: var(--blue-card-border);
+    }
+    .formula-card.green {
+      background-color: var(--green-card-bg);
+      border-color: var(--green-card-border);
+    }
+    .formula-card.purple {
+      background-color: var(--purple-card-bg);
+      border-color: var(--purple-card-border);
+    }
+    .formula-card.orange {
+      background-color: var(--orange-card-bg);
+      border-color: var(--orange-card-border);
+    }
+
+    .formula-head {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.85rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      margin-bottom: 10px;
+    }
+
+    .formula-card.blue .formula-head { color: var(--blue-text); }
+    .formula-card.green .formula-head { color: var(--green-text); }
+    .formula-card.purple .formula-head { color: var(--purple-text); }
+    .formula-card.orange .formula-head { color: var(--orange-text); }
+
+    .formula-math {
+      font-size: 1.05rem;
+      font-weight: 800;
+      color: #1e293b;
+      margin-bottom: 8px;
+      background: rgba(255, 255, 255, 0.85);
+      padding: 8px 12px;
+      border-radius: 8px;
+      border: 1px dashed rgba(0, 0, 0, 0.15);
+      text-align: center;
+    }
+
+    .formula-note {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+    }
+
+    .examples-list {
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+
+    .example-card {
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      background: #ffffff;
+      padding: 18px;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+    }
+
+    .example-title {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .step-row {
+      margin-bottom: 8px;
+      font-size: 0.92rem;
+      display: flex;
+      align-items: baseline;
+      gap: 8px;
+    }
+
+    .step-tag {
+      font-size: 0.75rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      padding: 2px 8px;
+      border-radius: 6px;
+      flex-shrink: 0;
+    }
+
+    .step-given { background: #eff6ff; color: var(--blue-text); }
+    .step-formula { background: #faf5ff; color: var(--purple-text); }
+    .step-sol { background: #f0fdf4; color: var(--green-text); }
+
+    .answer-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: #dcfce7;
+      color: #15803d;
+      font-weight: 800;
+      font-size: 0.95rem;
+      padding: 6px 14px;
+      border-radius: 8px;
+      border: 1px solid #86efac;
+      margin-top: 6px;
+    }
+
+    .tips-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 14px;
+    }
+
+    .tip-card {
+      border-radius: 12px;
+      padding: 16px;
+      border: 1px solid var(--border);
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+    }
+
+    .tip-card.t1 { background-color: #fffbeb; border-color: #fde68a; }
+    .tip-card.t2 { background-color: #f0fdf4; border-color: #bbf7d0; }
+    .tip-card.t3 { background-color: #eff6ff; border-color: #bfdbfe; }
+    .tip-card.t4 { background-color: #faf5ff; border-color: #e9d5ff; }
+
+    .tip-icon {
+      font-size: 1.3rem;
+      flex-shrink: 0;
+    }
+
+    .tip-text {
+      font-size: 0.88rem;
+      color: #334155;
+    }
+
+    .tip-text strong {
+      color: #0f172a;
+    }
+
+    .mistakes-list {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .mistake-box {
+      background-color: var(--rose-card-bg);
+      border: 1.5px solid var(--rose-card-border);
+      border-radius: 12px;
+      padding: 14px 16px;
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+    }
+
+    .mistake-icon {
+      font-size: 1.3rem;
+      color: var(--rose-text);
+      flex-shrink: 0;
+    }
+
+    .mistake-title {
+      font-weight: 700;
+      color: var(--rose-text);
+      font-size: 0.92rem;
+      margin-bottom: 2px;
+    }
+
+    .mistake-desc {
+      font-size: 0.86rem;
+      color: #475569;
+    }
+
+    .cta-container {
+      text-align: center;
+      margin-top: 32px;
+    }
+
+    .btn-quiz-cta {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      background: linear-gradient(135deg, #1e40af 0%, #2563eb 100%);
+      color: #ffffff;
+      padding: 16px 36px;
+      border-radius: 12px;
+      font-size: 1.1rem;
+      font-weight: 800;
+      text-decoration: none;
+      box-shadow: 0 4px 12px rgba(37, 99, 235, 0.35);
+      transition: all 0.25s ease;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .btn-quiz-cta:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 18px rgba(37, 99, 235, 0.45);
+      background: linear-gradient(135deg, #1d4ed8 0%, #1d4ed8 100%);
+    }
+
+    @media (max-width: 640px) {
+      .hero-card {
+        flex-direction: column-reverse;
+        text-align: center;
+        padding: 20px;
+      }
+      .concept-grid {
+        grid-template-columns: 1fr;
+      }
+      .hero-title {
+        font-size: 1.45rem;
+        justify-content: center;
+      }
+      .btn-quiz-cta {
+        width: 100%;
+        padding: 14px 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="header-container">
+      <a href="index.html" class="back-btn">← Back to Home</a>
+      <span class="badge-tag">General Knowledge</span>
+    </div>
+  </header>
+
+  <div class="container">
+
+    <div class="hero-card">
+      <div>
+        <h1 class="hero-title">📜 Indian History - Study Notes</h1>
+        <p class="hero-subtitle">Master Ancient Civilizations, Vedic Age, Medieval Dynasties, Mughal Administration, Modern Freedom Struggle, and Constitutional Milestones.</p>
+      </div>
+      <div class="hero-icon">🏛️</div>
+    </div>
+
+    <!-- 1. Chronological Periodization Framework -->
+    <div class="section-card">
+      <div class="section-header">
+        <span class="section-icon">💡</span>
+        <h2 class="section-title">Chronological Era Periodization</h2>
+      </div>
+      
+      <div class="concept-grid">
+        <div class="concept-text">
+          <p style="margin-bottom: 10px;">
+            <strong>Indian History</strong> is divided into three major eras for competitive examinations: <strong>Ancient</strong>, <strong>Medieval</strong>, and <strong>Modern</strong>.
+          </p>
+          <div style="background: #f1f5f9; padding: 10px 14px; border-radius: 8px; border-left: 4px solid var(--primary); font-size: 0.9rem;">
+            <strong>Era Breakdown:</strong><br>
+            • <strong>Ancient India (2500 BCE - 750 CE):</strong> Indus Valley Civilization &rarr; Vedic Period &rarr; Mauryas & Guptas.<br>
+            • <strong>Medieval India (750 CE - 1707 CE):</strong> Delhi Sultanate (1206–1526) &rarr; Vijayanagara & Empire &rarr; Mughal Empire.<br>
+            • <strong>Modern India (1707 CE - 1947 CE):</strong> British Expansion &rarr; Revolt of 1857 &rarr; INC & Freedom Struggle.
+          </div>
+        </div>
+
+        <div class="concept-visual">
+          <svg width="150" height="150" viewBox="0 0 100 100">
+            <!-- Chronological Timeline Visual -->
+            <rect x="15" y="15" width="70" height="20" rx="4" fill="#dbeafe" stroke="#1e40af" stroke-width="1.5" />
+            <text x="50" y="28" text-anchor="middle" font-size="6.5" font-weight="bold" fill="#1e40af">ANCIENT (IVC to Guptas)</text>
+            
+            <line x1="50" y1="35" x2="50" y2="42" stroke="#1e40af" stroke-width="2" />
+
+            <rect x="15" y="42" width="70" height="20" rx="4" fill="#faf5ff" stroke="#7e22ce" stroke-width="1.5" />
+            <text x="50" y="55" text-anchor="middle" font-size="6.5" font-weight="bold" fill="#7e22ce">MEDIEVAL (Sultanate/Mughal)</text>
+
+            <line x1="50" y1="62" x2="50" y2="69" stroke="#7e22ce" stroke-width="2" />
+
+            <rect x="15" y="69" width="70" height="20" rx="4" fill="#f0fdf4" stroke="#15803d" stroke-width="1.5" />
+            <text x="50" y="82" text-anchor="middle" font-size="6.5" font-weight="bold" fill="#15803d">MODERN (Freedom Struggle)</text>
+            
+            <text x="50" y="96" text-anchor="middle" font-size="7" font-weight="bold" fill="#475569">Timeline Continuum</text>
+          </svg>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2. Core Historical Eras Grid -->
+    <div class="section-card">
+      <div class="section-header">
+        <span class="section-icon">📐</span>
+        <h2 class="section-title">Major Historical Landmarks</h2>
+      </div>
+
+      <div class="formulas-grid">
+        <div class="formula-card blue">
+          <div>
+            <div class="formula-head"><span>🏛️</span> Ancient Civilizations & Dynasties</div>
+            <div class="formula-math">IVC | Mauryas | Guptas</div>
+          </div>
+          <div class="formula-note">Harappa (1921), Mohenjo-Daro (1922). Ashoka (Edicts). Gupta Period = Golden Age of Art & Science.</div>
+        </div>
+
+        <div class="formula-card green">
+          <div>
+            <div class="formula-head"><span>⚔️</span> Medieval Rulers & Empire</div>
+            <div class="formula-math">Delhi Sultanate | Mughals</div>
+          </div>
+          <div class="formula-note">5 Sultanate Dynasties (Slave, Khilji, Tughlaq, Sayyid, Lodi). Babur &rarr; Akbar &rarr; Aurangzeb.</div>
+        </div>
+
+        <div class="formula-card purple">
+          <div>
+            <div class="formula-head"><span>🇮🇳</span> Freedom Movement Landmarks</div>
+            <div class="formula-math">1857 Revolt | INC (1885)</div>
+          </div>
+          <div class="formula-note">1905 Partition of Bengal | 1920 Non-Cooperation | 1930 Civil Disobedience | 1942 Quit India.</div>
+        </div>
+
+        <div class="formula-card orange">
+          <div>
+            <div class="formula-head"><span>📜</span> British Acts & Viceroys</div>
+            <div class="formula-math">Regulating Act (1773) | 1919 / 1935</div>
+          </div>
+          <div class="formula-note">Warren Hastings (1st Gov-Gen Bengal), Lord Canning (1st Viceroy), Lord Mountbatten (Independence).</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 3. Solved Examples -->
+    <div class="section-card">
+      <div class="section-header">
+        <span class="section-icon">📝</span>
+        <h2 class="section-title">Step-by-Step Solved Examples</h2>
+      </div>
+
+      <div class="examples-list">
+        <!-- Example 1 -->
+        <div class="example-card">
+          <div class="example-title">
+            <span style="background: #eff6ff; color: #1e40af; padding: 2px 8px; border-radius: 6px; font-size: 0.85rem;">Ex 1</span>
+            Arrange the following events in chronological order:<br>
+            1. Partition of Bengal &nbsp;|&nbsp; 2. Quit India Movement &nbsp;|&nbsp; 3. Non-Cooperation Movement &nbsp;|&nbsp; 4. Jallianwala Bagh Massacre
+          </div>
+          <div class="step-row">
+            <span class="step-tag step-given">Year Analysis</span>
+            <span>• Partition of Bengal = <strong>1905</strong> (Lord Curzon)<br>• Jallianwala Bagh = <strong>1919</strong> (13th April)<br>• Non-Cooperation Movement = <strong>1920</strong> (Mahatma Gandhi)<br>• Quit India Movement = <strong>1942</strong> (8th August)</span>
+          </div>
+          <div class="step-row">
+            <span class="step-tag step-sol">Order</span>
+            <span>Chronological order is <strong>1 &rarr; 4 &rarr; 3 &rarr; 2</strong>.</span>
+          </div>
+          <div>
+            <span class="answer-badge">✓ Final Answer: 1 - 4 - 3 - 2</span>
+          </div>
+        </div>
+
+        <!-- Example 2 -->
+        <div class="example-card">
+          <div class="example-title">
+            <span style="background: #eff6ff; color: #1e40af; padding: 2px 8px; border-radius: 6px; font-size: 0.85rem;">Ex 2</span>
+            Match the famous battles with their respective years and key leaders:<br>
+            A. First Battle of Panipat &nbsp;|&nbsp; B. Battle of Plassey &nbsp;|&nbsp; C. Battle of Buxar
+          </div>
+          <div class="step-row">
+            <span class="step-tag step-given">Battle Facts</span>
+            <span>• <strong>First Battle of Panipat (1526):</strong> Babur defeated Ibrahim Lodi (Established Mughal Empire).<br>• <strong>Battle of Plassey (1757):</strong> Robert Clive defeated Siraj-ud-Daulah.<br>• <strong>Battle of Buxar (1764):</strong> Hector Munro defeated joint forces of Mir Qasim, Shuja-ud-Daula, and Shah Alam II.</span>
+          </div>
+          <div>
+            <span class="answer-badge">✓ Key Landmark Battles Memorized</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 4. Quick Tips & Tricks -->
+    <div class="section-card">
+      <div class="section-header">
+        <span class="section-icon">⭐</span>
+        <h2 class="section-title">Speed-Solving Mnemonics & Shortcuts</h2>
+      </div>
+
+      <div class="tips-grid">
+        <div class="tip-card t1">
+          <div class="tip-icon">👑</div>
+          <div class="tip-text"><strong>Mughal Emperors Mnemonic (BHAJSA):</strong> <strong>B</strong>abur &rarr; <strong>H</strong>umayun &rarr; <strong>A</strong>kbar &rarr; <strong>J</strong>ahangir &rarr; <strong>S</strong>hah Jahan &rarr; <strong>A</strong>urangzeb.</div>
+        </div>
+
+        <div class="tip-card t2">
+          <div class="tip-icon">🕌</div>
+          <div class="tip-text"><strong>Delhi Sultanate Dynasties (S-K-T-S-L):</strong> <strong>S</strong>lave (1206-1290) &rarr; <strong>K</strong>hilji (1290-1320) &rarr; <strong>T</strong>ughlaq (1320-1414) &rarr; <strong>S</strong>ayyid (1414-1451) &rarr; <strong>L</strong>odi (1451-1526).</div>
+        </div>
+
+        <div class="tip-card t3">
+          <div class="tip-icon">🕊️</div>
+          <div class="tip-text"><strong>Gandhian Movements (C-A-K-E & N-C-Q):</strong> Champaran (1917) &rarr; Ahmedabad Mill (1918) &rarr; Kheda (1918). Later: Non-Cooperation (1920) &rarr; Civil Disobedience (1930) &rarr; Quit India (1942).</div>
+        </div>
+
+        <div class="tip-card t4">
+          <div class="tip-icon">📜</div>
+          <div class="tip-text"><strong>INC Founders & Sessions:</strong> Founded by A. O. Hume in 1885. First President: W. C. Bonnerjee (Bombay, 72 delegates). First Woman President: Annie Besant (1917). First Indian Woman President: Sarojini Naidu (1925).</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 5. Common Mistakes -->
+    <div class="section-card">
+      <div class="section-header">
+        <span class="section-icon">⚠️</span>
+        <h2 class="section-title">Common Mistakes to Avoid</h2>
+      </div>
+
+      <div class="mistakes-list">
+                <div class="mistake-box">
+          <div class="mistake-icon">🚫</div>
+          <div>
+            <div class="mistake-title">Mistake 1: Confusing Governor-General of Bengal vs India vs Viceroy</div>
+            <div class="mistake-desc"><strong>Warren Hastings:</strong> 1st Gov-Gen of Bengal (1773). <strong>Lord William Bentinck:</strong> 1st Gov-Gen of India (Charter Act 1833). <strong>Lord Canning:</strong> 1st Viceroy of India (Govt of India Act 1858).</div>
+          </div>
+        </div>
+
+        <div class="mistake-box">
+          <div class="mistake-icon">🚫</div>
+          <div>
+            <div class="mistake-title">Mistake 2: Mixing Up the Battle of Plassey and Battle of Buxar</div>
+            <div class="mistake-desc">Plassey (1757) laid the initial political foothold for the EIC in Bengal; Buxar (1764) firmly established real British administrative supremacy over Mughal territories.</div>
+          </div>
+        </div>
+
+        <div class="mistake-box">
+          <div class="mistake-icon">🚫</div>
+          <div>
+            <div class="mistake-title">Mistake 3: Reversing Buddhist Councils Locations and Patrons</div>
+            <div class="mistake-desc">1st Council: Rajgriha (Ajatashatru) | 2nd: Vaishali (Kalasoka) | 3rd: Pataliputra (Ashoka) | 4th: Kundalvana, Kashmir (Kanishka).</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CTA Button -->
+    <div class="cta-container">
+      <a href="indian-history-test.html" class="btn-quiz-cta">
+        <span>🚀 Take Indian History Mock Test</span>
+        <span>→</span>
+      </a>
+    </div>
+
+  </div>
+
+</body>
+</html>
