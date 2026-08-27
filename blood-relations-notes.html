@@ -1,0 +1,717 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Blood Relations - Study Notes | Exam Prep Hub</title>
+  <style>
+    :root {
+      --primary: #1e40af;
+      --primary-hover: #1d4ed8;
+      --primary-light: #eff6ff;
+      --bg: #f8fafc;
+      --card-bg: #ffffff;
+      --text: #0f172a;
+      --text-muted: #64748b;
+      --border: #e2e8f0;
+      
+      --blue-card-bg: #eff6ff;
+      --blue-card-border: #bfdbfe;
+      --blue-text: #1d4ed8;
+
+      --green-card-bg: #f0fdf4;
+      --green-card-border: #bbf7d0;
+      --green-text: #15803d;
+
+      --purple-card-bg: #faf5ff;
+      --purple-card-border: #e9d5ff;
+      --purple-text: #7e22ce;
+
+      --orange-card-bg: #fff7ed;
+      --orange-card-border: #fed7aa;
+      --orange-text: #c2410c;
+
+      --rose-card-bg: #fff1f2;
+      --rose-card-border: #fecdd3;
+      --rose-text: #be123c;
+
+      --radius: 14px;
+      --shadow: 0 4px 6px -1px rgb(0 0 0 / 0.08), 0 2px 4px -2px rgb(0 0 0 / 0.06);
+      --shadow-hover: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.08);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    }
+
+    body {
+      background-color: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      padding-bottom: 60px;
+    }
+
+    header {
+      background-color: var(--card-bg);
+      border-bottom: 1px solid var(--border);
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.05);
+    }
+
+    .header-container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 14px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .back-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      color: var(--primary);
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 0.95rem;
+      transition: transform 0.2s ease, color 0.2s ease;
+    }
+
+    .back-btn:hover {
+      transform: translateX(-3px);
+      color: var(--primary-hover);
+    }
+
+    .badge-tag {
+      background: var(--primary-light);
+      color: var(--primary);
+      font-size: 0.8rem;
+      font-weight: 700;
+      padding: 4px 12px;
+      border-radius: 9999px;
+      border: 1px solid #bfdbfe;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 800px;
+      margin: 28px auto 0;
+      padding: 0 16px;
+    }
+
+    .hero-card {
+      background: linear-gradient(135deg, #1e3a8a 0%, #1e40af 60%, #3b82f6 100%);
+      color: #ffffff;
+      border-radius: var(--radius);
+      padding: 28px 24px;
+      box-shadow: var(--shadow);
+      margin-bottom: 28px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .hero-title {
+      font-size: 1.75rem;
+      font-weight: 800;
+      margin-bottom: 6px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .hero-subtitle {
+      font-size: 0.95rem;
+      opacity: 0.9;
+    }
+
+    .hero-icon {
+      font-size: 2.8rem;
+      flex-shrink: 0;
+      background: rgba(255, 255, 255, 0.15);
+      border-radius: 16px;
+      width: 72px;
+      height: 72px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid rgba(255, 255, 255, 0.25);
+    }
+
+    .section-card {
+      background: var(--card-bg);
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
+      padding: 24px;
+      box-shadow: var(--shadow);
+      margin-bottom: 24px;
+    }
+
+    .section-header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 18px;
+      border-bottom: 2px solid #f1f5f9;
+      padding-bottom: 12px;
+    }
+
+    .section-icon {
+      font-size: 1.35rem;
+    }
+
+    .section-title {
+      font-size: 1.25rem;
+      font-weight: 800;
+      color: var(--text);
+    }
+
+    .concept-grid {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 20px;
+      align-items: center;
+    }
+
+    .concept-text {
+      font-size: 0.96rem;
+      color: #334155;
+    }
+
+    .concept-visual {
+      background: #f8fafc;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .fraction-badge {
+      display: inline-block;
+      background: #eff6ff;
+      color: var(--primary);
+      font-weight: 700;
+      padding: 2px 8px;
+      border-radius: 6px;
+      border: 1px solid #bfdbfe;
+    }
+
+    .formulas-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 16px;
+    }
+
+    .formula-card {
+      border-radius: 12px;
+      padding: 18px;
+      border-width: 1.5px;
+      border-style: solid;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .formula-card:hover {
+      transform: translateY(-3px);
+      box-shadow: var(--shadow);
+    }
+
+    .formula-card.blue {
+      background-color: var(--blue-card-bg);
+      border-color: var(--blue-card-border);
+    }
+    .formula-card.green {
+      background-color: var(--green-card-bg);
+      border-color: var(--green-card-border);
+    }
+    .formula-card.purple {
+      background-color: var(--purple-card-bg);
+      border-color: var(--purple-card-border);
+    }
+    .formula-card.orange {
+      background-color: var(--orange-card-bg);
+      border-color: var(--orange-card-border);
+    }
+
+    .formula-head {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.85rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      margin-bottom: 10px;
+    }
+
+    .formula-card.blue .formula-head { color: var(--blue-text); }
+    .formula-card.green .formula-head { color: var(--green-text); }
+    .formula-card.purple .formula-head { color: var(--purple-text); }
+    .formula-card.orange .formula-head { color: var(--orange-text); }
+
+    .formula-math {
+      font-size: 1.05rem;
+      font-weight: 800;
+      color: #1e293b;
+      margin-bottom: 8px;
+      background: rgba(255, 255, 255, 0.85);
+      padding: 8px 12px;
+      border-radius: 8px;
+      border: 1px dashed rgba(0, 0, 0, 0.15);
+      text-align: center;
+    }
+
+    .formula-note {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+    }
+
+    .examples-list {
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+
+    .example-card {
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      background: #ffffff;
+      padding: 18px;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+    }
+
+    .example-title {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .step-row {
+      margin-bottom: 8px;
+      font-size: 0.92rem;
+      display: flex;
+      align-items: baseline;
+      gap: 8px;
+    }
+
+    .step-tag {
+      font-size: 0.75rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      padding: 2px 8px;
+      border-radius: 6px;
+      flex-shrink: 0;
+    }
+
+    .step-given { background: #eff6ff; color: var(--blue-text); }
+    .step-formula { background: #faf5ff; color: var(--purple-text); }
+    .step-sol { background: #f0fdf4; color: var(--green-text); }
+
+    .answer-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: #dcfce7;
+      color: #15803d;
+      font-weight: 800;
+      font-size: 0.95rem;
+      padding: 6px 14px;
+      border-radius: 8px;
+      border: 1px solid #86efac;
+      margin-top: 6px;
+    }
+
+    .tips-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 14px;
+    }
+
+    .tip-card {
+      border-radius: 12px;
+      padding: 16px;
+      border: 1px solid var(--border);
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+    }
+
+    .tip-card.t1 { background-color: #fffbeb; border-color: #fde68a; }
+    .tip-card.t2 { background-color: #f0fdf4; border-color: #bbf7d0; }
+    .tip-card.t3 { background-color: #eff6ff; border-color: #bfdbfe; }
+    .tip-card.t4 { background-color: #faf5ff; border-color: #e9d5ff; }
+
+    .tip-icon {
+      font-size: 1.3rem;
+      flex-shrink: 0;
+    }
+
+    .tip-text {
+      font-size: 0.88rem;
+      color: #334155;
+    }
+
+    .tip-text strong {
+      color: #0f172a;
+    }
+
+    .mistakes-list {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .mistake-box {
+      background-color: var(--rose-card-bg);
+      border: 1.5px solid var(--rose-card-border);
+      border-radius: 12px;
+      padding: 14px 16px;
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+    }
+
+    .mistake-icon {
+      font-size: 1.3rem;
+      color: var(--rose-text);
+      flex-shrink: 0;
+    }
+
+    .mistake-title {
+      font-weight: 700;
+      color: var(--rose-text);
+      font-size: 0.92rem;
+      margin-bottom: 2px;
+    }
+
+    .mistake-desc {
+      font-size: 0.86rem;
+      color: #475569;
+    }
+
+    .cta-container {
+      text-align: center;
+      margin-top: 32px;
+    }
+
+    .btn-quiz-cta {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      background: linear-gradient(135deg, #1e40af 0%, #2563eb 100%);
+      color: #ffffff;
+      padding: 16px 36px;
+      border-radius: 12px;
+      font-size: 1.1rem;
+      font-weight: 800;
+      text-decoration: none;
+      box-shadow: 0 4px 12px rgba(37, 99, 235, 0.35);
+      transition: all 0.25s ease;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .btn-quiz-cta:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 18px rgba(37, 99, 235, 0.45);
+      background: linear-gradient(135deg, #1d4ed8 0%, #1d4ed8 100%);
+    }
+
+    @media (max-width: 640px) {
+      .hero-card {
+        flex-direction: column-reverse;
+        text-align: center;
+        padding: 20px;
+      }
+      .concept-grid {
+        grid-template-columns: 1fr;
+      }
+      .hero-title {
+        font-size: 1.45rem;
+        justify-content: center;
+      }
+      .btn-quiz-cta {
+        width: 100%;
+        padding: 14px 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="header-container">
+      <a href="index.html" class="back-btn">← Back to Home</a>
+      <span class="badge-tag">Logical Reasoning</span>
+    </div>
+  </header>
+
+  <div class="container">
+
+    <div class="hero-card">
+      <div>
+        <h1 class="hero-title">👨‍👩‍👧‍👦 Blood Relations - Study Notes</h1>
+        <p class="hero-subtitle">Master family tree diagrams, paternal vs maternal relations, coded blood relations, and pointing-to-photograph puzzles.</p>
+      </div>
+      <div class="hero-icon">🌳</div>
+    </div>
+
+    <!-- 1. Concept & Standard Notations -->
+    <div class="section-card">
+      <div class="section-header">
+        <span class="section-icon">💡</span>
+        <h2 class="section-title">Standard Family Tree Symbols</h2>
+      </div>
+      
+      <div class="concept-grid">
+        <div class="concept-text">
+          <p style="margin-bottom: 10px;">
+            Blood relation questions test logical deduction of kinship across generations. Mapping with <strong>standard tree notations</strong> eliminates confusion.
+          </p>
+          <div style="background: #f1f5f9; padding: 10px 14px; border-radius: 8px; border-left: 4px solid var(--primary); font-size: 0.9rem;">
+            <strong>Standard Symbol Legend:</strong><br>
+            • <strong>Male (+ / [ ])</strong> &nbsp;|&nbsp; <strong>Female (− / ( ))</strong><br>
+            • <strong>Married Couple:</strong> Double horizontal line <span class="fraction-badge">A ═ B</span><br>
+            • <strong>Siblings:</strong> Single horizontal line <span class="fraction-badge">A ─ B</span><br>
+            • <strong>Generations:</strong> Vertical line (Parent above, Child below)
+          </div>
+        </div>
+
+        <div class="concept-visual">
+          <svg width="150" height="150" viewBox="0 0 100 100">
+            <!-- Family Tree Diagram -->
+            <!-- Parents -->
+            <rect x="15" y="15" width="22" height="20" rx="3" fill="#3b82f6" />
+            <text x="26" y="29" text-anchor="middle" font-size="9" font-weight="bold" fill="#fff">M(+)</text>
+            <line x1="37" y1="23" x2="63" y2="23" stroke="#e11d48" stroke-width="2" />
+            <line x1="37" y1="27" x2="63" y2="27" stroke="#e11d48" stroke-width="2" />
+            <circle cx="74" cy="25" r="11" fill="#ec4899" />
+            <text x="74" y="28" text-anchor="middle" font-size="9" font-weight="bold" fill="#fff">F(−)</text>
+            <!-- Vertical Line to Children -->
+            <line x1="50" y1="25" x2="50" y2="55" stroke="#64748b" stroke-width="2" />
+            <line x1="26" y1="55" x2="74" y2="55" stroke="#64748b" stroke-width="2" />
+            <line x1="26" y1="55" x2="26" y2="70" stroke="#64748b" stroke-width="2" />
+            <line x1="74" y1="55" x2="74" y2="70" stroke="#64748b" stroke-width="2" />
+            <!-- Son & Daughter -->
+            <rect x="15" y="70" width="22" height="20" rx="3" fill="#3b82f6" />
+            <text x="26" y="84" text-anchor="middle" font-size="8" font-weight="bold" fill="#fff">Son</text>
+            <circle cx="74" cy="80" r="10" fill="#ec4899" />
+            <text x="74" y="83" text-anchor="middle" font-size="7" font-weight="bold" fill="#fff">Daughter</text>
+          </svg>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2. Key Terms & Relations -->
+    <div class="section-card">
+      <div class="section-header">
+        <span class="section-icon">📐</span>
+        <h2 class="section-title">Key Kinship Terminology</h2>
+      </div>
+
+      <div class="formulas-grid">
+        <div class="formula-card blue">
+          <div>
+            <div class="formula-head"><span>👨</span> Paternal Relations (Father's Side)</div>
+            <div class="formula-math">Uncle / Aunt / Cousin</div>
+          </div>
+          <div class="formula-note">Father's Brother = Paternal Uncle; Father's Sister = Paternal Aunt.</div>
+        </div>
+
+        <div class="formula-card green">
+          <div>
+            <div class="formula-head"><span>👩</span> Maternal Relations (Mother's Side)</div>
+            <div class="formula-math">Uncle / Aunt / Cousin</div>
+          </div>
+          <div class="formula-note">Mother's Brother = Maternal Uncle; Mother's Sister = Maternal Aunt.</div>
+        </div>
+
+        <div class="formula-card purple">
+          <div>
+            <div class="formula-head"><span>💍</span> In-Law Relations (Spouse Side)</div>
+            <div class="formula-math">Brother/Sister/Father-in-law</div>
+          </div>
+          <div class="formula-note">Spouse's Brother = Brother-in-law; Sister's Husband = Brother-in-law.</div>
+        </div>
+
+        <div class="formula-card orange">
+          <div>
+            <div class="formula-head"><span>👶</span> Nephew & Niece</div>
+            <div class="formula-math">Sibling's Son / Daughter</div>
+          </div>
+          <div class="formula-note">Brother/Sister's Son = Nephew; Brother/Sister's Daughter = Niece.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 3. Solved Examples -->
+    <div class="section-card">
+      <div class="section-header">
+        <span class="section-icon">📝</span>
+        <h2 class="section-title">Step-by-Step Solved Examples</h2>
+      </div>
+
+      <div class="examples-list">
+        <!-- Example 1 -->
+        <div class="example-card">
+          <div class="example-title">
+            <span style="background: #eff6ff; color: #1e40af; padding: 2px 8px; border-radius: 6px; font-size: 0.85rem;">Ex 1</span>
+            Pointing to a photograph, a man said, "She is the daughter of the only son of my grandfather." How is the woman in the photograph related to the man?
+          </div>
+          <div class="step-row">
+            <span class="step-tag step-given">Breakdown</span>
+            <span>"My grandfather's only son" = Speaker's Father</span>
+          </div>
+          <div class="step-row">
+            <span class="step-tag step-formula">Kinship Link</span>
+            <span>"Daughter of my father" = Speaker's Sister</span>
+          </div>
+          <div class="step-row">
+            <span class="step-tag step-sol">Solution</span>
+            <span>The woman in the photograph is the speaker's <strong>Sister</strong>.</span>
+          </div>
+          <div>
+            <span class="answer-badge">✓ Final Answer: Sister</span>
+          </div>
+        </div>
+
+        <!-- Example 2 -->
+        <div class="example-card">
+          <div class="example-title">
+            <span style="background: #eff6ff; color: #1e40af; padding: 2px 8px; border-radius: 6px; font-size: 0.85rem;">Ex 2</span>
+            A is B's brother. C is A's mother. D is C's father. E is B's son. How is D related to E?
+          </div>
+          <div class="step-row">
+            <span class="step-tag step-given">Tree Relations</span>
+            <span>(D+) &rarr; Father of (C−) &rarr; Mother of (A+) and (B) &rarr; Parent of (E+)</span>
+          </div>
+          <div class="step-row">
+            <span class="step-tag step-formula">Generations</span>
+            <span>Generation 1: D | Generation 2: C | Generation 3: B | Generation 4: E (3 generations gap)</span>
+          </div>
+          <div class="step-row">
+            <span class="step-tag step-sol">Solution</span>
+            <span>D is the father of E's grandmother (C) &rarr; D is the <strong>Great-Grandfather</strong> of E.</span>
+          </div>
+          <div>
+            <span class="answer-badge">✓ Final Answer: Great-Grandfather</span>
+          </div>
+        </div>
+
+        <!-- Example 3 -->
+        <div class="example-card">
+          <div class="example-title">
+            <span style="background: #eff6ff; color: #1e40af; padding: 2px 8px; border-radius: 6px; font-size: 0.85rem;">Ex 3</span>
+            If 'P + Q' means P is mother of Q; 'P − Q' means P is brother of Q; 'P × Q' means P is father of Q. In the expression <code>A × B + C − D</code>, how is A related to D?
+          </div>
+          <div class="step-row">
+            <span class="step-tag step-given">Decoding</span>
+            <span>A × B &rarr; A is father of B (+) | B + C &rarr; B is mother of C (−) | C − D &rarr; C is brother of D (+)</span>
+          </div>
+          <div class="step-row">
+            <span class="step-tag step-formula">Deduction</span>
+            <span>B is mother of D. A is father of B.</span>
+          </div>
+          <div class="step-row">
+            <span class="step-tag step-sol">Solution</span>
+            <span>A is the father of D's mother &rarr; <strong>Maternal Grandfather</strong>.</span>
+          </div>
+          <div>
+            <span class="answer-badge">✓ Final Answer: Maternal Grandfather</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 4. Quick Tips & Tricks -->
+    <div class="section-card">
+      <div class="section-header">
+        <span class="section-icon">⭐</span>
+        <h2 class="section-title">Speed-Solving Tips & Shortcuts</h2>
+      </div>
+
+      <div class="tips-grid">
+        <div class="tip-card t1">
+          <div class="tip-icon">🧩</div>
+          <div class="tip-text"><strong>Gender Elimination:</strong> In coded blood relations, determine the required gender of the target person first to eliminate options without drawing the full tree.</div>
+        </div>
+
+        <div class="tip-card t2">
+          <div class="tip-icon">⚡</div>
+          <div class="tip-text"><strong>Generation Gap Check:</strong> Assign values (+1 for parent, 0 for sibling/spouse, −1 for child). Total generation score filters out invalid answers immediately.</div>
+        </div>
+
+        <div class="tip-card t3">
+          <div class="tip-icon">🔄</div>
+          <div class="tip-text"><strong>Backtracking in Pointing Questions:</strong> Break long dialogue sentences from the end ("my father's mother's only son...") back to the start.</div>
+        </div>
+
+        <div class="tip-card t4">
+          <div class="tip-icon">🎯</div>
+          <div class="tip-text"><strong>"Only Child" Clue:</strong> "Only son of my father" = Speaker himself (if male); "Only daughter of my mother" = Speaker herself (if female).</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 5. Common Mistakes -->
+    <div class="section-card">
+      <div class="section-header">
+        <span class="section-icon">⚠️</span>
+        <h2 class="section-title">Common Mistakes to Avoid</h2>
+      </div>
+
+      <div class="mistakes-list">
+        <div class="mistake-box">
+          <div class="mistake-icon">🚫</div>
+          <div>
+            <div class="mistake-title">Mistake 1: Assuming Gender from Names</div>
+            <div class="mistake-desc">Never assume gender based solely on a person's name (e.g., 'Kiran' or 'Deepak') unless explicitly mentioned in the question prompt.</div>
+          </div>
+        </div>
+
+        <div class="mistake-box">
+          <div class="mistake-icon">🚫</div>
+          <div>
+            <div class="mistake-title">Mistake 2: Reversing the Target Relationship</div>
+            <div class="mistake-desc">Pay close attention to who is asked: "How is A related to B?" means "What is A to B?" (e.g., Uncle, not Nephew).</div>
+          </div>
+        </div>
+
+        <div class="mistake-box">
+          <div class="mistake-icon">🚫</div>
+          <div>
+            <div class="mistake-title">Mistake 3: Confusing Paternal and Maternal Lines</div>
+            <div class="mistake-desc">Be vigilant when options distinguish between Maternal Uncle (Mama) vs Paternal Uncle (Chacha/Tau).</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CTA Button -->
+    <div class="cta-container">
+      <a href="blood-relations-test.html" class="btn-quiz-cta">
+        <span>🚀 Take Blood Relations Mock Test</span>
+        <span>→</span>
+      </a>
+    </div>
+
+  </div>
+
+</body>
+</html>
