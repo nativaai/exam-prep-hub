@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Exam Prep Hub - Mock Tests & Subject Practice</title>
+  <title>Exam Prep Hub - Practice Tests & Study Notes</title>
   <style>
     :root {
       --primary: #1e40af;
@@ -14,10 +14,30 @@
       --text: #0f172a;
       --text-muted: #64748b;
       --border: #e2e8f0;
-      --success: #16a34a;
-      --radius: 12px;
-      --shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
-      --shadow-hover: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+
+      --blue-card-bg: #eff6ff;
+      --blue-card-border: #bfdbfe;
+      --blue-text: #1d4ed8;
+
+      --green-card-bg: #f0fdf4;
+      --green-card-border: #bbf7d0;
+      --green-text: #15803d;
+
+      --purple-card-bg: #faf5ff;
+      --purple-card-border: #e9d5ff;
+      --purple-text: #7e22ce;
+
+      --orange-card-bg: #fff7ed;
+      --orange-card-border: #fed7aa;
+      --orange-text: #c2410c;
+
+      --rose-card-bg: #fff1f2;
+      --rose-card-border: #fecdd3;
+      --rose-text: #be123c;
+
+      --radius: 14px;
+      --shadow: 0 4px 6px -1px rgb(0 0 0 / 0.08), 0 2px 4px -2px rgb(0 0 0 / 0.06);
+      --shadow-hover: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.08);
     }
 
     * {
@@ -30,7 +50,8 @@
     body {
       background-color: var(--bg);
       color: var(--text);
-      line-height: 1.5;
+      line-height: 1.6;
+      padding-bottom: 60px;
     }
 
     header {
@@ -39,10 +60,11 @@
       position: sticky;
       top: 0;
       z-index: 50;
+      box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.05);
     }
 
     .header-container {
-      max-width: 1100px;
+      max-width: 1000px;
       margin: 0 auto;
       padding: 16px 20px;
       display: flex;
@@ -51,400 +73,287 @@
     }
 
     .logo {
-      font-size: 1.3rem;
-      font-weight: 800;
-      color: var(--primary);
-      text-decoration: none;
       display: flex;
       align-items: center;
-      gap: 8px;
+      gap: 10px;
+      text-decoration: none;
+      color: var(--text);
+      font-weight: 800;
+      font-size: 1.25rem;
     }
 
-    .nav-badge {
-      background-color: var(--primary-light);
+    .logo-icon {
+      background: var(--primary);
+      color: white;
+      width: 36px;
+      height: 36px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.1rem;
+    }
+
+    .badge-tag {
+      background: var(--primary-light);
       color: var(--primary);
       font-size: 0.8rem;
       font-weight: 700;
-      padding: 4px 10px;
+      padding: 4px 12px;
       border-radius: 9999px;
       border: 1px solid #bfdbfe;
     }
 
-    .hero {
-      background: linear-gradient(135deg, #1e3a8a 0%, #1e40af 50%, #3b82f6 100%);
+    .container {
+      width: 100%;
+      max-width: 1000px;
+      margin: 28px auto 0;
+      padding: 0 16px;
+    }
+
+    /* Hero Banner */
+    .hero-card {
+      background: linear-gradient(135deg, #1e3a8a 0%, #1e40af 60%, #3b82f6 100%);
       color: #ffffff;
-      padding: 48px 20px 40px;
-      text-align: center;
-    }
-
-    .hero-container {
-      max-width: 800px;
-      margin: 0 auto;
-    }
-
-    .hero h1 {
-      font-size: 2.1rem;
-      font-weight: 800;
-      margin-bottom: 12px;
-      line-height: 1.25;
-    }
-
-    .hero p {
-      font-size: 1.05rem;
-      opacity: 0.9;
-      margin-bottom: 24px;
-    }
-
-    .hero-stats {
+      border-radius: var(--radius);
+      padding: 36px 30px;
+      box-shadow: var(--shadow);
+      margin-bottom: 32px;
       display: flex;
-      justify-content: center;
-      gap: 24px;
-      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
     }
 
-    .hero-stat-box {
-      background: rgba(255, 255, 255, 0.12);
-      backdrop-filter: blur(4px);
-      padding: 10px 18px;
-      border-radius: 10px;
-      border: 1px solid rgba(255, 255, 255, 0.2);
-    }
-
-    .hero-stat-num {
-      font-size: 1.25rem;
+    .hero-title {
+      font-size: 2rem;
       font-weight: 800;
+      margin-bottom: 8px;
     }
 
-    .hero-stat-desc {
-      font-size: 0.8rem;
-      opacity: 0.85;
+    .hero-subtitle {
+      font-size: 1rem;
+      opacity: 0.9;
+      max-width: 600px;
     }
 
-    main {
-      max-width: 1100px;
-      margin: 0 auto;
-      padding: 36px 20px 60px;
+    .hero-icon {
+      font-size: 3.5rem;
+      flex-shrink: 0;
+      background: rgba(255, 255, 255, 0.15);
+      border-radius: 20px;
+      width: 88px;
+      height: 88px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid rgba(255, 255, 255, 0.25);
+    }
+
+    /* Section Styling */
+    .section-card {
+      background: var(--card-bg);
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
+      padding: 28px;
+      box-shadow: var(--shadow);
+      margin-bottom: 32px;
+    }
+
+    .section-header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 6px;
+    }
+
+    .section-icon {
+      font-size: 1.5rem;
     }
 
     .section-title {
       font-size: 1.4rem;
       font-weight: 800;
       color: var(--text);
-      margin-bottom: 6px;
     }
 
-    .section-subtitle {
+    .section-desc {
       font-size: 0.95rem;
       color: var(--text-muted);
       margin-bottom: 24px;
     }
 
-    /* Exam Category Cards */
-    .category-grid {
+    /* Browse by Subject Cards */
+    .subject-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
-      gap: 16px;
-      margin-bottom: 48px;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 18px;
     }
 
-    .cat-card {
-      background: var(--card-bg);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: 20px 16px;
-      text-align: center;
-      cursor: pointer;
-      transition: all 0.25s ease;
-      box-shadow: var(--shadow);
-      text-decoration: none;
-      color: var(--text);
+    .subject-card {
+      border-radius: 12px;
+      padding: 20px;
+      border: 1.5px solid var(--border);
       display: flex;
       flex-direction: column;
-      align-items: center;
-      justify-content: center;
+      justify-content: space-between;
+      text-decoration: none;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      background: var(--card-bg);
     }
 
-    .cat-card:hover {
+    .subject-card:hover {
       transform: translateY(-3px);
       box-shadow: var(--shadow-hover);
-      border-color: var(--primary);
-      background-color: var(--primary-light);
     }
 
-    .cat-icon {
-      font-size: 1.8rem;
+    .subject-card.blue { background-color: var(--blue-card-bg); border-color: var(--blue-card-border); }
+    .subject-card.green { background-color: var(--green-card-bg); border-color: var(--green-card-border); }
+    .subject-card.purple { background-color: var(--purple-card-bg); border-color: var(--purple-card-border); }
+    .subject-card.orange { background-color: var(--orange-card-bg); border-color: var(--orange-card-border); }
+    .subject-card.rose { background-color: var(--rose-card-bg); border-color: var(--rose-card-border); }
+
+    .subject-head {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 1.1rem;
+      font-weight: 800;
       margin-bottom: 8px;
     }
 
-    .cat-title {
-      font-weight: 700;
-      font-size: 1.05rem;
-    }
+    .subject-card.blue .subject-head { color: var(--blue-text); }
+    .subject-card.green .subject-head { color: var(--green-text); }
+    .subject-card.purple .subject-head { color: var(--purple-text); }
+    .subject-card.orange .subject-head { color: var(--orange-text); }
+    .subject-card.rose .subject-head { color: var(--rose-text); }
 
-    .cat-desc {
-      font-size: 0.8rem;
-      color: var(--text-muted);
-      margin-top: 4px;
-    }
-
-    /* Browse by Subject Accordion */
-    .subject-accordion-container {
-      display: flex;
-      flex-direction: column;
-      gap: 20px;
-    }
-
-    .subject-block {
-      background: var(--card-bg);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      box-shadow: var(--shadow);
-      overflow: hidden;
-      transition: border-color 0.25s ease;
-    }
-
-    .subject-block.active {
-      border-color: var(--primary);
-      box-shadow: var(--shadow-hover);
-    }
-
-    .subject-card-btn {
-      width: 100%;
-      background: var(--card-bg);
-      border: none;
-      padding: 20px 24px;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      text-align: left;
-      transition: background 0.2s ease;
-    }
-
-    .subject-card-btn:hover {
-      background-color: #f8fafc;
-    }
-
-    .subject-block.active .subject-card-btn {
-      background-color: var(--primary-light);
-    }
-
-    .subject-btn-left {
-      display: flex;
-      align-items: center;
-      gap: 16px;
-    }
-
-    .subject-icon-box {
-      width: 48px;
-      height: 48px;
-      border-radius: 10px;
-      background: #eff6ff;
-      color: var(--primary);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.4rem;
-      border: 1px solid #bfdbfe;
-    }
-
-    .subject-block.active .subject-icon-box {
-      background: var(--primary);
-      color: #ffffff;
-      border-color: var(--primary);
-    }
-
-    .subject-meta-title {
-      font-size: 1.15rem;
-      font-weight: 700;
-      color: var(--text);
-    }
-
-    .subject-meta-count {
-      font-size: 0.85rem;
-      color: var(--text-muted);
-      margin-top: 2px;
-    }
-
-    .accordion-indicator {
-      width: 32px;
-      height: 32px;
-      border-radius: 50%;
-      background: #f1f5f9;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1rem;
-      color: var(--text-muted);
-      transition: transform 0.3s ease, background 0.2s ease, color 0.2s ease;
-    }
-
-    .subject-block.active .accordion-indicator {
-      transform: rotate(180deg);
-      background: var(--primary);
-      color: #ffffff;
-    }
-
-    /* Expandable Tests Panel */
-    .tests-panel {
-      max-height: 0;
-      overflow: hidden;
-      transition: max-height 0.4s cubic-bezier(0, 1, 0, 1);
-      background: #fcfdfe;
-      border-top: 1px solid transparent;
-    }
-
-    .subject-block.active .tests-panel {
-      max-height: 2000px;
-      transition: max-height 0.5s ease-in-out;
-      border-top: 1px solid var(--border);
-    }
-
-    .tests-grid {
-      padding: 20px;
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-      gap: 16px;
-    }
-
-    .test-card {
-      background: #ffffff;
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      padding: 18px;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      text-decoration: none;
-      color: var(--text);
-      transition: all 0.2s ease;
-      box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.05);
-    }
-
-    .test-card:hover {
-      border-color: var(--primary);
-      transform: translateY(-2px);
-      box-shadow: var(--shadow);
-    }
-
-    .test-tag {
-      font-size: 0.72rem;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-      color: var(--primary);
-      background: var(--primary-light);
-      padding: 4px 8px;
-      border-radius: 6px;
-      display: inline-block;
-      margin-bottom: 8px;
-      align-self: flex-start;
-    }
-
-    .test-name {
-      font-size: 1.05rem;
-      font-weight: 700;
-      margin-bottom: 6px;
-      color: var(--text);
-    }
-
-    .test-desc {
-      font-size: 0.82rem;
+    .subject-info {
+      font-size: 0.88rem;
       color: var(--text-muted);
       margin-bottom: 14px;
     }
 
-    .test-footer {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      border-top: 1px solid #f1f5f9;
-      padding-top: 12px;
-      margin-top: auto;
-      gap: 8px;
-    }
-
-    .test-footer-actions {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-
-    .btn-notes-link {
-      display: inline-flex;
-      align-items: center;
-      gap: 4px;
-      font-size: 0.8rem;
+    .subject-action {
+      font-size: 0.88rem;
       font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .subject-card.blue .subject-action { color: var(--blue-text); }
+    .subject-card.green .subject-action { color: var(--green-text); }
+    .subject-card.purple .subject-action { color: var(--purple-text); }
+    .subject-card.orange .subject-action { color: var(--orange-text); }
+    .subject-card.rose .subject-action { color: var(--rose-text); }
+
+    /* Notes Library Section */
+    .notes-group {
+      margin-bottom: 28px;
+    }
+
+    .notes-group:last-child {
+      margin-bottom: 0;
+    }
+
+    .subject-subheading {
+      font-size: 0.95rem;
+      font-weight: 800;
       color: var(--primary);
-      background: var(--primary-light);
-      border: 1px solid #bfdbfe;
-      padding: 4px 10px;
-      border-radius: 6px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding-bottom: 6px;
+      border-bottom: 2px solid var(--primary-light);
+    }
+
+    .notes-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 12px;
+    }
+
+    .note-card {
+      background: #ffffff;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 12px 14px;
       text-decoration: none;
+      color: var(--text);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      font-size: 0.92rem;
+      font-weight: 600;
+      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.03);
       transition: all 0.2s ease;
     }
 
-    .btn-notes-link:hover {
-      background: var(--primary);
-      color: #ffffff;
+    .note-card:hover {
       border-color: var(--primary);
+      background-color: var(--primary-light);
+      color: var(--primary-hover);
+      transform: translateY(-2px);
+      box-shadow: var(--shadow);
     }
 
-    .test-badge {
-      font-size: 0.8rem;
-      font-weight: 600;
-      color: var(--success);
-      text-decoration: none;
-    }
-
-    .test-arrow-btn {
-      width: 28px;
-      height: 28px;
-      border-radius: 50%;
-      background: var(--primary-light);
-      color: var(--primary);
+    .note-left {
       display: flex;
       align-items: center;
-      justify-content: center;
-      font-weight: 700;
-      transition: background 0.2s ease, transform 0.2s ease;
-      text-decoration: none;
+      gap: 8px;
+      overflow: hidden;
     }
 
-    .test-card:hover .test-arrow-btn {
-      background: var(--primary);
-      color: #ffffff;
+    .note-icon {
+      font-size: 1rem;
+      flex-shrink: 0;
+    }
+
+    .note-title {
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .note-arrow {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      transition: transform 0.2s ease, color 0.2s ease;
+      flex-shrink: 0;
+    }
+
+    .note-card:hover .note-arrow {
+      color: var(--primary-hover);
       transform: translateX(3px);
     }
 
+    /* Footer */
     footer {
-      background: var(--card-bg);
-      border-top: 1px solid var(--border);
       text-align: center;
-      padding: 24px 20px;
-      font-size: 0.85rem;
+      padding: 24px;
       color: var(--text-muted);
+      font-size: 0.88rem;
+      border-top: 1px solid var(--border);
+      margin-top: 40px;
+      background: var(--card-bg);
     }
 
     @media (max-width: 640px) {
-      .hero h1 {
-        font-size: 1.7rem;
+      .hero-card {
+        flex-direction: column-reverse;
+        text-align: center;
+        padding: 24px 20px;
       }
-      .subject-card-btn {
-        padding: 16px;
+      .hero-title {
+        font-size: 1.6rem;
       }
-      .subject-icon-box {
-        width: 40px;
-        height: 40px;
-        font-size: 1.2rem;
-      }
-      .subject-meta-title {
-        font-size: 1.05rem;
-      }
-      .tests-grid {
+      .notes-grid {
         grid-template-columns: 1fr;
-        padding: 16px;
       }
     }
   </style>
@@ -454,596 +363,441 @@
   <header>
     <div class="header-container">
       <a href="index.html" class="logo">
-        <span>⚡</span> Exam Prep Hub
+        <div class="logo-icon">🎓</div>
+        <span>Exam Prep Hub</span>
       </a>
-      <span class="nav-badge">33 Practice Modules</span>
+      <span class="badge-tag">Comprehensive Portal</span>
     </div>
   </header>
 
-  <section class="hero">
-    <div class="hero-container">
-      <h1>Master Competitive Exams with Targeted Mock Tests</h1>
-      <p>Instant evaluation, standard timed interfaces, and comprehensive step-by-step explanations across all essential examination subjects.</p>
-      <div class="hero-stats">
-        <div class="hero-stat-box">
-          <div class="hero-stat-num">5</div>
-          <div class="hero-stat-desc">Subjects Covered</div>
-        </div>
-        <div class="hero-stat-box">
-          <div class="hero-stat-num">33</div>
-          <div class="hero-stat-desc">Topic Mock Tests</div>
-        </div>
-        <div class="hero-stat-box">
-          <div class="hero-stat-num">495+</div>
-          <div class="hero-stat-desc">Practice Questions</div>
-        </div>
+  <div class="container">
+
+    <!-- Hero Section -->
+    <div class="hero-card">
+      <div>
+        <h1 class="hero-title">Master Competitive Exams</h1>
+        <p class="hero-subtitle">Comprehensive study notes, conceptual frameworks, shortcuts, and full-length practice tests across Quantitative Aptitude, Logical Reasoning, English, General Knowledge, and Computer Knowledge.</p>
       </div>
+      <div class="hero-icon">🚀</div>
     </div>
-  </section>
-
-  <main>
-    <!-- Exam Categories Section -->
-    <section>
-      <h2 class="section-title">Target Exam Tracks</h2>
-      <p class="section-subtitle">Select your target exam domain to jump straight to subject practice.</p>
-
-      <div class="category-grid">
-        <div class="cat-card" onclick="scrollToSubjects('quant-block')">
-          <div class="cat-icon">🏛️</div>
-          <div class="cat-title">SSC</div>
-          <div class="cat-desc">CGL, CHSL, MTS, CPO</div>
-        </div>
-        <div class="cat-card" onclick="scrollToSubjects('reasoning-block')">
-          <div class="cat-icon">🚆</div>
-          <div class="cat-title">Railway</div>
-          <div class="cat-desc">NTPC, Group D, ALP</div>
-        </div>
-        <div class="cat-card" onclick="scrollToSubjects('quant-block')">
-          <div class="cat-icon">🏦</div>
-          <div class="cat-title">Banking</div>
-          <div class="cat-desc">IBPS, SBI PO & Clerk, RBI</div>
-        </div>
-        <div class="cat-card" onclick="scrollToSubjects('gk-block')">
-          <div class="cat-icon">🇮🇳</div>
-          <div class="cat-title">UPSC</div>
-          <div class="cat-desc">CSE Prelims, CDS, CAPF</div>
-        </div>
-        <div class="cat-card" onclick="scrollToSubjects('gk-block')">
-          <div class="cat-icon">📜</div>
-          <div class="cat-title">OPSC</div>
-          <div class="cat-desc">OAS, OCS, ASO, Police SI</div>
-        </div>
-      </div>
-    </section>
 
     <!-- Browse by Subject Section -->
-    <section id="browse-subjects">
-      <h2 class="section-title">Browse by Subject</h2>
-      <p class="section-subtitle">Choose a subject to reveal and access all individual chapter tests.</p>
-
-      <div class="subject-accordion-container">
-        
-        <!-- 1. Quantitative Aptitude -->
-        <div class="subject-block" id="quant-block">
-          <button class="subject-card-btn" onclick="toggleSubject('quant-block')">
-            <div class="subject-btn-left">
-              <div class="subject-icon-box">📐</div>
-              <div>
-                <div class="subject-meta-title">Quantitative Aptitude</div>
-                <div class="subject-meta-count">10 Mock Tests • Arithmetic, Algebra & Mensuration</div>
-              </div>
-            </div>
-            <div class="accordion-indicator">▼</div>
-          </button>
-          <div class="tests-panel">
-            <div class="tests-grid">
-              
-              <!-- Percentage Card with Notes Button -->
-              <div class="test-card">
-                <div>
-                  <span class="test-tag">Quantitative Aptitude</span>
-                  <div class="test-name">Percentage</div>
-                  <div class="test-desc">15 questions • 15 minutes • Detailed Explanations</div>
-                </div>
-                <div class="test-footer">
-                  <a href="percentage-notes.html" class="btn-notes-link">📖 Notes</a>
-                  <div class="test-footer-actions">
-                    <a href="percentage-test.html" class="test-badge">Start Test</a>
-                    <a href="percentage-test.html" class="test-arrow-btn">→</a>
-                  </div>
-                </div>
-              </div>
-
-              <a href="ratio-proportion-test.html" class="test-card">
-                <div>
-                  <span class="test-tag">Quantitative Aptitude</span>
-                  <div class="test-name">Ratio & Proportion</div>
-                  <div class="test-desc">15 questions • 15 minutes • Detailed Explanations</div>
-                </div>
-                <div class="test-footer">
-                  <span class="test-badge">Start Test</span>
-                  <div class="test-arrow-btn">→</div>
-                </div>
-              </a>
-
-              <a href="profit-loss-test.html" class="test-card">
-                <div>
-                  <span class="test-tag">Quantitative Aptitude</span>
-                  <div class="test-name">Profit & Loss</div>
-                  <div class="test-desc">15 questions • 15 minutes • Detailed Explanations</div>
-                </div>
-                <div class="test-footer">
-                  <span class="test-badge">Start Test</span>
-                  <div class="test-arrow-btn">→</div>
-                </div>
-              </a>
-
-              <a href="time-work-test.html" class="test-card">
-                <div>
-                  <span class="test-tag">Quantitative Aptitude</span>
-                  <div class="test-name">Time & Work</div>
-                  <div class="test-desc">15 questions • 15 minutes • Detailed Explanations</div>
-                </div>
-                <div class="test-footer">
-                  <span class="test-badge">Start Test</span>
-                  <div class="test-arrow-btn">→</div>
-                </div>
-              </a>
-
-              <a href="number-system-test.html" class="test-card">
-                <div>
-                  <span class="test-tag">Quantitative Aptitude</span>
-                  <div class="test-name">Number System</div>
-                  <div class="test-desc">15 questions • 15 minutes • Detailed Explanations</div>
-                </div>
-                <div class="test-footer">
-                  <span class="test-badge">Start Test</span>
-                  <div class="test-arrow-btn">→</div>
-                </div>
-              </a>
-
-              <a href="simplification-test.html" class="test-card">
-                <div>
-                  <span class="test-tag">Quantitative Aptitude</span>
-                  <div class="test-name">Simplification</div>
-                  <div class="test-desc">15 questions • 15 minutes • Detailed Explanations</div>
-                </div>
-                <div class="test-footer">
-                  <span class="test-badge">Start Test</span>
-                  <div class="test-arrow-btn">→</div>
-                </div>
-              </a>
-
-              <a href="average-test.html" class="test-card">
-                <div>
-                  <span class="test-tag">Quantitative Aptitude</span>
-                  <div class="test-name">Average</div>
-                  <div class="test-desc">15 questions • 15 minutes • Detailed Explanations</div>
-                </div>
-                <div class="test-footer">
-                  <span class="test-badge">Start Test</span>
-                  <div class="test-arrow-btn">→</div>
-                </div>
-              </a>
-
-              <a href="si-ci-test.html" class="test-card">
-                <div>
-                  <span class="test-tag">Quantitative Aptitude</span>
-                  <div class="test-name">Simple & Compound Interest</div>
-                  <div class="test-desc">15 questions • 15 minutes • Detailed Explanations</div>
-                </div>
-                <div class="test-footer">
-                  <span class="test-badge">Start Test</span>
-                  <div class="test-arrow-btn">→</div>
-                </div>
-              </a>
-
-              <a href="mensuration-test.html" class="test-card">
-                <div>
-                  <span class="test-tag">Quantitative Aptitude</span>
-                  <div class="test-name">Mensuration</div>
-                  <div class="test-desc">15 questions • 15 minutes • Detailed Explanations</div>
-                </div>
-                <div class="test-footer">
-                  <span class="test-badge">Start Test</span>
-                  <div class="test-arrow-btn">→</div>
-                </div>
-              </a>
-
-              <a href="algebra-test.html" class="test-card">
-                <div>
-                  <span class="test-tag">Quantitative Aptitude</span>
-                  <div class="test-name">Algebra</div>
-                  <div class="test-desc">15 questions • 15 minutes • Detailed Explanations</div>
-                </div>
-                <div class="test-footer">
-                  <span class="test-badge">Start Test</span>
-                  <div class="test-arrow-btn">→</div>
-                </div>
-              </a>
-            </div>
-          </div>
-        </div>
-
-        <!-- 2. Logical Reasoning -->
-        <div class="subject-block" id="reasoning-block">
-          <button class="subject-card-btn" onclick="toggleSubject('reasoning-block')">
-            <div class="subject-btn-left">
-              <div class="subject-icon-box">🧩</div>
-              <div>
-                <div class="subject-meta-title">Logical Reasoning</div>
-                <div class="subject-meta-count">7 Mock Tests • Analytical & Verbal Reasoning</div>
-              </div>
-            </div>
-            <div class="accordion-indicator">▼</div>
-          </button>
-          <div class="tests-panel">
-            <div class="tests-grid">
-              <a href="blood-relations-test.html" class="test-card">
-                <div>
-                  <span class="test-tag">Logical Reasoning</span>
-                  <div class="test-name">Blood Relations</div>
-                  <div class="test-desc">15 questions • 15 minutes • Detailed Explanations</div>
-                </div>
-                <div class="test-footer">
-                  <span class="test-badge">Start Test</span>
-                  <div class="test-arrow-btn">→</div>
-                </div>
-              </a>
-
-              <a href="coding-decoding-test.html" class="test-card">
-                <div>
-                  <span class="test-tag">Logical Reasoning</span>
-                  <div class="test-name">Coding-Decoding</div>
-                  <div class="test-desc">15 questions • 15 minutes • Detailed Explanations</div>
-                </div>
-                <div class="test-footer">
-                  <span class="test-badge">Start Test</span>
-                  <div class="test-arrow-btn">→</div>
-                </div>
-              </a>
-
-              <a href="series-test.html" class="test-card">
-                <div>
-                  <span class="test-tag">Logical Reasoning</span>
-                  <div class="test-name">Series Completion</div>
-                  <div class="test-desc">15 questions • 15 minutes • Detailed Explanations</div>
-                </div>
-                <div class="test-footer">
-                  <span class="test-badge">Start Test</span>
-                  <div class="test-arrow-btn">→</div>
-                </div>
-              </a>
-
-              <a href="syllogism-test.html" class="test-card">
-                <div>
-                  <span class="test-tag">Logical Reasoning</span>
-                  <div class="test-name">Syllogism</div>
-                  <div class="test-desc">15 questions • 15 minutes • Detailed Explanations</div>
-                </div>
-                <div class="test-footer">
-                  <span class="test-badge">Start Test</span>
-                  <div class="test-arrow-btn">→</div>
-                </div>
-              </a>
-
-              <a href="seating-arrangement-test.html" class="test-card">
-                <div>
-                  <span class="test-tag">Logical Reasoning</span>
-                  <div class="test-name">Seating Arrangement</div>
-                  <div class="test-desc">15 questions • 15 minutes • Detailed Explanations</div>
-                </div>
-                <div class="test-footer">
-                  <span class="test-badge">Start Test</span>
-                  <div class="test-arrow-btn">→</div>
-                </div>
-              </a>
-
-              <a href="direction-sense-test.html" class="test-card">
-                <div>
-                  <span class="test-tag">Logical Reasoning</span>
-                  <div class="test-name">Direction Sense</div>
-                  <div class="test-desc">15 questions • 15 minutes • Detailed Explanations</div>
-                </div>
-                <div class="test-footer">
-                  <span class="test-badge">Start Test</span>
-                  <div class="test-arrow-btn">→</div>
-                </div>
-              </a>
-
-              <a href="puzzles-test.html" class="test-card">
-                <div>
-                  <span class="test-tag">Logical Reasoning</span>
-                  <div class="test-name">Puzzles</div>
-                  <div class="test-desc">15 questions • 15 minutes • Detailed Explanations</div>
-                </div>
-                <div class="test-footer">
-                  <span class="test-badge">Start Test</span>
-                  <div class="test-arrow-btn">→</div>
-                </div>
-              </a>
-            </div>
-          </div>
-        </div>
-
-        <!-- 3. English Language -->
-        <div class="subject-block" id="english-block">
-          <button class="subject-card-btn" onclick="toggleSubject('english-block')">
-            <div class="subject-btn-left">
-              <div class="subject-icon-box">📖</div>
-              <div>
-                <div class="subject-meta-title">English Language</div>
-                <div class="subject-meta-count">6 Mock Tests • Grammar, Vocabulary & Comprehension</div>
-              </div>
-            </div>
-            <div class="accordion-indicator">▼</div>
-          </button>
-          <div class="tests-panel">
-            <div class="tests-grid">
-              <a href="grammar-error-spotting-test.html" class="test-card">
-                <div>
-                  <span class="test-tag">English Language</span>
-                  <div class="test-name">Grammar & Error Spotting</div>
-                  <div class="test-desc">15 questions • 15 minutes • Detailed Explanations</div>
-                </div>
-                <div class="test-footer">
-                  <span class="test-badge">Start Test</span>
-                  <div class="test-arrow-btn">→</div>
-                </div>
-              </a>
-
-              <a href="vocabulary-test.html" class="test-card">
-                <div>
-                  <span class="test-tag">English Language</span>
-                  <div class="test-name">Vocabulary (Synonyms & Antonyms)</div>
-                  <div class="test-desc">15 questions • 15 minutes • Detailed Explanations</div>
-                </div>
-                <div class="test-footer">
-                  <span class="test-badge">Start Test</span>
-                  <div class="test-arrow-btn">→</div>
-                </div>
-              </a>
-
-              <a href="reading-comprehension-test.html" class="test-card">
-                <div>
-                  <span class="test-tag">English Language</span>
-                  <div class="test-name">Reading Comprehension</div>
-                  <div class="test-desc">15 questions • 15 minutes • Detailed Explanations</div>
-                </div>
-                <div class="test-footer">
-                  <span class="test-badge">Start Test</span>
-                  <div class="test-arrow-btn">→</div>
-                </div>
-              </a>
-
-              <a href="sentence-correction-test.html" class="test-card">
-                <div>
-                  <span class="test-tag">English Language</span>
-                  <div class="test-name">Sentence Correction</div>
-                  <div class="test-desc">15 questions • 15 minutes • Detailed Explanations</div>
-                </div>
-                <div class="test-footer">
-                  <span class="test-badge">Start Test</span>
-                  <div class="test-arrow-btn">→</div>
-                </div>
-              </a>
-
-              <a href="para-jumbles-test.html" class="test-card">
-                <div>
-                  <span class="test-tag">English Language</span>
-                  <div class="test-name">Para Jumbles</div>
-                  <div class="test-desc">15 questions • 15 minutes • Detailed Explanations</div>
-                </div>
-                <div class="test-footer">
-                  <span class="test-badge">Start Test</span>
-                  <div class="test-arrow-btn">→</div>
-                </div>
-              </a>
-
-              <a href="one-word-substitution-test.html" class="test-card">
-                <div>
-                  <span class="test-tag">English Language</span>
-                  <div class="test-name">One Word Substitution</div>
-                  <div class="test-desc">15 questions • 15 minutes • Detailed Explanations</div>
-                </div>
-                <div class="test-footer">
-                  <span class="test-badge">Start Test</span>
-                  <div class="test-arrow-btn">→</div>
-                </div>
-              </a>
-            </div>
-          </div>
-        </div>
-
-        <!-- 4. General Knowledge -->
-        <div class="subject-block" id="gk-block">
-          <button class="subject-card-btn" onclick="toggleSubject('gk-block')">
-            <div class="subject-btn-left">
-              <div class="subject-icon-box">🌍</div>
-              <div>
-                <div class="subject-meta-title">General Knowledge</div>
-                <div class="subject-meta-count">6 Mock Tests • History, Polity, Geography, Science & Current Affairs</div>
-              </div>
-            </div>
-            <div class="accordion-indicator">▼</div>
-          </button>
-          <div class="tests-panel">
-            <div class="tests-grid">
-              <a href="indian-history-test.html" class="test-card">
-                <div>
-                  <span class="test-tag">General Knowledge</span>
-                  <div class="test-name">Indian History</div>
-                  <div class="test-desc">15 questions • 15 minutes • Detailed Explanations</div>
-                </div>
-                <div class="test-footer">
-                  <span class="test-badge">Start Test</span>
-                  <div class="test-arrow-btn">→</div>
-                </div>
-              </a>
-
-              <a href="indian-geography-test.html" class="test-card">
-                <div>
-                  <span class="test-tag">General Knowledge</span>
-                  <div class="test-name">Indian Geography</div>
-                  <div class="test-desc">15 questions • 15 minutes • Detailed Explanations</div>
-                </div>
-                <div class="test-footer">
-                  <span class="test-badge">Start Test</span>
-                  <div class="test-arrow-btn">→</div>
-                </div>
-              </a>
-
-              <a href="indian-polity-test.html" class="test-card">
-                <div>
-                  <span class="test-tag">General Knowledge</span>
-                  <div class="test-name">Indian Polity</div>
-                  <div class="test-desc">15 questions • 15 minutes • Detailed Explanations</div>
-                </div>
-                <div class="test-footer">
-                  <span class="test-badge">Start Test</span>
-                  <div class="test-arrow-btn">→</div>
-                </div>
-              </a>
-
-              <a href="general-science-test.html" class="test-card">
-                <div>
-                  <span class="test-tag">General Knowledge</span>
-                  <div class="test-name">General Science</div>
-                  <div class="test-desc">15 questions • 15 minutes • Detailed Explanations</div>
-                </div>
-                <div class="test-footer">
-                  <span class="test-badge">Start Test</span>
-                  <div class="test-arrow-btn">→</div>
-                </div>
-              </a>
-
-              <a href="current-affairs-test.html" class="test-card">
-                <div>
-                  <span class="test-tag">General Knowledge</span>
-                  <div class="test-name">Current Affairs</div>
-                  <div class="test-desc">15 questions • 15 minutes • Detailed Explanations</div>
-                </div>
-                <div class="test-footer">
-                  <span class="test-badge">Start Test</span>
-                  <div class="test-arrow-btn">→</div>
-                </div>
-              </a>
-
-              <a href="static-gk-test.html" class="test-card">
-                <div>
-                  <span class="test-tag">General Knowledge</span>
-                  <div class="test-name">Static GK</div>
-                  <div class="test-desc">15 questions • 15 minutes • Detailed Explanations</div>
-                </div>
-                <div class="test-footer">
-                  <span class="test-badge">Start Test</span>
-                  <div class="test-arrow-btn">→</div>
-                </div>
-              </a>
-            </div>
-          </div>
-        </div>
-
-        <!-- 5. Computer Knowledge -->
-        <div class="subject-block" id="computer-block">
-          <button class="subject-card-btn" onclick="toggleSubject('computer-block')">
-            <div class="subject-btn-left">
-              <div class="subject-icon-box">💻</div>
-              <div>
-                <div class="subject-meta-title">Computer Knowledge</div>
-                <div class="subject-meta-count">4 Mock Tests • Fundamentals, MS Office & Networking</div>
-              </div>
-            </div>
-            <div class="accordion-indicator">▼</div>
-          </button>
-          <div class="tests-panel">
-            <div class="tests-grid">
-              <a href="computer-fundamentals-test.html" class="test-card">
-                <div>
-                  <span class="test-tag">Computer Knowledge</span>
-                  <div class="test-name">Computer Fundamentals</div>
-                  <div class="test-desc">15 questions • 15 minutes • Detailed Explanations</div>
-                </div>
-                <div class="test-footer">
-                  <span class="test-badge">Start Test</span>
-                  <div class="test-arrow-btn">→</div>
-                </div>
-              </a>
-
-              <a href="ms-office-test.html" class="test-card">
-                <div>
-                  <span class="test-tag">Computer Knowledge</span>
-                  <div class="test-name">MS Office (Word, Excel, PPT)</div>
-                  <div class="test-desc">15 questions • 15 minutes • Detailed Explanations</div>
-                </div>
-                <div class="test-footer">
-                  <span class="test-badge">Start Test</span>
-                  <div class="test-arrow-btn">→</div>
-                </div>
-              </a>
-
-              <a href="internet-networking-test.html" class="test-card">
-                <div>
-                  <span class="test-tag">Computer Knowledge</span>
-                  <div class="test-name">Internet & Networking</div>
-                  <div class="test-desc">15 questions • 15 minutes • Detailed Explanations</div>
-                </div>
-                <div class="test-footer">
-                  <span class="test-badge">Start Test</span>
-                  <div class="test-arrow-btn">→</div>
-                </div>
-              </a>
-
-              <a href="cybersecurity-basics-test.html" class="test-card">
-                <div>
-                  <span class="test-tag">Computer Knowledge</span>
-                  <div class="test-name">Cybersecurity Basics</div>
-                  <div class="test-desc">15 questions • 15 minutes • Detailed Explanations</div>
-                </div>
-                <div class="test-footer">
-                  <span class="test-badge">Start Test</span>
-                  <div class="test-arrow-btn">→</div>
-                </div>
-              </a>
-            </div>
-          </div>
-        </div>
-
+    <div class="section-card">
+      <div class="section-header">
+        <span class="section-icon">📚</span>
+        <h2 class="section-title">Browse by Subject</h2>
       </div>
-    </section>
-  </main>
+      <p class="section-desc">Select a subject area to view practice tests and module overviews.</p>
+
+      <div class="subject-grid">
+        <a href="#quant-notes" class="subject-card blue">
+          <div>
+            <div class="subject-head">
+              <span>🧮</span> Quantitative Aptitude
+            </div>
+            <div class="subject-info">10 Core Topics: Percentages, Profit & Loss, Ratio, Time & Work, Algebra, Mensuration, and more.</div>
+          </div>
+          <div class="subject-action">
+            <span>Explore Notes & Tests</span>
+            <span>→</span>
+          </div>
+        </a>
+
+        <a href="#reasoning-notes" class="subject-card green">
+          <div>
+            <div class="subject-head">
+              <span>🧩</span> Logical Reasoning
+            </div>
+            <div class="subject-info">7 Core Topics: Blood Relations, Coding, Series, Syllogisms, Seating, Puzzles, and Directions.</div>
+          </div>
+          <div class="subject-action">
+            <span>Explore Notes & Tests</span>
+            <span>→</span>
+          </div>
+        </a>
+
+        <a href="#english-notes" class="subject-card purple">
+          <div>
+            <div class="subject-head">
+              <span>📖</span> English Language
+            </div>
+            <div class="subject-info">8 Core Topics: RC, Cloze Test, Error Spotting, Fillers, Idioms, Vocabulary, Para Jumbles.</div>
+          </div>
+          <div class="subject-action">
+            <span>Explore Notes & Tests</span>
+            <span>→</span>
+          </div>
+        </a>
+
+        <a href="#gk-notes" class="subject-card orange">
+          <div>
+            <div class="subject-head"><span>🏛️</span> General Knowledge</div>
+            <div class="subject-info">6 Core Topics: History, Geography, Polity, Science, Current Affairs, and Static GK.</div>
+          </div>
+          <div class="subject-action">
+            <span>Explore Notes & Tests</span>
+            <span>→</span>
+          </div>
+        </a>
+
+        <a href="#computer-notes" class="subject-card rose">
+          <div>
+            <div class="subject-head">
+              <span>💻</span> Computer Knowledge
+            </div>
+            <div class="subject-info">4 Core Topics: Computer Fundamentals, MS Office Suite, Internet & Networking, Cybersecurity.</div>
+          </div>
+          <div class="subject-action">
+            <span>Explore Notes & Tests</span>
+            <span>→</span>
+          </div>
+        </a>
+      </div>
+    </div>
+
+    <!-- Notes Library Section -->
+    <div class="section-card">
+      <div class="section-header">
+        <span class="section-icon">📚</span>
+        <h2 class="section-title">Notes Library</h2>
+      </div>
+      <p class="section-desc">Browse all study notes by topic.</p>
+
+      <!-- Quantitative Aptitude Notes -->
+      <div class="notes-group" id="quant-notes">
+        <div class="subject-subheading">
+          <span>🧮</span> QUANTITATIVE APTITUDE
+        </div>
+        <div class="notes-grid">
+          <a href="percentage-notes.html" class="note-card">
+            <div class="note-left">
+              <span class="note-icon">📖</span>
+              <span class="note-title">Percentage</span>
+            </div>
+            <span class="note-arrow">→</span>
+          </a>
+
+          <a href="ratio-proportion-notes.html" class="note-card">
+            <div class="note-left">
+              <span class="note-icon">📖</span>
+              <span class="note-title">Ratio & Proportion</span>
+            </div>
+            <span class="note-arrow">→</span>
+          </a>
+
+          <a href="profit-loss-notes.html" class="note-card">
+            <div class="note-left">
+              <span class="note-icon">📖</span>
+              <span class="note-title">Profit & Loss</span>
+            </div>
+            <span class="note-arrow">→</span>
+          </a>
+
+          <a href="time-work-notes.html" class="note-card">
+            <div class="note-left">
+              <span class="note-icon">📖</span>
+              <span class="note-title">Time & Work</span>
+            </div>
+            <span class="note-arrow">→</span>
+          </a>
+
+          <a href="number-system-notes.html" class="note-card">
+            <div class="note-left">
+              <span class="note-icon">📖</span>
+              <span class="note-title">Number System</span>
+            </div>
+            <span class="note-arrow">→</span>
+          </a>
+
+          <a href="simplification-notes.html" class="note-card">
+            <div class="note-left">
+              <span class="note-icon">📖</span>
+              <span class="note-title">Simplification</span>
+            </div>
+            <span class="note-arrow">→</span>
+          </a>
+
+          <a href="average-notes.html" class="note-card">
+            <div class="note-left">
+              <span class="note-icon">📖</span>
+              <span class="note-title">Average</span>
+            </div>
+            <span class="note-arrow">→</span>
+          </a>
+
+          <a href="si-ci-notes.html" class="note-card">
+            <div class="note-left">
+              <span class="note-icon">📖</span>
+              <span class="note-title">Simple Interest & Compound Interest</span>
+            </div>
+            <span class="note-arrow">→</span>
+          </a>
+
+          <a href="mensuration-notes.html" class="note-card">
+            <div class="note-left">
+              <span class="note-icon">📖</span>
+              <span class="note-title">Mensuration</span>
+            </div>
+            <span class="note-arrow">→</span>
+          </a>
+
+          <a href="algebra-notes.html" class="note-card">
+            <div class="note-left">
+              <span class="note-icon">📖</span>
+              <span class="note-title">Algebra</span>
+            </div>
+            <span class="note-arrow">→</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- Logical Reasoning Notes -->
+      <div class="notes-group" id="reasoning-notes">
+        <div class="subject-subheading">
+          <span>🧩</span> LOGICAL REASONING
+        </div>
+        <div class="notes-grid">
+          <a href="blood-relations-notes.html" class="note-card">
+            <div class="note-left">
+              <span class="note-icon">📖</span>
+              <span class="note-title">Blood Relations</span>
+            </div>
+            <span class="note-arrow">→</span>
+          </a>
+
+          <a href="coding-decoding-notes.html" class="note-card">
+            <div class="note-left">
+              <span class="note-icon">📖</span>
+              <span class="note-title">Coding-Decoding</span>
+            </div>
+            <span class="note-arrow">→</span>
+          </a>
+
+          <a href="series-notes.html" class="note-card">
+            <div class="note-left">
+              <span class="note-icon">📖</span>
+              <span class="note-title">Series</span>
+            </div>
+            <span class="note-arrow">→</span>
+          </a>
+
+          <a href="syllogism-notes.html" class="note-card">
+            <div class="note-left">
+              <span class="note-icon">📖</span>
+              <span class="note-title">Syllogism</span>
+            </div>
+            <span class="note-arrow">→</span>
+          </a>
+
+          <a href="seating-arrangement-notes.html" class="note-card">
+            <div class="note-left">
+              <span class="note-icon">📖</span>
+              <span class="note-title">Seating Arrangement</span>
+            </div>
+            <span class="note-arrow">→</span>
+          </a>
+
+          <a href="direction-sense-notes.html" class="note-card">
+            <div class="note-left">
+              <span class="note-icon">📖</span>
+              <span class="note-title">Direction Sense</span>
+            </div>
+            <span class="note-arrow">→</span>
+          </a>
+
+          <a href="puzzles-notes.html" class="note-card">
+            <div class="note-left">
+              <span class="note-icon">📖</span>
+              <span class="note-title">Puzzles</span>
+            </div>
+            <span class="note-arrow">→</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- English Language Notes -->
+      <div class="notes-group" id="english-notes">
+        <div class="subject-subheading">
+          <span>📝</span> ENGLISH LANGUAGE
+        </div>
+        <div class="notes-grid">
+          <a href="rc-notes.html" class="note-card">
+            <div class="note-left">
+              <span class="note-icon">📖</span>
+              <span class="note-title">Reading Comprehension</span>
+            </div>
+            <span class="note-arrow">→</span>
+          </a>
+
+          <a href="cloze-test-notes.html" class="note-card">
+            <div class="note-left">
+              <span class="note-icon">📖</span>
+              <span class="note-title">Cloze Test</span>
+            </div>
+            <span class="note-arrow">→</span>
+          </a>
+
+          <a href="error-spotting-notes.html" class="note-card">
+            <div class="note-left">
+              <span class="note-icon">📖</span>
+              <span class="note-title">Error Spotting</span>
+            </div>
+            <span class="note-arrow">→</span>
+          </a>
+
+          <a href="fillers-notes.html" class="note-card">
+            <div class="note-left">
+              <span class="note-icon">📖</span>
+              <span class="note-title">Fillers</span>
+            </div>
+            <span class="note-arrow">→</span>
+          </a>
+
+          <a href="idioms-notes.html" class="note-card">
+            <div class="note-left">
+              <span class="note-icon">📖</span>
+              <span class="note-title">Idioms</span>
+            </div>
+            <span class="note-arrow">→</span>
+          </a>
+
+          <a href="synonyms-antonyms-notes.html" class="note-card">
+            <div class="note-left">
+              <span class="note-icon">📖</span>
+              <span class="note-title">Synonyms & Antonyms</span>
+            </div>
+            <span class="note-arrow">→</span>
+          </a>
+
+          <a href="one-word-substitution-notes.html" class="note-card">
+            <div class="note-left">
+              <span class="note-icon">📖</span>
+              <span class="note-title">One Word Substitution</span>
+            </div>
+            <span class="note-arrow">→</span>
+          </a>
+
+          <a href="para-jumbles-notes.html" class="note-card">
+            <div class="note-left">
+              <span class="note-icon">📖</span>
+              <span class="note-title">Para Jumbles</span>
+            </div>
+            <span class="note-arrow">→</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- General Knowledge Notes -->
+      <div class="notes-group" id="gk-notes">
+        <div class="subject-subheading">
+          <span>🏛️</span> GENERAL KNOWLEDGE
+        </div>
+        <div class="notes-grid">
+          <a href="indian-history-notes.html" class="note-card">
+            <div class="note-left">
+              <span class="note-icon">📖</span>
+              <span class="note-title">Indian History</span>
+            </div>
+            <span class="note-arrow">→</span>
+          </a>
+
+          <a href="indian-geography-notes.html" class="note-card">
+            <div class="note-left">
+              <span class="note-icon">📖</span>
+              <span class="note-title">Indian Geography</span>
+            </div>
+            <span class="note-arrow">→</span>
+          </a>
+
+          <a href="indian-polity-notes.html" class="note-card">
+            <div class="note-left">
+              <span class="note-icon">📖</span>
+              <span class="note-title">Indian Polity</span>
+            </div>
+            <span class="note-arrow">→</span>
+          </a>
+
+          <a href="general-science-notes.html" class="note-card">
+            <div class="note-left">
+              <span class="note-icon">📖</span>
+              <span class="note-title">General Science</span>
+            </div>
+            <span class="note-arrow">→</span>
+          </a>
+
+          <a href="current-affairs-notes.html" class="note-card">
+            <div class="note-left">
+              <span class="note-icon">📖</span>
+              <span class="note-title">Current Affairs</span>
+            </div>
+            <span class="note-arrow">→</span>
+          </a>
+
+          <a href="static-gk-notes.html" class="note-card">
+            <div class="note-left">
+              <span class="note-icon">📖</span>
+              <span class="note-title">Static GK</span>
+            </div>
+            <span class="note-arrow">→</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- Computer Knowledge Notes -->
+      <div class="notes-group" id="computer-notes">
+        <div class="subject-subheading">
+          <span>💻</span> COMPUTER KNOWLEDGE
+        </div>
+        <div class="notes-grid">
+          <a href="computer-fundamentals-notes.html" class="note-card">
+            <div class="note-left">
+              <span class="note-icon">📖</span>
+              <span class="note-title">Computer Fundamentals</span>
+            </div>
+            <span class="note-arrow">→</span>
+          </a>
+
+          <a href="ms-office-notes.html" class="note-card">
+            <div class="note-left">
+              <span class="note-icon">📖</span>
+              <span class="note-title">MS Office</span>
+            </div>
+            <span class="note-arrow">→</span>
+          </a>
+
+          <a href="internet-networking-notes.html" class="note-card">
+            <div class="note-left">
+              <span class="note-icon">📖</span>
+              <span class="note-title">Internet & Networking</span>
+            </div>
+            <span class="note-arrow">→</span>
+          </a>
+
+          <a href="cybersecurity-notes.html" class="note-card">
+            <div class="note-left">
+              <span class="note-icon">📖</span>
+              <span class="note-title">Cybersecurity</span>
+            </div>
+            <span class="note-arrow">→</span>
+          </a>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
 
   <footer>
-    <p>© Exam Prep Hub. Free online mock tests and topic-wise practice modules for government exam aspirants.</p>
+    <p>© Exam Prep Hub. All study notes and practice materials curated for competitive exam preparation.</p>
   </footer>
 
-  <script>
-    function toggleSubject(blockId) {
-      const allBlocks = document.querySelectorAll('.subject-block');
-      const targetBlock = document.getElementById(blockId);
-      const isAlreadyActive = targetBlock.classList.contains('active');
-
-      allBlocks.forEach(b => b.classList.remove('active'));
-
-      if (!isAlreadyActive) {
-        targetBlock.classList.add('active');
-      }
-    }
-
-    function scrollToSubjects(blockId) {
-      const browseSection = document.getElementById('browse-subjects');
-      browseSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
-
-      setTimeout(() => {
-        const allBlocks = document.querySelectorAll('.subject-block');
-        allBlocks.forEach(b => b.classList.remove('active'));
-
-        const targetBlock = document.getElementById(blockId);
-        if (targetBlock) {
-          targetBlock.classList.add('active');
-        }
-      }, 400);
-    }
-  </script>
 </body>
 </html>
+```e-o-f
+```eof
+
+### Key Updates Made
+1. **Added "📚 Notes Library" Section**: Positioned directly below the "Browse by Subject" section and before the footer.
+2. **Subject Sub-headings**: Grouped all 35 study notes into their respective 5 subjects (`QUANTITATIVE APTITUDE`, `LOGICAL REASONING`, `ENGLISH LANGUAGE`, `GENERAL KNOWLEDGE`, and `COMPUTER KNOWLEDGE`).
+3. **Responsive Card Grid**: Styled all note links as clean, clickable cards with a book icon (`📖`), title, and arrow indicator (`→`) that elevates on hover.
+4. **Anchors Connected**: Clicking "Explore Notes & Tests" in the subject cards above smoothly scrolls directly to the corresponding notes group in the library.
