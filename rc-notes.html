@@ -1,0 +1,682 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Reading Comprehension - Study Notes | Exam Prep Hub</title>
+  <style>
+    :root {
+      --primary: #1e40af;
+      --primary-hover: #1d4ed8;
+      --primary-light: #eff6ff;
+      --bg: #f8fafc;
+      --card-bg: #ffffff;
+      --text: #0f172a;
+      --text-muted: #64748b;
+      --border: #e2e8f0;
+      
+      --blue-card-bg: #eff6ff;
+      --blue-card-border: #bfdbfe;
+      --blue-text: #1d4ed8;
+
+      --green-card-bg: #f0fdf4;
+      --green-card-border: #bbf7d0;
+      --green-text: #15803d;
+
+      --purple-card-bg: #faf5ff;
+      --purple-card-border: #e9d5ff;
+      --purple-text: #7e22ce;
+
+      --orange-card-bg: #fff7ed;
+      --orange-card-border: #fed7aa;
+      --orange-text: #c2410c;
+
+      --rose-card-bg: #fff1f2;
+      --rose-card-border: #fecdd3;
+      --rose-text: #be123c;
+
+      --radius: 14px;
+      --shadow: 0 4px 6px -1px rgb(0 0 0 / 0.08), 0 2px 4px -2px rgb(0 0 0 / 0.06);
+      --shadow-hover: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.08);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    }
+
+    body {
+      background-color: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      padding-bottom: 60px;
+    }
+
+    header {
+      background-color: var(--card-bg);
+      border-bottom: 1px solid var(--border);
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.05);
+    }
+
+    .header-container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 14px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .back-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      color: var(--primary);
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 0.95rem;
+      transition: transform 0.2s ease, color 0.2s ease;
+    }
+
+    .back-btn:hover {
+      transform: translateX(-3px);
+      color: var(--primary-hover);
+    }
+
+    .badge-tag {
+      background: var(--primary-light);
+      color: var(--primary);
+      font-size: 0.8rem;
+      font-weight: 700;
+      padding: 4px 12px;
+      border-radius: 9999px;
+      border: 1px solid #bfdbfe;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 800px;
+      margin: 28px auto 0;
+      padding: 0 16px;
+    }
+
+    .hero-card {
+      background: linear-gradient(135deg, #1e3a8a 0%, #1e40af 60%, #3b82f6 100%);
+      color: #ffffff;
+      border-radius: var(--radius);
+      padding: 28px 24px;
+      box-shadow: var(--shadow);
+      margin-bottom: 28px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .hero-title {
+      font-size: 1.75rem;
+      font-weight: 800;
+      margin-bottom: 6px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .hero-subtitle {
+      font-size: 0.95rem;
+      opacity: 0.9;
+    }
+
+    .hero-icon {
+      font-size: 2.8rem;
+      flex-shrink: 0;
+      background: rgba(255, 255, 255, 0.15);
+      border-radius: 16px;
+      width: 72px;
+      height: 72px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid rgba(255, 255, 255, 0.25);
+    }
+
+    .section-card {
+      background: var(--card-bg);
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
+      padding: 24px;
+      box-shadow: var(--shadow);
+      margin-bottom: 24px;
+    }
+
+    .section-header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 18px;
+      border-bottom: 2px solid #f1f5f9;
+      padding-bottom: 12px;
+    }
+
+    .section-icon {
+      font-size: 1.35rem;
+    }
+
+    .section-title {
+      font-size: 1.25rem;
+      font-weight: 800;
+      color: var(--text);
+    }
+
+    .concept-grid {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 20px;
+      align-items: center;
+    }
+
+    .concept-text {
+      font-size: 0.96rem;
+      color: #334155;
+    }
+
+    .concept-visual {
+      background: #f8fafc;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .fraction-badge {
+      display: inline-block;
+      background: #eff6ff;
+      color: var(--primary);
+      font-weight: 700;
+      padding: 2px 8px;
+      border-radius: 6px;
+      border: 1px solid #bfdbfe;
+    }
+
+    .formulas-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 16px;
+    }
+
+    .formula-card {
+      border-radius: 12px;
+      padding: 18px;
+      border-width: 1.5px;
+      border-style: solid;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .formula-card:hover {
+      transform: translateY(-3px);
+      box-shadow: var(--shadow);
+    }
+
+    .formula-card.blue {
+      background-color: var(--blue-card-bg);
+      border-color: var(--blue-card-border);
+    }
+    .formula-card.green {
+      background-color: var(--green-card-bg);
+      border-color: var(--green-card-border);
+    }
+    .formula-card.purple {
+      background-color: var(--purple-card-bg);
+      border-color: var(--purple-card-border);
+    }
+    .formula-card.orange {
+      background-color: var(--orange-card-bg);
+      border-color: var(--orange-card-border);
+    }
+
+    .formula-head {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.85rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      margin-bottom: 10px;
+    }
+
+    .formula-card.blue .formula-head { color: var(--blue-text); }
+    .formula-card.green .formula-head { color: var(--green-text); }
+    .formula-card.purple .formula-head { color: var(--purple-text); }
+    .formula-card.orange .formula-head { color: var(--orange-text); }
+
+    .formula-math {
+      font-size: 1.05rem;
+      font-weight: 800;
+      color: #1e293b;
+      margin-bottom: 8px;
+      background: rgba(255, 255, 255, 0.85);
+      padding: 8px 12px;
+      border-radius: 8px;
+      border: 1px dashed rgba(0, 0, 0, 0.15);
+      text-align: center;
+    }
+
+    .formula-note {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+    }
+
+    .examples-list {
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+
+    .example-card {
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      background: #ffffff;
+      padding: 18px;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+    }
+
+    .example-title {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .step-row {
+      margin-bottom: 8px;
+      font-size: 0.92rem;
+      display: flex;
+      align-items: baseline;
+      gap: 8px;
+    }
+
+    .step-tag {
+      font-size: 0.75rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      padding: 2px 8px;
+      border-radius: 6px;
+      flex-shrink: 0;
+    }
+
+    .step-given { background: #eff6ff; color: var(--blue-text); }
+    .step-formula { background: #faf5ff; color: var(--purple-text); }
+    .step-sol { background: #f0fdf4; color: var(--green-text); }
+
+    .answer-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: #dcfce7;
+      color: #15803d;
+      font-weight: 800;
+      font-size: 0.95rem;
+      padding: 6px 14px;
+      border-radius: 8px;
+      border: 1px solid #86efac;
+      margin-top: 6px;
+    }
+
+    .tips-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 14px;
+    }
+
+    .tip-card {
+      border-radius: 12px;
+      padding: 16px;
+      border: 1px solid var(--border);
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+    }
+
+    .tip-card.t1 { background-color: #fffbeb; border-color: #fde68a; }
+    .tip-card.t2 { background-color: #f0fdf4; border-color: #bbf7d0; }
+    .tip-card.t3 { background-color: #eff6ff; border-color: #bfdbfe; }
+    .tip-card.t4 { background-color: #faf5ff; border-color: #e9d5ff; }
+
+    .tip-icon {
+      font-size: 1.3rem;
+      flex-shrink: 0;
+    }
+
+    .tip-text {
+      font-size: 0.88rem;
+      color: #334155;
+    }
+
+    .tip-text strong {
+      color: #0f172a;
+    }
+
+    .mistakes-list {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .mistake-box {
+      background-color: var(--rose-card-bg);
+      border: 1.5px solid var(--rose-card-border);
+      border-radius: 12px;
+      padding: 14px 16px;
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+    }
+
+    .mistake-icon {
+      font-size: 1.3rem;
+      color: var(--rose-text);
+      flex-shrink: 0;
+    }
+
+    .mistake-title {
+      font-weight: 700;
+      color: var(--rose-text);
+      font-size: 0.92rem;
+      margin-bottom: 2px;
+    }
+
+    .mistake-desc {
+      font-size: 0.86rem;
+      color: #475569;
+    }
+
+    .cta-container {
+      text-align: center;
+      margin-top: 32px;
+    }
+
+    .btn-quiz-cta {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      background: linear-gradient(135deg, #1e40af 0%, #2563eb 100%);
+      color: #ffffff;
+      padding: 16px 36px;
+      border-radius: 12px;
+      font-size: 1.1rem;
+      font-weight: 800;
+      text-decoration: none;
+      box-shadow: 0 4px 12px rgba(37, 99, 235, 0.35);
+      transition: all 0.25s ease;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .btn-quiz-cta:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 18px rgba(37, 99, 235, 0.45);
+      background: linear-gradient(135deg, #1d4ed8 0%, #1d4ed8 100%);
+    }
+
+    @media (max-width: 640px) {
+      .hero-card {
+        flex-direction: column-reverse;
+        text-align: center;
+        padding: 20px;
+      }
+      .concept-grid {
+        grid-template-columns: 1fr;
+      }
+      .hero-title {
+        font-size: 1.45rem;
+        justify-content: center;
+      }
+      .btn-quiz-cta {
+        width: 100%;
+        padding: 14px 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="header-container">
+      <a href="index.html" class="back-btn">← Back to Home</a>
+      <span class="badge-tag">General English</span>
+    </div>
+  </header>
+
+  <div class="container">
+
+    <div class="hero-card">
+      <div>
+        <h1 class="hero-title">📖 Reading Comprehension - Study Notes</h1>
+        <p class="hero-subtitle">Master Skimming & Scanning, Central Theme extraction, Author's Tone deduction, Direct vs Inference questions, and Contextual Vocabulary.</p>
+      </div>
+      <div class="hero-icon">📚</div>
+    </div>
+
+    <!-- 1. Concept & Approach -->
+    <div class="section-card">
+      <div class="section-header">
+        <span class="section-icon">💡</span>
+        <h2 class="section-title">Active Reading & Passage Breakdown</h2>
+      </div>
+      
+      <div class="concept-grid">
+        <div class="concept-text">
+          <p style="margin-bottom: 10px;">
+            <strong>Reading Comprehension (RC)</strong> evaluates your ability to digest written arguments, identify core themes, infer underlying premises, and extract specific factual details efficiently.
+          </p>
+          <div style="background: #f1f5f9; padding: 10px 14px; border-radius: 8px; border-left: 4px solid var(--primary); font-size: 0.9rem;">
+            <strong>The 2-Phase Strategy:</strong><br>
+            • <strong>Phase 1 (Skim & Question Mapping):</strong> Read question stems first to identify keywords (names, years, technical terms), then skim the passage for structural layout.<br>
+            • <strong>Phase 2 (Targeted Scan):</strong> Locate the specific paragraphs containing mapped keywords and analyze the preceding and succeeding sentences.
+          </div>
+        </div>
+
+        <div class="concept-visual">
+          <svg width="150" height="150" viewBox="0 0 100 100">
+            <!-- Funnel visual: Passage -> Theme -> Detail -->
+            <polygon points="15,20 85,20 65,55 35,55" fill="#dbeafe" stroke="#1e40af" stroke-width="2" />
+            <polygon points="35,55 65,55 56,82 44,82" fill="#93c5fd" stroke="#1e40af" stroke-width="2" />
+            <text x="50" y="38" text-anchor="middle" font-size="7" font-weight="bold" fill="#1e40af">1. Skim & Structure</text>
+            <text x="50" y="70" text-anchor="middle" font-size="6" font-weight="bold" fill="#1e3a8a">2. Scan Keywords</text>
+            <text x="50" y="94" text-anchor="middle" font-size="7" font-weight="bold" fill="#475569">3. Extract Answer</text>
+          </svg>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2. Question Types & Tone Archetypes -->
+    <div class="section-card">
+      <div class="section-header">
+        <span class="section-icon">📐</span>
+        <h2 class="section-title">Core Question Types & Author Tones</h2>
+      </div>
+
+      <div class="formulas-grid">
+        <div class="formula-card blue">
+          <div>
+            <div class="formula-head"><span>🎯</span> Central Idea / Title</div>
+            <div class="formula-math">Core Subject + Author's Stance</div>
+          </div>
+          <div class="formula-note">Usually found in the opening paragraph or final concluding sentences.</div>
+        </div>
+
+        <div class="formula-card green">
+          <div>
+            <div class="formula-head"><span>🔍</span> Direct & Fact-Based</div>
+            <div class="formula-math">Keyword Anchoring</div>
+          </div>
+          <div class="formula-note">Verify using exact synonyms; beware of options with partial factual distortion.</div>
+        </div>
+
+        <div class="formula-card purple">
+          <div>
+            <div class="formula-head"><span>🧠</span> Inference & Implicit Meaning</div>
+            <div class="formula-math">Stated Fact &rarr; Logical Next Step</div>
+          </div>
+          <div class="formula-note">Must be 100% supported by passage evidence without bringing external bias.</div>
+        </div>
+
+        <div class="formula-card orange">
+          <div>
+            <div class="formula-head"><span>🎭</span> Author's Tone Analysis</div>
+            <div class="formula-math">Descriptive / Critical / Objective</div>
+          </div>
+          <div class="formula-note">Identified by adjectives and transition words (e.g., however, alarming, promising).</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 3. Solved Examples -->
+    <div class="section-card">
+      <div class="section-header">
+        <span class="section-icon">📝</span>
+        <h2 class="section-title">Step-by-Step Solved Examples</h2>
+      </div>
+
+      <div class="examples-list">
+        <!-- Example 1 -->
+        <div class="example-card">
+          <div class="example-title">
+            <span style="background: #eff6ff; color: #1e40af; padding: 2px 8px; border-radius: 6px; font-size: 0.85rem;">Ex 1</span>
+            Passage Snippet: "While artificial intelligence offers unprecedented automation gains, its rapid adoption without regulatory oversight poses acute risks to labor displacement and algorithmic bias."<br>
+            Question: What is the primary tone of the author?
+          </div>
+          <div class="step-row">
+            <span class="step-tag step-given">Key Clues</span>
+            <span>"unprecedented gains" (positive) balanced with "without oversight poses acute risks" (cautionary)</span>
+          </div>
+          <div class="step-row">
+            <span class="step-tag step-formula">Tone Diagnostic</span>
+            <span>The author acknowledges benefits but warns against unmonitored dangers &rarr; <strong>Cautious / Critical</strong></span>
+          </div>
+          <div class="step-row">
+            <span class="step-tag step-sol">Solution</span>
+            <span>Tone is <strong>Cautious / Prudent</strong> (neither purely pessimistic nor blindly optimistic).</span>
+          </div>
+          <div>
+            <span class="answer-badge">✓ Final Answer: Cautious / Analytical Tone</span>
+          </div>
+        </div>
+
+        <!-- Example 2 -->
+        <div class="example-card">
+          <div class="example-title">
+            <span style="background: #eff6ff; color: #1e40af; padding: 2px 8px; border-radius: 6px; font-size: 0.85rem;">Ex 2</span>
+            Passage Snippet: "Forest cover in the Western Ghats shrank by 15% between 2000 and 2020 due to unchecked plantation expansions and road infrastructure projects."<br>
+            Question: Which of the following is directly supported by the passage?
+          </div>
+          <div class="step-row">
+            <span class="step-tag step-given">Passage Fact</span>
+            <span>Forest depletion = 15%; Causes = Plantations + Roads; Period = 2000-2020.</span>
+          </div>
+          <div class="step-row">
+            <span class="step-tag step-formula">Verification</span>
+            <span>Option A: "Road projects contributed to deforestation in the Western Ghats." &rarr; <strong>Direct Match</strong></span>
+          </div>
+          <div class="step-row">
+            <span class="step-tag step-sol">Elimination</span>
+            <span>Option B: "All forests in India will disappear by 2040." &rarr; <strong>Extreme generalization (Eliminate)</strong></span>
+          </div>
+          <div>
+            <span class="answer-badge">✓ Final Answer: Road projects directly contributed to deforestation</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 4. Quick Tips & Tricks -->
+    <div class="section-card">
+      <div class="section-header">
+        <span class="section-icon">⭐</span>
+        <h2 class="section-title">Speed-Solving Tips & Shortcuts</h2>
+      </div>
+
+      <div class="tips-grid">
+        <div class="tip-card t1">
+          <div class="tip-icon">🚫</div>
+          <div class="tip-text"><strong>Extreme Word Trap:</strong> Options containing extreme absolute words like <em>always, never, all, completely, solely</em> are almost always incorrect in inference questions.</div>
+        </div>
+
+        <div class="tip-card t2">
+          <div class="tip-icon">🔄</div>
+          <div class="tip-text"><strong>Pivot Words:</strong> Pay intense attention to transition signals: <em>However, Nonetheless, Despite, Although, But, Consequently</em>. They signal shifts in the author's primary argument.</div>
+        </div>
+
+        <div class="tip-card t3">
+          <div class="tip-icon">🎯</div>
+          <div class="tip-text"><strong>Contextual Vocab:</strong> In vocabulary questions, replace the highlighted word with each option in the original sentence to test which fits the context best.</div>
+        </div>
+
+        <div class="tip-card t4">
+          <div class="tip-icon">⚡</div>
+          <div class="tip-text"><strong>First & Last Paragraph Rule:</strong> In long passages, reading the introductory 3 lines and the concluding 3 lines gives you the central thesis in 80% of cases.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 5. Common Mistakes -->
+    <div class="section-card">
+      <div class="section-header">
+        <span class="section-icon">⚠️</span>
+        <h2 class="section-title">Common Mistakes to Avoid</h2>
+      </div>
+
+      <div class="mistakes-list">
+        <div class="mistake-box">
+          <div class="mistake-icon">🚫</div>
+          <div>
+            <div class="mistake-title">Mistake 1: Bringing External Knowledge / Bias</div>
+                        <div class="mistake-desc">RC tests strict comprehension of the provided text only. Even if a statement is factually true in real life, if it is not supported by the passage, it is <strong>incorrect</strong>.</div>
+          </div>
+        </div>
+
+        <div class="mistake-box">
+          <div class="mistake-icon">🚫</div>
+          <div>
+            <div class="mistake-title">Mistake 2: Picking Options with Word-for-Word Matching but Altered Logic</div>
+            <div class="mistake-desc">Examiners craft trap choices using exact passage keywords while reversing the causative relationship (e.g., swapping cause and effect).</div>
+          </div>
+        </div>
+
+        <div class="mistake-box">
+          <div class="mistake-icon">🚫</div>
+          <div>
+            <div class="mistake-title">Mistake 3: Reading the Entire Passage Line-by-Line First</div>
+            <div class="mistake-desc">Reading a dense 600-word passage without knowing what questions are asked wastes valuable time. Always scan question stems first.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CTA Button -->
+    <div class="cta-container">
+      <a href="rc-test.html" class="btn-quiz-cta">
+        <span>🚀 Take Reading Comprehension Mock Test</span>
+        <span>→</span>
+      </a>
+    </div>
+
+  </div>
+
+</body>
+</html>
