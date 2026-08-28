@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Exam Prep Hub - UGC NET Paper 1 & Govt Exams</title>
+  <title>Exam Prep Hub - Complete Notes & Mock Tests</title>
   <style>
     :root {
       --primary: #1e40af;
@@ -36,7 +36,7 @@
       background-color: var(--bg);
       color: var(--text);
       line-height: 1.5;
-      padding-bottom: 60px;
+      padding-bottom: 70px;
     }
 
     /* Navbar */
@@ -49,7 +49,7 @@
     }
 
     .header-container {
-      max-width: 900px;
+      max-width: 960px;
       margin: 0 auto;
       padding: 10px 16px;
       display: flex;
@@ -68,15 +68,15 @@
     }
 
     .brand-icon {
-      width: 24px;
-      height: 24px;
+      width: 26px;
+      height: 26px;
       border-radius: 50%;
       background: #ef4444;
       display: flex;
       align-items: center;
       justify-content: center;
       color: #fff;
-      font-size: 0.75rem;
+      font-size: 0.8rem;
       font-weight: 900;
     }
 
@@ -86,7 +86,7 @@
       color: #15803d;
       background: #f0fdf4;
       border: 1px solid #bbf7d0;
-      padding: 4px 12px;
+      padding: 5px 12px;
       border-radius: 9999px;
       text-decoration: none;
       display: inline-flex;
@@ -101,7 +101,7 @@
     }
 
     .container {
-      max-width: 900px;
+      max-width: 960px;
       margin: 16px auto 0;
       padding: 0 14px;
     }
@@ -111,7 +111,7 @@
       background: linear-gradient(135deg, #0f172a 0%, #1e3a8a 50%, #2563eb 100%);
       color: #ffffff;
       border-radius: var(--radius);
-      padding: 20px 22px;
+      padding: 22px 24px;
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -120,15 +120,15 @@
     }
 
     .hero-title {
-      font-size: 1.35rem;
+      font-size: 1.4rem;
       font-weight: 800;
       margin-bottom: 4px;
     }
 
     .hero-subtitle {
-      font-size: 0.85rem;
+      font-size: 0.86rem;
       opacity: 0.9;
-      max-width: 600px;
+      max-width: 650px;
     }
 
     .hero-badge-icon {
@@ -215,7 +215,7 @@
       font-weight: 600;
     }
 
-    /* Section Title */
+    /* Section Headings */
     .section-head {
       font-size: 1.05rem;
       font-weight: 800;
@@ -571,7 +571,7 @@
       <button class="subj-card ugc-card active" id="btn-ugc-net" onclick="switchSubject('ugc-net')">
         <div>
           <div class="subj-title">🎓 UGC NET Paper 1</div>
-          <div class="subj-desc">6 Core Units: Teaching, Research, RC, Reasoning, ICT, and Higher Education.</div>
+          <div class="subj-desc">6 Core Units: Teaching, Research, RC, Reasoning, ICT, Higher Education.</div>
         </div>
         <div class="subj-toggle">
           <span>Hide Notes & Tests</span>
@@ -583,7 +583,7 @@
       <button class="subj-card" id="btn-quant" onclick="switchSubject('quant')">
         <div>
           <div class="subj-title">🧮 Quantitative Aptitude</div>
-          <div class="subj-desc">10 Modules: Percentages, Profit & Loss, Ratio, Time & Work, Algebra, Mensuration.</div>
+          <div class="subj-desc">10 Modules: Percentages, Profit & Loss, Ratio, Time & Work, Algebra, etc.</div>
         </div>
         <div class="subj-toggle">
           <span>View Notes & Tests</span>
@@ -595,7 +595,7 @@
       <button class="subj-card" id="btn-reasoning" onclick="switchSubject('reasoning')">
         <div>
           <div class="subj-title">🧩 Logical Reasoning</div>
-          <div class="subj-desc">7 Modules: Syllogisms, Blood Relations, Coding, Direction, Square of Opposition.</div>
+          <div class="subj-desc">8 Modules: Syllogisms, Blood Relations, Coding, Puzzles, Series, etc.</div>
         </div>
         <div class="subj-toggle">
           <span>View Notes & Tests</span>
@@ -607,7 +607,7 @@
       <button class="subj-card" id="btn-english" onclick="switchSubject('english')">
         <div>
           <div class="subj-title">📖 English Language</div>
-          <div class="subj-desc">6 Modules: RC, Cloze Test, Error Spotting, Idioms, Vocabulary, Para Jumbles.</div>
+          <div class="subj-desc">8 Modules: RC, Cloze Test, Error Spotting, Idioms, Vocab, Para Jumbles.</div>
         </div>
         <div class="subj-toggle">
           <span>View Notes & Tests</span>
@@ -631,7 +631,7 @@
       <button class="subj-card" id="btn-computer" onclick="switchSubject('computer')">
         <div>
           <div class="subj-title">💻 Computer Knowledge</div>
-          <div class="subj-desc">4 Modules: Hardware Fundamentals, MS Office, Internet & Networking, Cyber Security.</div>
+          <div class="subj-desc">4 Modules: Computer Fundamentals, MS Office, Internet & Networking, Cyber Security.</div>
         </div>
         <div class="subj-toggle">
           <span>View Notes & Tests</span>
@@ -649,30 +649,12 @@
       </div>
 
       <div class="notes-grid">
-        <a href="teaching-aptitude-notes.html" class="note-btn note-btn-ugc">
-          <span>👨‍🏫 Teaching Aptitude</span>
-          <span>→</span>
-        </a>
-        <a href="research-aptitude-notes.html" class="note-btn note-btn-ugc">
-          <span>🔬 Research Aptitude</span>
-          <span>→</span>
-        </a>
-        <a href="reading-comprehension-notes.html" class="note-btn note-btn-ugc">
-          <span>📖 Reading Comprehension</span>
-          <span>→</span>
-        </a>
-        <a href="reasoning-notes.html" class="note-btn note-btn-ugc">
-          <span>🧩 Maths & Logical Reasoning</span>
-          <span>→</span>
-        </a>
-        <a href="ict-notes.html" class="note-btn note-btn-ugc">
-          <span>💻 ICT in Higher Ed</span>
-          <span>→</span>
-        </a>
-        <a href="higher-education-notes.html" class="note-btn note-btn-ugc">
-          <span>🏛️ Higher Education System</span>
-          <span>→</span>
-        </a>
+        <a href="teaching-aptitude-notes.html" class="note-btn note-btn-ugc"><span>👨‍🏫 Teaching Aptitude</span><span>→</span></a>
+        <a href="research-aptitude-notes.html" class="note-btn note-btn-ugc"><span>🔬 Research Aptitude</span><span>→</span></a>
+        <a href="reading-comprehension-notes.html" class="note-btn note-btn-ugc"><span>📖 Reading Comprehension</span><span>→</span></a>
+        <a href="reasoning-notes.html" class="note-btn note-btn-ugc"><span>🧩 Maths & Logical Reasoning</span><span>→</span></a>
+        <a href="ict-notes.html" class="note-btn note-btn-ugc"><span>💻 ICT in Higher Ed</span><span>→</span></a>
+        <a href="higher-education-notes.html" class="note-btn note-btn-ugc"><span>🏛️ Higher Education System</span><span>→</span></a>
       </div>
 
       <div class="box-title-wrap" style="color: #15803d; margin-top: 24px;">
@@ -767,7 +749,7 @@
           <div>
             <span class="test-badge">Quant</span>
             <h3 class="test-title">Percentage</h3>
-            <p class="test-desc">Practice percentage calculations, fraction conversions, successive changes, and population problems.</p>
+            <p class="test-desc">Practice percentage calculations, fraction conversions, and population problems.</p>
           </div>
           <a href="percentage-test.html" class="btn-start">Start Test →</a>
         </div>
@@ -775,7 +757,7 @@
           <div>
             <span class="test-badge">Quant</span>
             <h3 class="test-title">Ratio & Proportion</h3>
-            <p class="test-desc">Test concepts on ratios, proportions, mean proportion, partnership, and mixture distributions.</p>
+            <p class="test-desc">Test concepts on ratios, mean proportion, partnership, and mixture distributions.</p>
           </div>
           <a href="ratio-proportion-test.html" class="btn-start">Start Test →</a>
         </div>
@@ -783,7 +765,7 @@
           <div>
             <span class="test-badge">Quant</span>
             <h3 class="test-title">Profit & Loss</h3>
-            <p class="test-desc">Solve problems on cost price, selling price, marked price, discounts, and false weights.</p>
+            <p class="test-desc">Problems on cost price, selling price, marked price, discounts, and false weights.</p>
           </div>
           <a href="profit-loss-test.html" class="btn-start">Start Test →</a>
         </div>
@@ -791,9 +773,57 @@
           <div>
             <span class="test-badge">Quant</span>
             <h3 class="test-title">Time & Work</h3>
-            <p class="test-desc">Questions on individual work rates, combined efficiency, alternate days, and pipes & cisterns.</p>
+            <p class="test-desc">Questions on individual rates, combined efficiency, alternate days, and pipes & cisterns.</p>
           </div>
           <a href="time-work-test.html" class="btn-start">Start Test →</a>
+        </div>
+        <div class="test-card">
+          <div>
+            <span class="test-badge">Quant</span>
+            <h3 class="test-title">Number System</h3>
+            <p class="test-desc">Divisibility rules, unit digits, remainders, factors, and LCM/HCF problems.</p>
+          </div>
+          <a href="number-system-test.html" class="btn-start">Start Test →</a>
+        </div>
+        <div class="test-card">
+          <div>
+            <span class="test-badge">Quant</span>
+            <h3 class="test-title">Simplification</h3>
+            <p class="test-desc">BODMAS rules, surds, indices, fractions, and fast mental math operations.</p>
+          </div>
+          <a href="simplification-test.html" class="btn-start">Start Test →</a>
+        </div>
+        <div class="test-card">
+          <div>
+            <span class="test-badge">Quant</span>
+            <h3 class="test-title">Average</h3>
+            <p class="test-desc">Weighted averages, inclusion/exclusion, age problems, and speed averages.</p>
+          </div>
+          <a href="average-test.html" class="btn-start">Start Test →</a>
+        </div>
+        <div class="test-card">
+          <div>
+            <span class="test-badge">Quant</span>
+            <h3 class="test-title">Simple & Compound Interest</h3>
+            <p class="test-desc">Annual and semi-annual compounding, difference formulas, and installment sums.</p>
+          </div>
+          <a href="si-ci-test.html" class="btn-start">Start Test →</a>
+        </div>
+        <div class="test-card">
+          <div>
+            <span class="test-badge">Quant</span>
+            <h3 class="test-title">Mensuration</h3>
+            <p class="test-desc">2D perimeters/areas and 3D surface areas/volumes for geometric solids.</p>
+          </div>
+          <a href="mensuration-test.html" class="btn-start">Start Test →</a>
+        </div>
+        <div class="test-card">
+          <div>
+            <span class="test-badge">Quant</span>
+            <h3 class="test-title">Algebra</h3>
+            <p class="test-desc">Algebraic identities, linear & quadratic equations, and polynomial simplifications.</p>
+          </div>
+          <a href="algebra-test.html" class="btn-start">Start Test →</a>
         </div>
       </div>
     </div>
@@ -811,7 +841,8 @@
         <a href="coding-decoding-notes.html" class="note-btn"><span>🔤 Coding-Decoding</span><span>→</span></a>
         <a href="direction-sense-notes.html" class="note-btn"><span>🧭 Direction Sense</span><span>→</span></a>
         <a href="seating-arrangement-notes.html" class="note-btn"><span>🪑 Seating Arrangement</span><span>→</span></a>
-        <a href="ranking-order-notes.html" class="note-btn"><span>🔢 Order & Ranking</span><span>→</span></a>
+        <a href="puzzles-notes.html" class="note-btn"><span>🧩 Logic Puzzles</span><span>→</span></a>
+        <a href="series-notes.html" class="note-btn"><span>🔢 Number & Letter Series</span><span>→</span></a>
       </div>
 
       <div class="box-title-wrap" style="color: #15803d; margin-top: 24px;">
@@ -824,15 +855,15 @@
           <div>
             <span class="test-badge">Reasoning</span>
             <h3 class="test-title">Syllogism & Deductive Logic</h3>
-            <p class="test-desc">Venn diagram techniques, some/all propositions, and possibility conclusions.</p>
+            <p class="test-desc">Venn diagrams, some/all propositions, and possibility conclusion testing.</p>
           </div>
           <a href="syllogism-test.html" class="btn-start">Start Test →</a>
         </div>
         <div class="test-card">
           <div>
             <span class="test-badge">Reasoning</span>
-            <h3 class="test-title">Blood Relations & Family Tree</h3>
-            <p class="test-desc">Direct statements, coded relations, and generational mapping puzzles.</p>
+            <h3 class="test-title">Blood Relations</h3>
+            <p class="test-desc">Direct statements, coded relations, and generational family tree mapping.</p>
           </div>
           <a href="blood-relations-test.html" class="btn-start">Start Test →</a>
         </div>
@@ -840,17 +871,41 @@
           <div>
             <span class="test-badge">Reasoning</span>
             <h3 class="test-title">Coding-Decoding</h3>
-            <p class="test-desc">Letter-shifting patterns, numeric substitution, and deciphering message matrices.</p>
+            <p class="test-desc">Letter-shifting patterns, numeric substitutions, and deciphering message matrices.</p>
           </div>
           <a href="coding-decoding-test.html" class="btn-start">Start Test →</a>
         </div>
         <div class="test-card">
           <div>
             <span class="test-badge">Reasoning</span>
-            <h3 class="test-title">Direction & Distance Sense</h3>
+            <h3 class="test-title">Direction Sense</h3>
             <p class="test-desc">Cardinal routes, Pythagoras distance calculations, and shadow angle questions.</p>
           </div>
-          <a href="direction-test.html" class="btn-start">Start Test →</a>
+          <a href="direction-sense-test.html" class="btn-start">Start Test →</a>
+        </div>
+        <div class="test-card">
+          <div>
+            <span class="test-badge">Reasoning</span>
+            <h3 class="test-title">Seating Arrangement</h3>
+            <p class="test-desc">Linear rows, circular tables, and inward/outward facing configurations.</p>
+          </div>
+          <a href="seating-arrangement-test.html" class="btn-start">Start Test →</a>
+        </div>
+        <div class="test-card">
+          <div>
+            <span class="test-badge">Reasoning</span>
+            <h3 class="test-title">Puzzles</h3>
+            <p class="test-desc">Floor-based, box-stacking, scheduling, and multi-variable analytical puzzles.</p>
+          </div>
+          <a href="puzzles-test.html" class="btn-start">Start Test →</a>
+        </div>
+        <div class="test-card">
+          <div>
+            <span class="test-badge">Reasoning</span>
+            <h3 class="test-title">Series Completion</h3>
+            <p class="test-desc">Missing numbers, arithmetic difference series, and alphabetical sequences.</p>
+          </div>
+          <a href="series-test.html" class="btn-start">Start Test →</a>
         </div>
       </div>
     </div>
@@ -863,12 +918,14 @@
       </div>
 
       <div class="notes-grid">
-        <a href="reading-comprehension-notes.html" class="note-btn"><span>📚 Reading Comprehension</span><span>→</span></a>
+        <a href="rc-notes.html" class="note-btn"><span>📚 Reading Comprehension</span><span>→</span></a>
         <a href="cloze-test-notes.html" class="note-btn"><span>📝 Cloze Test</span><span>→</span></a>
         <a href="error-spotting-notes.html" class="note-btn"><span>🔍 Error Spotting</span><span>→</span></a>
-        <a href="idioms-phrases-notes.html" class="note-btn"><span>💡 Idioms & Phrases</span><span>→</span></a>
-        <a href="vocabulary-notes.html" class="note-btn"><span>📖 Synonyms & Antonyms</span><span>→</span></a>
+        <a href="idioms-notes.html" class="note-btn"><span>💡 Idioms & Phrases</span><span>→</span></a>
+        <a href="synonyms-antonyms-notes.html" class="note-btn"><span>📖 Synonyms & Antonyms</span><span>→</span></a>
         <a href="para-jumbles-notes.html" class="note-btn"><span>🔀 Para Jumbles</span><span>→</span></a>
+        <a href="one-word-substitution-notes.html" class="note-btn"><span>🏷️ One Word Substitution</span><span>→</span></a>
+        <a href="fillers-notes.html" class="note-btn"><span>✏️ Sentence Fillers</span><span>→</span></a>
       </div>
 
       <div class="box-title-wrap" style="color: #15803d; margin-top: 24px;">
@@ -881,17 +938,49 @@
           <div>
             <span class="test-badge">English</span>
             <h3 class="test-title">Grammar & Error Spotting</h3>
-            <p class="test-desc">Subject-verb agreement, tenses, prepositions, and modifier errors.</p>
+            <p class="test-desc">Subject-verb agreement, tenses, prepositions, modifiers, and syntax rules.</p>
           </div>
-          <a href="error-spotting-test.html" class="btn-start">Start Test →</a>
+          <a href="grammar-error-spotting-test.html" class="btn-start">Start Test →</a>
         </div>
         <div class="test-card">
           <div>
             <span class="test-badge">English</span>
-            <h3 class="test-title">Cloze Test & Sentence Completion</h3>
+            <h3 class="test-title">Cloze Test</h3>
             <p class="test-desc">Contextual vocabulary insertion, conjunctions, and phrasing flow.</p>
           </div>
-          <a href="cloze-test.html" class="btn-start">Start Test →</a>
+          <a href="cloze-test-test.html" class="btn-start">Start Test →</a>
+        </div>
+        <div class="test-card">
+          <div>
+            <span class="test-badge">English</span>
+            <h3 class="test-title">Sentence Correction</h3>
+            <p class="test-desc">Sentence restructuring, phrase replacement, and grammatical precision.</p>
+          </div>
+          <a href="sentence-correction-test.html" class="btn-start">Start Test →</a>
+        </div>
+        <div class="test-card">
+          <div>
+            <span class="test-badge">English</span>
+            <h3 class="test-title">Vocabulary & Idioms</h3>
+            <p class="test-desc">Synonyms, antonyms, idiomatic usage, and high-frequency exam words.</p>
+          </div>
+          <a href="vocabulary-test.html" class="btn-start">Start Test →</a>
+        </div>
+        <div class="test-card">
+          <div>
+            <span class="test-badge">English</span>
+            <h3 class="test-title">Para Jumbles</h3>
+            <p class="test-desc">Sentence ordering, paragraph transitions, and coherent logical sequencing.</p>
+          </div>
+          <a href="para-jumbles-test.html" class="btn-start">Start Test →</a>
+        </div>
+        <div class="test-card">
+          <div>
+            <span class="test-badge">English</span>
+            <h3 class="test-title">One Word Substitution</h3>
+            <p class="test-desc">Etymology, professions, phobias, and root-word based one word substitutes.</p>
+          </div>
+          <a href="one-word-substitution-test.html" class="btn-start">Start Test →</a>
         </div>
       </div>
     </div>
@@ -905,10 +994,10 @@
 
       <div class="notes-grid">
         <a href="indian-polity-notes.html" class="note-btn"><span>📜 Indian Polity & Constitution</span><span>→</span></a>
-        <a href="indian-history-notes.html" class="note-btn"><span>🏛️ Modern & Ancient History</span><span>→</span></a>
-        <a href="geography-notes.html" class="note-btn"><span>🌍 Geography & Environment</span><span>→</span></a>
+        <a href="indian-history-notes.html" class="note-btn"><span>🏛️ Indian History</span><span>→</span></a>
+        <a href="indian-geography-notes.html" class="note-btn"><span>🌍 Indian Geography</span><span>→</span></a>
         <a href="general-science-notes.html" class="note-btn"><span>🔬 General Science</span><span>→</span></a>
-        <a href="indian-economy-notes.html" class="note-btn"><span>📈 Indian Economy</span><span>→</span></a>
+        <a href="current-affairs-notes.html" class="note-btn"><span>📰 Current Affairs</span><span>→</span></a>
         <a href="static-gk-notes.html" class="note-btn"><span>🏆 Static GK & Honours</span><span>→</span></a>
       </div>
 
@@ -922,17 +1011,49 @@
           <div>
             <span class="test-badge">GK</span>
             <h3 class="test-title">Indian Polity & Constitution</h3>
-            <p class="test-desc">Articles, Fundamental Rights, Directive Principles, and Parliamentary procedures.</p>
+            <p class="test-desc">Articles, Fundamental Rights, Directive Principles, and Parliament procedures.</p>
           </div>
-          <a href="polity-test.html" class="btn-start">Start Test →</a>
+          <a href="indian-polity-test.html" class="btn-start">Start Test →</a>
         </div>
         <div class="test-card">
           <div>
             <span class="test-badge">GK</span>
-            <h3 class="test-title">Modern Indian History</h3>
-            <p class="test-desc">Freedom movement, British acts, Governor Generals, and reform movements.</p>
+            <h3 class="test-title">Indian History</h3>
+            <p class="test-desc">Ancient empires, medieval dynasties, and modern freedom struggles.</p>
           </div>
-          <a href="history-test.html" class="btn-start">Start Test →</a>
+          <a href="indian-history-test.html" class="btn-start">Start Test →</a>
+        </div>
+        <div class="test-card">
+          <div>
+            <span class="test-badge">GK</span>
+            <h3 class="test-title">Indian Geography</h3>
+            <p class="test-desc">River systems, mountain passes, climate zones, minerals, and national parks.</p>
+          </div>
+          <a href="indian-geography-test.html" class="btn-start">Start Test →</a>
+        </div>
+        <div class="test-card">
+          <div>
+            <span class="test-badge">GK</span>
+            <h3 class="test-title">General Science</h3>
+            <p class="test-desc">Applied Physics laws, everyday Chemistry, and Human Biology mechanisms.</p>
+          </div>
+          <a href="general-science-test.html" class="btn-start">Start Test →</a>
+        </div>
+        <div class="test-card">
+          <div>
+            <span class="test-badge">GK</span>
+            <h3 class="test-title">Current Affairs</h3>
+            <p class="test-desc">National summits, government schemes, awards, appointments, and sports.</p>
+          </div>
+          <a href="current-affairs-test.html" class="btn-start">Start Test →</a>
+        </div>
+        <div class="test-card">
+          <div>
+            <span class="test-badge">GK</span>
+            <h3 class="test-title">Static GK</h3>
+            <p class="test-desc">Folk dances, world heritage sites, international headquarters, and awards.</p>
+          </div>
+          <a href="static-gk-test.html" class="btn-start">Start Test →</a>
         </div>
       </div>
     </div>
@@ -945,10 +1066,10 @@
       </div>
 
       <div class="notes-grid">
-        <a href="ict-notes.html" class="note-btn"><span>💻 Computer Fundamentals</span><span>→</span></a>
-        <a href="ms-office-notes.html" class="note-btn"><span>📊 MS Office Shortcuts</span><span>→</span></a>
-        <a href="networking-notes.html" class="note-btn"><span>🌐 Internet & Networking</span><span>→</span></a>
-        <a href="cyber-security-notes.html" class="note-btn"><span>🛡️ Cyber Security & Viruses</span><span>→</span></a>
+        <a href="computer-fundamentals-notes.html" class="note-btn"><span>💻 Computer Fundamentals</span><span>→</span></a>
+        <a href="ms-office-notes.html" class="note-btn"><span>📊 MS Office Suite</span><span>→</span></a>
+        <a href="internet-networking-notes.html" class="note-btn"><span>🌐 Internet & Networking</span><span>→</span></a>
+        <a href="cyber-security-notes.html" class="note-btn"><span>🛡️ Cyber Security & Safety</span><span>→</span></a>
       </div>
 
       <div class="box-title-wrap" style="color: #15803d; margin-top: 24px;">
@@ -963,22 +1084,38 @@
             <h3 class="test-title">Computer Fundamentals</h3>
             <p class="test-desc">Memory hierarchy, binary units, operating systems, and file extensions.</p>
           </div>
-          <a href="ict-test.html" class="btn-start">Start Test →</a>
+          <a href="computer-fundamentals-test.html" class="btn-start">Start Test →</a>
         </div>
         <div class="test-card">
           <div>
             <span class="test-badge">Computer</span>
-            <h3 class="test-title">Networking & Cyber Security</h3>
-            <p class="test-desc">IP addressing, protocols (HTTP/FTP/SMTP), malware, and encryption tools.</p>
+            <h3 class="test-title">MS Office Shortcuts & Tools</h3>
+            <p class="test-desc">Word formatting, Excel formulas, PowerPoint shortcuts, and Access DBs.</p>
           </div>
-          <a href="networking-test.html" class="btn-start">Start Test →</a>
+          <a href="ms-office-test.html" class="btn-start">Start Test →</a>
+        </div>
+        <div class="test-card">
+          <div>
+            <span class="test-badge">Computer</span>
+            <h3 class="test-title">Internet & Networking</h3>
+            <p class="test-desc">IP addressing, protocols (HTTP/FTP/SMTP), topologies, and transmission media.</p>
+          </div>
+          <a href="internet-networking-test.html" class="btn-start">Start Test →</a>
+        </div>
+        <div class="test-card">
+          <div>
+            <span class="test-badge">Computer</span>
+            <h3 class="test-title">Cyber Security Basics</h3>
+            <p class="test-desc">Malware types, phishing attacks, firewalls, and data encryption techniques.</p>
+          </div>
+          <a href="cyber-security-basics-test.html" class="btn-start">Start Test →</a>
         </div>
       </div>
     </div>
 
   </div>
 
-  <!-- Floating WhatsApp Pill Button -->
+  <!-- Floating WhatsApp Button -->
   <a href="https://chat.whatsapp.com/Hrl85hO2iYf4L8YrzKOncj" target="_blank" class="floating-wa">
     <span>💬</span> Join WhatsApp
   </a>
@@ -999,9 +1136,11 @@
       cards.forEach(c => c.classList.remove('active'));
 
       // 3. Reset all toggle arrow texts to "View Notes & Tests ▼"
-      const toggles = document.querySelectorAll('.subj-toggle');
-      toggles.forEach(t => {
-        t.innerHTML = '<span>View Notes & Tests</span> <span>▼</span>';
+      cards.forEach(card => {
+        const toggleSpan = card.querySelector('.subj-toggle');
+        if (toggleSpan) {
+          toggleSpan.innerHTML = '<span>View Notes & Tests</span> <span>▼</span>';
+        }
       });
 
       // 4. Show the selected accordion view
