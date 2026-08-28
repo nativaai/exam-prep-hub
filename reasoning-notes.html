@@ -1,0 +1,756 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mathematical & Logical Reasoning - Study Notes | UGC NET Paper 1</title>
+  <style>
+    :root {
+      --primary: #1e40af;
+      --primary-hover: #1d4ed8;
+      --primary-light: #eff6ff;
+      --bg: #f8fafc;
+      --card-bg: #ffffff;
+      --text: #0f172a;
+      --text-muted: #64748b;
+      --border: #e2e8f0;
+
+      --blue-card-bg: #eff6ff;
+      --blue-card-border: #bfdbfe;
+      --blue-text: #1d4ed8;
+
+      --green-card-bg: #f0fdf4;
+      --green-card-border: #bbf7d0;
+      --green-text: #15803d;
+
+      --purple-card-bg: #faf5ff;
+      --purple-card-border: #e9d5ff;
+      --purple-text: #7e22ce;
+
+      --orange-card-bg: #fff7ed;
+      --orange-card-border: #fed7aa;
+      --orange-text: #c2410c;
+
+      --rose-card-bg: #fff1f2;
+      --rose-card-border: #fecdd3;
+      --rose-text: #be123c;
+
+      --radius: 14px;
+      --shadow: 0 4px 6px -1px rgb(0 0 0 / 0.08), 0 2px 4px -2px rgb(0 0 0 / 0.06);
+      --shadow-hover: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.08);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    }
+
+    body {
+      background-color: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      padding-bottom: 60px;
+    }
+
+    header {
+      background-color: var(--card-bg);
+      border-bottom: 1px solid var(--border);
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.05);
+    }
+
+    .header-container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 14px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .back-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      color: var(--primary);
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 0.95rem;
+      transition: transform 0.2s ease, color 0.2s ease;
+    }
+
+    .back-btn:hover {
+      transform: translateX(-3px);
+      color: var(--primary-hover);
+    }
+
+    .badge-tag {
+      background: var(--primary-light);
+      color: var(--primary);
+      font-size: 0.8rem;
+      font-weight: 700;
+      padding: 4px 12px;
+      border-radius: 9999px;
+      border: 1px solid #bfdbfe;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 800px;
+      margin: 28px auto 0;
+      padding: 0 16px;
+    }
+
+    .hero-card {
+      background: linear-gradient(135deg, #1e3a8a 0%, #1e40af 60%, #3b82f6 100%);
+      color: #ffffff;
+      border-radius: var(--radius);
+      padding: 28px 24px;
+      box-shadow: var(--shadow);
+      margin-bottom: 28px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .hero-title {
+      font-size: 1.75rem;
+      font-weight: 800;
+      margin-bottom: 6px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .hero-subtitle {
+      font-size: 0.95rem;
+      opacity: 0.9;
+    }
+
+    .hero-icon {
+      font-size: 2.8rem;
+      flex-shrink: 0;
+      background: rgba(255, 255, 255, 0.15);
+      border-radius: 16px;
+      width: 72px;
+      height: 72px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid rgba(255, 255, 255, 0.25);
+    }
+
+    .section-card {
+      background: var(--card-bg);
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
+      padding: 24px;
+      box-shadow: var(--shadow);
+      margin-bottom: 24px;
+    }
+
+    .section-header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 18px;
+      border-bottom: 2px solid #f1f5f9;
+      padding-bottom: 12px;
+    }
+
+    .section-icon {
+      font-size: 1.35rem;
+    }
+
+    .section-title {
+      font-size: 1.25rem;
+      font-weight: 800;
+      color: var(--text);
+    }
+
+    .concept-grid {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 20px;
+      align-items: center;
+    }
+
+    .concept-text {
+      font-size: 0.96rem;
+      color: #334155;
+    }
+
+    .concept-visual {
+      background: #f8fafc;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .formulas-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 16px;
+    }
+
+    .formula-card {
+      border-radius: 12px;
+      padding: 18px;
+      border-width: 1.5px;
+      border-style: solid;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .formula-card:hover {
+      transform: translateY(-3px);
+      box-shadow: var(--shadow);
+    }
+
+    .formula-card.blue { background-color: var(--blue-card-bg); border-color: var(--blue-card-border); }
+    .formula-card.green { background-color: var(--green-card-bg); border-color: var(--green-card-border); }
+    .formula-card.purple { background-color: var(--purple-card-bg); border-color: var(--purple-card-border); }
+    .formula-card.orange { background-color: var(--orange-card-bg); border-color: var(--orange-card-border); }
+
+    .formula-head {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.85rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      margin-bottom: 10px;
+    }
+
+    .formula-card.blue .formula-head { color: var(--blue-text); }
+    .formula-card.green .formula-head { color: var(--green-text); }
+    .formula-card.purple .formula-head { color: var(--purple-text); }
+    .formula-card.orange .formula-head { color: var(--orange-text); }
+
+    .formula-math {
+      font-size: 1rem;
+      font-weight: 800;
+      color: #1e293b;
+      margin-bottom: 8px;
+      background: rgba(255, 255, 255, 0.85);
+      padding: 8px 12px;
+      border-radius: 8px;
+      border: 1px dashed rgba(0, 0, 0, 0.15);
+      text-align: center;
+    }
+
+    .formula-note {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+    }
+
+    .examples-list {
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+
+    .example-card {
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      background: #ffffff;
+      padding: 18px;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+    }
+
+    .example-title {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .step-row {
+      margin-bottom: 8px;
+      font-size: 0.92rem;
+      display: flex;
+      align-items: baseline;
+      gap: 8px;
+    }
+
+    .step-tag {
+      font-size: 0.75rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      padding: 2px 8px;
+      border-radius: 6px;
+      flex-shrink: 0;
+    }
+
+    .step-given { background: #eff6ff; color: var(--blue-text); }
+    .step-formula { background: #faf5ff; color: var(--purple-text); }
+    .step-sol { background: #f0fdf4; color: var(--green-text); }
+
+    .answer-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: #dcfce7;
+      color: #15803d;
+      font-weight: 800;
+      font-size: 0.95rem;
+      padding: 6px 14px;
+      border-radius: 8px;
+      border: 1px solid #86efac;
+      margin-top: 6px;
+    }
+
+    .tips-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 14px;
+    }
+
+    .tip-card {
+      border-radius: 12px;
+      padding: 16px;
+      border: 1px solid var(--border);
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+    }
+
+    .tip-card.t1 { background-color: #fffbeb; border-color: #fde68a; }
+    .tip-card.t2 { background-color: #f0fdf4; border-color: #bbf7d0; }
+    .tip-card.t3 { background-color: #eff6ff; border-color: #bfdbfe; }
+    .tip-card.t4 { background-color: #faf5ff; border-color: #e9d5ff; }
+
+    .tip-icon {
+      font-size: 1.3rem;
+      flex-shrink: 0;
+    }
+
+    .tip-text {
+      font-size: 0.88rem;
+      color: #334155;
+    }
+
+    .tip-text strong {
+      color: #0f172a;
+    }
+
+    .mistakes-list {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .mistake-box {
+      background-color: var(--rose-card-bg);
+      border: 1.5px solid var(--rose-card-border);
+      border-radius: 12px;
+      padding: 14px 16px;
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+    }
+
+    .mistake-icon {
+      font-size: 1.3rem;
+      color: var(--rose-text);
+      flex-shrink: 0;
+    }
+
+    .mistake-title {
+      font-weight: 700;
+      color: var(--rose-text);
+      font-size: 0.92rem;
+      margin-bottom: 2px;
+    }
+
+    .mistake-desc {
+      font-size: 0.86rem;
+      color: #475569;
+    }
+
+    .cta-container {
+      text-align: center;
+      margin-top: 32px;
+    }
+
+    .btn-quiz-cta {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      background: linear-gradient(135deg, #1e40af 0%, #2563eb 100%);
+      color: #ffffff;
+      padding: 16px 36px;
+      border-radius: 12px;
+      font-size: 1.1rem;
+      font-weight: 800;
+      text-decoration: none;
+      box-shadow: 0 4px 12px rgba(37, 99, 235, 0.35);
+      transition: all 0.25s ease;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .btn-quiz-cta:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 18px rgba(37, 99, 235, 0.45);
+      background: linear-gradient(135deg, #1d4ed8 0%, #1d4ed8 100%);
+    }
+
+    @media (max-width: 640px) {
+      .hero-card {
+        flex-direction: column-reverse;
+        text-align: center;
+        padding: 20px;
+      }
+      .concept-grid {
+        grid-template-columns: 1fr;
+      }
+      .hero-title {
+        font-size: 1.45rem;
+        justify-content: center;
+      }
+      .btn-quiz-cta {
+        width: 100%;
+        padding: 14px 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="header-container">
+      <a href="index.html" class="back-btn">← Back to Home</a>
+      <span class="badge-tag">UGC NET Paper 1</span>
+    </div>
+  </header>
+
+  <div class="container">
+
+    <div class="hero-card">
+      <div>
+        <h1 class="hero-title">🧩 Reasoning (Maths & Logical) - Study Notes</h1>
+        <p class="hero-subtitle">Master Deductive vs Inductive logic, Classical Square of Opposition (A-E-I-O), Indian Logic (Pramanas & Anumana), Hetvabhasa fallacies, and speed arithmetic shortcuts.</p>
+      </div>
+      <div class="hero-icon">📐</div>
+    </div>
+
+    <div class="section-card">
+      <div class="section-header">
+        <span class="section-icon">💡</span>
+        <h2 class="section-title">Classical Square of Opposition (A - E - I - O)</h2>
+      </div>
+      
+      <div class="concept-grid">
+        <div class="concept-text">
+          <p style="margin-bottom: 10px;">
+            Categorical propositions are classified by <strong>Quantity</strong> (Universal / Particular) and <strong>Quality</strong> (Affirmative / Negative).
+          </p>
+          <div style="background: #f1f5f9; padding: 10px 14px; border-radius: 8px; border-left: 4px solid var(--primary); font-size: 0.9rem;">
+            <strong>The 4 Proposition Types:</strong><br>
+            • <strong>A:</strong> Universal Affirmative (<em>All S are P</em>)<br>
+            • <strong>E:</strong> Universal Negative (<em>No S are P</em>)<br>
+            • <strong>I:</strong> Particular Affirmative (<em>Some S are P</em>)<br>
+            • <strong>O:</strong> Particular Negative (<em>Some S are not P</em>)
+          </div>
+        </div>
+
+        <div class="concept-visual">
+          <svg width="170" height="160" viewBox="0 0 110 110">
+            <rect x="15" y="15" width="80" height="80" fill="none" stroke="#94a3b8" stroke-width="1.5" />
+            <line x1="15" y1="15" x2="95" y2="95" stroke="#be123c" stroke-width="1.5" stroke-dasharray="3,2" />
+            <line x1="95" y1="15" x2="15" y2="95" stroke="#be123c" stroke-width="1.5" stroke-dasharray="3,2" />
+            
+            <circle cx="15" cy="15" r="9" fill="#1e40af" />
+            <text x="15" y="18" text-anchor="middle" font-size="6" font-weight="bold" fill="#fff">A</text>
+            <circle cx="95" cy="15" r="9" fill="#be123c" />
+            <text x="95" y="18" text-anchor="middle" font-size="6" font-weight="bold" fill="#fff">E</text>
+            <circle cx="15" cy="95" r="9" fill="#15803d" />
+            <text x="15" y="98" text-anchor="middle" font-size="6" font-weight="bold" fill="#fff">I</text>
+            <circle cx="95" cy="95" r="9" fill="#7e22ce" />
+            <text x="95" y="98" text-anchor="middle" font-size="6" font-weight="bold" fill="#fff">O</text>
+            
+            <text x="55" y="12" text-anchor="middle" font-size="4" font-weight="bold" fill="#1e40af">CONTRARIES</text>
+            <text x="55" y="104" text-anchor="middle" font-size="4" font-weight="bold" fill="#15803d">SUBCONTRARIES</text>
+            <text x="55" y="56" text-anchor="middle" font-size="4" font-weight="bold" fill="#be123c">CONTRADICTORIES</text>
+          </svg>
+        </div>
+      </div>
+    </div>
+
+    <div class="section-card">
+      <div class="section-header">
+        <span class="section-icon">⚖️</span>
+        <h2 class="section-title">Square of Opposition Rules & Deductive Validity</h2>
+      </div>
+
+      <div class="formulas-grid">
+        <div class="formula-card blue">
+          <div>
+            <div class="formula-head"><span>⚡</span> Contradictories (A ↔ O, E ↔ I)</div>
+            <div class="formula-math">Opposite Truth Values Always</div>
+          </div>
+          <div class="formula-note">If one is TRUE, the other is definitely FALSE. If one is FALSE, the other is definitely TRUE. They can never be true together or false together.</div>
+        </div>
+
+        <div class="formula-card green">
+          <div>
+            <div class="formula-head"><span>🤝</span> Contraries (A & E)</div>
+            <div class="formula-math">Cannot Both Be True</div>
+          </div>
+          <div class="formula-note">Universal propositions (A and E) cannot both be TRUE simultaneously, but they <strong>CAN both be FALSE</strong> at the same time.</div>
+        </div>
+
+        <div class="formula-card purple">
+          <div>
+            <div class="formula-head"><span>🔄</span> Sub-Contraries (I & O)</div>
+            <div class="formula-math">Cannot Both Be False</div>
+          </div>
+          <div class="formula-note">Particular propositions (I and O) cannot both be FALSE simultaneously, but they <strong>CAN both be TRUE</strong> at the same time.</div>
+        </div>
+
+        <div class="formula-card orange">
+          <div>
+            <div class="formula-head"><span>⬇️</span> Subalternation (A &rarr; I, E &rarr; O)</div>
+            <div class="formula-math">Truth Flows Down, False Flows Up</div>
+          </div>
+          <div class="formula-note">If Universal is TRUE, Particular is TRUE. If Particular is FALSE, Universal is FALSE. (Truth goes Down, Falsity goes Up).</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section-card">
+      <div class="section-header">
+        <span class="section-icon">🏛️</span>
+        <h2 class="section-title">Indian Logic: The 6 Pramanas & Nyaya Syllogism</h2>
+      </div>
+
+      <div class="formulas-grid">
+        <div class="formula-card blue">
+          <div>
+            <div class="formula-head"><span>👁️</span> The 6 Pramanas (Valid Means)</div>
+            <div class="formula-math">Pratyaksha | Anumana | Upamana | Shabda | Arthapatti | Anupalabdhi</div>
+          </div>
+          <div class="formula-note"><strong>Pratyaksha:</strong> Perception. <strong>Anumana:</strong> Inference. <strong>Upamana:</strong> Comparison/Analogy. <strong>Shabda:</strong> Verbal Testimony. <strong>Arthapatti:</strong> Postulation/Implication (Devadatta fat). <strong>Anupalabdhi:</strong> Non-apprehension (No jar on ground).</div>
+        </div>
+
+        <div class="formula-card green">
+          <div>
+            <div class="formula-head"><span>🏔️</span> Nyaya 5-Member Syllogism</div>
+            <div class="formula-math">Pratijna &rarr; Hetu &rarr; Udaharana &rarr; Upanaya &rarr; Nigamana (PHUUN)</div>
+          </div>
+          <div class="formula-note">1. <strong>Pratijna:</strong> Hill has fire. 2. <strong>Hetu:</strong> Because of smoke. 3. <strong>Udaharana:</strong> Wherever smoke, there fire (Kitchen). 4. <strong>Upanaya:</strong> Hill has smoke associated with fire. 5. <strong>Nigamana:</strong> Therefore hill has fire.</div>
+        </div>
+
+        <div class="formula-card purple">
+          <div>
+            <div class="formula-head"><span>🔥</span> Terms of Anumana & Vyapti</div>
+            <div class="formula-math">Paksha (Minor) | Sadhya (Major) | Hetu (Middle)</div>
+          </div>
+          <div class="formula-note"><strong>Paksha:</strong> Subject under observation (Hill). <strong>Sadhya:</strong> Object to be proved (Fire). <strong>Hetu/Linga:</strong> Middle sign/reason (Smoke). <strong>Vyapti:</strong> Invariable concomitance between Hetu and Sadhya.</div>
+        </div>
+
+        <div class="formula-card orange">
+          <div>
+            <div class="formula-head"><span>⚠️</span> Hetvabhasa (Fallacies of Inference)</div>
+            <div class="formula-math">Savyabhichara | Viruddha | Satpratipaksha | Asiddha | Badhita</div>
+          </div>
+          <div class="formula-note"><strong>Asiddha:</strong> Unproved middle (Sky-lotus). <strong>Savyabhichara:</strong> Irregular middle. <strong>Viruddha:</strong> Contradictory middle. <strong>Satpratipaksha:</strong> Counter-balanced reason. <strong>Badhita:</strong> Non-inferentially contradicted (Fire is cold).</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section-card">
+      <div class="section-header">
+        <span class="section-icon">🧮</span>
+        <h2 class="section-title">Speed Mathematical Shortcuts (Unit 5)</h2>
+      </div>
+
+      <div class="formulas-grid">
+        <div class="formula-card blue">
+          <div>
+            <div class="formula-head"><span>🚆</span> Speed, Distance & Trains</div>
+            <div class="formula-math">Speed (m/s) = km/h &times; (5 / 18)</div>
+          </div>
+          <div class="formula-note">Average Speed for equal distances = $(2xy) / (x + y)$. Crossing a platform time = $(\text{Length}_{\text{train}} + \text{Length}_{\text{plat}}) / \text{Speed}$.</div>
+        </div>
+
+        <div class="formula-card green">
+          <div>
+            <div class="formula-head"><span>⏳</span> Time & Work</div>
+            <div class="formula-math">Combined Work = (A &times; B) / (A + B)</div>
+          </div>
+          <div class="formula-note">If A completes work in $x$ days and B in $y$ days, together they take $\frac{xy}{x+y}$ days. Use LCM method for 3-person problems.</div>
+        </div>
+
+        <div class="formula-card purple">
+          <div>
+            <div class="formula-head"><span>💰</span> Profit, Loss & Discount</div>
+            <div class="formula-math">Single Equiv. Discount = D₁ + D₂ - (D₁ &times; D₂ / 100)</div>
+          </div>
+          <div class="formula-note">Two successive discounts of 20% and 10% = $20 + 10 - \frac{200}{100} = 28\%$. Selling Price = $\text{Cost Price} \times (100 \pm P/L)\%$.</div>
+        </div>
+
+        <div class="formula-card orange">
+          <div>
+            <div class="formula-head"><span>📈</span> Simple & Compound Interest</div>
+            <div class="formula-math">2-Year CI - SI Diff = P &times; (R / 100)²</div>
+          </div>
+                    <div class="formula-note">Direct shortcut for 2-year CI and SI difference: Difference = P &times; (R/100)². For 3 years: Diff = P &times; (R/100)² &times; ((300 + R)/100).</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 5. Step-by-Step Solved UGC NET Examples -->
+    <div class="section-card">
+      <div class="section-header">
+        <span class="section-icon">📝</span>
+        <h2 class="section-title">Step-by-Step Solved UGC NET PYQ Examples</h2>
+      </div>
+
+      <div class="examples-list">
+        <!-- Example 1 -->
+        <div class="example-card">
+          <div class="example-title">
+            <span style="background: #eff6ff; color: #1e40af; padding: 2px 8px; border-radius: 6px; font-size: 0.85rem;">Ex 1</span>
+            If the statement "All philosophers are mortal" (A proposition) is given as TRUE, which of the following statements can be immediately inferred to be FALSE?<br>
+            Options: (A) Some philosophers are mortal &nbsp;|&nbsp; (B) No philosophers are mortal &nbsp;|&nbsp; (C) Some philosophers are not mortal &nbsp;|&nbsp; (D) Both B and C
+          </div>
+          <div class="step-row">
+            <span class="step-tag step-given">Given</span>
+            <span>Proposition 'A' (All philosophers are mortal) is <strong>TRUE</strong>.</span>
+          </div>
+          <div class="step-row">
+            <span class="step-tag step-formula">Square of Opposition Rule</span>
+            <span>• <strong>Contradictory (O):</strong> "Some philosophers are not mortal" must be <strong>FALSE</strong>.<br>• <strong>Contrary (E):</strong> "No philosophers are mortal" must be <strong>FALSE</strong>.<br>• <strong>Subaltern (I):</strong> "Some philosophers are mortal" is <strong>TRUE</strong>.</span>
+          </div>
+          <div class="step-row">
+            <span class="step-tag step-sol">Solution</span>
+            <span>Both E and O statements are definitely False. Therefore, Option D is correct.</span>
+          </div>
+          <div>
+            <span class="answer-badge">✓ Correct Answer: Option D (Both B and C are False)</span>
+          </div>
+        </div>
+
+        <!-- Example 2 -->
+        <div class="example-card">
+          <div class="example-title">
+            <span style="background: #eff6ff; color: #1e40af; padding: 2px 8px; border-radius: 6px; font-size: 0.85rem;">Ex 2</span>
+            "Fat Devadatta does not eat food during the daytime, yet he is growing steadily fatter. Therefore, he must be eating at night." According to Indian classical logic, which Pramana is illustrated here?<br>
+            Options: (A) Anumana (Inference) &nbsp;|&nbsp; (B) Upamana (Comparison) &nbsp;|&nbsp; (C) Arthapatti (Implication/Postulation) &nbsp;|&nbsp; (D) Anupalabdhi (Non-apprehension)
+          </div>
+          <div class="step-row">
+            <span class="step-tag step-given">Analysis</span>
+            <span>We observe an apparent contradiction (fatness vs not eating by day). To reconcile these two known facts, we postulate/imply that he eats at night.</span>
+          </div>
+          <div class="step-row">
+            <span class="step-tag step-sol">Solution</span>
+            <span>Deriving an unobserved fact to explain a known inconsistency is <strong>Arthapatti (Option C)</strong>.</span>
+          </div>
+          <div>
+            <span class="answer-badge">✓ Correct Answer: Arthapatti (Postulation / Implication)</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 6. Speed Mnemonics & Key Tips -->
+    <div class="section-card">
+      <div class="section-header">
+        <span class="section-icon">⭐</span>
+        <h2 class="section-title">Speed-Solving Mnemonics & Key Tips</h2>
+      </div>
+
+      <div class="tips-grid">
+        <div class="tip-card t1">
+          <div class="tip-icon">🧠</div>
+          <div class="tip-text"><strong>Nyaya Syllogism Mnemonic:</strong><br>
+          Remember <strong>PHUUN</strong>:<br>
+          <strong>P</strong>ratijna &rarr; <strong>H</strong>etu &rarr; <strong>U</strong>daharana &rarr; <strong>U</strong>panaya &rarr; <strong>N</strong>igamana.</div>
+        </div>
+
+        <div class="tip-card t2">
+          <div class="tip-icon">🏔️</div>
+          <div class="tip-text"><strong>Indian Logic Terms:</strong><br>
+          • <strong>Paksha:</strong> Minor Term (Hill / Subject).<br>
+          • <strong>Sadhya:</strong> Major Term (Fire / Predicate).<br>
+          • <strong>Hetu:</strong> Middle Term (Smoke / Reason).</div>
+        </div>
+
+        <div class="tip-card t3">
+          <div class="tip-icon">🔤</div>
+          <div class="tip-text"><strong>Alphabet Letter Positions:</strong><br>
+          Remember <strong>EJOTY</strong> for multiples of 5 (5, 10, 15, 20, 25). Opposite letter pairs sum to <strong>27</strong> (A=1 + Z=26 = 27; B=2 + Y=25 = 27).</div>
+        </div>
+
+        <div class="tip-card t4">
+          <div class="tip-icon">🎯</div>
+          <div class="tip-text"><strong>Deductive vs Inductive:</strong><br>
+          • <strong>Deductive:</strong> General &rarr; Specific (Certainty/Valid).<br>
+          • <strong>Inductive:</strong> Specific &rarr; General (Probability/Strong).</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 7. Common Mistakes to Avoid -->
+    <div class="section-card">
+      <div class="section-header">
+        <span class="section-icon">⚠️</span>
+        <h2 class="section-title">Common Mistakes to Avoid</h2>
+      </div>
+
+      <div class="mistakes-list">
+        <div class="mistake-box">
+          <div class="mistake-icon">🚫</div>
+          <div>
+            <div class="mistake-title">Mistake 1: Confusing Contraries with Contradictories</div>
+            <div class="mistake-desc"><strong>Contradictories (A & O, E & I)</strong> can NEVER have the same truth value (one is true, the other is false). <strong>Contraries (A & E)</strong> CAN both be false simultaneously!</div>
+          </div>
+        </div>
+
+        <div class="mistake-box">
+          <div class="mistake-icon">🚫</div>
+          <div>
+            <div class="mistake-title">Mistake 2: Mixing Up Asiddha and Badhita Hetvabhasa</div>
+            <div class="mistake-desc">In <strong>Asiddha</strong>, the middle term is unproven (e.g., "Sky-lotus is fragrant"). In <strong>Badhita</strong>, the conclusion is directly contradicted by another superior perception (e.g., "Fire is cold because it is a substance").</div>
+          </div>
+        </div>
+
+        <div class="mistake-box">
+          <div class="mistake-icon">🚫</div>
+          <div>
+            <div class="mistake-title">Mistake 3: Forgetting Unit Conversions in Speed Problems</div>
+            <div class="mistake-desc">Always convert km/h to m/s by multiplying with 5/18 whenever train lengths are given in meters and time in seconds.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CTA Button -->
+    <div class="cta-container">
+      <a href="reasoning-test.html" class="btn-quiz-cta">
+        <span>🚀 Take Reasoning (Maths & Logical) Mock Test</span>
+        <span>→</span>
+      </a>
+    </div>
+
+  </div>
+
+</body>
+</html>
