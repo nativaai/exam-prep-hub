@@ -1,0 +1,708 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Higher Education System - Study Notes | UGC NET Paper 1</title>
+  <style>
+    :root {
+      --primary: #1e40af;
+      --primary-hover: #1d4ed8;
+      --primary-light: #eff6ff;
+      --bg: #f8fafc;
+      --card-bg: #ffffff;
+      --text: #0f172a;
+      --text-muted: #64748b;
+      --border: #e2e8f0;
+
+      --blue-card-bg: #eff6ff;
+      --blue-card-border: #bfdbfe;
+      --blue-text: #1d4ed8;
+
+      --green-card-bg: #f0fdf4;
+      --green-card-border: #bbf7d0;
+      --green-text: #15803d;
+
+      --purple-card-bg: #faf5ff;
+      --purple-card-border: #e9d5ff;
+      --purple-text: #7e22ce;
+
+      --orange-card-bg: #fff7ed;
+      --orange-card-border: #fed7aa;
+      --orange-text: #c2410c;
+
+      --rose-card-bg: #fff1f2;
+      --rose-card-border: #fecdd3;
+      --rose-text: #be123c;
+
+      --radius: 14px;
+      --shadow: 0 4px 6px -1px rgb(0 0 0 / 0.08), 0 2px 4px -2px rgb(0 0 0 / 0.06);
+      --shadow-hover: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.08);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    }
+
+    body {
+      background-color: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      padding-bottom: 60px;
+    }
+
+    header {
+      background-color: var(--card-bg);
+      border-bottom: 1px solid var(--border);
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.05);
+    }
+
+    .header-container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 14px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .back-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      color: var(--primary);
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 0.95rem;
+      transition: transform 0.2s ease, color 0.2s ease;
+    }
+
+    .back-btn:hover {
+      transform: translateX(-3px);
+      color: var(--primary-hover);
+    }
+
+    .badge-tag {
+      background: var(--primary-light);
+      color: var(--primary);
+      font-size: 0.8rem;
+      font-weight: 700;
+      padding: 4px 12px;
+      border-radius: 9999px;
+      border: 1px solid #bfdbfe;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 800px;
+      margin: 28px auto 0;
+      padding: 0 16px;
+    }
+
+    .hero-card {
+      background: linear-gradient(135deg, #1e3a8a 0%, #1e40af 60%, #3b82f6 100%);
+      color: #ffffff;
+      border-radius: var(--radius);
+      padding: 28px 24px;
+      box-shadow: var(--shadow);
+      margin-bottom: 28px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .hero-title {
+      font-size: 1.75rem;
+      font-weight: 800;
+      margin-bottom: 6px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .hero-subtitle {
+      font-size: 0.95rem;
+      opacity: 0.9;
+    }
+
+    .hero-icon {
+      font-size: 2.8rem;
+      flex-shrink: 0;
+      background: rgba(255, 255, 255, 0.15);
+      border-radius: 16px;
+      width: 72px;
+      height: 72px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid rgba(255, 255, 255, 0.25);
+    }
+
+    .section-card {
+      background: var(--card-bg);
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
+      padding: 24px;
+      box-shadow: var(--shadow);
+      margin-bottom: 24px;
+    }
+
+    .section-header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 18px;
+      border-bottom: 2px solid #f1f5f9;
+      padding-bottom: 12px;
+    }
+
+    .section-icon {
+      font-size: 1.35rem;
+    }
+
+    .section-title {
+      font-size: 1.25rem;
+      font-weight: 800;
+      color: var(--text);
+    }
+
+    .concept-grid {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 20px;
+      align-items: center;
+    }
+
+    .concept-text {
+      font-size: 0.96rem;
+      color: #334155;
+    }
+
+    .concept-visual {
+      background: #f8fafc;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .formulas-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 16px;
+    }
+
+    .formula-card {
+      border-radius: 12px;
+      padding: 18px;
+      border-width: 1.5px;
+      border-style: solid;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .formula-card:hover {
+      transform: translateY(-3px);
+      box-shadow: var(--shadow);
+    }
+
+    .formula-card.blue { background-color: var(--blue-card-bg); border-color: var(--blue-card-border); }
+    .formula-card.green { background-color: var(--green-card-bg); border-color: var(--green-card-border); }
+    .formula-card.purple { background-color: var(--purple-card-bg); border-color: var(--purple-card-border); }
+    .formula-card.orange { background-color: var(--orange-card-bg); border-color: var(--orange-card-border); }
+
+    .formula-head {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.85rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      margin-bottom: 10px;
+    }
+
+    .formula-card.blue .formula-head { color: var(--blue-text); }
+    .formula-card.green .formula-head { color: var(--green-text); }
+    .formula-card.purple .formula-head { color: var(--purple-text); }
+    .formula-card.orange .formula-head { color: var(--orange-text); }
+
+    .formula-math {
+      font-size: 0.98rem;
+      font-weight: 800;
+      color: #1e293b;
+      margin-bottom: 8px;
+      background: rgba(255, 255, 255, 0.85);
+      padding: 8px 12px;
+      border-radius: 8px;
+      border: 1px dashed rgba(0, 0, 0, 0.15);
+      text-align: center;
+    }
+
+    .formula-note {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+    }
+
+    .examples-list {
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+
+    .example-card {
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      background: #ffffff;
+      padding: 18px;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+    }
+
+    .example-title {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .step-row {
+      margin-bottom: 8px;
+      font-size: 0.92rem;
+      display: flex;
+      align-items: baseline;
+      gap: 8px;
+    }
+
+    .step-tag {
+      font-size: 0.75rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      padding: 2px 8px;
+      border-radius: 6px;
+      flex-shrink: 0;
+    }
+
+    .step-given { background: #eff6ff; color: var(--blue-text); }
+    .step-formula { background: #faf5ff; color: var(--purple-text); }
+    .step-sol { background: #f0fdf4; color: var(--green-text); }
+
+    .answer-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: #dcfce7;
+      color: #15803d;
+      font-weight: 800;
+      font-size: 0.95rem;
+      padding: 6px 14px;
+      border-radius: 8px;
+      border: 1px solid #86efac;
+      margin-top: 6px;
+    }
+
+    .tips-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 14px;
+    }
+
+    .tip-card {
+      border-radius: 12px;
+      padding: 16px;
+      border: 1px solid var(--border);
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+    }
+
+    .tip-card.t1 { background-color: #fffbeb; border-color: #fde68a; }
+    .tip-card.t2 { background-color: #f0fdf4; border-color: #bbf7d0; }
+    .tip-card.t3 { background-color: #eff6ff; border-color: #bfdbfe; }
+    .tip-card.t4 { background-color: #faf5ff; border-color: #e9d5ff; }
+
+    .tip-icon {
+      font-size: 1.3rem;
+      flex-shrink: 0;
+    }
+
+    .tip-text {
+      font-size: 0.88rem;
+      color: #334155;
+    }
+
+    .tip-text strong {
+      color: #0f172a;
+    }
+
+    .mistakes-list {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .mistake-box {
+      background-color: var(--rose-card-bg);
+      border: 1.5px solid var(--rose-card-border);
+      border-radius: 12px;
+      padding: 14px 16px;
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+    }
+
+    .mistake-icon {
+      font-size: 1.3rem;
+      color: var(--rose-text);
+      flex-shrink: 0;
+    }
+
+    .mistake-title {
+      font-weight: 700;
+      color: var(--rose-text);
+      font-size: 0.92rem;
+      margin-bottom: 2px;
+    }
+
+    .mistake-desc {
+      font-size: 0.86rem;
+      color: #475569;
+    }
+
+    .cta-container {
+      text-align: center;
+      margin-top: 32px;
+    }
+
+    .btn-quiz-cta {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      background: linear-gradient(135deg, #1e40af 0%, #2563eb 100%);
+      color: #ffffff;
+      padding: 16px 36px;
+      border-radius: 12px;
+      font-size: 1.1rem;
+      font-weight: 800;
+      text-decoration: none;
+      box-shadow: 0 4px 12px rgba(37, 99, 235, 0.35);
+      transition: all 0.25s ease;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .btn-quiz-cta:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 18px rgba(37, 99, 235, 0.45);
+      background: linear-gradient(135deg, #1d4ed8 0%, #1d4ed8 100%);
+    }
+
+    @media (max-width: 640px) {
+      .hero-card {
+        flex-direction: column-reverse;
+        text-align: center;
+        padding: 20px;
+      }
+      .concept-grid {
+        grid-template-columns: 1fr;
+      }
+      .hero-title {
+        font-size: 1.45rem;
+        justify-content: center;
+      }
+      .btn-quiz-cta {
+        width: 100%;
+        padding: 14px 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="header-container">
+      <a href="index.html" class="back-btn">← Back to Home</a>
+      <span class="badge-tag">UGC NET Paper 1</span>
+    </div>
+  </header>
+
+  <div class="container">
+
+    <!-- Hero Card -->
+    <div class="hero-card">
+      <div>
+        <h1 class="hero-title">🏛️ Higher Education System - Study Notes</h1>
+        <p class="hero-subtitle">Master Ancient Indian Learning Seats (Takshashila, Nalanda), Post-Independence Commissions (Radhakrishnan, Kothari), Regulatory Bodies (UGC, NAAC, NIRF), and NEP 2020 Reforms.</p>
+      </div>
+      <div class="hero-icon">🎓</div>
+    </div>
+
+    <!-- 1. Ancient Indian Seats of Higher Learning -->
+    <div class="section-card">
+      <div class="section-header">
+        <span class="section-icon">📜</span>
+        <h2 class="section-title">Ancient Indian Universities & Traditional Systems</h2>
+      </div>
+      
+      <div class="concept-grid">
+        <div class="concept-text">
+          <p style="margin-bottom: 10px;">
+            Ancient Indian education focused on holistic human development through <strong>Guru-Shishya Parampara</strong>, integrating spiritual knowledge (Para Vidya) and worldly sciences (Apara Vidya).
+          </p>
+          <div style="background: #f1f5f9; padding: 10px 14px; border-radius: 8px; border-left: 4px solid var(--primary); font-size: 0.9rem;">
+            <strong>Major Ancient Learning Centers:</strong><br>
+            • <strong>Takshashila (Taxila):</strong> World's oldest university (UNESCO 1980, now Pakistan). Renowned for Medicine (Charaka), Statecraft (Chanakya/Kautilya), and Grammar (Panini). No centralized exams.<br>
+            • <strong>Nalanda:</strong> Founded by Kumaragupta I (Gupta Dynasty, Bihar). Mahayana Buddhism center, multi-story library <em>Dharmaganja</em> (Ratnasagara, Ratnodadhi, Ratnaranjaka). Hiuen Tsang studied here.<br>
+            • <strong>Vikramashila:</strong> Founded by King Dharmapala (Pala Dynasty, Bihar). Famous for Tantric Buddhism and Logic.
+          </div>
+        </div>
+
+        <div class="concept-visual">
+          <svg width="170" height="150" viewBox="0 0 100 100">
+            <!-- Ancient to Modern Higher Ed Evolution -->
+            <circle cx="50" cy="18" r="12" fill="#eff6ff" stroke="#1e40af" stroke-width="1.5" />
+            <text x="50" y="21" text-anchor="middle" font-size="4.2" font-weight="bold" fill="#1e40af">GURUKUL / TAXILA</text>
+            <line x1="50" y1="30" x2="50" y2="42" stroke="#94a3b8" stroke-width="2" stroke-dasharray="2,2" />
+            <circle cx="50" cy="54" r="12" fill="#f0fdf4" stroke="#15803d" stroke-width="1.5" />
+            <text x="50" y="57" text-anchor="middle" font-size="4.2" font-weight="bold" fill="#15803d">1857 3 PRESIDENCIES</text>
+            <line x1="50" y1="66" x2="50" y2="78" stroke="#94a3b8" stroke-width="2" stroke-dasharray="2,2" />
+            <circle cx="50" cy="88" r="10" fill="#2563eb" />
+            <text x="50" y="91" text-anchor="middle" font-size="4" font-weight="bold" fill="#ffffff">NEP 2020 / HECI</text>
+          </svg>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2. Pre & Post-Independence Education Commissions -->
+    <div class="section-card">
+      <div class="section-header">
+        <span class="section-icon">⏳</span>
+        <h2 class="section-title">Major Commissions & Historical Milestones</h2>
+      </div>
+
+      <div class="formulas-grid">
+        <div class="formula-card blue">
+          <div>
+            <div class="formula-head"><span>📜</span> Wood's Despatch (1854)</div>
+            <div class="formula-math">"Magna Carta of English Education"</div>
+          </div>
+          <div class="formula-note">Recommended establishing universities on the model of London University. Led to the creation of the first three modern universities in 1857 at <strong>Calcutta, Bombay, and Madras</strong>.</div>
+        </div>
+
+        <div class="formula-card green">
+          <div>
+            <div class="formula-head"><span>🎓</span> Radhakrishnan Commission (1948-49)</div>
+            <div class="formula-math">University Education Commission</div>
+          </div>
+          <div class="formula-note">First post-independence commission. Chaired by Dr. S. Radhakrishnan. Recommended establishing the <strong>University Grants Commission (UGC)</strong> and setting up rural universities.</div>
+        </div>
+
+        <div class="formula-card purple">
+          <div>
+            <div class="formula-head"><span>📚</span> Kothari Commission (1964-66)</div>
+            <div class="formula-math">"Education & National Development"</div>
+          </div>
+          <div class="formula-note">Chaired by Dr. D.S. Kothari. Proposed the <strong>10+2+3 educational structure</strong>, the Three-Language Formula, and spending <strong>6% of GDP</strong> on education.</div>
+        </div>
+
+        <div class="formula-card orange">
+          <div>
+            <div class="formula-head"><span>💡</span> Sam Pitroda Commission (2005)</div>
+            <div class="formula-math">National Knowledge Commission (NKC)</div>
+          </div>
+          <div class="formula-note">Recommended expanding higher education to 1500 universities to achieve a 30% GER, creating the National Knowledge Network, and reforming regulatory structures.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 3. Regulatory Bodies & NEP 2020 Framework -->
+    <div class="section-card">
+      <div class="section-header">
+        <span class="section-icon">🏛️</span>
+        <h2 class="section-title">Regulatory Ecosystem & National Education Policy 2020</h2>
+      </div>
+
+      <div class="formulas-grid">
+        <div class="formula-card blue">
+          <div>
+            <div class="formula-head"><span>🏢</span> UGC (Statutory Act 1956)</div>
+            <div class="formula-math">Coordinating & Determining Standards</div>
+          </div>
+          <div class="formula-note">Inaugurated by Maulana Abul Kalam Azad (1953), statutory status in 1956. Headquartered in New Delhi with 6 regional centers (Pune, Hyderabad, Kolkata, Bhopal, Guwahati, Bangalore).</div>
+        </div>
+
+        <div class="formula-card green">
+          <div>
+            <div class="formula-head"><span>⭐</span> NAAC & NIRF Rankings</div>
+            <div class="formula-math">Accreditation & Institutional Ranks</div>
+          </div>
+          <div class="formula-note"><strong>NAAC:</strong> Established by UGC in 1994 (HQ: Bengaluru) for institutional grading. <strong>NIRF:</strong> Launched in 2015 by MoE across parameters like TLR, RPC, GO, OI, and PR.</div>
+        </div>
+
+        <div class="formula-card purple">
+          <div>
+            <div class="formula-head"><span>🎯</span> NEP 2020 Structural Shifts</div>
+            <div class="formula-math">5+3+3+4 School & 50% Higher Ed GER by 2035</div>
+          </div>
+          <div class="formula-note">Drafted by Dr. K. Kasturirangan Committee. Establishes <strong>Academic Bank of Credits (ABC)</strong>, Multiple Entry/Exit undergraduate programs, and phased phasing out of college affiliations in 15 years.</div>
+        </div>
+
+        <div class="formula-card orange">
+          <div>
+            <div class="formula-head"><span>🏛️</span> HECI 4 Vertical Pillars (NEP 2020)</div>
+            <div class="formula-math">NHERC | NAC | HEGC | GEC</div>
+          </div>
+          <div class="formula-note"><strong>NHERC:</strong> Regulation. <strong>NAC:</strong> Accreditation. <strong>HEGC:</strong> Funding & Financing. <strong>GEC:</strong> Academic standard setting (learning outcomes).</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 4. Step-by-Step Solved UGC NET PYQ Examples -->
+    <div class="section-card">
+      <div class="section-header">
+        <span class="section-icon">📝</span>
+        <h2 class="section-title">Step-by-Step Solved UGC NET Examples</h2>
+      </div>
+
+      <div class="examples-list">
+        <!-- Example 1 -->
+        <div class="example-card">
+          <div class="example-title">
+            <span style="background: #eff6ff; color: #1e40af; padding: 2px 8px; border-radius: 6px; font-size: 0.85rem;">Ex 1</span>
+            Under the National Education Policy (NEP) 2020, which single overarching apex body is proposed to replace UGC and AICTE for entire higher education (excluding medical and legal education)?<br>
+            Options: (A) National Research Foundation (NRF) &nbsp;|&nbsp; (B) Higher Education Commission of India (HECI) &nbsp;|&nbsp; (C) National Testing Agency (NTA) &nbsp;|&nbsp; (D) General Education Council (GEC)
+          </div>
+          <div class="step-row">
+            <span class="step-tag step-given">NEP 2020 Architecture</span>
+            <span>Higher education governance is consolidated under one umbrella body with four independent verticals.</span>
+          </div>
+          <div class="step-row">
+            <span class="step-tag step-formula">Policy Fact</span>
+            <span>The umbrella apex body is the <strong>Higher Education Commission of India (HECI)</strong>.</span>
+          </div>
+          <div class="step-row">
+            <span class="step-tag step-sol">Solution</span>
+            <span>The correct answer is <strong>(Option B)</strong>.</span>
+          </div>
+          <div>
+            <span class="answer-badge">✓ Correct Answer: Higher Education Commission of India (HECI)</span>
+          </div>
+        </div>
+
+        <!-- Example 2 -->
+        <div class="example-card">
+          <div class="example-title">
+            <span style="background: #eff6ff; color: #1e40af; padding: 2px 8px; border-radius: 6px; font-size: 0.85rem;">Ex 2</span>
+                        Match the ancient Indian universities with their key historical attributes:<br>
+            1. Takshashila &nbsp;|&nbsp; 2. Nalanda &nbsp;|&nbsp; 3. Vikramashila &nbsp;|&nbsp; 4. Vallabhi
+          </div>
+          <div class="step-row">
+            <span class="step-tag step-given">Historical Mapping</span>
+            <span>• <strong>Takshashila:</strong> Chanakya, Charaka, Panini, Medicine & Statecraft (Taxila, UNESCO 1980).<br>• <strong>Nalanda:</strong> Dharmaganja library, Kumaragupta I, Hiuen Tsang, Mahayana Buddhism.<br>• <strong>Vikramashila:</strong> King Dharmapala, Tantric Buddhism.<br>• <strong>Vallabhi:</strong> Hinayana Buddhism center, Gujarat, Gunamati and Sthiramati scholars.</span>
+          </div>
+          <div>
+            <span class="answer-badge">✓ Complete Ancient University Taxonomy Mastered</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 5. Speed Mnemonics & Key Tips -->
+    <div class="section-card">
+      <div class="section-header">
+        <span class="section-icon">⭐</span>
+        <h2 class="section-title">Speed-Solving Mnemonics & Key Tips</h2>
+      </div>
+
+      <div class="tips-grid">
+        <div class="tip-card t1">
+          <div class="tip-icon">🏛️</div>
+          <div class="tip-text"><strong>1857 First 3 Universities:</strong><br>
+          Remember <strong>B-C-M</strong>:<br>
+          <strong>B</strong>ombay, <strong>C</strong>alcutta, and <strong>M</strong>adras (Established following Wood's Despatch 1854).</div>
+        </div>
+
+        <div class="tip-card t2">
+          <div class="tip-icon">🧩</div>
+          <div class="tip-text"><strong>HECI 4 Verticals (NEP 2020):</strong><br>
+          Remember <strong>N-N-H-G</strong>:<br>
+          • <strong>N</strong>HERC (Regulation)<br>
+          • <strong>N</strong>AC (Accreditation)<br>
+          • <strong>H</strong>EGC (Funding)<br>
+          • <strong>G</strong>EC (Standards/Learning outcomes).</div>
+        </div>
+
+        <div class="tip-card t3">
+          <div class="tip-icon">📚</div>
+          <div class="tip-text"><strong>Post-Independence Commissions Timeline:</strong><br>
+          1948 (Radhakrishnan - University) &rarr; 1952 (Mudaliar - Secondary) &rarr; 1964 (Kothari - National Development) &rarr; 1986 (NPE) &rarr; 2020 (NEP).</div>
+        </div>
+
+        <div class="tip-card t4">
+          <div class="tip-icon">🎯</div>
+          <div class="tip-text"><strong>NIRF Core Parameters:</strong><br>
+          <strong>T</strong>eaching & Learning (TLR), <strong>R</strong>esearch (RPC), <strong>G</strong>raduation Outcomes (GO), <strong>O</strong>utreach & Inclusivity (OI), <strong>P</strong>erception (PR).</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 6. Common Mistakes to Avoid -->
+    <div class="section-card">
+      <div class="section-header">
+        <span class="section-icon">⚠️</span>
+        <h2 class="section-title">Common Mistakes to Avoid</h2>
+      </div>
+
+      <div class="mistakes-list">
+        <div class="mistake-box">
+          <div class="mistake-icon">🚫</div>
+          <div>
+            <div class="mistake-title">Mistake 1: Confusing Deemed-to-be Universities with State Universities</div>
+            <div class="mistake-desc"><strong>Deemed Universities</strong> are granted status by the Central Government on UGC recommendation under Section 3 of the UGC Act 1956. They enjoy full academic autonomy to design syllabus and confer degrees but cannot affiliate colleges.</div>
+          </div>
+        </div>
+
+        <div class="mistake-box">
+          <div class="mistake-icon">🚫</div>
+          <div>
+            <div class="mistake-title">Mistake 2: Mixing Up Vedic and Buddhist Education Features</div>
+            <div class="mistake-desc"><strong>Vedic education</strong> begins with the <em>Upanayana Samskara</em> (Gurukul system). <strong>Buddhist education</strong> begins with the <em>Pabbajja ceremony</em> (at age 8 in Monasteries/Viharas) and formal ordination occurs via <em>Upasampada</em> (at age 20).</div>
+          </div>
+        </div>
+
+        <div class="mistake-box">
+          <div class="mistake-icon">🚫</div>
+          <div>
+            <div class="mistake-title">Mistake 3: Confusing Higher Ed GER Targets in NEP 2020</div>
+            <div class="mistake-desc">NEP 2020 targets a <strong>50% Gross Enrolment Ratio (GER) in Higher Education by 2035</strong> and <strong>100% GER in School Education (Preschool to Secondary) by 2030</strong>. Do not confuse the two target dates!</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CTA Button -->
+    <div class="cta-container">
+      <a href="higher-education-test.html" class="btn-quiz-cta">
+        <span>🚀 Take Higher Education System Mock Test</span>
+        <span>→</span>
+      </a>
+    </div>
+
+  </div>
+
+</body>
+</html>
