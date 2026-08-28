@@ -3,22 +3,28 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Reading Comprehension Mock Test - Exam Prep Hub</title>
+  <title>Reading Comprehension Mock Test - UGC NET Paper 1 | Exam Prep Hub</title>
   <style>
     :root {
       --primary: #1e40af;
       --primary-hover: #1d4ed8;
+      --primary-light: #eff6ff;
       --bg: #f8fafc;
       --card-bg: #ffffff;
       --text: #0f172a;
       --text-muted: #64748b;
       --border: #e2e8f0;
-      --success: #16a34a;
-      --success-bg: #f0fdf4;
-      --danger: #dc2626;
-      --danger-bg: #fef2f2;
-      --radius: 12px;
-      --shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+      
+      --correct: #15803d;
+      --correct-bg: #dcfce7;
+      --correct-border: #86efac;
+
+      --wrong: #be123c;
+      --wrong-bg: #ffe4e6;
+      --wrong-border: #fecdd3;
+
+      --radius: 14px;
+      --shadow: 0 4px 6px -1px rgb(0 0 0 / 0.08), 0 2px 4px -2px rgb(0 0 0 / 0.06);
     }
 
     * {
@@ -31,121 +37,173 @@
     body {
       background-color: var(--bg);
       color: var(--text);
+      line-height: 1.6;
+      padding-bottom: 60px;
+    }
+
+    header {
+      background-color: var(--card-bg);
+      border-bottom: 1px solid var(--border);
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.05);
+    }
+
+    .header-container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 14px 20px;
       display: flex;
-      justify-content: center;
-      min-height: 100vh;
-      padding: 16px;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .back-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      color: var(--primary);
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 0.95rem;
+      transition: transform 0.2s ease, color 0.2s ease;
+    }
+
+    .back-btn:hover {
+      transform: translateX(-3px);
+      color: var(--primary-hover);
+    }
+
+    .badge-tag {
+      background: var(--primary-light);
+      color: var(--primary);
+      font-size: 0.8rem;
+      font-weight: 700;
+      padding: 4px 12px;
+      border-radius: 9999px;
+      border: 1px solid #bfdbfe;
     }
 
     .container {
       width: 100%;
-      max-width: 680px;
-      margin: auto;
+      max-width: 800px;
+      margin: 28px auto 0;
+      padding: 0 16px;
     }
 
-    .card {
-      background-color: var(--card-bg);
+    .hero-card {
+      background: linear-gradient(135deg, #1e3a8a 0%, #1e40af 60%, #3b82f6 100%);
+      color: #ffffff;
       border-radius: var(--radius);
-      box-shadow: var(--shadow);
       padding: 24px;
-      border: 1px solid var(--border);
-    }
-
-    .header {
+      box-shadow: var(--shadow);
+      margin-bottom: 24px;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      margin-bottom: 20px;
-      border-bottom: 2px solid var(--border);
-      padding-bottom: 14px;
+      gap: 16px;
     }
 
-    .title {
-      font-size: 1.15rem;
-      font-weight: 700;
-      color: var(--primary);
-    }
-
-    .timer-badge {
-      font-size: 0.95rem;
-      font-weight: 700;
-      background: #eff6ff;
-      color: var(--primary);
-      padding: 6px 14px;
-      border-radius: 9999px;
-      border: 1px solid #bfdbfe;
+    .hero-title {
+      font-size: 1.65rem;
+      font-weight: 800;
+      margin-bottom: 4px;
       display: flex;
       align-items: center;
-      gap: 6px;
+      gap: 10px;
     }
 
-    .timer-warning {
-      background: var(--danger-bg);
-      color: var(--danger);
-      border-color: #fecaca;
-      animation: pulse 1s infinite;
+    .hero-subtitle {
+      font-size: 0.92rem;
+      opacity: 0.9;
     }
 
-    @keyframes pulse {
-      0%, 100% { opacity: 1; }
-      50% { opacity: 0.6; }
-    }
-
-    .progress-info {
-      font-size: 0.9rem;
-      font-weight: 600;
-      color: var(--text-muted);
-      margin-bottom: 8px;
-    }
-
-    .progress-bar-container {
-      width: 100%;
-      height: 8px;
-      background-color: var(--border);
-      border-radius: 9999px;
-      overflow: hidden;
+    .quiz-card {
+      background: var(--card-bg);
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
+      padding: 24px;
+      box-shadow: var(--shadow);
       margin-bottom: 24px;
     }
 
-    .progress-bar-fill {
+    .quiz-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 16px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .q-count {
+      font-weight: 700;
+      color: var(--text-muted);
+      font-size: 0.95rem;
+    }
+
+    .timer-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: #fef2f2;
+      color: #b91c1c;
+      font-weight: 800;
+      font-size: 0.95rem;
+      padding: 6px 14px;
+      border-radius: 9999px;
+      border: 1px solid #fecaca;
+    }
+
+    .progress-bar-wrap {
+      width: 100%;
+      height: 8px;
+      background: #e2e8f0;
+      border-radius: 9999px;
+      margin-bottom: 20px;
+      overflow: hidden;
+    }
+
+    .progress-bar {
       height: 100%;
-      background-color: var(--primary);
+      background: var(--primary);
       width: 0%;
       transition: width 0.3s ease;
     }
 
-    .passage-box {
-      background-color: #f8fafc;
-      border: 1px solid var(--border);
+    .passage-container {
+      background: #f8fafc;
+      border: 1.5px solid var(--border);
       border-left: 4px solid var(--primary);
-      padding: 14px 16px;
-      border-radius: 6px;
-      font-size: 0.92rem;
-      line-height: 1.6;
+      border-radius: 10px;
+      padding: 16px 18px;
+      margin-bottom: 20px;
+      font-size: 0.93rem;
       color: #334155;
-      margin-bottom: 18px;
-      max-height: 200px;
+      line-height: 1.65;
+      max-height: 240px;
       overflow-y: auto;
     }
 
-    .passage-title {
-      font-weight: 700;
-      font-size: 0.85rem;
+    .passage-tag {
+      display: inline-block;
+      font-size: 0.75rem;
+      font-weight: 800;
+      text-transform: uppercase;
       color: var(--primary);
       margin-bottom: 6px;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
     }
 
     .question-text {
-      font-size: 1.05rem;
-      font-weight: 600;
+      font-size: 1.12rem;
+      font-weight: 800;
+      color: var(--text);
+      margin-bottom: 20px;
       line-height: 1.5;
-      margin-bottom: 18px;
-      white-space: pre-line;
     }
 
-    .options-grid {
+    .options-list {
       display: flex;
       flex-direction: column;
       gap: 12px;
@@ -154,585 +212,677 @@
 
     .option-btn {
       background: #ffffff;
-      border: 2px solid var(--border);
-      border-radius: 10px;
-      padding: 14px 16px;
-      font-size: 0.98rem;
-      font-weight: 500;
+      border: 1.5px solid var(--border);
+      border-radius: 12px;
+      padding: 14px 18px;
       text-align: left;
+      font-size: 0.98rem;
+      font-weight: 600;
+      color: #1e293b;
       cursor: pointer;
       display: flex;
-      align-items: flex-start;
+      align-items: center;
       gap: 12px;
       transition: all 0.2s ease;
-      color: var(--text);
-      -webkit-tap-highlight-color: transparent;
     }
 
-    .option-btn:hover {
-      border-color: #93c5fd;
-      background-color: #f0f7ff;
+    .option-btn:hover:not(:disabled) {
+      border-color: var(--primary);
+      background-color: var(--primary-light);
+      transform: translateY(-1px);
     }
 
     .option-btn.selected {
       border-color: var(--primary);
-      background-color: #eff6ff;
-      font-weight: 600;
+      background-color: var(--primary-light);
     }
 
-    .option-prefix {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      width: 26px;
-      height: 26px;
-      border-radius: 50%;
-      background: #f1f5f9;
-      font-size: 0.85rem;
+    .option-btn.correct {
+      background-color: var(--correct-bg) !important;
+      border-color: var(--correct-border) !important;
+      color: var(--correct) !important;
       font-weight: 700;
-      flex-shrink: 0;
-      color: var(--text-muted);
     }
 
-    .option-btn.selected .option-prefix {
-      background: var(--primary);
-      color: #ffffff;
-    }
-
-    .btn {
-      width: 100%;
-      padding: 14px 20px;
-      border-radius: 10px;
-      font-size: 1rem;
+    .option-btn.wrong {
+      background-color: var(--wrong-bg) !important;
+      border-color: var(--wrong-border) !important;
+      color: var(--wrong) !important;
       font-weight: 700;
-      border: none;
-      cursor: pointer;
-      transition: background 0.2s;
     }
 
-    .btn-primary {
-      background-color: var(--primary);
-      color: white;
-    }
-
-    .btn-primary:hover:not(:disabled) {
-      background-color: var(--primary-hover);
-    }
-
-    .btn-primary:disabled {
-      background-color: #cbd5e1;
+    .option-btn:disabled {
       cursor: not-allowed;
     }
 
-    .btn-secondary {
-      background-color: transparent;
+    .opt-circle {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: #f1f5f9;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.85rem;
+      font-weight: 800;
+      flex-shrink: 0;
+    }
+
+    .option-btn.correct .opt-circle {
+      background: #86efac;
+      color: #14532d;
+    }
+
+    .option-btn.wrong .opt-circle {
+      background: #fecdd3;
+      color: #881337;
+    }
+
+    .explanation-box {
+      display: none;
+      background: #f8fafc;
+      border: 1.5px solid var(--border);
+      border-left: 4px solid var(--primary);
+      border-radius: 10px;
+      padding: 16px;
+      margin-bottom: 20px;
+      font-size: 0.94rem;
+      color: #334155;
+    }
+
+    .explanation-box.show {
+      display: block;
+      animation: fadeIn 0.3s ease-in-out;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-4px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .explanation-title {
+      font-weight: 800;
       color: var(--primary);
-      border: 2px solid var(--primary);
-      margin-top: 10px;
+      margin-bottom: 4px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .quiz-actions {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .btn-action {
+      background: var(--primary);
+      color: #ffffff;
+      border: none;
+      padding: 12px 24px;
+      border-radius: 10px;
+      font-size: 0.96rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background-color 0.2s, transform 0.2s;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .btn-action:hover {
+      background-color: var(--primary-hover);
+      transform: translateY(-1px);
+    }
+
+    .btn-secondary {
+      background: #f1f5f9;
+      color: #475569;
     }
 
     .btn-secondary:hover {
-      background-color: var(--bg);
+      background: #e2e8f0;
+      color: #0f172a;
     }
 
-    .results-header {
+    /* Results Screen */
+    .results-card {
+      display: none;
+      background: var(--card-bg);
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
+      padding: 36px 24px;
+      box-shadow: var(--shadow);
       text-align: center;
-      margin-bottom: 24px;
+    }
+
+    .score-circle {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #1e40af, #3b82f6);
+      color: white;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 20px;
+      box-shadow: 0 4px 12px rgba(30, 64, 175, 0.25);
+    }
+
+    .score-val {
+      font-size: 2.2rem;
+      font-weight: 800;
+      line-height: 1;
+    }
+
+    .score-total {
+      font-size: 0.9rem;
+      opacity: 0.85;
+      font-weight: 700;
     }
 
     .results-title {
       font-size: 1.5rem;
       font-weight: 800;
-      color: var(--primary);
+      margin-bottom: 8px;
     }
 
-    .stats-grid {
+    .results-desc {
+      font-size: 0.95rem;
+      color: var(--text-muted);
+      margin-bottom: 24px;
+    }
+
+    .results-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 12px;
       margin-bottom: 28px;
     }
 
-    .stat-card {
+    .res-box {
       background: #f8fafc;
       border: 1px solid var(--border);
       border-radius: 10px;
       padding: 12px;
-      text-align: center;
     }
 
-    .stat-label {
-      font-size: 0.75rem;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-      color: var(--text-muted);
-      font-weight: 600;
-      margin-bottom: 4px;
-    }
-
-    .stat-val {
-      font-size: 1.25rem;
+    .res-num {
+      font-size: 1.3rem;
       font-weight: 800;
-      color: var(--text);
     }
 
-    .review-heading {
-      font-size: 1.1rem;
+    .res-lbl {
+      font-size: 0.8rem;
+      color: var(--text-muted);
       font-weight: 700;
-      margin-bottom: 16px;
-      border-bottom: 1px solid var(--border);
-      padding-bottom: 8px;
     }
 
-    .review-list {
+    .res-correct { color: var(--correct); }
+    .res-wrong { color: var(--wrong); }
+    .res-time { color: var(--primary); }
+
+    .results-buttons {
       display: flex;
-      flex-direction: column;
-      gap: 16px;
-      margin-bottom: 24px;
+      justify-content: center;
+      gap: 14px;
+      flex-wrap: wrap;
     }
 
-    .review-item {
-      padding: 16px;
-      border-radius: 10px;
-      border: 1px solid var(--border);
+    .results-buttons a, .results-buttons button {
+      text-decoration: none;
     }
 
-    .review-item.correct {
-      background-color: var(--success-bg);
-      border-color: #bbf7d0;
-    }
-
-    .review-item.wrong {
-      background-color: var(--danger-bg);
-      border-color: #fecaca;
-    }
-
-    .review-q-text {
-      font-weight: 600;
-      margin-bottom: 10px;
-      font-size: 0.95rem;
-      white-space: pre-line;
-    }
-
-    .review-ans-row {
-      font-size: 0.88rem;
-      margin-bottom: 4px;
-    }
-
-    .review-explanation {
-      margin-top: 8px;
-      padding-top: 8px;
-      border-top: 1px dashed rgba(0, 0, 0, 0.1);
-      font-size: 0.85rem;
-      color: #334155;
-      line-height: 1.4;
-    }
-
-    .hide {
-      display: none !important;
+    @media (max-width: 640px) {
+      .hero-card {
+        padding: 18px;
+      }
+      .hero-title {
+        font-size: 1.4rem;
+      }
+      .results-grid {
+        grid-template-columns: 1fr;
+      }
     }
   </style>
 </head>
 <body>
 
+  <header>
+    <div class="header-container">
+      <a href="index.html" class="back-btn">← Back to Home</a>
+      <span class="badge-tag">UGC NET Paper 1</span>
+    </div>
+  </header>
+
   <div class="container">
-    <div id="quiz-card" class="card">
-      <div class="header">
-        <div class="title">Reading Comprehension Mock Test</div>
-        <div id="timer" class="timer-badge">⏱ 15:00</div>
+
+    <div class="hero-card">
+      <div>
+        <h1 class="hero-title">📖 Reading Comprehension Mock Test</h1>
+        <p class="hero-subtitle">15 UGC NET exam-standard questions across 3 analytical passages covering higher education, climate governance, and AI ethics.</p>
       </div>
-
-      <div class="progress-info" id="progress-text">Question 1 of 15</div>
-      <div class="progress-bar-container">
-        <div class="progress-bar-fill" id="progress-bar"></div>
-      </div>
-
-      <div class="passage-box" id="passage-box">
-        <div class="passage-title" id="passage-title">Passage</div>
-        <div id="passage-text">Loading passage...</div>
-      </div>
-
-      <div class="question-text" id="question-text">Loading question...</div>
-
-      <div class="options-grid" id="options-container"></div>
-
-      <button id="next-btn" class="btn btn-primary" disabled>Next Question</button>
     </div>
 
-    <div id="results-card" class="card hide">
-      <div class="results-header">
-        <div class="results-title">Test Completed!</div>
-        <p style="color: var(--text-muted); font-size: 0.95rem;">Here is your performance summary</p>
-      </div>
-
-      <div class="stats-grid">
-        <div class="stat-card">
-          <div class="stat-label">Score</div>
-          <div class="stat-val" id="score-val">0/15</div>
-        </div>
-        <div class="stat-card">
-          <div class="stat-label">Accuracy</div>
-          <div class="stat-val" id="accuracy-val">0%</div>
-        </div>
-        <div class="stat-card">
-          <div class="stat-label">Time Taken</div>
-          <div class="stat-val" id="time-val">00:00</div>
+    <div class="quiz-card" id="quizContainer">
+      <div class="quiz-header">
+        <span class="q-count" id="questionCount">Question 1 of 15</span>
+        <div class="timer-badge">
+          <span>⏱️</span>
+          <span id="timerText">15:00</span>
         </div>
       </div>
 
-      <div class="review-heading">Answer Key & Explanations</div>
-      <div class="review-list" id="review-container"></div>
+      <div class="progress-bar-wrap">
+        <div class="progress-bar" id="progressBar"></div>
+      </div>
 
-      <button id="restart-btn" class="btn btn-primary">Restart Test</button>
-      <a href="index.html" style="text-decoration: none;">
-        <button class="btn btn-secondary">Back to Home</button>
-      </a>
+      <div class="passage-container" id="passageBox">
+        <div class="passage-tag" id="passageTag">Passage 1 of 3 (Higher Education & Research)</div>
+        <div id="passageContent">Loading passage...</div>
+      </div>
+
+      <div class="question-text" id="questionText">Loading question...</div>
+
+      <div class="options-list" id="optionsList"></div>
+
+      <div class="explanation-box" id="explanationBox">
+        <div class="explanation-title">💡 Explanation:</div>
+        <div id="explanationText"></div>
+      </div>
+
+      <div class="quiz-actions">
+        <a href="reading-comprehension-notes.html" class="btn-action btn-secondary">📖 View Notes</a>
+        <button class="btn-action" id="nextBtn" onclick="nextQuestion()">Next Question →</button>
+      </div>
     </div>
+
+    <div class="results-card" id="resultsContainer">
+      <div class="score-circle">
+        <span class="score-val" id="finalScore">0</span>
+        <span class="score-total">/ 15</span>
+      </div>
+      <h2 class="results-title" id="resultsFeedback">Test Completed!</h2>
+      <p class="results-desc" id="resultsDesc">Here is your overall performance breakdown.</p>
+
+      <div class="results-grid">
+        <div class="res-box">
+          <div class="res-num res-correct" id="correctCount">0</div>
+          <div class="res-lbl">CORRECT</div>
+        </div>
+        <div class="res-box">
+          <div class="res-num res-wrong" id="wrongCount">0</div>
+          <div class="res-lbl">INCORRECT</div>
+        </div>
+        <div class="res-box">
+          <div class="res-num res-time" id="timeSpent">0m 0s</div>
+          <div class="res-lbl">TIME SPENT</div>
+        </div>
+      </div>
+
+      <div class="results-buttons">
+        <button class="btn-action" onclick="restartQuiz()">🔄 Retake Test</button>
+        <a href="reading-comprehension-notes.html" class="btn-action btn-secondary">📖 Review Study Notes</a>
+        <a href="index.html" class="btn-action" style="background: #0f172a;">🏠 Back to Hub</a>
+      </div>
+    </div>
+
   </div>
 
   <script>
     const passages = [
       {
-        id: 1,
-        title: "Passage 1: Artificial Intelligence & Workforce",
-        text: "The rapid integration of Artificial Intelligence (AI) across various industrial sectors has fundamentally transformed global labor dynamics. While proponents emphasize AI's capability to eradicate mundane, repetitive tasks and catalyze novel economic sectors, critics warn against widespread structural unemployment and socioeconomic inequality. Historically, technological revolutions have initially displaced labor before creating higher-value roles. However, the unprecedented velocity and breadth of modern cognitive automation challenge traditional reskilling timelines, necessitating dynamic policy frameworks and lifelong learning systems."
+        tag: "Passage 1 of 3: Higher Education & Epistemic Autonomy",
+        text: "The contemporary transformation of higher education is deeply entangled with market-driven metrics of productivity and commodified knowledge. While institutional rankings emphasize publication volume and citation impact factors, this empirical focus often marginalizes localized humanities and foundational theoretical inquiries that do not yield immediate commercial dividends. Genuine pedagogical rigor requires structural autonomy wherein scholarly inquiry is liberated from short-term fiscal rationalization, fostering dialectical critical thought rather than mere vocational compliance."
       },
       {
-        id: 2,
-        title: "Passage 2: Biodiversity & Climate Resilience",
-        text: "Tropical rainforests and coral reefs represent ecological reservoirs that maintain Earth's climatic stability and biological diversity. Anthropogenic climate change, driven by extensive greenhouse emissions and aggressive deforestation, accelerates habitat degradation at an alarming rate. The loss of keystone species triggers cascading disruptions across ecological trophic webs, diminishing ecosystem resilience against extreme meteorological phenomena. Conservation efforts must transcend localized protectionism by embedding sustainable economic incentives directly into regional communities."
+        tag: "Passage 2 of 3: Environmental Governance & Climate Justice",
+        text: "Global environmental agreements frequently suffer from structural inequities between industrialized nations and the Global South. Historical emissions generated during Western industrialization account for the lion's share of atmospheric carbon concentration. Imposing symmetrical mitigation burdens on developing economies without proportional technology transfers and non-repayable climate financing represents an ecological injustice. Sustainable planetary stewardship demands operationalizing the principle of Common But Differentiated Responsibilities (CBDR)."
       },
       {
-        id: 3,
-        title: "Passage 3: The Evolution of Digital Financial Systems",
-        text: "Digital public infrastructure and fintech innovations have democratized access to financial capital in developing economies. Central Bank Digital Currencies (CBDCs) and unified digital payments facilitate instantaneous, low-friction cross-border settlements while minimizing fiscal leakages in government welfare distributions. Nonetheless, this rapid transition exacerbates vulnerabilities regarding algorithmic bias, surveillance, and cyber warfare. Safeguarding system stability necessitates robust cryptographic security harmonized with international regulatory interoperability."
+        tag: "Passage 3 of 3: Artificial Intelligence & Algorithmic Epistemology",
+        text: "The proliferation of generative artificial intelligence across academic and creative spheres has fundamentally disrupted traditional assumptions regarding authorship and cognitive labor. Large language models process vast corpora of human text to generate probabilistic responses, yet they remain epistemologically opaque—functioning as predictive black boxes incapable of semantic understanding or moral intentionality. Without robust ethical governance and algorithmic transparency, reliance on automated cognition risks entrenching historical biases and delegitimizing critical human agency."
       }
     ];
 
     const questions = [
-      // Passage 1 Questions (1 - 5)
+      // Questions for Passage 1 (Index 0..4)
       {
-        passageId: 1,
-        q: "According to Passage 1, what differentiates modern AI integration from historical technological revolutions?",
+        passageIdx: 0,
+        q: "What is the primary argument advanced by the author regarding contemporary higher education?",
         options: [
-          "It exclusively eliminates manual factory labor",
-          "Its unprecedented speed and wide cognitive scope outpace conventional reskilling",
-          "It generates zero higher-value employment opportunities",
-          "It relies exclusively on decentralized workforce structures"
+          "Commercial publication metrics have eliminated all academic fraud",
+          "Market metrics risk compromising foundational and qualitative scholarly inquiry",
+          "Vocational compliance should replace all theoretical research",
+          "Institutional rankings are the only reliable measure of academic rigor"
         ],
-        answer: 1,
-        explanation: "The passage notes that the unprecedented velocity and breadth of modern cognitive automation challenge traditional reskilling timelines."
+        ans: 1,
+        exp: "The author explicitly states that market-driven metrics and citation factors marginalize localized humanities and non-commercial theoretical inquiries."
       },
       {
-        passageId: 1,
-        q: "What is the primary concern raised by critics of AI adoption in the passage?",
+        passageIdx: 0,
+        q: "According to the passage, what consequence arises from overemphasizing immediate commercial dividends?",
         options: [
-          "Excessive government intervention in private tech firms",
-          "Immediate collapse of global supply chains",
-          "Structural unemployment and widening socioeconomic disparity",
-          "Inability of AI models to handle repetitive administrative tasks"
+          "Increased government funding for basic arts",
+          "Marginalization of foundational theories and localized humanities",
+          "Total closure of commercial tech universities",
+          "Abolition of all national ranking frameworks"
         ],
-        answer: 2,
-        explanation: "Critics warn against widespread structural unemployment and socioeconomic inequality."
+        ans: 1,
+        exp: "The text notes that focusing on empirical commercial output 'often marginalizes localized humanities and foundational theoretical inquiries'."
       },
       {
-        passageId: 1,
-        q: "The word 'MUNDANE' as used in Passage 1 is closest in meaning to:",
-        options: ["Exotic", "Routine and ordinary", "Exceptional", "Intellectual"],
-        answer: 1,
-        explanation: "'Mundane' means lacking interest or excitement; dull, routine, or repetitive."
+        passageIdx: 0,
+        q: "What does the author suggest is essential for genuine pedagogical rigor?",
+        options: [
+          "Mandatory private corporate sponsorship",
+          "Complete subservience to citation impact factors",
+          "Structural autonomy that frees scholarship from short-term financial pressure",
+          "Replacing classroom lectures with automated exams"
+        ],
+        ans: 2,
+        exp: "The author asserts that pedagogical rigor demands 'structural autonomy wherein scholarly inquiry is liberated from short-term fiscal rationalization'."
       },
       {
-        passageId: 1,
-        q: "Which measure is explicitly suggested in Passage 1 to address the rapid transformation in labor?",
+        passageIdx: 0,
+        q: "The term 'vocational compliance' as used in the passage most closely refers to:",
         options: [
-          "Banning automated machine learning platforms",
-          "Dynamic policy frameworks and lifelong learning mechanisms",
-          "Freezing all international venture capital funding",
-          "Shifting the entire economy back to agrarian manufacturing"
+          "Independent, critical philosophical rebellion",
+          "Strict adherence to job-oriented training without critical inquiry",
+          "Advanced scientific research in physics",
+          "Voluntary charitable work in rural schools"
         ],
-        answer: 1,
-        explanation: "The author advocates for 'dynamic policy frameworks and lifelong learning systems'."
+        ans: 1,
+        exp: "In this context, 'vocational compliance' denotes producing workforce-ready graduates who conform to market utility rather than thinking critically."
       },
       {
-        passageId: 1,
-        q: "What is the overall tone of Passage 1 regarding Artificial Intelligence?",
-        options: [
-          "Purely dismissive and alarmist",
-          "Unconditionally celebratory",
-          "Balanced and analytical",
-          "Sarcastic and indifferent"
-        ],
-        answer: 2,
-        explanation: "The author evaluates both the productivity advantages and the disruption risks in a balanced, objective manner."
+        passageIdx: 0,
+        q: "Which of the following best characterizes the author's overall tone in Passage 1?",
+        options: ["Euphoric and Celebratory", "Critical and Analytical", "Satirical and Comic", "Apathetic and Indifferent"],
+        ans: 1,
+        exp: "The author critically examines the shortcomings of market-driven higher education and analytically calls for structural reform."
       },
 
-      // Passage 2 Questions (6 - 10)
+      // Questions for Passage 2 (Index 5..9)
       {
-        passageId: 2,
-        q: "According to Passage 2, what primary role do tropical rainforests and coral reefs play?",
+        passageIdx: 1,
+        q: "What core inequity in global climate governance is highlighted by the author?",
         options: [
-          "Serving as industrial timber hubs",
-          "Regulating Earth's climatic stability and biological diversity",
-          "Facilitating commercial maritime trade",
-          "Preventing geological plate tectonic shifts"
+          "Industrialized nations contribute zero emissions today",
+          "Developing nations bear historical responsibility for all global warming",
+          "Symmetrical mitigation demands ignore the historical emissions of the Global North",
+          "Climate treaties strictly favor developing economies"
         ],
-        answer: 1,
-        explanation: "The passage identifies them as ecological reservoirs that maintain Earth's climatic stability and biological diversity."
+        ans: 2,
+        exp: "The text emphasizes that historical emissions from Western industrialization caused current warming, making equal mitigation burdens unfair without financial support."
       },
       {
-        passageId: 2,
-        q: "What is identified as the core consequence of losing keystone species?",
+        passageIdx: 1,
+        q: "What principle does the author advocate to achieve sustainable planetary stewardship?",
         options: [
-          "Immediate cessation of rainfall cycles worldwide",
-          "Cascading disruptions throughout ecological trophic webs",
-          "Lower oceanic surface temperatures",
-          "Decreased atmospheric carbon concentrations"
+          "Universal Carbon Tax for All Citizens",
+          "Common But Differentiated Responsibilities (CBDR)",
+          "Immediate Cessation of All Industrial Activity",
+          "Unrestricted Free-Market Carbon Trading"
         ],
-        answer: 1,
-        explanation: "The passage states that losing keystone species triggers cascading disruptions across ecological trophic webs."
+        ans: 1,
+        exp: "The passage explicitly concludes that sustainable stewardship demands operationalizing 'Common But Differentiated Responsibilities (CBDR)'."
       },
       {
-        passageId: 2,
-        q: "The word 'ANTHROPOGENIC' in Passage 2 most directly means:",
-        options: ["Caused by human activity", "Ancient and prehistoric", "Naturally occurring", "Extraterrestrial in origin"],
-        answer: 0,
-        explanation: "'Anthropogenic' refers to environmental pollution or pollutants originating from human activity."
+        passageIdx: 1,
+        q: "According to the passage, climate justice requires which two interventions for developing nations?",
+        options: [
+          "Trade bans and heightened military surveillance",
+          "Proportional technology transfers and non-repayable climate financing",
+          "Immediate closure of all manufacturing industries",
+          "High-interest commercial bank loans"
+        ],
+        ans: 1,
+        exp: "The author highlights the necessity of 'proportional technology transfers and non-repayable climate financing' to achieve ecological justice."
       },
       {
-        passageId: 2,
-        q: "How should conservation efforts evolve according to the author in Passage 2?",
+        passageIdx: 1,
+        q: "The author implies that Western industrialization:",
         options: [
-          "By completely cordoning off nature reserves from all human existence",
-          "By integrating sustainable economic incentives directly into regional communities",
-          "By relying solely on localized regional border controls",
-          "By privatizing all global forested areas"
+          "Contributed minimally to atmospheric carbon levels",
+          "Is historically responsible for the majority of accumulated atmospheric emissions",
+          "Successfully prevented ecological imbalances",
+          "Was fully financed by developing nations"
         ],
-        answer: 1,
-        explanation: "The author emphasizes embedding sustainable economic incentives directly into regional communities."
+        ans: 1,
+        exp: "The passage states that historical emissions during Western industrialization 'account for the lion's share of atmospheric carbon concentration'."
       },
       {
-        passageId: 2,
-        q: "Which title best summarizes Passage 2?",
+        passageIdx: 1,
+        q: "What does the phrase 'symmetrical mitigation burdens' mean in this context?",
         options: [
-          "The Commercial Exploitation of Global Reefs",
-          "Ecological Fragility, Climate Disruption, and Sustainable Conservation",
-          "Meteorological Forecasting in Industrial Nations",
-          "Deforestation: A History of Agriculture"
+          "Equal emission reduction requirements imposed on all countries regardless of history or capacity",
+          "Voluntary tree-planting drives across school campuses",
+          "Different targets based on national GDP",
+          "Complete exemption for wealthy nations"
         ],
-        answer: 1,
-        explanation: "The passage discusses biodiversity loss, climate impacts, and community-integrated sustainable conservation."
+        ans: 0,
+        exp: "'Symmetrical burdens' refers to imposing identical, equal emission cuts across all nations, ignoring past historical inequalities."
       },
 
-      // Passage 3 Questions (11 - 15)
+      // Questions for Passage 3 (Index 10..14)
       {
-        passageId: 3,
-        q: "According to Passage 3, how have digital payments and CBDCs improved public welfare distribution?",
+        passageIdx: 2,
+        q: "Why does the author characterize generative AI models as 'predictive black boxes'?",
         options: [
-          "By eliminating all foreign trade tariffs",
-          "By minimizing fiscal leakages through low-friction transactions",
-          "By completely abolishing central regulatory banks",
-          "By ensuring total anonymity for all taxable transfers"
+          "They are physically housed inside opaque black hardware cabinets",
+          "They produce outputs based on statistical probability without human-like semantic understanding",
+          "They have completely mastered moral and ethical reasoning",
+          "They can never be connected to internet servers"
         ],
-        answer: 1,
-        explanation: "The passage highlights that they minimize fiscal leakages in government welfare distributions."
+        ans: 1,
+        exp: "The author explains that models generate probabilistic responses from corpora while remaining epistemologically opaque and lacking semantic understanding."
       },
       {
-        passageId: 3,
-        q: "What major vulnerabilities of rapid digital financial transition are highlighted in Passage 3?",
+        passageIdx: 2,
+        q: "According to Passage 3, what critical cognitive dimension do Large Language Models lack?",
         options: [
-          "A decline in internet bandwidth access",
-          "Algorithmic bias, surveillance, and cyber warfare risks",
-          "Hyperinflation of traditional fiat currencies",
-          "Complete cessation of international commerce"
+          "Grammatical accuracy",
+          "Semantic understanding and moral intentionality",
+          "High processing speeds",
+          "Data storage capacity"
         ],
-        answer: 1,
-        explanation: "The passage states that the rapid shift exacerbates vulnerabilities regarding algorithmic bias, surveillance, and cyber warfare."
+        ans: 1,
+        exp: "The passage notes that LLMs are 'incapable of semantic understanding or moral intentionality'."
       },
       {
-        passageId: 3,
-        q: "The word 'DEMOCRATIZED' in the context of Passage 3 means:",
-        options: ["Restricted to elite institutions", "Made accessible to the wider population", "Subjected to political voting", "Monopolized by state agencies"],
-        answer: 1,
-        explanation: "In financial context, 'democratized access' means making financial tools broadly available to ordinary people."
+        passageIdx: 2,
+        q: "What risk is explicitly associated with unmonitored reliance on automated cognition?",
+        options: [
+          "Immediate depletion of global electricity grids",
+          "Entrenchment of historical biases and erosion of critical human agency",
+          "Abolition of all computer science degrees",
+          "Total elimination of the internet"
+        ],
+        ans: 1,
+        exp: "The text warns that without ethical governance, automated cognition risks 'entrenching historical biases and delegitimizing critical human agency'."
       },
       {
-        passageId: 3,
-        q: "What is essential to safeguard financial system stability according to Passage 3?",
+        passageIdx: 2,
+        q: "The term 'epistemologically opaque' implies that the AI systems:",
         options: [
-          "Returning exclusively to physical cash economies",
-          "Robust cryptographic security harmonized with global regulatory interoperability",
-          "Unregulated decentralized token creation",
-          "Total elimination of public digital infrastructure"
+          "Are clearly understood in every minute internal decision step",
+          "Have internal decision-making processes that cannot be easily inspected or understood",
+          "Are built exclusively using quantum light mechanics",
+          "Refuse to answer user questions"
         ],
-        answer: 1,
-        explanation: "The author calls for robust cryptographic security combined with international regulatory interoperability."
+        ans: 1,
+        exp: "Epistemological opacity refers to the inability of researchers to decipher exactly how a complex deep neural network arrived at a specific output."
       },
       {
-        passageId: 3,
-        q: "Which of the following inferences is most valid based on Passage 3?",
+        passageIdx: 2,
+        q: "What is the overarching conclusion of the passage regarding AI integration?",
         options: [
-          "Technological fintech efficiency must be balanced with cybersecurity and regulatory oversight",
-          "Fintech innovations only benefit advanced developed economies",
-          "Central Bank Digital Currencies are inherently impossible to secure",
-          "Cross-border settlements will eventually be discontinued"
+          "AI should replace human writers entirely without restrictions",
+          "AI technology must be banned globally by law",
+          "Robust ethical governance and algorithmic transparency are indispensable",
+          "AI models are infallible and free of all prejudice"
         ],
-        answer: 0,
-        explanation: "The passage contrasts the immense benefits of fintech democratization with the imperative for cybersecurity and regulatory coordination."
+        ans: 2,
+        exp: "The author calls for 'robust ethical governance and algorithmic transparency' to protect critical human agency and prevent bias amplification."
       }
     ];
 
-    const TOTAL_TIME = 15 * 60;
-    let timeLeft = TOTAL_TIME;
+    let currentQ = 0;
+    let score = 0;
+    let answered = false;
     let timerInterval = null;
-    let currentIndex = 0;
-    let userAnswers = new Array(questions.length).fill(null);
+    let totalSeconds = 15 * 60;
+    let secondsElapsed = 0;
 
-    const quizCard = document.getElementById("quiz-card");
-    const resultsCard = document.getElementById("results-card");
-    const timerDisplay = document.getElementById("timer");
-    const progressText = document.getElementById("progress-text");
-    const progressBar = document.getElementById("progress-bar");
-        const passageTitle = document.getElementById("passage-title");
-    const passageText = document.getElementById("passage-text");
-    const questionText = document.getElementById("question-text");
-    const optionsContainer = document.getElementById("options-container");
-    const nextBtn = document.getElementById("next-btn");
-    const restartBtn = document.getElementById("restart-btn");
+    function initQuiz() {
+      currentQ = 0;
+      score = 0;
+      answered = false;
+      secondsElapsed = 0;
+      totalSeconds = 15 * 60;
+      
+      document.getElementById('quizContainer').style.display = 'block';
+      document.getElementById('resultsContainer').style.display = 'none';
+
+      startTimer();
+      renderQuestion();
+    }
 
     function startTimer() {
+      clearInterval(timerInterval);
+      updateTimerDisplay();
       timerInterval = setInterval(() => {
-        timeLeft--;
+        totalSeconds--;
+        secondsElapsed++;
         updateTimerDisplay();
 
-        if (timeLeft <= 0) {
+        if (totalSeconds <= 0) {
           clearInterval(timerInterval);
-          submitQuiz();
+          finishQuiz();
         }
       }, 1000);
     }
 
     function updateTimerDisplay() {
-      const minutes = Math.floor(timeLeft / 60);
-      const seconds = timeLeft % 60;
-      timerDisplay.textContent = `⏱ ${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
-      
-      if (timeLeft <= 60) {
-        timerDisplay.classList.add("timer-warning");
-      } else {
-        timerDisplay.classList.remove("timer-warning");
-      }
+      const minutes = Math.floor(totalSeconds / 60);
+      const seconds = totalSeconds % 60;
+      document.getElementById('timerText').textContent = 
+        `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
     }
 
     function renderQuestion() {
-      const q = questions[currentIndex];
-      const curPassage = passages.find(p => p.id === q.passageId);
+      answered = false;
+      const qData = questions[currentQ];
+      const pData = passages[qData.passageIdx];
 
-      progressText.textContent = `Question ${currentIndex + 1} of ${questions.length}`;
-      progressBar.style.width = `${((currentIndex + 1) / questions.length) * 100}%`;
+      // Update Passage Box
+      document.getElementById('passageTag').textContent = pData.tag;
+      document.getElementById('passageContent').textContent = pData.text;
 
-      passageTitle.textContent = curPassage.title;
-      passageText.textContent = curPassage.text;
-      questionText.textContent = `Q${currentIndex + 1}. ${q.q}`;
+      document.getElementById('questionCount').textContent = `Question ${currentQ + 1} of ${questions.length}`;
+      document.getElementById('progressBar').style.width = `${((currentQ + 1) / questions.length) * 100}%`;
+      document.getElementById('questionText').textContent = qData.q;
 
-      optionsContainer.innerHTML = "";
-      const prefixes = ["A", "B", "C", "D"];
+      const expBox = document.getElementById('explanationBox');
+      expBox.classList.remove('show');
+      expBox.style.display = 'none';
 
-      q.options.forEach((opt, idx) => {
-        const btn = document.createElement("button");
-        btn.className = "option-btn";
-        if (userAnswers[currentIndex] === idx) {
-          btn.classList.add("selected");
-        }
-        btn.innerHTML = `<span class="option-prefix">${prefixes[idx]}</span> <span>${opt}</span>`;
+      const optionsList = document.getElementById('optionsList');
+      optionsList.innerHTML = '';
+
+      const letters = ['A', 'B', 'C', 'D'];
+      qData.options.forEach((opt, idx) => {
+        const btn = document.createElement('button');
+        btn.className = 'option-btn';
+        btn.innerHTML = `<span class="opt-circle">${letters[idx]}</span> <span>${opt}</span>`;
         btn.onclick = () => selectOption(idx);
-        optionsContainer.appendChild(btn);
+        optionsList.appendChild(btn);
       });
 
-      nextBtn.disabled = userAnswers[currentIndex] === null;
-      nextBtn.textContent = currentIndex === questions.length - 1 ? "Submit Test" : "Next Question";
+      const nextBtn = document.getElementById('nextBtn');
+      nextBtn.textContent = (currentQ === questions.length - 1) ? 'Finish Test 🏁' : 'Next Question →';
     }
 
-    function selectOption(index) {
-      userAnswers[currentIndex] = index;
-      const buttons = optionsContainer.querySelectorAll(".option-btn");
-      buttons.forEach((btn, idx) => {
-        btn.classList.toggle("selected", idx === index);
+    function selectOption(selectedIdx) {
+      if (answered) return;
+      answered = true;
+
+      const qData = questions[currentQ];
+      const optButtons = document.querySelectorAll('.option-btn');
+
+      optButtons.forEach((btn, idx) => {
+        btn.disabled = true;
+        if (idx === qData.ans) {
+          btn.classList.add('correct');
+        }
+        if (idx === selectedIdx && idx !== qData.ans) {
+          btn.classList.add('wrong');
+        }
       });
-      nextBtn.disabled = false;
+
+      if (selectedIdx === qData.ans) {
+        score++;
+      }
+
+      const expBox = document.getElementById('explanationBox');
+      document.getElementById('explanationText').textContent = qData.exp;
+      expBox.style.display = 'block';
+      expBox.classList.add('show');
     }
 
-    nextBtn.onclick = () => {
-      if (currentIndex < questions.length - 1) {
-        currentIndex++;
+    function nextQuestion() {
+      if (!answered) {
+        selectOption(-1);
+        return;
+      }
+
+      currentQ++;
+      if (currentQ < questions.length) {
         renderQuestion();
       } else {
-        submitQuiz();
+        finishQuiz();
       }
-    };
+    }
 
-    function submitQuiz() {
+    function finishQuiz() {
       clearInterval(timerInterval);
-      quizCard.classList.add("hide");
-      resultsCard.classList.remove("hide");
+      document.getElementById('quizContainer').style.display = 'none';
+      const resContainer = document.getElementById('resultsContainer');
+      resContainer.style.display = 'block';
 
-      const timeTakenSec = TOTAL_TIME - timeLeft;
-      const takenMins = Math.floor(timeTakenSec / 60);
-      const takenSecs = timeTakenSec % 60;
+      document.getElementById('finalScore').textContent = score;
+      document.getElementById('correctCount').textContent = score;
+      document.getElementById('wrongCount').textContent = questions.length - score;
 
-      let score = 0;
-      userAnswers.forEach((ans, idx) => {
-        if (ans === questions[idx].answer) score++;
-      });
+      const mins = Math.floor(secondsElapsed / 60);
+      const secs = secondsElapsed % 60;
+      document.getElementById('timeSpent').textContent = `${mins}m ${secs}s`;
 
-      const accuracy = Math.round((score / questions.length) * 100);
+      const feedback = document.getElementById('resultsFeedback');
+      const desc = document.getElementById('resultsDesc');
 
-      document.getElementById("score-val").textContent = `${score}/${questions.length}`;
-      document.getElementById("accuracy-val").textContent = `${accuracy}%`;
-      document.getElementById("time-val").textContent = `${String(takenMins).padStart(2, '0')}:${String(takenSecs).padStart(2, '0')}`;
-
-      renderReview();
+      const percentage = (score / questions.length) * 100;
+      if (percentage >= 80) {
+        feedback.textContent = '🌟 Outstanding Comprehension!';
+        desc.textContent = 'Flawless analysis and critical inference skills across complex passages!';
+      } else if (percentage >= 50) {
+        feedback.textContent = '👍 Good Effort!';
+        desc.textContent = 'Solid grasp, but be mindful of subtle author tone and extreme option traps.';
+      } else {
+        feedback.textContent = '📚 Needs Practice';
+        desc.textContent = 'Revise bottom-up skimming strategies in the study notes to improve precision.';
+      }
     }
 
-    function renderReview() {
-      const reviewContainer = document.getElementById("review-container");
-      reviewContainer.innerHTML = "";
-      const prefixes = ["A", "B", "C", "D"];
-
-      questions.forEach((q, idx) => {
-        const userAnsIndex = userAnswers[idx];
-        const isCorrect = userAnsIndex === q.answer;
-
-        const item = document.createElement("div");
-        item.className = `review-item ${isCorrect ? 'correct' : 'wrong'}`;
-
-        const userAnsText = userAnsIndex !== null 
-          ? `${prefixes[userAnsIndex]}. ${q.options[userAnsIndex]}` 
-          : "Not Attempted";
-        const correctAnsText = `${prefixes[q.answer]}. ${q.options[q.answer]}`;
-
-        item.innerHTML = `
-          <div class="review-q-text">Q${idx + 1}: ${q.q}</div>
-          <div class="review-ans-row"><strong>Your Answer:</strong> <span style="color:${isCorrect ? 'var(--success)' : 'var(--danger)'}">${userAnsText}</span></div>
-          <div class="review-ans-row"><strong>Correct Answer:</strong> <span style="color:var(--success)">${correctAnsText}</span></div>
-          <div class="review-explanation"><strong>Explanation:</strong> ${q.explanation}</div>
-        `;
-        reviewContainer.appendChild(item);
-      });
+    function restartQuiz() {
+      initQuiz();
     }
 
-    restartBtn.onclick = () => {
-      currentIndex = 0;
-      timeLeft = TOTAL_TIME;
-      userAnswers = new Array(questions.length).fill(null);
-      resultsCard.classList.add("hide");
-      quizCard.classList.remove("hide");
-      startTimer();
-      renderQuestion();
-    };
-
-    startTimer();
-    renderQuestion();
+    document.addEventListener('DOMContentLoaded', initQuiz);
   </script>
+
 </body>
 </html>
