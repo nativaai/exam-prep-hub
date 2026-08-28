@@ -1,0 +1,778 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Research Aptitude Mock Test - UGC NET Paper 1 | Exam Prep Hub</title>
+  <style>
+    :root {
+      --primary: #1e40af;
+      --primary-hover: #1d4ed8;
+      --primary-light: #eff6ff;
+      --bg: #f8fafc;
+      --card-bg: #ffffff;
+      --text: #0f172a;
+      --text-muted: #64748b;
+      --border: #e2e8f0;
+      
+      --correct: #15803d;
+      --correct-bg: #dcfce7;
+      --correct-border: #86efac;
+
+      --wrong: #be123c;
+      --wrong-bg: #ffe4e6;
+      --wrong-border: #fecdd3;
+
+      --radius: 14px;
+      --shadow: 0 4px 6px -1px rgb(0 0 0 / 0.08), 0 2px 4px -2px rgb(0 0 0 / 0.06);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    }
+
+    body {
+      background-color: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      padding-bottom: 60px;
+    }
+
+    header {
+      background-color: var(--card-bg);
+      border-bottom: 1px solid var(--border);
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.05);
+    }
+
+    .header-container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 14px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .back-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      color: var(--primary);
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 0.95rem;
+      transition: transform 0.2s ease, color 0.2s ease;
+    }
+
+    .back-btn:hover {
+      transform: translateX(-3px);
+      color: var(--primary-hover);
+    }
+
+    .badge-tag {
+      background: var(--primary-light);
+      color: var(--primary);
+      font-size: 0.8rem;
+      font-weight: 700;
+      padding: 4px 12px;
+      border-radius: 9999px;
+      border: 1px solid #bfdbfe;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 800px;
+      margin: 28px auto 0;
+      padding: 0 16px;
+    }
+
+    .hero-card {
+      background: linear-gradient(135deg, #1e3a8a 0%, #1e40af 60%, #3b82f6 100%);
+      color: #ffffff;
+      border-radius: var(--radius);
+      padding: 24px;
+      box-shadow: var(--shadow);
+      margin-bottom: 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .hero-title {
+      font-size: 1.65rem;
+      font-weight: 800;
+      margin-bottom: 4px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .hero-subtitle {
+      font-size: 0.92rem;
+      opacity: 0.9;
+    }
+
+    .quiz-card {
+      background: var(--card-bg);
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
+      padding: 24px;
+      box-shadow: var(--shadow);
+      margin-bottom: 24px;
+    }
+
+    .quiz-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 16px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .q-count {
+      font-weight: 700;
+      color: var(--text-muted);
+      font-size: 0.95rem;
+    }
+
+    .timer-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: #fef2f2;
+      color: #b91c1c;
+      font-weight: 800;
+      font-size: 0.95rem;
+      padding: 6px 14px;
+      border-radius: 9999px;
+      border: 1px solid #fecaca;
+    }
+
+    .progress-bar-wrap {
+      width: 100%;
+      height: 8px;
+      background: #e2e8f0;
+      border-radius: 9999px;
+      margin-bottom: 20px;
+      overflow: hidden;
+    }
+
+    .progress-bar {
+      height: 100%;
+      background: var(--primary);
+      width: 0%;
+      transition: width 0.3s ease;
+    }
+
+    .question-text {
+      font-size: 1.15rem;
+      font-weight: 800;
+      color: var(--text);
+      margin-bottom: 20px;
+      line-height: 1.5;
+    }
+
+    .options-list {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-bottom: 24px;
+    }
+
+    .option-btn {
+      background: #ffffff;
+      border: 1.5px solid var(--border);
+      border-radius: 12px;
+      padding: 14px 18px;
+      text-align: left;
+      font-size: 1rem;
+      font-weight: 600;
+      color: #1e293b;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      transition: all 0.2s ease;
+    }
+
+    .option-btn:hover:not(:disabled) {
+      border-color: var(--primary);
+      background-color: var(--primary-light);
+      transform: translateY(-1px);
+    }
+
+    .option-btn.selected {
+      border-color: var(--primary);
+      background-color: var(--primary-light);
+    }
+
+    .option-btn.correct {
+      background-color: var(--correct-bg) !important;
+      border-color: var(--correct-border) !important;
+      color: var(--correct) !important;
+      font-weight: 700;
+    }
+
+    .option-btn.wrong {
+      background-color: var(--wrong-bg) !important;
+      border-color: var(--wrong-border) !important;
+      color: var(--wrong) !important;
+      font-weight: 700;
+    }
+
+    .option-btn:disabled {
+      cursor: not-allowed;
+    }
+
+    .opt-circle {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: #f1f5f9;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.85rem;
+      font-weight: 800;
+      flex-shrink: 0;
+    }
+
+    .option-btn.correct .opt-circle {
+      background: #86efac;
+      color: #14532d;
+    }
+
+    .option-btn.wrong .opt-circle {
+      background: #fecdd3;
+      color: #881337;
+    }
+
+    .explanation-box {
+      display: none;
+      background: #f8fafc;
+      border: 1.5px solid var(--border);
+      border-left: 4px solid var(--primary);
+      border-radius: 10px;
+      padding: 16px;
+      margin-bottom: 20px;
+      font-size: 0.94rem;
+      color: #334155;
+    }
+
+    .explanation-box.show {
+      display: block;
+      animation: fadeIn 0.3s ease-in-out;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-4px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .explanation-title {
+      font-weight: 800;
+      color: var(--primary);
+      margin-bottom: 4px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .quiz-actions {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .btn-action {
+      background: var(--primary);
+      color: #ffffff;
+      border: none;
+      padding: 12px 24px;
+      border-radius: 10px;
+      font-size: 0.96rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background-color 0.2s, transform 0.2s;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .btn-action:hover {
+      background-color: var(--primary-hover);
+      transform: translateY(-1px);
+    }
+
+    .btn-secondary {
+      background: #f1f5f9;
+      color: #475569;
+    }
+
+    .btn-secondary:hover {
+      background: #e2e8f0;
+      color: #0f172a;
+    }
+
+    /* Results Screen */
+    .results-card {
+      display: none;
+      background: var(--card-bg);
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
+      padding: 36px 24px;
+      box-shadow: var(--shadow);
+      text-align: center;
+    }
+
+    .score-circle {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #1e40af, #3b82f6);
+      color: white;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 20px;
+      box-shadow: 0 4px 12px rgba(30, 64, 175, 0.25);
+    }
+
+    .score-val {
+      font-size: 2.2rem;
+      font-weight: 800;
+      line-height: 1;
+    }
+
+    .score-total {
+      font-size: 0.9rem;
+      opacity: 0.85;
+      font-weight: 700;
+    }
+
+    .results-title {
+      font-size: 1.5rem;
+      font-weight: 800;
+      margin-bottom: 8px;
+    }
+
+    .results-desc {
+      font-size: 0.95rem;
+      color: var(--text-muted);
+      margin-bottom: 24px;
+    }
+
+    .results-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin-bottom: 28px;
+    }
+
+    .res-box {
+      background: #f8fafc;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 12px;
+    }
+
+    .res-num {
+      font-size: 1.3rem;
+      font-weight: 800;
+    }
+
+    .res-lbl {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      font-weight: 700;
+    }
+
+    .res-correct { color: var(--correct); }
+    .res-wrong { color: var(--wrong); }
+    .res-time { color: var(--primary); }
+
+    .results-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
+    .results-buttons a, .results-buttons button {
+      text-decoration: none;
+    }
+
+    @media (max-width: 640px) {
+      .hero-card {
+        padding: 18px;
+      }
+      .hero-title {
+        font-size: 1.4rem;
+      }
+      .results-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="header-container">
+      <a href="index.html" class="back-btn">← Back to Home</a>
+      <span class="badge-tag">UGC NET Paper 1</span>
+    </div>
+  </header>
+
+  <div class="container">
+
+    <!-- Hero Card -->
+    <div class="hero-card">
+      <div>
+        <h1 class="hero-title">🔬 Research Aptitude Mock Test</h1>
+        <p class="hero-subtitle">15 UGC NET exam-standard MCQs covering research paradigms, sampling methods, hypotheses, and research ethics.</p>
+      </div>
+    </div>
+
+    <!-- Active Quiz Card -->
+    <div class="quiz-card" id="quizContainer">
+      <div class="quiz-header">
+        <span class="q-count" id="questionCount">Question 1 of 15</span>
+        <div class="timer-badge">
+          <span>⏱️</span>
+          <span id="timerText">15:00</span>
+        </div>
+      </div>
+
+      <div class="progress-bar-wrap">
+        <div class="progress-bar" id="progressBar"></div>
+      </div>
+
+      <div class="question-text" id="questionText">Loading question...</div>
+
+      <div class="options-list" id="optionsList"></div>
+
+      <div class="explanation-box" id="explanationBox">
+        <div class="explanation-title">💡 Explanation:</div>
+        <div id="explanationText"></div>
+      </div>
+
+      <div class="quiz-actions">
+        <a href="research-aptitude-notes.html" class="btn-action btn-secondary">📖 View Notes</a>
+        <button class="btn-action" id="nextBtn" onclick="nextQuestion()">Next Question →</button>
+      </div>
+    </div>
+
+    <!-- Results Screen -->
+    <div class="results-card" id="resultsContainer">
+      <div class="score-circle">
+        <span class="score-val" id="finalScore">0</span>
+        <span class="score-total">/ 15</span>
+      </div>
+      <h2 class="results-title" id="resultsFeedback">Test Completed!</h2>
+      <p class="results-desc" id="resultsDesc">Here is your overall performance breakdown.</p>
+
+      <div class="results-grid">
+        <div class="res-box">
+          <div class="res-num res-correct" id="correctCount">0</div>
+          <div class="res-lbl">CORRECT</div>
+        </div>
+        <div class="res-box">
+          <div class="res-num res-wrong" id="wrongCount">0</div>
+          <div class="res-lbl">INCORRECT</div>
+        </div>
+        <div class="res-box">
+          <div class="res-num res-time" id="timeSpent">0m 0s</div>
+          <div class="res-lbl">TIME SPENT</div>
+        </div>
+      </div>
+
+      <div class="results-buttons">
+        <button class="btn-action" onclick="restartQuiz()">🔄 Retake Test</button>
+        <a href="research-aptitude-notes.html" class="btn-action btn-secondary">📖 Review Study Notes</a>
+        <a href="index.html" class="btn-action" style="background: #0f172a;">🏠 Back to Hub</a>
+      </div>
+    </div>
+
+  </div>
+
+  <script>
+    const questions = [
+      {
+        q: "What is the correct sequential order of the Action Research cycle as propounded by Kurt Lewin?",
+        options: [
+          "Act → Plan → Observe → Reflect",
+          "Plan → Act → Observe → Reflect",
+          "Observe → Plan → Act → Reflect",
+          "Plan → Observe → Act → Reflect"
+        ],
+        ans: 1,
+        exp: "Kurt Lewin framed Action Research as a cyclical spiral of steps: Plan → Act → Observe → Reflect (PAOR)."
+      },
+      {
+        q: "Which research paradigm posits that reality is subjective, multifaceted, and socially constructed rather than purely deterministic?",
+        options: ["Positivism", "Post-Positivism", "Logical Empiricism", "Behaviorism"],
+        ans: 1,
+        exp: "Post-positivism rejects rigid determinism and embraces subjective perspectives, qualitative inquiry, and probabilistic truth."
+      },
+      {
+        q: "In an experimental study investigating the effect of teaching methods on student achievement, the 'Teaching Method' represents which variable?",
+        options: ["Dependent Variable", "Independent Variable", "Intervening Variable", "Extraneous Variable"],
+        ans: 1,
+        exp: "The Independent Variable (IV) is the cause or condition intentionally manipulated by the researcher (Teaching Method) to observe its effect on the Dependent Variable (Achievement)."
+      },
+      {
+        q: "A researcher divides a heterogeneous state population into distinct rural, urban, and semi-urban strata, then randomly draws proportional samples from each stratum. This is an example of:",
+        options: ["Cluster Sampling", "Stratified Random Sampling", "Quota Sampling", "Purposive Sampling"],
+        ans: 1,
+        exp: "Stratified Random Sampling divides a heterogeneous population into homogeneous subgroups (strata) and randomly selects participants from each subgroup."
+      },
+      {
+        q: "A Type I Error (Alpha Error) in statistical hypothesis testing occurs when the researcher:",
+        options: [
+          "Accepts a False Null Hypothesis",
+          "Rejects a True Null Hypothesis",
+          "Rejects a True Alternative Hypothesis",
+          "Accepts a True Null Hypothesis"
+        ],
+        ans: 1,
+        exp: "Type I Error is a 'False Positive'—it occurs when a true Null Hypothesis (H₀) is incorrectly rejected by the researcher."
+      },
+      {
+        q: "Which type of research is conducted after an event has naturally transpired, where the independent variable cannot be manipulated directly?",
+        options: ["Experimental Research", "Ex-Post Facto Research", "Fundamental Research", "Action Research"],
+        ans: 1,
+        exp: "Ex-Post Facto (after-the-fact) research investigates cause-and-effect relationships where the independent variable has already occurred naturally."
+      },
+      {
+        q: "Which non-probability sampling technique relies on existing study participants to recruit further subjects from among their acquaintances?",
+        options: ["Systematic Sampling", "Snowball Sampling", "Cluster Sampling", "Dimensional Sampling"],
+        ans: 1,
+        exp: "Snowball (chain-referral) sampling is ideal for hidden, marginalized, or hard-to-reach populations through peer networks."
+      },
+      {
+        q: "Which of the following research methods is most primarily directed toward adding to the existing body of theoretical and scientific knowledge?",
+        options: ["Applied Research", "Fundamental / Pure Research", "Action Research", "Evaluation Research"],
+        ans: 1,
+        exp: "Fundamental (Pure/Basic) research focuses on formulating new theories and expanding the boundaries of scientific knowledge without immediate commercial application."
+      },
+      {
+        q: "At which stage of the research process are ethical principles and research integrity most vulnerable to serious violations?",
+        options: [
+          "Defining the research problem and title",
+          "Data collection, analysis, and report plagiarism",
+          "Selecting reference bibliography software",
+          "Choosing font size and formatting margins"
+        ],
+        ans: 1,
+        exp: "Research ethics are most critically tested during data gathering (consent/privacy), statistical interpretation (fabrication/falsification), and report writing (plagiarism)."
+      },
+      {
+        q: "What is the primary role of the 'Null Hypothesis' (H₀) in empirical research?",
+        options: [
+          "To prove the personal beliefs of the researcher",
+          "To serve as a default statistical benchmark stating no significant difference or relationship exists",
+          "To replace the review of literature",
+          "To ensure that sample size remains small"
+        ],
+        ans: 1,
+        exp: "The Null Hypothesis (H₀) states that there is no true statistical difference or effect between variables; statistical tests aim to test and potentially reject it."
+      },
+      {
+        q: "Which style manual is most commonly employed for referencing and citations in social sciences, education, and psychology research?",
+        options: ["APA Style", "MLA Style", "IEEE Style", "Chicago Manual of Style"],
+        ans: 0,
+        exp: "The APA (American Psychological Association) author-date citation format is standard across social sciences and educational research."
+      },
+      {
+        q: "A research design where qualitative and quantitative methods are combined to validate and corroborate findings from multiple angles is known as:",
+        options: ["Dichotomy", "Triangulation", "Stratification", "Hermeneutics"],
+        ans: 1,
+        exp: "Triangulation refers to using multiple methods, data sources, or theoretical perspectives to cross-verify the validity of research conclusions."
+      },
+      {
+        q: "Which of the following is an essential characteristic of a strong, researchable hypothesis?",
+        options: [
+          "It must be impossible to disprove or falsify",
+          "It should be conceptually clear, specific, and empirically testable",
+          "It must always be proven true in all circumstances",
+          "It must be expressed as a broad philosophical opinion"
+        ],
+        ans: 1,
+        exp: "A sound scientific hypothesis must be precise, logically consistent, and capable of being empirically tested and falsified."
+      },
+      {
+        q: "When a researcher studies the cultural patterns, daily lived behaviors, and social rituals of a tribal group through prolonged participant observation, it is:",
+        options: ["Ethnographic Research", "Experimental Research", "Grounded Survey", "Historical Archive"],
+        ans: 0,
+        exp: "Ethnography is an in-depth qualitative method centered on immersing oneself in the natural setting of a cultural group to observe patterns and customs."
+      },
+      {
+        q: "Which statistical measure reflects the extent to which research findings can be generalized from a sample to the broader target population?",
+        options: ["Internal Validity", "External Validity", "Face Validity", "Construct Reliability"],
+        ans: 1,
+        exp: "External validity refers to the generalizability of research findings across different populations, settings, and time periods."
+      }
+    ];
+
+    let currentQ = 0;
+    let score = 0;
+    let answered = false;
+    let timerInterval = null;
+    let totalSeconds = 15 * 60;
+    let secondsElapsed = 0;
+
+    function initQuiz() {
+      currentQ = 0;
+      score = 0;
+      answered = false;
+      secondsElapsed = 0;
+      totalSeconds = 15 * 60;
+      
+      document.getElementById('quizContainer').style.display = 'block';
+      document.getElementById('resultsContainer').style.display = 'none';
+
+      startTimer();
+      renderQuestion();
+    }
+
+    function startTimer() {
+      clearInterval(timerInterval);
+      updateTimerDisplay();
+            timerInterval = setInterval(() => {
+        totalSeconds--;
+        secondsElapsed++;
+        updateTimerDisplay();
+
+        if (totalSeconds <= 0) {
+          clearInterval(timerInterval);
+          finishQuiz();
+        }
+      }, 1000);
+    }
+
+    function updateTimerDisplay() {
+      const minutes = Math.floor(totalSeconds / 60);
+      const seconds = totalSeconds % 60;
+      document.getElementById('timerText').textContent = 
+        `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+    }
+
+    function renderQuestion() {
+      answered = false;
+      const qData = questions[currentQ];
+
+      document.getElementById('questionCount').textContent = `Question ${currentQ + 1} of ${questions.length}`;
+      document.getElementById('progressBar').style.width = `${((currentQ + 1) / questions.length) * 100}%`;
+      document.getElementById('questionText').textContent = qData.q;
+
+      const expBox = document.getElementById('explanationBox');
+      expBox.classList.remove('show');
+      expBox.style.display = 'none';
+
+      const optionsList = document.getElementById('optionsList');
+      optionsList.innerHTML = '';
+
+      const letters = ['A', 'B', 'C', 'D'];
+      qData.options.forEach((opt, idx) => {
+        const btn = document.createElement('button');
+        btn.className = 'option-btn';
+        btn.innerHTML = `<span class="opt-circle">${letters[idx]}</span> <span>${opt}</span>`;
+        btn.onclick = () => selectOption(idx);
+        optionsList.appendChild(btn);
+      });
+
+      const nextBtn = document.getElementById('nextBtn');
+      nextBtn.textContent = (currentQ === questions.length - 1) ? 'Finish Test 🏁' : 'Next Question →';
+    }
+
+    function selectOption(selectedIdx) {
+      if (answered) return;
+      answered = true;
+
+      const qData = questions[currentQ];
+      const optButtons = document.querySelectorAll('.option-btn');
+
+      optButtons.forEach((btn, idx) => {
+        btn.disabled = true;
+        if (idx === qData.ans) {
+          btn.classList.add('correct');
+        }
+        if (idx === selectedIdx && idx !== qData.ans) {
+          btn.classList.add('wrong');
+        }
+      });
+
+      if (selectedIdx === qData.ans) {
+        score++;
+      }
+
+      const expBox = document.getElementById('explanationBox');
+      document.getElementById('explanationText').textContent = qData.exp;
+      expBox.style.display = 'block';
+      expBox.classList.add('show');
+    }
+
+    function nextQuestion() {
+      if (!answered) {
+        selectOption(-1);
+        return;
+      }
+
+      currentQ++;
+      if (currentQ < questions.length) {
+        renderQuestion();
+      } else {
+        finishQuiz();
+      }
+    }
+
+    function finishQuiz() {
+      clearInterval(timerInterval);
+      document.getElementById('quizContainer').style.display = 'none';
+      const resContainer = document.getElementById('resultsContainer');
+      resContainer.style.display = 'block';
+
+      document.getElementById('finalScore').textContent = score;
+      document.getElementById('correctCount').textContent = score;
+      document.getElementById('wrongCount').textContent = questions.length - score;
+
+      const mins = Math.floor(secondsElapsed / 60);
+      const secs = secondsElapsed % 60;
+      document.getElementById('timeSpent').textContent = `${mins}m ${secs}s`;
+
+      const feedback = document.getElementById('resultsFeedback');
+      const desc = document.getElementById('resultsDesc');
+
+      const percentage = (score / questions.length) * 100;
+      if (percentage >= 80) {
+        feedback.textContent = '🌟 Outstanding Mastery!';
+        desc.textContent = 'Excellent command over Research Aptitude principles and methodologies!';
+      } else if (percentage >= 50) {
+        feedback.textContent = '👍 Good Effort!';
+        desc.textContent = 'Good attempt! Review sampling types and statistical errors to score higher.';
+      } else {
+        feedback.textContent = '📚 Needs Revision';
+        desc.textContent = 'Revise sampling techniques, hypothesis testing, and action research in the study notes.';
+      }
+    }
+
+    function restartQuiz() {
+      initQuiz();
+    }
+
+    document.addEventListener('DOMContentLoaded', initQuiz);
+  </script>
+
+</body>
+</html>
