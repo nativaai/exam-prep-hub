@@ -1,0 +1,708 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ICT (Information & Communication Technology) - Study Notes | UGC NET Paper 1</title>
+  <style>
+    :root {
+      --primary: #1e40af;
+      --primary-hover: #1d4ed8;
+      --primary-light: #eff6ff;
+      --bg: #f8fafc;
+      --card-bg: #ffffff;
+      --text: #0f172a;
+      --text-muted: #64748b;
+      --border: #e2e8f0;
+
+      --blue-card-bg: #eff6ff;
+      --blue-card-border: #bfdbfe;
+      --blue-text: #1d4ed8;
+
+      --green-card-bg: #f0fdf4;
+      --green-card-border: #bbf7d0;
+      --green-text: #15803d;
+
+      --purple-card-bg: #faf5ff;
+      --purple-card-border: #e9d5ff;
+      --purple-text: #7e22ce;
+
+      --orange-card-bg: #fff7ed;
+      --orange-card-border: #fed7aa;
+      --orange-text: #c2410c;
+
+      --rose-card-bg: #fff1f2;
+      --rose-card-border: #fecdd3;
+      --rose-text: #be123c;
+
+      --radius: 14px;
+      --shadow: 0 4px 6px -1px rgb(0 0 0 / 0.08), 0 2px 4px -2px rgb(0 0 0 / 0.06);
+      --shadow-hover: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.08);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    }
+
+    body {
+      background-color: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      padding-bottom: 60px;
+    }
+
+    header {
+      background-color: var(--card-bg);
+      border-bottom: 1px solid var(--border);
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.05);
+    }
+
+    .header-container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 14px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .back-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      color: var(--primary);
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 0.95rem;
+      transition: transform 0.2s ease, color 0.2s ease;
+    }
+
+    .back-btn:hover {
+      transform: translateX(-3px);
+      color: var(--primary-hover);
+    }
+
+    .badge-tag {
+      background: var(--primary-light);
+      color: var(--primary);
+      font-size: 0.8rem;
+      font-weight: 700;
+      padding: 4px 12px;
+      border-radius: 9999px;
+      border: 1px solid #bfdbfe;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 800px;
+      margin: 28px auto 0;
+      padding: 0 16px;
+    }
+
+    .hero-card {
+      background: linear-gradient(135deg, #1e3a8a 0%, #1e40af 60%, #3b82f6 100%);
+      color: #ffffff;
+      border-radius: var(--radius);
+      padding: 28px 24px;
+      box-shadow: var(--shadow);
+      margin-bottom: 28px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .hero-title {
+      font-size: 1.75rem;
+      font-weight: 800;
+      margin-bottom: 6px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .hero-subtitle {
+      font-size: 0.95rem;
+      opacity: 0.9;
+    }
+
+    .hero-icon {
+      font-size: 2.8rem;
+      flex-shrink: 0;
+      background: rgba(255, 255, 255, 0.15);
+      border-radius: 16px;
+      width: 72px;
+      height: 72px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid rgba(255, 255, 255, 0.25);
+    }
+
+    .section-card {
+      background: var(--card-bg);
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
+      padding: 24px;
+      box-shadow: var(--shadow);
+      margin-bottom: 24px;
+    }
+
+    .section-header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 18px;
+      border-bottom: 2px solid #f1f5f9;
+      padding-bottom: 12px;
+    }
+
+    .section-icon {
+      font-size: 1.35rem;
+    }
+
+    .section-title {
+      font-size: 1.25rem;
+      font-weight: 800;
+      color: var(--text);
+    }
+
+    .concept-grid {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 20px;
+      align-items: center;
+    }
+
+    .concept-text {
+      font-size: 0.96rem;
+      color: #334155;
+    }
+
+    .concept-visual {
+      background: #f8fafc;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .formulas-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 16px;
+    }
+
+    .formula-card {
+      border-radius: 12px;
+      padding: 18px;
+      border-width: 1.5px;
+      border-style: solid;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .formula-card:hover {
+      transform: translateY(-3px);
+      box-shadow: var(--shadow);
+    }
+
+    .formula-card.blue { background-color: var(--blue-card-bg); border-color: var(--blue-card-border); }
+    .formula-card.green { background-color: var(--green-card-bg); border-color: var(--green-card-border); }
+    .formula-card.purple { background-color: var(--purple-card-bg); border-color: var(--purple-card-border); }
+    .formula-card.orange { background-color: var(--orange-card-bg); border-color: var(--orange-card-border); }
+
+    .formula-head {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.85rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      margin-bottom: 10px;
+    }
+
+    .formula-card.blue .formula-head { color: var(--blue-text); }
+    .formula-card.green .formula-head { color: var(--green-text); }
+    .formula-card.purple .formula-head { color: var(--purple-text); }
+    .formula-card.orange .formula-head { color: var(--orange-text); }
+
+    .formula-math {
+      font-size: 0.98rem;
+      font-weight: 800;
+      color: #1e293b;
+      margin-bottom: 8px;
+      background: rgba(255, 255, 255, 0.85);
+      padding: 8px 12px;
+      border-radius: 8px;
+      border: 1px dashed rgba(0, 0, 0, 0.15);
+      text-align: center;
+    }
+
+    .formula-note {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+    }
+
+    .examples-list {
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+
+    .example-card {
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      background: #ffffff;
+      padding: 18px;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+    }
+
+    .example-title {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .step-row {
+      margin-bottom: 8px;
+      font-size: 0.92rem;
+      display: flex;
+      align-items: baseline;
+      gap: 8px;
+    }
+
+    .step-tag {
+      font-size: 0.75rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      padding: 2px 8px;
+      border-radius: 6px;
+      flex-shrink: 0;
+    }
+
+    .step-given { background: #eff6ff; color: var(--blue-text); }
+    .step-formula { background: #faf5ff; color: var(--purple-text); }
+    .step-sol { background: #f0fdf4; color: var(--green-text); }
+
+    .answer-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: #dcfce7;
+      color: #15803d;
+      font-weight: 800;
+      font-size: 0.95rem;
+      padding: 6px 14px;
+      border-radius: 8px;
+      border: 1px solid #86efac;
+      margin-top: 6px;
+    }
+
+    .tips-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 14px;
+    }
+
+    .tip-card {
+      border-radius: 12px;
+      padding: 16px;
+      border: 1px solid var(--border);
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+    }
+
+    .tip-card.t1 { background-color: #fffbeb; border-color: #fde68a; }
+    .tip-card.t2 { background-color: #f0fdf4; border-color: #bbf7d0; }
+    .tip-card.t3 { background-color: #eff6ff; border-color: #bfdbfe; }
+    .tip-card.t4 { background-color: #faf5ff; border-color: #e9d5ff; }
+
+    .tip-icon {
+      font-size: 1.3rem;
+      flex-shrink: 0;
+    }
+
+    .tip-text {
+      font-size: 0.88rem;
+      color: #334155;
+    }
+
+    .tip-text strong {
+      color: #0f172a;
+    }
+
+    .mistakes-list {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .mistake-box {
+      background-color: var(--rose-card-bg);
+      border: 1.5px solid var(--rose-card-border);
+      border-radius: 12px;
+      padding: 14px 16px;
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+    }
+
+    .mistake-icon {
+      font-size: 1.3rem;
+      color: var(--rose-text);
+      flex-shrink: 0;
+    }
+
+    .mistake-title {
+      font-weight: 700;
+      color: var(--rose-text);
+      font-size: 0.92rem;
+      margin-bottom: 2px;
+    }
+
+    .mistake-desc {
+      font-size: 0.86rem;
+      color: #475569;
+    }
+
+    .cta-container {
+      text-align: center;
+      margin-top: 32px;
+    }
+
+    .btn-quiz-cta {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      background: linear-gradient(135deg, #1e40af 0%, #2563eb 100%);
+      color: #ffffff;
+      padding: 16px 36px;
+      border-radius: 12px;
+      font-size: 1.1rem;
+      font-weight: 800;
+      text-decoration: none;
+      box-shadow: 0 4px 12px rgba(37, 99, 235, 0.35);
+      transition: all 0.25s ease;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .btn-quiz-cta:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 18px rgba(37, 99, 235, 0.45);
+      background: linear-gradient(135deg, #1d4ed8 0%, #1d4ed8 100%);
+    }
+
+    @media (max-width: 640px) {
+      .hero-card {
+        flex-direction: column-reverse;
+        text-align: center;
+        padding: 20px;
+      }
+      .concept-grid {
+        grid-template-columns: 1fr;
+      }
+      .hero-title {
+        font-size: 1.45rem;
+        justify-content: center;
+      }
+      .btn-quiz-cta {
+        width: 100%;
+        padding: 14px 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="header-container">
+      <a href="index.html" class="back-btn">← Back to Home</a>
+      <span class="badge-tag">UGC NET Paper 1</span>
+    </div>
+  </header>
+
+  <div class="container">
+
+    <div class="hero-card">
+      <div>
+        <h1 class="hero-title">💻 ICT - Study Notes</h1>
+        <p class="hero-subtitle">Master UGC NET Unit 8: Computer Hardware & Memory Hierarchy, Binary/Hexadecimal Number Conversions, Internet Protocols, Cybersecurity, and Government Digital Initiatives.</p>
+      </div>
+      <div class="hero-icon">🌐</div>
+    </div>
+
+    <div class="section-card">
+      <div class="section-header">
+        <span class="section-icon">⚡</span>
+        <h2 class="section-title">Computer Memory Hierarchy & Storage Units</h2>
+      </div>
+      
+      <div class="concept-grid">
+        <div class="concept-text">
+          <p style="margin-bottom: 10px;">
+            Computer memory follows a trade-off: <strong>Faster memory is smaller and more expensive</strong> per bit, while <strong>slower storage is larger and cheaper</strong>.
+          </p>
+          <div style="background: #f1f5f9; padding: 10px 14px; border-radius: 8px; border-left: 4px solid var(--primary); font-size: 0.9rem;">
+            <strong>Hierarchy (Fastest & Smallest &rarr; Slowest & Largest):</strong><br>
+            1. <strong>CPU Registers</strong> (Fastest, volatile)<br>
+            2. <strong>Cache Memory</strong> (SRAM - Level 1, 2, 3)<br>
+            3. <strong>Main Memory (RAM)</strong> (DRAM - Volatile primary)<br>
+            4. <strong>Solid State Drive (SSD) / Flash</strong> (Non-volatile secondary)<br>
+            5. <strong>Hard Disk Drive (HDD)</strong> / Optical (CD/DVD/Blu-ray)<br>
+            6. <strong>Magnetic Tape</strong> (Slowest, archival backup)
+          </div>
+        </div>
+
+        <div class="concept-visual">
+          <svg width="170" height="150" viewBox="0 0 100 100">
+            <polygon points="50,10 65,30 35,30" fill="#2563eb" />
+            <text x="50" y="24" text-anchor="middle" font-size="4" font-weight="bold" fill="#fff">Registers</text>
+            <polygon points="35,33 65,33 75,53 25,53" fill="#3b82f6" />
+            <text x="50" y="45" text-anchor="middle" font-size="4" font-weight="bold" fill="#fff">Cache (SRAM)</text>
+            <polygon points="25,56 75,56 85,76 15,76" fill="#60a5fa" />
+            <text x="50" y="68" text-anchor="middle" font-size="4" font-weight="bold" fill="#fff">RAM (DRAM)</text>
+            <polygon points="15,79 85,79 95,95 5,95" fill="#93c5fd" />
+            <text x="50" y="89" text-anchor="middle" font-size="4" font-weight="bold" fill="#1e293b">SSD / HDD / Tape</text>
+          </svg>
+        </div>
+      </div>
+    </div>
+
+    <div class="section-card">
+      <div class="section-header">
+        <span class="section-icon">🔢</span>
+        <h2 class="section-title">Data Storage Units & Number Conversions</h2>
+      </div>
+
+      <div class="formulas-grid">
+        <div class="formula-card blue">
+          <div>
+            <div class="formula-head"><span>💾</span> Storage Units Sequence</div>
+            <div class="formula-math">Bit &rarr; Byte &rarr; KB &rarr; MB &rarr; GB &rarr; TB &rarr; PB &rarr; EB</div>
+          </div>
+          <div class="formula-note">1 Byte = 8 Bits = 2 Nibbles (1 Nibble = 4 Bits). 1 KB = 1024 Bytes ($2^{10}$), 1 MB = $2^{20}$ Bytes, 1 GB = $2^{30}$ Bytes, 1 TB = $2^{40}$ Bytes.</div>
+        </div>
+
+        <div class="formula-card green">
+          <div>
+            <div class="formula-head"><span>🔄</span> Decimal to Binary</div>
+            <div class="formula-math">Successive Division by 2</div>
+          </div>
+          <div class="formula-note">Divide number by 2 repeatedly and record remainders from bottom to top (LSB to MSB). E.g., $(25)_{10} = (11001)_2$.</div>
+        </div>
+
+        <div class="formula-card purple">
+          <div>
+            <div class="formula-head"><span>🔡</span> Hexadecimal Base-16</div>
+            <div class="formula-math">0–9 and A(10), B(11), C(12), D(13), E(14), F(15)</div>
+          </div>
+          <div class="formula-note">Convert 4-bit binary chunks into 1 Hex digit. E.g., $(1111)_2 = (\text{F})_{16}$, $(1010)_2 = (\text{A})_{16}$. Hexadecimal is used in IPv6 and MAC addresses.</div>
+        </div>
+
+        <div class="formula-card orange">
+          <div>
+            <div class="formula-head"><span>🔋</span> RAM vs ROM</div>
+            <div class="formula-math">Volatile (RAM) vs Non-Volatile (ROM)</div>
+          </div>
+          <div class="formula-note"><strong>RAM:</strong> Loses data when powered off (Read/Write). <strong>ROM:</strong> Retains BIOS / firmware bootstrap instructions permanently.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section-card">
+      <div class="section-header">
+        <span class="section-icon">🛡️</span>
+        <h2 class="section-title">Internet Protocols, Web & Cyber Threats</h2>
+      </div>
+
+      <div class="formulas-grid">
+        <div class="formula-card blue">
+          <div>
+            <div class="formula-head"><span>🌐</span> Core Internet Protocols</div>
+            <div class="formula-math">HTTP/S | FTP | SMTP | POP3 | IMAP | DNS</div>
+          </div>
+          <div class="formula-note"><strong>SMTP:</strong> Sends outgoing emails. <strong>POP3/IMAP:</strong> Retrieves incoming emails. <strong>DNS:</strong> Translates domain names into IP addresses.</div>
+        </div>
+
+        <div class="formula-card green">
+          <div>
+            <div class="formula-head"><span>🏷️</span> IPv4 vs IPv6 vs MAC Address</div>
+            <div class="formula-math">IPv4: 32-bit | IPv6: 128-bit | MAC: 48-bit</div>
+          </div>
+          <div class="formula-note"><strong>IPv4:</strong> 4 octets separated by dots (e.g. 192.168.1.1). <strong>IPv6:</strong> 8 hex blocks separated by colons. <strong>MAC:</strong> Physical hardware address on NIC.</div>
+        </div>
+
+        <div class="formula-card purple">
+          <div>
+            <div class="formula-head"><span>🦠</span> Malware Classifications</div>
+            <div class="formula-math">Virus | Worm | Trojan | Ransomware | Spyware</div>
+          </div>
+          <div class="formula-note"><strong>Worm:</strong> Self-replicating across networks without host. <strong>Trojan:</strong> Disguised as legitimate software. <strong>Phishing:</strong> Fraudulent emails/links to steal credentials.</div>
+        </div>
+
+        <div class="formula-card orange">
+          <div>
+            <div class="formula-head"><span>🏛️</span> National Digital Initiatives</div>
+            <div class="formula-math">SWAYAM | NDL | DigiLocker | ShodhGanga | SAMARTH</div>
+          </div>
+          <div class="formula-note"><strong>ShodhGanga:</strong> Repository of Indian PhD theses. <strong>ShodhGangotri:</strong> Synopsis repository. <strong>NDL:</strong> National Digital Library. <strong>DigiLocker:</strong> Cloud document wallet.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section-card">
+      <div class="section-header">
+        <span class="section-icon">📝</span>
+        <h2 class="section-title">Step-by-Step Solved UGC NET Examples</h2>
+      </div>
+
+      <div class="examples-list">
+        <div class="example-card">
+          <div class="example-title">
+            <span style="background: #eff6ff; color: #1e40af; padding: 2px 8px; border-radius: 6px; font-size: 0.85rem;">Ex 1</span>
+            What is the binary equivalent of the decimal number $(43)_{10}$?<br>
+            Options: (A) 101011 &nbsp;|&nbsp; (B) 101010 &nbsp;|&nbsp; (C) 110101 &nbsp;|&nbsp; (D) 100111
+          </div>
+          <div class="step-row">
+            <span class="step-tag step-given">Successive Division by 2</span>
+            <span>43 &divide; 2 = 21 (rem 1) &rarr; 21 &divide; 2 = 10 (rem 1) &rarr; 10 &divide; 2 = 5 (rem 0) &rarr; 5 &divide; 2 = 2 (rem 1) &rarr; 2 &divide; 2 = 1 (rem 0) &rarr; 1 &divide; 2 = 0 (rem 1)</span>
+          </div>
+          <div class="step-row">
+            <span class="step-tag step-formula">Read from Bottom to Top (MSB to LSB)</span>
+            <span>Remainders: 1, 0, 1, 0, 1, 1</span>
+          </div>
+          <div class="step-row">
+            <span class="step-tag step-sol">Verification</span>
+            <span>$1\times 32 + 0\times 16 + 1\times 8 + 0\times 4 + 1\times 2 + 1\times 1 = 32 + 8 + 2 + 1 = 43$.</span>
+          </div>
+          <div>
+            <span class="answer-badge">✓ Correct Answer: Option A (101011)₂</span>
+          </div>
+        </div>
+
+        <div class="example-card">
+          <div class="example-title">
+            <span style="background: #eff6ff; color: #1e40af; padding: 2px 8px; border-radius: 6px; font-size: 0.85rem;">Ex 2</span>
+            Arrange the following computer storage terms in ascending order of data capacity (Smallest to Largest):<br>
+            1. Gigabyte &nbsp;|&nbsp; 2. Terabyte &nbsp;|&nbsp; 3. Megabyte &nbsp;|&nbsp; 4. Petabyte &nbsp;|&nbsp; 5. Kilobyte
+          </div>
+          <div class="step-row">
+            <span class="step-tag step-given">Order Rule</span>
+            <span>Kilobyte (KB) &lt; Megabyte (MB) &lt; Gigabyte (GB) &lt; Terabyte (TB) &lt; Petabyte (PB)</span>
+          </div>
+          <div class="step-row">
+            <span class="step-tag step-sol">Sequence</span>
+            <span>5 (KB) &rarr; 3 (MB) &rarr; 1 (GB) &rarr; 2 (TB) &rarr; 4 (PB)</span>
+          </div>
+          <div>
+            <span class="answer-badge">✓ Correct Order: KB &rarr; MB &rarr; GB &rarr; TB &rarr; PB</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+        <!-- 5. Speed Mnemonics & Key Tips -->
+    <div class="section-card">
+      <div class="section-header">
+        <span class="section-icon">⭐</span>
+        <h2 class="section-title">Speed-Solving Mnemonics & Key Tips</h2>
+      </div>
+
+      <div class="tips-grid">
+        <div class="tip-card t1">
+          <div class="tip-icon">💾</div>
+          <div class="tip-text"><strong>Storage Order Mnemonic:</strong><br>
+          <strong>K</strong>ing <strong>M</strong>anages <strong>G</strong>reat <strong>T</strong>reasures <strong>P</strong>erfectly <strong>E</strong>veryday<br>
+          <strong>K</strong>B &rarr; <strong>M</strong>B &rarr; <strong>G</strong>B &rarr; <strong>T</strong>B &rarr; <strong>P</strong>B &rarr; <strong>E</strong>B.</div>
+        </div>
+
+        <div class="tip-card t2">
+          <div class="tip-icon">📧</div>
+          <div class="tip-text"><strong>Email Protocol Secrets:</strong><br>
+          • <strong>SMTP:</strong> <strong>S</strong>ending <strong>M</strong>ail <strong>T</strong>o <strong>P</strong>eople (Outgoing).<br>
+          • <strong>POP3 / IMAP:</strong> Receiving / fetching mail into client.</div>
+        </div>
+
+        <div class="tip-card t3">
+          <div class="tip-icon">🌐</div>
+          <div class="tip-text"><strong>Bits in Addresses:</strong><br>
+          • <strong>IPv4:</strong> 32 bits (4 bytes).<br>
+          • <strong>MAC Address:</strong> 48 bits (6 bytes).<br>
+          • <strong>IPv6:</strong> 128 bits (16 bytes).</div>
+        </div>
+
+        <div class="tip-card t4">
+          <div class="tip-icon">🏛️</div>
+          <div class="tip-text"><strong>Shodh Initiatives:</strong><br>
+          • <strong>ShodhGanga:</strong> Full-text completed PhD Theses.<br>
+          • <strong>ShodhGangotri:</strong> Approved Research Synopses.<br>
+          • <strong>ShodhShuddhi:</strong> Plagiarism detection tool (Ouriginal).</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 6. Common Mistakes to Avoid -->
+    <div class="section-card">
+      <div class="section-header">
+        <span class="section-icon">⚠️</span>
+        <h2 class="section-title">Common Mistakes to Avoid</h2>
+      </div>
+
+      <div class="mistakes-list">
+        <div class="mistake-box">
+          <div class="mistake-icon">🚫</div>
+          <div>
+            <div class="mistake-title">Mistake 1: Confusing RAM with ROM Volatility</div>
+            <div class="mistake-desc"><strong>RAM is Volatile</strong> (erased when power is switched off). <strong>ROM is Non-Volatile</strong> (holds boot sequence and startup instructions permanently).</div>
+          </div>
+        </div>
+
+        <div class="mistake-box">
+          <div class="mistake-icon">🚫</div>
+          <div>
+            <div class="mistake-title">Mistake 2: Confusing Phishing with Pharming and Spoofing</div>
+            <div class="mistake-desc"><strong>Phishing</strong> uses deceptive emails/messages to steal login details. <strong>Pharming</strong> redirects web traffic to a fake bogus website by poisoning DNS servers.</div>
+          </div>
+        </div>
+
+        <div class="mistake-box">
+          <div class="mistake-icon">🚫</div>
+          <div>
+            <div class="mistake-title">Mistake 3: Mixing Bits and Bytes in File Transfer Calculations</div>
+            <div class="mistake-desc">Network speeds are stated in <strong>Mbps</strong> (Megabits per second, lowercase 'b'), while file sizes are in <strong>MB</strong> (MegaBytes, uppercase 'B'). 1 Byte = 8 Bits (8 Mbps = 1 MB/s).</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CTA Button -->
+    <div class="cta-container">
+      <a href="ict-test.html" class="btn-quiz-cta">
+        <span>🚀 Take ICT Mock Test</span>
+        <span>→</span>
+      </a>
+    </div>
+
+  </div>
+
+</body>
+</html>
